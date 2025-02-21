@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Maui.Android.TextInputLayout.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace MauiCustomControls
 {
@@ -13,7 +14,8 @@ namespace MauiCustomControls
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                .AddTextInputLayout();
 
 #if DEBUG
     		builder.Logging.AddDebug();
