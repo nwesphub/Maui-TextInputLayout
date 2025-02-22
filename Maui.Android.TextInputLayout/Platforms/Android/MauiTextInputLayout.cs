@@ -18,8 +18,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
         public MauiTextInputLayout(Context context, ITextInputLayout layout) : base(context)
         {
             MauiTextInputEditText = new MauiTextInputEditText(context);
-
-            //this.AddView(new Google.Android.Material.TextField.TextInputEditText(context));
+            
             this.AddView(MauiTextInputEditText);
         }
     }
