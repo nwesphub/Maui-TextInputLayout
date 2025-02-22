@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Android.Util;
 using Android.Widget;
 
 using System;
@@ -11,14 +12,23 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputEditText : Google.Android.Material.TextField.TextInputEditText
     {
+        public MauiTextInputEditText(Context context, IAttributeSet? attrs, int style) : base(context, attrs, style)
+        {
+            SetAttributes();
+        }
         public MauiTextInputEditText(Context context) : base(context)
+        {
+            SetAttributes();
+        }
+
+        private void SetAttributes()
         {
             SetWidth(50000);
 
             // Set minimum width to a high number otherwise the input takes up a very small space and is not clickable
             this.SetMinimumWidth(1000000);
             LayoutParameters = new LLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
-            
+
             SetMaxLines(1);
             SetSingleLine(true);
         }

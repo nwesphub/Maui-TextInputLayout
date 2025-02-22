@@ -52,6 +52,7 @@
 
 	<ItemGroup>
 	  <AndroidResource Remove="Platforms\Android\Resources\layout\maui_text_input_layout.xml" />
+	  <AndroidResource Remove="Platforms\Android\Resources\values\styles.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

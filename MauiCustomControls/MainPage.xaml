@@ -14,6 +14,7 @@
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
             <input:TextInputLayout BackgroundColor="AliceBlue"  />
+            <input:TextInputLayout BackgroundColor="LightGray"  />
             <Label
                 Text="Hello, World!"
                 Style="{StaticResource Headline}"

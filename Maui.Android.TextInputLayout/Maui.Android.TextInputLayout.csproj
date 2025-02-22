@@ -17,8 +17,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Platforms\Android\Resources\styles\styles.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Platforms\Android\Resources\values\" />
 	</ItemGroup>
 
 </Project>
