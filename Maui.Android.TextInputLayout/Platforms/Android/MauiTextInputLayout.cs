@@ -14,12 +14,13 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
     {
-        public TextInputEditText _editText;
+        public MauiTextInputEditText MauiTextInputEditText;
         public MauiTextInputLayout(Context context, ITextInputLayout layout) : base(context)
         {
-            _editText = new TextInputEditText(context);
-            
-            this.AddView(_editText);
+            MauiTextInputEditText = new MauiTextInputEditText(context);
+
+            //this.AddView(new Google.Android.Material.TextField.TextInputEditText(context));
+            this.AddView(MauiTextInputEditText);
         }
     }
 }

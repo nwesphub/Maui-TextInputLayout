@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout
 {
-    public partial class TextInputLayoutHandler : ViewHandler<TextInputLayout, MauiTextInputLayout>
+    public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
     {
         protected override MauiTextInputLayout CreatePlatformView()
         {

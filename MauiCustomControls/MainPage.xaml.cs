@@ -1,4 +1,6 @@
-﻿namespace MauiCustomControls
+﻿using Maui.Android.TextInputLayout;
+
+namespace MauiCustomControls
 {
     public partial class MainPage : ContentPage
     {
@@ -7,6 +9,9 @@
         public MainPage()
         {
             InitializeComponent();
+            //TextInputLayout textInputLayout = new TextInputLayout();
+            
+            //test.Add(textInputLayout);
         }
 
         private void OnCounterClicked(object sender, EventArgs e)

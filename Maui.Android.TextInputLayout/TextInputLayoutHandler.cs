@@ -39,10 +39,6 @@ namespace Maui.Android.TextInputLayout
 
         public void DisconnectHandler()
         {
-            throw new NotImplementedException();
         }
-
-    
-
     }
 }

@@ -42,7 +42,10 @@ namespace Maui.Android.TextInputLayout
             
         }
 
-        
+        public static void MapMaxLines(ITextInputLayoutHandler handler, ITextInputLayout view)
+        {
+            handler.PlatformView.MauiTextInputEditText.SetMaxLines(1);
+        }
 
         public static void TestHandler(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {

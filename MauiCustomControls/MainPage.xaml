@@ -5,7 +5,7 @@
              x:Class="MauiCustomControls.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
+        <VerticalStackLayout x:Name="test"
             Padding="30,0"
             Spacing="25">
             <Image

@@ -13,6 +13,7 @@ namespace Maui.Android.TextInputLayout.Hosting
         {
             return builder.ConfigureMauiHandlers(config =>
             {
+                //config.AddHandler<TextInputEditText, TextInputEditTextHandler>();
                 config.AddHandler<TextInputLayout, TextInputLayoutHandler>();
             });
         }
