@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RResource = Android.Resource.Attribute;
 
-namespace Maui.Android.TextInputLayout.Platforms.Android
+namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
 {
     public static class HintManager
     {
