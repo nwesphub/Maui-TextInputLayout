@@ -25,7 +25,7 @@ namespace Maui.Android.TextInputLayout
         MauiTextInputLayout _nativeEntry;
         protected override MauiTextInputLayout CreatePlatformView()
         {
-            return InternalCreatePlatformView();
+            return InternalCreateContextThemeView();
         }
 
         private MauiTextInputLayout InternalCreatePlatformView()
@@ -57,43 +57,46 @@ namespace Maui.Android.TextInputLayout
 
         public static void MapBackground(ITextInputLayoutHandler handler, ITextInputLayout entry) 
         {
-            handler.PlatformView.UpdateBackground(entry);
-            TestHandler(handler, entry);
             
         }
-
-        public static void MapMaxLines(ITextInputLayoutHandler handler, ITextInputLayout view)
+        public static void MapBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView.MauiTextInputEditText.SetMaxLines(1);
-        }
-
-        public static void TestHandler(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            var platform = handler.PlatformView;
-
-
-            //handler.PlatformView.BoxStrokeColor = 23423423; -- Changes the bottom underline color
-
             int[][] states =
             [
-                [ RResource.Enabled ],
-                [-RResource.Enabled ],
-                [-RResource.Checked ],
-                [ RResource.Checked ]
+                [-RResource.StateFocused],
+                [RResource.StateFocused],
+                
             ];
 
-            int[] colors = 
+            int[] colors =
             [
-                Colors.Black.ToPlatform(),
-                Colors.Green.ToPlatform(),
-                Colors.Green.ToPlatform(),
-                Colors.Blue.ToPlatform()
+
+                Colors.Red.ToPlatform(),
+                Colors.Black.ToPlatform()
             ];
             ColorStateList csl = new ColorStateList(states, colors);
 
-            handler.PlatformView.UpdateBorder(entry);
             handler.PlatformView.SetBoxStrokeColorStateList(csl);
-
+        }
+        public static void MapFocusedBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            
+        }
+        public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            HintManager.MapHint(handler, entry);
+        }
+        public static void MapDefaultHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            HintManager.MapDefaultHintTextColor(handler, entry);
+        }
+        public static void MapFocusedHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            HintManager.MapFocusedHintTextColor(handler, entry);
+        }
+        public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            HintManager.MapIsHintAnimated(handler, entry);
         }
     }
 }

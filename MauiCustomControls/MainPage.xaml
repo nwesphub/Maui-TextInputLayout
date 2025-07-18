@@ -13,7 +13,8 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
-            <input:TextInputLayout BackgroundColor="AliceBlue"  />
+            <input:TextInputLayout Hint="Label" />
+            <input:TextInputLayout BackgroundColor="Transparent" BorderColor="AliceBlue" Hint="Test Hint" DefaultHintColor="Blue" FocusedHintColor="Red" IsHintAnimated="False" />
             <input:TextInputLayout BackgroundColor="LightGray"  />
             <Label
                 Text="Hello, World!"
