@@ -17,6 +17,7 @@ using AColor = Android.Graphics.Color;
 using ContextThemeWrapper = AndroidX.AppCompat.View.ContextThemeWrapper;
 using RResource = Android.Resource.Attribute;
 using AView = Android.Views.View;
+using Maui.Android.TextInputLayout.Platforms.Android.Managers;
 namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
