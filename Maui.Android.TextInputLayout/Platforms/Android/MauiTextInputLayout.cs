@@ -22,7 +22,8 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 
         private void SetDefaults(Context context)
         {
-            LayoutParameters = new LLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
+            // Not needed anymore?
+            //LayoutParameters = new LLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
             this.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundOutline;
             this.SetBoxCornerRadii(8 ,8, 8, 8);
   

@@ -18,7 +18,7 @@ namespace Maui.Android.TextInputLayout
         static TextInputLayout()
         {
             BorderColorProperty = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(TextInputLayout), defaultValue: Colors.Black);
-            FocusedBorderColorProperty = BindableProperty.Create(nameof(FocusedBorderColor), typeof(Color), typeof(TextInputLayout));
+            FocusedBorderColorProperty = BindableProperty.Create(nameof(FocusedBorderColor), typeof(Color), typeof(TextInputLayout), defaultValue: Colors.Black);
             HintProperty = BindableProperty.Create(nameof(Hint), typeof(string), typeof(TextInputLayout));
             DefaultHintColorProperty = BindableProperty.Create(nameof(DefaultHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: (Application.Current.Resources["Primary"] as Color) ?? Colors.LightGray);
             FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: (Application.Current.Resources["Primary"] as Color) ?? Colors.LightGray);

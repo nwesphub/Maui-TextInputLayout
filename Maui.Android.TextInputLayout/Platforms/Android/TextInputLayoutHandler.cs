@@ -61,26 +61,11 @@ namespace Maui.Android.TextInputLayout
         }
         public static void MapBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            int[][] states =
-            [
-                [-RResource.StateFocused],
-                [RResource.StateFocused],
-                
-            ];
-
-            int[] colors =
-            [
-
-                Colors.Red.ToPlatform(),
-                Colors.Black.ToPlatform()
-            ];
-            ColorStateList csl = new ColorStateList(states, colors);
-
-            handler.PlatformView.SetBoxStrokeColorStateList(csl);
+            BorderManager.MapBorderColor(handler, entry);
         }
         public static void MapFocusedBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
+            BorderManager.MapFocusedBorderColor(handler, entry);
         }
         public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
