@@ -51,9 +51,23 @@ namespace Maui.Android.TextInputLayout
             base.ConnectHandler(platformView);
         }
 
-        public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout view)
+        public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView.SetBackgroundColor(view?.BackgroundColor?.ToPlatform() ?? new AColor());
+            //handler.PlatformView.SetBackgroundColor(view?.BackgroundColor?.ToPlatform() ?? new AColor());
+            handler.PlatformView.MauiTextInputEditText.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
+            int[][] states =
+            [
+                [-RResource.StateFocused],
+                [RResource.StateFocused],
+            ];
+
+            int[] colors =
+            [
+                entry?.BackgroundColor?.ToPlatform() ?? new AColor(),
+                entry?.BackgroundColor?.ToPlatform() ?? new AColor()
+            ];
+            ColorStateList csl = new ColorStateList(states, colors);
+            handler.PlatformView.MauiTextInputEditText.BackgroundTintList = csl;
         }
 
         public static void MapBackground(ITextInputLayoutHandler handler, ITextInputLayout entry) 
