@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Layouts;
+using Microsoft.Maui.Layouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +7,24 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout
 {
-    public class TextInputLayout : Layout, ITextInputLayout
+    public partial class TextInputLayout : ContentView, ITextInputLayout
     {
-
+        public TextInputEditText TextInputEditText { get; set; }
         public TextInputLayout()
         {
+            TextInputEditText = this.textInputEditText;
+            InitializeComponent();
+            //TextInputEditText = new TextInputEditText()
+            //{
+
+            //};
+            //this.Content = TextInputEditText;
             
+            Focused += TextInputLayout_Focused;
+        }
+
+        private void TextInputLayout_Focused(object? sender, FocusEventArgs e)
+        {
         }
 
         static TextInputLayout()
@@ -25,10 +37,10 @@ namespace Maui.Android.TextInputLayout
             IsHintAnimatedProperty = BindableProperty.Create(nameof(IsHintAnimated), typeof(bool), typeof(TextInputLayout), defaultValue: true);
         }
 
-        protected override ILayoutManager CreateLayoutManager()
-        {
-            return new TextInputLayoutManager(this);
-        }
+        //protected override ILayoutManager CreateLayoutManager()
+        //{
+        //    return new TextInputLayoutManager(this);
+        //}
 
         public static readonly BindableProperty BorderColorProperty;
         public static readonly BindableProperty FocusedBorderColorProperty;

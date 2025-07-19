@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 #if ANDROID
-using PlatformView = Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
+using PlatformView = Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputEditText;
 #elif WINDOWS
 using PlatformView = Maui.Android.TextInputLayout.Platforms.Windows.MauiTextInputLayout;
 #elif IOS || MACCATALYST
@@ -19,6 +19,7 @@ namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayoutHandler : ITextInputLayoutHandler
     {
+            
         public static IPropertyMapper<ITextInputLayout, ITextInputLayoutHandler> PropertyMapper = new PropertyMapper<TextInputLayout, ITextInputLayoutHandler>(ViewHandler.ViewMapper)
         {
             [nameof(ITextInputLayout.BackgroundColor)] = MapBackgroundColor,
@@ -29,7 +30,6 @@ namespace Maui.Android.TextInputLayout
             [nameof(ITextInputLayout.DefaultHintColor)] = MapDefaultHintColor,
             [nameof(ITextInputLayout.FocusedHintColor)] = MapFocusedHintColor,
             [nameof(ITextInputLayout.IsHintAnimated)] = MapIsHintAnimated,
-
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)
@@ -38,9 +38,10 @@ namespace Maui.Android.TextInputLayout
         };
         public TextInputLayoutHandler() : base(PropertyMapper, CommandMapper)
         {
+
         }
 
-
+        //public MauiTextInputEditText NativeEntry { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         ITextInputLayout? ITextInputLayoutHandler.VirtualView => base.VirtualView;
 

@@ -23,7 +23,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             SetDefaults();
         }
 
-        private void SetDefaults()
+        public void SetDefaults()
         {
             SetWidth(50000);
             this.TextSize = 14;
@@ -37,7 +37,6 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             SetMaxLines(1);
             SetSingleLine(true);
             SetDefaultBackgroundColor();
-            
         }
 
         private void SetDefaultBackgroundColor()

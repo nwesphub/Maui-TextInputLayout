@@ -65,4 +65,6 @@
 	  <ProjectReference Include="..\Maui.Android.TextInputLayout\Maui.Android.TextInputLayout.csproj" />
 	</ItemGroup>
 
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMauiCustomControlsHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+
 </Project>

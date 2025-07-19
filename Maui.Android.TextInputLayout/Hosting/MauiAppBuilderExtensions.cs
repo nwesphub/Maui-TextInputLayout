@@ -1,4 +1,5 @@
 ﻿using Maui.Android.TextInputLayout;
+using Microsoft.Maui.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Maui.Android.TextInputLayout.Hosting
             return builder.ConfigureMauiHandlers(config =>
             {
                 //config.AddHandler<TextInputEditText, TextInputEditTextHandler>();
+                config.AddHandler<TextInputEditText, TextInputEditTextHandler>();
                 config.AddHandler<TextInputLayout, TextInputLayoutHandler>();
             });
         }

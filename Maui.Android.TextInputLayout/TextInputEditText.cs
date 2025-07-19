@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Maui.Android.TextInputLayout
+{
+    public class TextInputEditText : Entry, ITextInputEditText
+    {
+        public TextInputEditText()
+        {
+            
+        }
+        static TextInputEditText()
+        {
+            BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TextInputEditText));
+        }
+
+        public static new readonly BindableProperty BackgroundColorProperty;
+        public new Color BackgroundColor
+        {
+            get => (Color)base.GetValue(BackgroundColorProperty);
+            set => base.SetValue(BackgroundColorProperty, value);
+        }
+    }
+}
