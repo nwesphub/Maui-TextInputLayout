@@ -1,4 +1,6 @@
-﻿using Maui.Android.TextInputLayout;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Maui.Android.TextInputLayout;
 
 namespace MauiCustomControls
 {
@@ -9,22 +11,19 @@ namespace MauiCustomControls
         public MainPage()
         {
             InitializeComponent();
-            //TextInputLayout textInputLayout = new TextInputLayout();
-            
-            //test.Add(textInputLayout);
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            BindingContext = new MainPageViewModel();
         }
     }
 
+    public partial class MainPageViewModel : ObservableObject
+    {
+        [ObservableProperty]
+        string entryText;
+
+        [RelayCommand]
+        private async Task ButtonClicked()
+        {
+            string text = EntryText;
+        }
+    }
 }

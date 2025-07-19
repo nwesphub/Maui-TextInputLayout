@@ -17,5 +17,6 @@ namespace Maui.Android.TextInputLayout
         bool IsHintAnimated { get; set; }
         View Content { get; set; }
         TextInputEditText TextInputEditText { get; set; }
+        string? Text { get; set; }
     }
 }

@@ -87,7 +87,8 @@ namespace Maui.Android.TextInputLayout
             if(handler is TextInputLayoutHandler layoutHandler)
             {
                 await layoutHandler.tcs.Task;
-                if (layoutHandler.NativeEntry is not null) {
+                if (layoutHandler.NativeEntry is not null) 
+                {
                     layoutHandler.NativeEntry.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
                     layoutHandler.NativeEntry.BackgroundTintList = csl;
                 }

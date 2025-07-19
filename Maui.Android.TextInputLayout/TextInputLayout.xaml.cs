@@ -35,6 +35,7 @@ namespace Maui.Android.TextInputLayout
             DefaultHintColorProperty = BindableProperty.Create(nameof(DefaultHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: (Application.Current.Resources["Primary"] as Color) ?? Colors.LightGray);
             FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: (Application.Current.Resources["Primary"] as Color) ?? Colors.LightGray);
             IsHintAnimatedProperty = BindableProperty.Create(nameof(IsHintAnimated), typeof(bool), typeof(TextInputLayout), defaultValue: true);
+            TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextInputLayout), defaultBindingMode: BindingMode.TwoWay);
         }
 
         //protected override ILayoutManager CreateLayoutManager()
@@ -48,6 +49,7 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty DefaultHintColorProperty;
         public static readonly BindableProperty FocusedHintColorProperty;
         public static readonly BindableProperty IsHintAnimatedProperty;
+        public static readonly BindableProperty TextProperty;
 
         public Color BorderColor
         {
@@ -83,6 +85,12 @@ namespace Maui.Android.TextInputLayout
         {
             get => (bool)base.GetValue(IsHintAnimatedProperty);
             set => base.SetValue(IsHintAnimatedProperty, value);
+        }
+
+        public string? Text
+        {
+            get => base.GetValue(TextProperty)?.ToString();
+            set => base.SetValue(TextProperty, value);
         }
     }
 }

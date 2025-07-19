@@ -4,5 +4,5 @@
              xmlns:input="clr-namespace:Maui.Android.TextInputLayout"
              x:Name="this"
              x:Class="Maui.Android.TextInputLayout.TextInputLayout">
-    <input:TextInputEditText x:Name="textInputEditText" BindingContext="{Binding Source={x:Reference this}}" BackgroundColor="{Binding BackgroundColor}" />
+    <input:TextInputEditText x:Name="textInputEditText" BindingContext="{Binding Source={x:Reference this}}" BackgroundColor="{Binding BackgroundColor}" Text="{Binding Text}" />
 </ContentView>

@@ -33,7 +33,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             this.SetMinimumWidth(1000000);
             // Not needed anymore?
             //LayoutParameters = new LLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
-
+            this.SetPadding(40, 0, 100, 0);
             SetMaxLines(1);
             SetSingleLine(true);
             SetDefaultBackgroundColor();
