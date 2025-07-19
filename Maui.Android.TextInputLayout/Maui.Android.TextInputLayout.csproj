@@ -34,4 +34,10 @@
 	  <Folder Include="Platforms\Android\Resources\values\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="TextInputLayout.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

@@ -18,12 +18,15 @@ using ContextThemeWrapper = AndroidX.AppCompat.View.ContextThemeWrapper;
 using RResource = Android.Resource.Attribute;
 using AView = Android.Views.View;
 using Maui.Android.TextInputLayout.Platforms.Android.Managers;
+
 namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
     {
+        public MauiTextInputLayout NativeLayout { get; set; }
+        public MauiTextInputEditText NativeEntry { get; set; }
+        public ITextInputEditText PlatformEntry { get; set; }
 
-        MauiTextInputLayout _nativeEntry;
         protected override MauiTextInputLayout CreatePlatformView()
         {
             return InternalCreateContextThemeView();
@@ -31,30 +34,43 @@ namespace Maui.Android.TextInputLayout
 
         private MauiTextInputLayout InternalCreatePlatformView()
         {
-            _nativeEntry = new MauiTextInputLayout(Context);
-            return _nativeEntry;
+            NativeLayout = new MauiTextInputLayout(Context);
+            return NativeLayout;
         }
 
+        TaskCompletionSource tcs = new();
         private MauiTextInputLayout InternalCreateContextThemeView()
         {
             var result = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox_Dense); // Widget_Material3_TextInputEditText_OutlinedBox
-            _nativeEntry = new MauiTextInputLayout(result);
-            return _nativeEntry;
+            NativeLayout = new MauiTextInputLayout(result);
+            return NativeLayout;
         }
 
         public override void SetVirtualView(IView view)
         {
             base.SetVirtualView(view);
+            PlatformEntry = VirtualView.Content as ITextInputEditText ?? throw new Exception("VirtualView.Content is not ITextInputEditText");
+            if(MauiContext is null)
+            {
+                throw new Exception("MauiContext is null");
+            }
+            MauiTextInputEditText content =  VirtualView.Content.ToPlatform(MauiContext) as MauiTextInputEditText ?? throw new Exception("content is not MauiTextInputEditText");
+            content.SetDefaults();
+            NativeEntry = content;
+ 
+            PlatformView.AddView(NativeEntry);
+            tcs.SetResult();
         }
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
             base.ConnectHandler(platformView);
         }
 
-        public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static async void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            //handler.PlatformView.SetBackgroundColor(view?.BackgroundColor?.ToPlatform() ?? new AColor());
-            handler.PlatformView.MauiTextInputEditText.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
+            
+            //handler.PlatformView.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
+            //handler.PlatformView.MauiTextInputEditText.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
             int[][] states =
             [
                 [-RResource.StateFocused],
@@ -67,7 +83,17 @@ namespace Maui.Android.TextInputLayout
                 entry?.BackgroundColor?.ToPlatform() ?? new AColor()
             ];
             ColorStateList csl = new ColorStateList(states, colors);
-            handler.PlatformView.MauiTextInputEditText.BackgroundTintList = csl;
+            
+            if(handler is TextInputLayoutHandler layoutHandler)
+            {
+                await layoutHandler.tcs.Task;
+                if (layoutHandler.NativeEntry is not null) {
+                    layoutHandler.NativeEntry.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
+                    layoutHandler.NativeEntry.BackgroundTintList = csl;
+                }
+            }
+            //handler.PlatformView.MauiTextInputEditText.BackgroundTintList = csl;
+
         }
 
         public static void MapBackground(ITextInputLayoutHandler handler, ITextInputLayout entry) 
@@ -97,6 +123,10 @@ namespace Maui.Android.TextInputLayout
         public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             HintManager.MapIsHintAnimated(handler, entry);
+        }
+        public static void MapContent(ITextInputLayoutHandler handler, ITextInputLayout layout)
+        {
+            
         }
     }
 }

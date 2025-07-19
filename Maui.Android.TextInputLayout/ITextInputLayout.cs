@@ -15,5 +15,7 @@ namespace Maui.Android.TextInputLayout
         Color DefaultHintColor { get; set; }
         Color FocusedHintColor { get; set; }
         bool IsHintAnimated { get; set; }
+        View Content { get; set; }
+        TextInputEditText TextInputEditText { get; set; }
     }
 }

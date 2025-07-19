@@ -10,7 +10,6 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
     {
-        public MauiTextInputEditText MauiTextInputEditText;
         public MauiTextInputLayout(Context context) : base(context)
         {
             SetDefaults(context);
@@ -24,12 +23,14 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
         {
             // Not needed anymore?
             //LayoutParameters = new LLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
+            //this.SetMinimumWidth(50000);
+            
             this.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundOutline;
             this.SetBoxCornerRadii(8 ,8, 8, 8);
   
             this.BoxStrokeWidth = 3;
             this.BoxStrokeWidthFocused = 3;
-
+            
             ContextThemeView(context);
 
             SetDefaultClearButton();
@@ -38,14 +39,14 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
         public void ContextThemeView(Context context)
         {
             var result = new ContextThemeWrapper(context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox);
-            MauiTextInputEditText = new MauiTextInputEditText(result);
-            this.AddView(MauiTextInputEditText);
+            //MauiTextInputEditText = new(result);
+            //this.AddView(MauiTextInputEditText);
         }
 
         public void NormalView(Context context)
         {
-            MauiTextInputEditText = new MauiTextInputEditText(context);
-            this.AddView(MauiTextInputEditText);
+            //MauiTextInputEditText = new MauiTextInputEditText(context);
+            //this.AddView(MauiTextInputEditText);
         }
 
         public void InflateView()
@@ -64,11 +65,11 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             // set icon visibility
             this.EndIconVisible = true;
             // Padding to prevent text from overlapping the button
-            this.MauiTextInputEditText.SetPadding(40,0,120,0);
+            //this.MauiTextInputEditText.SetPadding(40,0,120,0);
             // Reduces vertical padding between the button and the borders. Otherwise the entry would be very tall vertically
             this.EndIconMinSize = 120;
             // Removes the underline under the text in the entry
-            this.MauiTextInputEditText.InputType = InputTypes.TextVariationVisiblePassword | InputTypes.TextFlagNoSuggestions;
+            //this.MauiTextInputEditText.InputType = InputTypes.TextVariationVisiblePassword | InputTypes.TextFlagNoSuggestions;
         }
 
         public class OnEndIconClickListener : Java.Lang.Object, IOnClickListener
@@ -80,7 +81,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             }
             public void OnClick(AView? v)
             {
-                _layout.MauiTextInputEditText.Text = string.Empty;
+                //_layout.MauiTextInputEditText.Text = string.Empty;
             }
         }
 

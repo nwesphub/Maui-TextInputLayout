@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:input="clr-namespace:Maui.Android.TextInputLayout;assembly=Maui.Android.TextInputLayout"
+             xmlns:custom="clr-namespace:MauiCustomControls"
              x:Class="MauiCustomControls.MainPage">
 
     <ScrollView>
@@ -16,6 +17,10 @@
             <input:TextInputLayout Hint="Label" BorderColor="Blue" BackgroundColor="Black" />
             <input:TextInputLayout BackgroundColor="Transparent" BorderColor="AliceBlue" FocusedBorderColor="Red" Hint="Test Hint" DefaultHintColor="Blue" FocusedHintColor="Red" IsHintAnimated="False" />
             <input:TextInputLayout BackgroundColor="Blue"  />
+            <input:TextInputEditText />
+            <input:TextInputLayout Hint="Layout">
+                <input:TextInputEditText />
+            </input:TextInputLayout>
             <Label
                 Text="Hello, World!"
                 Style="{StaticResource Headline}"
@@ -33,6 +38,7 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+            <custom:CustomEntry />
         </VerticalStackLayout>
     </ScrollView>
 
