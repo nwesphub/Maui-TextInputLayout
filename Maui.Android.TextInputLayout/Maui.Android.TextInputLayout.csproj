@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0-android</TargetFrameworks>
@@ -21,8 +21,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appicon2.svg" />
+	  <None Remove="dotnet_bot2.png" />
 	  <None Remove="Platforms\Android\Resources\drawable\ic_clear.xml" />
 	  <None Remove="Platforms\Android\Resources\drawable\ic_clear_2.xml" />
+	  <None Remove="Platforms\Android\Resources\layout\maui_text_input_edit_text.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,6 +35,14 @@
 
 	<ItemGroup>
 	  <Folder Include="Platforms\Android\Resources\values\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="appicon2.svg" />
+	  <MauiImage Include="dotnet_bot2.png">
+	    <Resize>True</Resize>
+	    <BaseSize>300,185</BaseSize>
+	  </MauiImage>
 	</ItemGroup>
 
 	<ItemGroup>

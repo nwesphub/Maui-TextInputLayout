@@ -67,5 +67,7 @@
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMauiCustomControlsHideInfoBar="True" /></VisualStudio></ProjectExtensions>
-
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<RunAOTCompilation>false</RunAOTCompilation>
+	</PropertyGroup>
 </Project>

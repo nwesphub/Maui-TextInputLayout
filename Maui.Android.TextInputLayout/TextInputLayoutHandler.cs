@@ -30,6 +30,8 @@ namespace Maui.Android.TextInputLayout
             [nameof(ITextInputLayout.DefaultHintColor)] = MapDefaultHintColor,
             [nameof(ITextInputLayout.FocusedHintColor)] = MapFocusedHintColor,
             [nameof(ITextInputLayout.IsHintAnimated)] = MapIsHintAnimated,
+            [nameof(ITextInputLayout.EndIcon)] = MapEndIcon,
+            [nameof(ITextInputLayout.BoxBackgroundMode)] = MapBoxBackgroundMode,
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)

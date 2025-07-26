@@ -18,6 +18,10 @@ using ContextThemeWrapper = AndroidX.AppCompat.View.ContextThemeWrapper;
 using RResource = Android.Resource.Attribute;
 using AView = Android.Views.View;
 using Maui.Android.TextInputLayout.Platforms.Android.Managers;
+using Javax.Crypto;
+using Android.Graphics.Drawables;
+using Android.Graphics;
+using Maui.Android.TextInputLayout.Models;
 
 namespace Maui.Android.TextInputLayout
 {
@@ -38,7 +42,6 @@ namespace Maui.Android.TextInputLayout
             return NativeLayout;
         }
 
-        TaskCompletionSource tcs = new();
         private MauiTextInputLayout InternalCreateContextThemeView()
         {
             var result = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox_Dense); // Widget_Material3_TextInputEditText_OutlinedBox
@@ -54,46 +57,20 @@ namespace Maui.Android.TextInputLayout
             {
                 throw new Exception("MauiContext is null");
             }
-            MauiTextInputEditText content =  VirtualView.Content.ToPlatform(MauiContext) as MauiTextInputEditText ?? throw new Exception("content is not MauiTextInputEditText");
-            content.SetDefaults();
-            NativeEntry = content;
- 
+            MauiTextInputEditText editText =  VirtualView.Content.ToPlatform(MauiContext) as MauiTextInputEditText ?? throw new Exception("content is not MauiTextInputEditText");
+            editText.SetDefaults();
+            
+            NativeEntry = editText;
             PlatformView.AddView(NativeEntry);
-            tcs.SetResult();
         }
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
             base.ConnectHandler(platformView);
         }
 
-        public static async void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
-            //handler.PlatformView.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
-            //handler.PlatformView.MauiTextInputEditText.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
-            int[][] states =
-            [
-                [-RResource.StateFocused],
-                [RResource.StateFocused],
-            ];
-
-            int[] colors =
-            [
-                entry?.BackgroundColor?.ToPlatform() ?? new AColor(),
-                entry?.BackgroundColor?.ToPlatform() ?? new AColor()
-            ];
-            ColorStateList csl = new ColorStateList(states, colors);
-            
-            if(handler is TextInputLayoutHandler layoutHandler)
-            {
-                await layoutHandler.tcs.Task;
-                if (layoutHandler.NativeEntry is not null) 
-                {
-                    layoutHandler.NativeEntry.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
-                    layoutHandler.NativeEntry.BackgroundTintList = csl;
-                }
-            }
-            //handler.PlatformView.MauiTextInputEditText.BackgroundTintList = csl;
+            return;
 
         }
 
@@ -125,9 +102,64 @@ namespace Maui.Android.TextInputLayout
         {
             HintManager.MapIsHintAnimated(handler, entry);
         }
-        public static void MapContent(ITextInputLayoutHandler handler, ITextInputLayout layout)
+        public static async void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
+            return;
+            if(entry.EndIcon is null)
+            {
+                return;
+            }
+            try
+            {
+                
+                // higher density needs to be bigger
+                // lower density needs to be smaller
+                // high density = 2.75
+                // low density = 1.5
+                // high density = 156
+                // low density = 96
+
+                // low density ideal = 50
+                // high density ideal = 200
+                // Target size in DP
+                float targetDp = 48f;
+
+                // Convert DP to pixels using screen density
+                float density = handler.PlatformView.Context.Resources.DisplayMetrics.Density;
+                int sizePx = (int)(targetDp * (density + 0.5f)); // round to nearest pixel
+                sizePx = (int)GetIdealSize(density); ;
+                IImageSourceServiceResult<Drawable>? drawable = await entry.EndIcon.GetPlatformImageAsync(handler.MauiContext);
+
+                var bitmapDrawable = ((BitmapDrawable)drawable.Value).Bitmap;
+                var bitmap = Bitmap.CreateScaledBitmap(bitmapDrawable, sizePx, sizePx, false);
+                Drawable drawable2 = new BitmapDrawable(bitmap);
+                handler.PlatformView.EndIconDrawable = drawable2;
+                handler.PlatformView.SetEndIconTintList(null);
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        public static double GetIdealSize(double density)
+        {
+            return 120 * density - 130;
+        }
+        public static async void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            switch (entry.BoxBackgroundMode)
+            {
+                case BoxBackgroundMode.None:
+                    break;
+                case BoxBackgroundMode.Outline:
+                    handler.PlatformView.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundOutline;
+                    
+                    break;
+                case BoxBackgroundMode.Filled:
+                    handler.PlatformView.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundFilled;
+                    break;
+            }
         }
     }
 }

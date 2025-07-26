@@ -22,7 +22,7 @@ namespace Maui.Android.TextInputLayout
         protected override MauiTextInputEditText CreatePlatformView()
         {
             // Required
-            var result = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox_Dense); // Widget_Material3_TextInputEditText_OutlinedBox
+            var result = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox); // Widget_Material3_TextInputEditText_OutlinedBox
             return new MauiTextInputEditText(result);
         }
 
@@ -38,11 +38,6 @@ namespace Maui.Android.TextInputLayout
         public static async void MapBackgroundColor(ITextInputEditTextHandler handler, ITextInputEditText entry)
         {
             
-            //handler.PlatformView.SetBackgroundColor(view?.BackgroundColor?.ToPlatform() ?? new AColor());
-            handler.PlatformView.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
-            //handler.PlatformView.SetBackgroundColor(view?.BackgroundColor?.ToPlatform() ?? new AColor());
-            //handler.PlatformView.SetBackgroundColor(entry?.BackgroundColor?.ToPlatform() ?? new AColor());
-           
             int[][] states =
             [
                 [-RResource.StateFocused],
@@ -56,9 +51,7 @@ namespace Maui.Android.TextInputLayout
             ];
             ColorStateList csl = new ColorStateList(states, colors);
 
-
             handler.PlatformView.BackgroundTintList = csl;
-
         }
     }
 

@@ -1,0 +1,9 @@
+﻿
+Linked Properties
+	Text Input padding is based on pixels - should be dp
+	End Icon size is based on pixels - should be dp
+	If End icon is visible - right padding should be less
+
+Problems
+	Filled/None Box Background Modes don't apply background tint
+	Filled/None Box Background Modes Hint overlaps Text

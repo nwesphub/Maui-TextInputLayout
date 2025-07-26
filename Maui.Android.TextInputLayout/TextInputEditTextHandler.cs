@@ -20,7 +20,7 @@ namespace Maui.Android.TextInputLayout
     {
         public static IPropertyMapper<ITextInputEditText, ITextInputEditTextHandler> PropertyMapper = new PropertyMapper<TextInputEditText, ITextInputEditTextHandler>(ViewHandler.ViewMapper)
         {
-            //[nameof(ITextInputEditText.BackgroundColor)] = MapBackgroundColor,
+            [nameof(ITextInputEditText.BackgroundColor)] = MapBackgroundColor,
 
         };
 

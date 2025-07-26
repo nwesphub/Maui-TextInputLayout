@@ -1,6 +1,8 @@
+using Maui.Android.TextInputLayout.Models;
 using Microsoft.Maui.Layouts;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +38,8 @@ namespace Maui.Android.TextInputLayout
             FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: (Application.Current.Resources["Primary"] as Color) ?? Colors.LightGray);
             IsHintAnimatedProperty = BindableProperty.Create(nameof(IsHintAnimated), typeof(bool), typeof(TextInputLayout), defaultValue: true);
             TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextInputLayout), defaultBindingMode: BindingMode.TwoWay);
+            EndIconProperty = BindableProperty.Create(nameof(EndIcon), typeof(ImageSource), typeof(TextInputLayout));
+            BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout));
         }
 
         //protected override ILayoutManager CreateLayoutManager()
@@ -50,6 +54,8 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty FocusedHintColorProperty;
         public static readonly BindableProperty IsHintAnimatedProperty;
         public static readonly BindableProperty TextProperty;
+        public static readonly BindableProperty EndIconProperty;
+        public static readonly BindableProperty BoxBackgroundModeProperty;
 
         public Color BorderColor
         {
@@ -91,6 +97,19 @@ namespace Maui.Android.TextInputLayout
         {
             get => base.GetValue(TextProperty)?.ToString();
             set => base.SetValue(TextProperty, value);
+        }
+
+        [TypeConverter(typeof(ImageSourceConverter))]
+        public ImageSource EndIcon
+        {
+            get => (ImageSource)base.GetValue(EndIconProperty);
+            set => base.SetValue(EndIconProperty, value);
+        }
+
+        public BoxBackgroundMode BoxBackgroundMode
+        {
+            get => (BoxBackgroundMode)base.GetValue(BoxBackgroundModeProperty);
+            set => base.SetValue(BoxBackgroundModeProperty, value);
         }
     }
 }

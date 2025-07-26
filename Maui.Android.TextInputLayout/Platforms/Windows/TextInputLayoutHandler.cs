@@ -1,4 +1,5 @@
 ﻿using Maui.Android.TextInputLayout.Platforms.Windows;
+using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Handlers;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,12 @@ namespace Maui.Android.TextInputLayout
         public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
 
+        }
+        public static async void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+        }
+        public static async void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
         }
     }
 }

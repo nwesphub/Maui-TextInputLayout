@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Android.Graphics.Drawables;
 using Android.Text;
 using Android.Util;
 using Android.Views;
@@ -21,43 +22,19 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 
         private void SetDefaults(Context context)
         {
-            // Not needed anymore?
-            //LayoutParameters = new LLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
-            //this.SetMinimumWidth(50000);
-            
-            this.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundOutline;
             this.SetBoxCornerRadii(8 ,8, 8, 8);
-  
-            this.BoxStrokeWidth = 3;
-            this.BoxStrokeWidthFocused = 3;
+            this.BoxStrokeWidth = 1;
+            this.BoxStrokeWidthFocused = 2;
             
-            ContextThemeView(context);
+
 
             SetDefaultClearButton();
         }
 
-        public void ContextThemeView(Context context)
-        {
-            var result = new ContextThemeWrapper(context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox);
-            //MauiTextInputEditText = new(result);
-            //this.AddView(MauiTextInputEditText);
-        }
-
-        public void NormalView(Context context)
-        {
-            //MauiTextInputEditText = new MauiTextInputEditText(context);
-            //this.AddView(MauiTextInputEditText);
-        }
-
-        public void InflateView()
-        {
-            LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-            Google.Android.Material.TextField.TextInputLayout view = inflater.Inflate(Resource.Layout.maui_text_input_layout, null, true) as Google.Android.Material.TextField.TextInputLayout;
-            this.AddView(view);
-        }
 
         private void SetDefaultClearButton()
         {
+            
             // Set end icon - clear button
             this.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
             // Set icon callback function

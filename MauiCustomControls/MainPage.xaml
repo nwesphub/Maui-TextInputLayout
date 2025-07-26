@@ -14,13 +14,16 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
-            <input:TextInputLayout Hint="Label" BorderColor="Blue" BackgroundColor="Black" Text="{Binding EntryText}" />
-            <input:TextInputLayout BackgroundColor="Transparent" BorderColor="AliceBlue" FocusedBorderColor="Red" Hint="Test Hint" DefaultHintColor="Blue" FocusedHintColor="Red" IsHintAnimated="False" />
+            <input:TextInputLayout Hint="Outline" BorderColor="Blue" BackgroundColor="Black" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="Outline" />
+            <input:TextInputLayout Hint="Filled" BorderColor="Blue" BackgroundColor="AliceBlue" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="Filled" />
+            <input:TextInputLayout Hint="None" BorderColor="Blue" BackgroundColor="Black" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="None" />
+            <Entry />
+            <!--<input:TextInputLayout BackgroundColor="Transparent" BorderColor="AliceBlue" FocusedBorderColor="Red" Hint="Test Hint" DefaultHintColor="Blue" FocusedHintColor="Red" IsHintAnimated="False" />
             <input:TextInputLayout BackgroundColor="Blue"  />
             <input:TextInputEditText />
             <input:TextInputLayout Hint="Layout">
                 <input:TextInputEditText />
-            </input:TextInputLayout>
+            </input:TextInputLayout>-->
             <Label
                 Text="Hello, World!"
                 Style="{StaticResource Headline}"
@@ -38,7 +41,7 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Command="{Binding ButtonClickedCommand}"
                 HorizontalOptions="Fill" />
-            <custom:CustomEntry />
+            <!--<custom:CustomEntry />-->
         </VerticalStackLayout>
     </ScrollView>
 
