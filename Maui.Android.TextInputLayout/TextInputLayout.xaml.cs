@@ -1,4 +1,4 @@
-using Maui.Android.TextInputLayout.Models;
+using Maui.Android.TextInputLayout.Models.Enums;
 using Microsoft.Maui.Layouts;
 using System;
 using System.Collections.Generic;

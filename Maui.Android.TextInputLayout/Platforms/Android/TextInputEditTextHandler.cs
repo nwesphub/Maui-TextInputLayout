@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RResource = Android.Resource.Attribute;
 using AColor = Android.Graphics.Color;
-using Maui.Android.TextInputLayout.Models;
+using Maui.Android.TextInputLayout.Models.Enums;
 
 namespace Maui.Android.TextInputLayout
 {

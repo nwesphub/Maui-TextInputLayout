@@ -21,7 +21,7 @@ using Maui.Android.TextInputLayout.Platforms.Android.Managers;
 using Javax.Crypto;
 using Android.Graphics.Drawables;
 using Android.Graphics;
-using Maui.Android.TextInputLayout.Models;
+using Maui.Android.TextInputLayout.Models.Enums;
 
 namespace Maui.Android.TextInputLayout
 {

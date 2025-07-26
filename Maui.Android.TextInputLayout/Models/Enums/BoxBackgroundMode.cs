@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout.Models
+namespace Maui.Android.TextInputLayout.Models.Enums
 {
     public enum BoxBackgroundMode
     {
