@@ -29,7 +29,6 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             
             // Set minimum width to a high number otherwise the input takes up a very small space and is not clickable
             this.SetMinimumWidth(1000000);
-
             SetSingleLine(true);
         }
     }

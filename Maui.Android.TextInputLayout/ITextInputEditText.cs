@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Maui.Android.TextInputLayout.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace Maui.Android.TextInputLayout
     public interface ITextInputEditText : IView, IEntry
     {
         Color BackgroundColor { get; set; }
+        BoxBackgroundMode BoxBackgroundMode { get; set; }
     }
 }

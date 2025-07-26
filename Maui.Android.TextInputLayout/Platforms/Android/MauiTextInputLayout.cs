@@ -13,20 +13,18 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
     {
         public MauiTextInputLayout(Context context) : base(context)
         {
-            SetDefaults(context);
+            SetDefaults();
         }
         public MauiTextInputLayout(Context context, IAttributeSet? attrs, int style) : base(context, attrs, style)
         {
             
         }
 
-        private void SetDefaults(Context context)
+        private void SetDefaults()
         {
             this.SetBoxCornerRadii(8 ,8, 8, 8);
             this.BoxStrokeWidth = 1;
             this.BoxStrokeWidthFocused = 2;
-            
-
 
             SetDefaultClearButton();
         }

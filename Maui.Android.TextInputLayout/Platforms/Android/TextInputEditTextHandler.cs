@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RResource = Android.Resource.Attribute;
 using AColor = Android.Graphics.Color;
+using Maui.Android.TextInputLayout.Models;
 
 namespace Maui.Android.TextInputLayout
 {
@@ -19,15 +20,29 @@ namespace Maui.Android.TextInputLayout
         {
         }
 
+        private BoxBackgroundMode _boxBackgroundMode;
         protected override MauiTextInputEditText CreatePlatformView()
         {
-            // Required
-            var result = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox); // Widget_Material3_TextInputEditText_OutlinedBox
+            if(_boxBackgroundMode == BoxBackgroundMode.None)
+            {
+                return new MauiTextInputEditText(Context);
+            }
+
+            int style = Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox;
+            if(_boxBackgroundMode == BoxBackgroundMode.Filled)
+            {
+                style = Resource.Style.Widget_Material3_TextInputLayout_FilledBox;
+            }
+            var result = new ContextThemeWrapper(Context, style);
             return new MauiTextInputEditText(result);
         }
 
         public override void SetVirtualView(IView view)
         {
+            if(view is ITextInputEditText editText)
+            {
+                _boxBackgroundMode = editText.BoxBackgroundMode;
+            }
             base.SetVirtualView(view);
         }
         protected override void ConnectHandler(MauiTextInputEditText platformView)
