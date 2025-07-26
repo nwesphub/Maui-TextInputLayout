@@ -44,10 +44,13 @@ namespace Maui.Android.TextInputLayout
         {
 
         }
-        public static async void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
         }
-        public static async void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+        }
+        public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
         }
     }

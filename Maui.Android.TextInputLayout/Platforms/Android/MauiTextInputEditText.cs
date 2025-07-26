@@ -14,6 +14,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputEditText : Google.Android.Material.TextField.TextInputEditText
     {
+        public new bool HasFocus { get; set; }
         public MauiTextInputEditText(Context context, IAttributeSet? attrs, int style) : base(context, attrs, style)
         {
             SetDefaults();

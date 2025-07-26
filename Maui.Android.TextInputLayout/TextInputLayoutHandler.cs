@@ -33,6 +33,7 @@ namespace Maui.Android.TextInputLayout
             [nameof(ITextInputLayout.IsHintAnimated)] = MapIsHintAnimated,
             [nameof(ITextInputLayout.EndIcon)] = MapEndIcon,
             [nameof(ITextInputLayout.BoxBackgroundMode)] = MapBoxBackgroundMode,
+            [nameof(ITextInputLayout.EndIconVisibilityMode)] = MapEndIconVisibilityMode,
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)
@@ -48,7 +49,13 @@ namespace Maui.Android.TextInputLayout
 
         ITextInputLayout? ITextInputLayoutHandler.VirtualView => base.VirtualView;
 
-        public PlatformEntry PlatformEntry { get; set; }
+        private PlatformEntry _platformEntry = default!;
+
+        public PlatformEntry PlatformEntry
+        {
+            get => _platformEntry;
+            set => _platformEntry = value;
+        }
 
         public void DisconnectHandler()
         {

@@ -40,6 +40,7 @@ namespace Maui.Android.TextInputLayout
             TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextInputLayout), defaultBindingMode: BindingMode.TwoWay);
             EndIconProperty = BindableProperty.Create(nameof(EndIcon), typeof(ImageSource), typeof(TextInputLayout));
             BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout));
+            EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
         }
 
         //protected override ILayoutManager CreateLayoutManager()
@@ -56,6 +57,7 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty TextProperty;
         public static readonly BindableProperty EndIconProperty;
         public static readonly BindableProperty BoxBackgroundModeProperty;
+        public static readonly BindableProperty EndIconVisibilityModeProperty;
 
         public Color BorderColor
         {
@@ -110,6 +112,11 @@ namespace Maui.Android.TextInputLayout
         {
             get => (BoxBackgroundMode)base.GetValue(BoxBackgroundModeProperty);
             set => base.SetValue(BoxBackgroundModeProperty, value);
+        }
+        public IconVisibilityMode EndIconVisibilityMode
+        {
+            get => (IconVisibilityMode)base.GetValue(EndIconVisibilityModeProperty);
+            set => base.SetValue(EndIconVisibilityModeProperty, value);
         }
     }
 }

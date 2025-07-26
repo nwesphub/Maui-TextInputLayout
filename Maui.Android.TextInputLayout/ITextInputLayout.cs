@@ -21,5 +21,6 @@ namespace Maui.Android.TextInputLayout
         string? Text { get; set; }
         ImageSource EndIcon { get; set; }
         BoxBackgroundMode BoxBackgroundMode { get; set; }
+        IconVisibilityMode EndIconVisibilityMode { get; set; }
     }
 }

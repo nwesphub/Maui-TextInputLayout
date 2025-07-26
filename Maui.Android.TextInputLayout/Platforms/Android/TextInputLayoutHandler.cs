@@ -46,7 +46,7 @@ namespace Maui.Android.TextInputLayout
             NativeLayout = new MauiTextInputLayout(result);
             return NativeLayout;
         }
-
+        public TaskCompletionSource TaskCompletionSource { get; set; } = new();
         public override void SetVirtualView(IView view)
         {
             base.SetVirtualView(view);
@@ -60,6 +60,7 @@ namespace Maui.Android.TextInputLayout
             
             PlatformEntry = editText;
             PlatformView.AddView(PlatformEntry);
+            TaskCompletionSource.SetResult();
 
         }
         protected override void ConnectHandler(MauiTextInputLayout platformView)
@@ -158,6 +159,62 @@ namespace Maui.Android.TextInputLayout
                 case BoxBackgroundMode.Filled:
                     handler.PlatformView.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundFilled;
                     break;
+            }
+        }
+        public static async void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            if (handler is TextInputLayoutHandler h2)
+            {
+                await h2.TaskCompletionSource.Task;
+            }
+            switch (entry.EndIconVisibilityMode)
+            {
+                case IconVisibilityMode.Never:
+                    handler.PlatformView.EndIconVisible = false;
+                    break;
+                case IconVisibilityMode.Always:
+                    handler.PlatformView.EndIconVisible = true;
+                    break;
+                case IconVisibilityMode.WhileEditing:
+                    if(string.IsNullOrWhiteSpace(handler.PlatformEntry.Text))
+                    {
+                        handler.PlatformView.EndIconVisible = false;
+                    }
+                    handler.PlatformEntry.FocusChange -= EndIconVisibilityFocusChanged;
+                    handler.PlatformEntry.TextChanged -= EndIconVisibilityFocusChanged;
+                    
+                    handler.PlatformEntry.FocusChange += EndIconVisibilityFocusChanged;
+                    handler.PlatformEntry.TextChanged += EndIconVisibilityFocusChanged;
+                    break;
+            }
+        }
+
+        private static void EndIconVisibilityFocusChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
+        {
+            if (sender is MauiTextInputEditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
+            {
+                EndIconVisibilityChanged(editText, layout);
+            }
+        }
+
+        private static void EndIconVisibilityFocusChanged(object? sender, AView.FocusChangeEventArgs e)
+        {
+            if (sender is MauiTextInputEditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
+            {
+                editText.HasFocus = e.HasFocus;
+                EndIconVisibilityChanged(editText, layout);
+            }
+        }
+
+        private static void EndIconVisibilityChanged(MauiTextInputEditText editText, MauiTextInputLayout layout)
+        {
+            if(editText.HasFocus && !string.IsNullOrWhiteSpace(editText.Text))
+            {
+                layout.EndIconVisible = true;
+            }
+            else
+            {
+                layout.EndIconVisible = false;
             }
         }
     }
