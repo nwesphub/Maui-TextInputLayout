@@ -28,8 +28,6 @@ namespace Maui.Android.TextInputLayout
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
     {
         public MauiTextInputLayout NativeLayout { get; set; }
-        public MauiTextInputEditText NativeEntry { get; set; }
-        public ITextInputEditText PlatformEntry { get; set; }
 
         protected override MauiTextInputLayout CreatePlatformView()
         {
@@ -52,7 +50,7 @@ namespace Maui.Android.TextInputLayout
         public override void SetVirtualView(IView view)
         {
             base.SetVirtualView(view);
-            PlatformEntry = VirtualView.Content as ITextInputEditText ?? throw new Exception("VirtualView.Content is not ITextInputEditText");
+            VirtualEntry = VirtualView.Content as ITextInputEditText ?? throw new Exception("VirtualView.Content is not ITextInputEditText");
             if(MauiContext is null)
             {
                 throw new Exception("MauiContext is null");
@@ -60,8 +58,9 @@ namespace Maui.Android.TextInputLayout
             MauiTextInputEditText editText =  VirtualView.Content.ToPlatform(MauiContext) as MauiTextInputEditText ?? throw new Exception("content is not MauiTextInputEditText");
             editText.SetDefaults();
             
-            NativeEntry = editText;
-            PlatformView.AddView(NativeEntry);
+            PlatformEntry = editText;
+            PlatformView.AddView(PlatformEntry);
+
         }
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
