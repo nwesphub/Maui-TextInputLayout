@@ -1,4 +1,6 @@
 using Maui.Android.TextInputLayout.Models.Enums;
+using Maui.Android.TextInputLayout.Models.Events;
+using Microsoft.Maui;
 using Microsoft.Maui.Layouts;
 using System;
 using System.Collections.Generic;
@@ -6,27 +8,27 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+#if ANDROID
+using Microsoft.Maui.Platform;
+#endif
 namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayout : ContentView, ITextInputLayout
     {
-        public TextInputEditText TextInputEditText { get; set; }
+        public ITextInputEditText TextInputEditText { get; set; }
         public TextInputLayout()
         {
-            TextInputEditText = this.textInputEditText;
-            InitializeComponent();
-            //TextInputEditText = new TextInputEditText()
-            //{
-
-            //};
-            //this.Content = TextInputEditText;
             
-            Focused += TextInputLayout_Focused;
+            InitializeComponent();
+            TextInputEditText = this.textInputEditText;
+
+            EndIconEventHandler.EndIconClicked += TextInputLayout_EndIconClicked;
         }
 
-        private void TextInputLayout_Focused(object? sender, FocusEventArgs e)
+
+        private void TextInputLayout_EndIconClicked(object? sender, EndIconClickedEventArgs e)
         {
+            Text = string.Empty;
         }
 
         static TextInputLayout()
@@ -43,6 +45,8 @@ namespace Maui.Android.TextInputLayout
             EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
         }
 
+
+
         //protected override ILayoutManager CreateLayoutManager()
         //{
         //    return new TextInputLayoutManager(this);
@@ -58,6 +62,8 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty EndIconProperty;
         public static readonly BindableProperty BoxBackgroundModeProperty;
         public static readonly BindableProperty EndIconVisibilityModeProperty;
+
+        public EndIconClickedEventHandler EndIconEventHandler { get; set; } = new();
 
         public Color BorderColor
         {

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout
 {
-    public interface ITextInputEditText : IView, IEntry
+    public interface ITextInputEditText : IEntry
     {
         Color BackgroundColor { get; set; }
         BoxBackgroundMode BoxBackgroundMode { get; set; }
+        new ITextInputLayout? Parent { get; }
     }
 }

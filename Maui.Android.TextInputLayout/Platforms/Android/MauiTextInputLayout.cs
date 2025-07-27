@@ -25,11 +25,17 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             this.SetBoxCornerRadii(8 ,8, 8, 8);
             this.BoxStrokeWidth = 1;
             this.BoxStrokeWidthFocused = 2;
-
+            
             SetDefaultClearButton();
         }
 
-
+        public void SetEndIconOnClickListener(ITextInputLayout textInputLayout)
+        {
+            if(textInputLayout is not null)
+            {
+                this.SetEndIconOnClickListener(new OnEndIconClickListener(this, textInputLayout));
+            }
+        }
         private void SetDefaultClearButton()
         {
             
@@ -43,20 +49,31 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             //this.MauiTextInputEditText.SetPadding(40,0,120,0);
             // Reduces vertical padding between the button and the borders. Otherwise the entry would be very tall vertically
             this.EndIconMinSize = 120;
+            
             // Removes the underline under the text in the entry
             //this.MauiTextInputEditText.InputType = InputTypes.TextVariationVisiblePassword | InputTypes.TextFlagNoSuggestions;
         }
 
         public class OnEndIconClickListener : Java.Lang.Object, IOnClickListener
         {
-            MauiTextInputLayout _layout;
-            public OnEndIconClickListener(MauiTextInputLayout layout)
+            MauiTextInputLayout? _mauiTextInputLayout;
+            ITextInputLayout? _textInputLayout;
+            public OnEndIconClickListener(MauiTextInputLayout mauiTextInputLayout, ITextInputLayout? textInputLayout = null)
             {
-                _layout = layout;
+                _mauiTextInputLayout = mauiTextInputLayout;
+                _textInputLayout = textInputLayout;
             }
+
             public void OnClick(AView? v)
             {
-                //_layout.MauiTextInputEditText.Text = string.Empty;
+                if (_textInputLayout is not null)
+                {
+                    _textInputLayout.EndIconEventHandler?.RaiseEvent(_mauiTextInputLayout, _mauiTextInputLayout?.EditText?.Text);
+                }
+                else if (_mauiTextInputLayout?.EditText is not null)
+                {
+                    _mauiTextInputLayout.EditText.Text = string.Empty;
+                }
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout.Platforms.Windows
 {
-    public class MauiTextInputEditText : FrameworkElement
+    public class MauiTextInputEditText : TextBox
     {
     }
 }

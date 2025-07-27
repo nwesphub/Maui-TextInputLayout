@@ -24,6 +24,7 @@ namespace MauiCustomControls
         private async Task ButtonClicked()
         {
             string text = EntryText;
+            EntryText = "sdfsdfsdf";
         }
     }
 }

@@ -14,9 +14,9 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
-            <input:TextInputLayout Hint="Outline" BorderColor="Blue" BackgroundColor="Black" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="Outline" />
-            <input:TextInputLayout Hint="Filled" BorderColor="Blue" BackgroundColor="AliceBlue" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="Filled" />
-            <input:TextInputLayout Hint="None" BorderColor="Blue" BackgroundColor="Black" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="None" />
+            <input:TextInputLayout Hint="Outline" BorderColor="Blue" BackgroundColor="Black" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="Outline" EndIconVisibilityMode="WhileEditing" />
+            <input:TextInputLayout Hint="Filled" BorderColor="Blue" BackgroundColor="AliceBlue" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="Filled" EndIconVisibilityMode="WhileEditing"  />
+            <input:TextInputLayout Hint="None" BorderColor="Blue" BackgroundColor="White" Text="{Binding EntryText}" EndIcon="dotnet_bot2" BoxBackgroundMode="None" EndIconVisibilityMode="Never" />
             <Entry />
             <!--<input:TextInputLayout BackgroundColor="Transparent" BorderColor="AliceBlue" FocusedBorderColor="Red" Hint="Test Hint" DefaultHintColor="Blue" FocusedHintColor="Red" IsHintAnimated="False" />
             <input:TextInputLayout BackgroundColor="Blue"  />

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RResource = Android.Resource.Attribute;
 using LLayout = Android.Widget.LinearLayout;
+using Android.Views;
 namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputEditText : Google.Android.Material.TextField.TextInputEditText
@@ -30,6 +31,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             
             // Set minimum width to a high number otherwise the input takes up a very small space and is not clickable
             this.SetMinimumWidth(1000000);
+            this.SetPadding(PaddingLeft, PaddingTop, 100, PaddingBottom);
             SetSingleLine(true);
         }
     }

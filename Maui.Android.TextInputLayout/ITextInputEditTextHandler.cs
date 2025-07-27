@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.Handlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ using PlatformView = Maui.Android.TextInputLayout.Platforms.iOS.MauiTextInputEdi
 #endif
 namespace Maui.Android.TextInputLayout
 {
-    public interface ITextInputEditTextHandler : IViewHandler
+    public interface ITextInputEditTextHandler : IEntryHandler
     {
         new ITextInputEditText? VirtualView { get; }
         new PlatformView PlatformView { get; }

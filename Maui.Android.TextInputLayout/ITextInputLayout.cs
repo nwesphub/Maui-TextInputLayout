@@ -1,4 +1,5 @@
 ﻿using Maui.Android.TextInputLayout.Models.Enums;
+using Maui.Android.TextInputLayout.Models.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,11 @@ namespace Maui.Android.TextInputLayout
         Color FocusedHintColor { get; set; }
         bool IsHintAnimated { get; set; }
         View Content { get; set; }
-        TextInputEditText TextInputEditText { get; set; }
+        ITextInputEditText TextInputEditText { get; set; }
         string? Text { get; set; }
         ImageSource EndIcon { get; set; }
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
+        EndIconClickedEventHandler EndIconEventHandler { get; set; }
     }
 }

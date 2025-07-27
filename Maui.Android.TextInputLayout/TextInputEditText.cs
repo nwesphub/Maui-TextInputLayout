@@ -11,8 +11,9 @@ namespace Maui.Android.TextInputLayout
     {
         public TextInputEditText()
         {
-            
+
         }
+        ITextInputLayout ITextInputEditText.Parent => this.Parent as ITextInputLayout;
         static TextInputEditText()
         {
             BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TextInputEditText));
@@ -30,6 +31,6 @@ namespace Maui.Android.TextInputLayout
         {
             get => (BoxBackgroundMode)base.GetValue(BoxBackgroundModeProperty);
             set => base.SetValue(BoxBackgroundModeProperty, value);
-        }
+        } 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Handlers;
+﻿
+using Microsoft.Maui.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Maui.Android.TextInputLayout
         public static IPropertyMapper<ITextInputEditText, ITextInputEditTextHandler> PropertyMapper = new PropertyMapper<TextInputEditText, ITextInputEditTextHandler>(ViewHandler.ViewMapper)
         {
             [nameof(ITextInputEditText.BackgroundColor)] = MapBackgroundColor,
+            [nameof(IEntry.Text)] = MapText,
 
         };
 
@@ -33,7 +35,7 @@ namespace Maui.Android.TextInputLayout
         }
 
 
-
+        IEntry? IEntryHandler.VirtualView => base.VirtualView;
         ITextInputEditText? ITextInputEditTextHandler.VirtualView => base.VirtualView;
 
         

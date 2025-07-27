@@ -27,25 +27,12 @@ namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
     {
-        public MauiTextInputLayout NativeLayout { get; set; }
-
         protected override MauiTextInputLayout CreatePlatformView()
         {
-            return InternalCreateContextThemeView();
+            var contextThemeWrapper = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox_Dense);
+            return new MauiTextInputLayout(contextThemeWrapper);
         }
 
-        private MauiTextInputLayout InternalCreatePlatformView()
-        {
-            NativeLayout = new MauiTextInputLayout(Context);
-            return NativeLayout;
-        }
-
-        private MauiTextInputLayout InternalCreateContextThemeView()
-        {
-            var result = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox_Dense); // Widget_Material3_TextInputEditText_OutlinedBox
-            NativeLayout = new MauiTextInputLayout(result);
-            return NativeLayout;
-        }
         public TaskCompletionSource TaskCompletionSource { get; set; } = new();
         public override void SetVirtualView(IView view)
         {
@@ -61,11 +48,11 @@ namespace Maui.Android.TextInputLayout
             PlatformEntry = editText;
             PlatformView.AddView(PlatformEntry);
             TaskCompletionSource.SetResult();
-
         }
+
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
-            base.ConnectHandler(platformView);
+            PlatformView.SetEndIconOnClickListener(VirtualView);
         }
 
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -163,10 +150,13 @@ namespace Maui.Android.TextInputLayout
         }
         public static async void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            // TODO: refactor to remove tcs
             if (handler is TextInputLayoutHandler h2)
             {
                 await h2.TaskCompletionSource.Task;
             }
+            handler.PlatformEntry.FocusChange -= EndIconVisibilityFocusChanged;
+            handler.PlatformEntry.TextChanged -= EndIconVisibilityFocusChanged;
             switch (entry.EndIconVisibilityMode)
             {
                 case IconVisibilityMode.Never:
@@ -180,9 +170,6 @@ namespace Maui.Android.TextInputLayout
                     {
                         handler.PlatformView.EndIconVisible = false;
                     }
-                    handler.PlatformEntry.FocusChange -= EndIconVisibilityFocusChanged;
-                    handler.PlatformEntry.TextChanged -= EndIconVisibilityFocusChanged;
-                    
                     handler.PlatformEntry.FocusChange += EndIconVisibilityFocusChanged;
                     handler.PlatformEntry.TextChanged += EndIconVisibilityFocusChanged;
                     break;
