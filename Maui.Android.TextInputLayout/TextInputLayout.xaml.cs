@@ -43,6 +43,7 @@ namespace Maui.Android.TextInputLayout
             EndIconProperty = BindableProperty.Create(nameof(EndIcon), typeof(ImageSource), typeof(TextInputLayout));
             BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout));
             EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
+            TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextInputLayout));
         }
 
 
@@ -62,6 +63,7 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty EndIconProperty;
         public static readonly BindableProperty BoxBackgroundModeProperty;
         public static readonly BindableProperty EndIconVisibilityModeProperty;
+        public static readonly BindableProperty TextColorProperty;
 
         public EndIconClickedEventHandler EndIconEventHandler { get; set; } = new();
 
@@ -123,6 +125,12 @@ namespace Maui.Android.TextInputLayout
         {
             get => (IconVisibilityMode)base.GetValue(EndIconVisibilityModeProperty);
             set => base.SetValue(EndIconVisibilityModeProperty, value);
+        }
+
+        public Color TextColor
+        {
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
         }
     }
 }

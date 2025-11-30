@@ -10,5 +10,6 @@
         BackgroundColor="{Binding BackgroundColor}"
         BindingContext="{Binding Source={x:Reference this}}"
         BoxBackgroundMode="{Binding BoxBackgroundMode}"
+        TextColor="{Binding TextColor}"
         Text="{Binding Text}" />
 </ContentView>

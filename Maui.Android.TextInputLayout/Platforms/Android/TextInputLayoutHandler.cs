@@ -22,6 +22,10 @@ using Javax.Crypto;
 using Android.Graphics.Drawables;
 using Android.Graphics;
 using Maui.Android.TextInputLayout.Models.Enums;
+using Android.Content;
+using Android.Widget;
+using Google.Android.Material.TextField;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 
 namespace Maui.Android.TextInputLayout
 {
@@ -46,7 +50,41 @@ namespace Maui.Android.TextInputLayout
             editText.SetDefaults();
             
             PlatformEntry = editText;
+            
+            float targetDp = 48f;
+
+            // Convert DP to pixels using screen density
+
+            ImageView icon = new ImageView(Context);
+            icon.SetImageResource(Resource.Drawable.ic_clear);
+
+            //int sizePx = 100;
+            //IImageSourceServiceResult<Drawable>? drawable = await entry.EndIcon.GetPlatformImageAsync(handler.MauiContext);
+            PlatformView.LayoutParameters = new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MatchParent,
+                ViewGroup.LayoutParams.WrapContent
+            );
+            var iconParams = new RelativeLayout.LayoutParams(
+                24,
+                24
+            );
+            iconParams.AddRule(LayoutRules.AlignParentStart);
+            iconParams.AddRule(LayoutRules.CenterVertical);
+            iconParams.SetMargins(24, 0, 24, 0);
+            icon.LayoutParameters = iconParams;
+            //var bitmapDrawable = ((BitmapDrawable)drawable.Value).Bitmap;
+            //var bitmap = Bitmap.CreateScaledBitmap(bitmapDrawable, sizePx, sizePx, false);
+            //Drawable drawable2 = new BitmapDrawable(bitmap);
+            //handler.PlatformView.EndIconDrawable = drawable2;
+            //handler.PlatformView.SetEndIconTintList(null);
+            RelativeLayout container = new RelativeLayout(Context);
+            container.LayoutParameters = new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MatchParent,
+                ViewGroup.LayoutParams.WrapContent
+            );
+            container.AddView(icon);
             PlatformView.AddView(PlatformEntry);
+            //container.AddView(PlatformView);
             TaskCompletionSource.SetResult();
         }
 

@@ -23,12 +23,13 @@ namespace Maui.Android.TextInputLayout
         {
             [nameof(ITextInputEditText.BackgroundColor)] = MapBackgroundColor,
             [nameof(IEntry.Text)] = MapText,
+            [nameof(IEntry.TextColor)] = EntryHandler.MapTextColor
 
         };
 
         public static CommandMapper<ITextInputEditText, ITextInputEditTextHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)
         {
-
+            
         };
         public TextInputEditTextHandler() : base(PropertyMapper, CommandMapper)
         {

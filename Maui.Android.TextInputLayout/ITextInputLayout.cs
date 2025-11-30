@@ -24,5 +24,7 @@ namespace Maui.Android.TextInputLayout
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
         EndIconClickedEventHandler EndIconEventHandler { get; set; }
+        Color TextColor { get; set; }
+
     }
 }

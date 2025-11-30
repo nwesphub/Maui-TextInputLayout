@@ -49,9 +49,20 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             //this.MauiTextInputEditText.SetPadding(40,0,120,0);
             // Reduces vertical padding between the button and the borders. Otherwise the entry would be very tall vertically
             this.EndIconMinSize = 120;
-            
+
             // Removes the underline under the text in the entry
             //this.MauiTextInputEditText.InputType = InputTypes.TextVariationVisiblePassword | InputTypes.TextFlagNoSuggestions;
+
+            //// Set end icon - clear button
+            //this.SetStartIconDrawable(Resource.Drawable.ic_clear_2);
+            //// Set icon callback function
+            //this.SetStartIconOnClickListener(new OnEndIconClickListener(this));
+            //// set icon visibility
+            //this.StartIconVisible = true;
+            //// Padding to prevent text from overlapping the button
+            ////this.MauiTextInputEditText.SetPadding(40,0,120,0);
+            //// Reduces vertical padding between the button and the borders. Otherwise the entry would be very tall vertically
+            //this.StartIconMinSize = 120;
         }
 
         public class OnEndIconClickListener : Java.Lang.Object, IOnClickListener
