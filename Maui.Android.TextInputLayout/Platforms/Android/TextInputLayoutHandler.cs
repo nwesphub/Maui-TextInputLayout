@@ -105,6 +105,8 @@ namespace Maui.Android.TextInputLayout
         }
         public static void MapBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            var style = handler.MauiContext.Context.Resources.GetIdentifier("CursorColor", "style", handler.MauiContext.Context.PackageName);
+            handler.PlatformView.Context.Theme.ApplyStyle(style, true);
             BorderManager.MapBorderColor(handler, entry);
         }
         public static void MapFocusedBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
