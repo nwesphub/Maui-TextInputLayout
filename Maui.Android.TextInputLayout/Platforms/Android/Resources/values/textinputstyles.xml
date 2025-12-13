@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<style name="CursorColor" parent="ThemeOverlay.MaterialComponents.TextInputEditText">
+		<item name="colorControlActivated">#19f50a</item>
+	</style>
+</resources>
