@@ -53,5 +53,8 @@ namespace Maui.Android.TextInputLayout
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
         }
+        public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+        }
     }
 }

@@ -50,41 +50,7 @@ namespace Maui.Android.TextInputLayout
             editText.SetDefaults();
             
             PlatformEntry = editText;
-            
-            float targetDp = 48f;
-
-            // Convert DP to pixels using screen density
-
-            ImageView icon = new ImageView(Context);
-            icon.SetImageResource(Resource.Drawable.ic_clear);
-
-            //int sizePx = 100;
-            //IImageSourceServiceResult<Drawable>? drawable = await entry.EndIcon.GetPlatformImageAsync(handler.MauiContext);
-            PlatformView.LayoutParameters = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MatchParent,
-                ViewGroup.LayoutParams.WrapContent
-            );
-            var iconParams = new RelativeLayout.LayoutParams(
-                24,
-                24
-            );
-            iconParams.AddRule(LayoutRules.AlignParentStart);
-            iconParams.AddRule(LayoutRules.CenterVertical);
-            iconParams.SetMargins(24, 0, 24, 0);
-            icon.LayoutParameters = iconParams;
-            //var bitmapDrawable = ((BitmapDrawable)drawable.Value).Bitmap;
-            //var bitmap = Bitmap.CreateScaledBitmap(bitmapDrawable, sizePx, sizePx, false);
-            //Drawable drawable2 = new BitmapDrawable(bitmap);
-            //handler.PlatformView.EndIconDrawable = drawable2;
-            //handler.PlatformView.SetEndIconTintList(null);
-            RelativeLayout container = new RelativeLayout(Context);
-            container.LayoutParameters = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MatchParent,
-                ViewGroup.LayoutParams.WrapContent
-            );
-            container.AddView(icon);
             PlatformView.AddView(PlatformEntry);
-            //container.AddView(PlatformView);
             TaskCompletionSource.SetResult();
         }
 
@@ -129,9 +95,38 @@ namespace Maui.Android.TextInputLayout
         {
             HintManager.MapIsHintAnimated(handler, entry);
         }
+
+        public static void MapCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            
+        }
+
+        public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            if(entry.EndIconColor is null)
+            {
+                return;
+            }
+            var color = entry.EndIconColor.ToAndroid();
+            handler.PlatformView.SetEndIconTintList
+            (
+                new ColorStateList
+                (
+                    [
+                        [-RResource.StateFocused],
+                        [RResource.StateFocused],
+                    ],
+                    [
+                        color,
+                        color
+                    ]
+                )
+            );
+        }
+
         public static async void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            return;
+            //return;
             if(entry.EndIcon is null)
             {
                 return;
@@ -191,9 +186,9 @@ namespace Maui.Android.TextInputLayout
         public static async void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             // TODO: refactor to remove tcs
-            if (handler is TextInputLayoutHandler h2)
+            if (handler is TextInputLayoutHandler textInputLayoutHandler)
             {
-                await h2.TaskCompletionSource.Task;
+                await textInputLayoutHandler.TaskCompletionSource.Task;
             }
             handler.PlatformEntry.FocusChange -= EndIconVisibilityFocusChanged;
             handler.PlatformEntry.TextChanged -= EndIconVisibilityFocusChanged;

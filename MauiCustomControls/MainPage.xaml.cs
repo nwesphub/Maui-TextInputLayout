@@ -20,6 +20,9 @@ namespace MauiCustomControls
         [ObservableProperty]
         string entryText;
 
+        [ObservableProperty]
+        Color outlineEntryColor = Color.FromHex("FFFFFF"); //Color.FromHex("19f50a");
+
         [RelayCommand]
         private async Task ButtonClicked()
         {

@@ -23,18 +23,17 @@
 	<ItemGroup>
 	  <None Remove="appicon2.svg" />
 	  <None Remove="dotnet_bot2.png" />
+	  <None Remove="Platforms\Android\Resources\drawable\colors.xml" />
+	  <None Remove="Platforms\Android\Resources\drawable\cursor.xml" />
 	  <None Remove="Platforms\Android\Resources\drawable\ic_clear.xml" />
 	  <None Remove="Platforms\Android\Resources\drawable\ic_clear_2.xml" />
 	  <None Remove="Platforms\Android\Resources\layout\maui_text_input_edit_text.xml" />
+	  <None Remove="Platforms\Android\Resources\styles\textinputstyles.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Platforms\Android\Resources\values\" />
 	</ItemGroup>
 
 	<ItemGroup>

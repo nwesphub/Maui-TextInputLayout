@@ -1,12 +1,15 @@
 ﻿using Android.Content;
+using Android.Content.Res;
 using Android.Graphics.Drawables;
 using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using AView = Android.Views.View;
 using LLayout = Android.Widget.LinearLayout;
+using RResource = Android.Resource.Attribute;
 namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
