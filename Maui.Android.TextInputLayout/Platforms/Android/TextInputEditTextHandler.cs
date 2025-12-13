@@ -39,7 +39,7 @@ namespace Maui.Android.TextInputLayout
                 style = Resource.Style.Widget_Material3_TextInputLayout_FilledBox;
             }
             var result = new ContextThemeWrapper(Context, style);
-            return new MauiTextInputEditText(result);
+            return new MauiTextInputEditText(result, _boxBackgroundMode);
         }
 
         public override void SetVirtualView(IView view)
