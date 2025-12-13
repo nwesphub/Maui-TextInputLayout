@@ -31,6 +31,7 @@ namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
     {
+        
         protected override MauiTextInputLayout CreatePlatformView()
         {
             var contextThemeWrapper = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox_Dense);
@@ -41,27 +42,24 @@ namespace Maui.Android.TextInputLayout
         public override void SetVirtualView(IView view)
         {
             base.SetVirtualView(view);
-            VirtualEntry = VirtualView.Content as ITextInputEditText ?? throw new Exception("VirtualView.Content is not ITextInputEditText");
-            if(MauiContext is null)
-            {
-                throw new Exception("MauiContext is null");
-            }
-            MauiTextInputEditText editText =  VirtualView.Content.ToPlatform(MauiContext) as MauiTextInputEditText ?? throw new Exception("content is not MauiTextInputEditText");
-            editText.SetDefaults();
-            
-            PlatformEntry = editText;
             PlatformView.AddView(PlatformEntry);
             TaskCompletionSource.SetResult();
         }
 
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
+            // This code used to be in SetVirtualView
+            VirtualEntry = VirtualView.Content as ITextInputEditText ?? throw new Exception("VirtualView.Content is not ITextInputEditText");
+            MauiTextInputEditText editText = VirtualView.Content.ToPlatform(MauiContext) as MauiTextInputEditText ?? throw new Exception("content is not MauiTextInputEditText");
+            editText.SetDefaults();
+            PlatformEntry = editText;
+            // This code used to be in SetVirtualView
+
             PlatformView.SetEndIconOnClickListener(VirtualView);
         }
 
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            return;
 
         }
 
@@ -101,73 +99,8 @@ namespace Maui.Android.TextInputLayout
             
         }
 
-        public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            if(entry.EndIconColor is null)
-            {
-                return;
-            }
-            var color = entry.EndIconColor.ToAndroid();
-            handler.PlatformView.SetEndIconTintList
-            (
-                new ColorStateList
-                (
-                    [
-                        [-RResource.StateFocused],
-                        [RResource.StateFocused],
-                    ],
-                    [
-                        color,
-                        color
-                    ]
-                )
-            );
-        }
+        
 
-        public static async void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            //return;
-            if(entry.EndIcon is null)
-            {
-                return;
-            }
-            try
-            {
-                
-                // higher density needs to be bigger
-                // lower density needs to be smaller
-                // high density = 2.75
-                // low density = 1.5
-                // high density = 156
-                // low density = 96
-
-                // low density ideal = 50
-                // high density ideal = 200
-                // Target size in DP
-                float targetDp = 48f;
-
-                // Convert DP to pixels using screen density
-                float density = handler.PlatformView.Context.Resources.DisplayMetrics.Density;
-                int sizePx = (int)(targetDp * (density + 0.5f)); // round to nearest pixel
-                sizePx = (int)GetIdealSize(density); ;
-                IImageSourceServiceResult<Drawable>? drawable = await entry.EndIcon.GetPlatformImageAsync(handler.MauiContext);
-
-                var bitmapDrawable = ((BitmapDrawable)drawable.Value).Bitmap;
-                var bitmap = Bitmap.CreateScaledBitmap(bitmapDrawable, sizePx, sizePx, false);
-                Drawable drawable2 = new BitmapDrawable(bitmap);
-                handler.PlatformView.EndIconDrawable = drawable2;
-                handler.PlatformView.SetEndIconTintList(null);
-            }
-            catch(Exception ex)
-            {
-
-            }
-        }
-
-        public static double GetIdealSize(double density)
-        {
-            return 120 * density - 130;
-        }
         public static async void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             switch (entry.BoxBackgroundMode)
@@ -183,61 +116,26 @@ namespace Maui.Android.TextInputLayout
                     break;
             }
         }
+
+        public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            EndIconManager.MapEndIconColor(handler, entry);
+        }
+
+        public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            EndIconManager.MapEndIcon(handler, entry);
+        }
+
         public static async void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            // TODO: refactor to remove tcs
-            if (handler is TextInputLayoutHandler textInputLayoutHandler)
-            {
-                await textInputLayoutHandler.TaskCompletionSource.Task;
-            }
-            handler.PlatformEntry.FocusChange -= EndIconVisibilityFocusChanged;
-            handler.PlatformEntry.TextChanged -= EndIconVisibilityFocusChanged;
-            switch (entry.EndIconVisibilityMode)
-            {
-                case IconVisibilityMode.Never:
-                    handler.PlatformView.EndIconVisible = false;
-                    break;
-                case IconVisibilityMode.Always:
-                    handler.PlatformView.EndIconVisible = true;
-                    break;
-                case IconVisibilityMode.WhileEditing:
-                    if(string.IsNullOrWhiteSpace(handler.PlatformEntry.Text))
-                    {
-                        handler.PlatformView.EndIconVisible = false;
-                    }
-                    handler.PlatformEntry.FocusChange += EndIconVisibilityFocusChanged;
-                    handler.PlatformEntry.TextChanged += EndIconVisibilityFocusChanged;
-                    break;
-            }
+            EndIconManager.MapEndIconVisibilityMode(handler, entry);
         }
 
-        private static void EndIconVisibilityFocusChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
+        private static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            if (sender is MauiTextInputEditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
-            {
-                EndIconVisibilityChanged(editText, layout);
-            }
-        }
-
-        private static void EndIconVisibilityFocusChanged(object? sender, AView.FocusChangeEventArgs e)
-        {
-            if (sender is MauiTextInputEditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
-            {
-                editText.HasFocus = e.HasFocus;
-                EndIconVisibilityChanged(editText, layout);
-            }
-        }
-
-        private static void EndIconVisibilityChanged(MauiTextInputEditText editText, MauiTextInputLayout layout)
-        {
-            if(editText.HasFocus && !string.IsNullOrWhiteSpace(editText.Text))
-            {
-                layout.EndIconVisible = true;
-            }
-            else
-            {
-                layout.EndIconVisible = false;
-            }
+            ViewHandler.MapIsEnabled(handler, entry);
+            EndIconManager.MapIsEnabled(handler, entry);
         }
     }
 }

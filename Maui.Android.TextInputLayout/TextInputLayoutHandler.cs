@@ -34,7 +34,8 @@ namespace Maui.Android.TextInputLayout
             [nameof(ITextInputLayout.EndIcon)] = MapEndIcon,
             [nameof(ITextInputLayout.BoxBackgroundMode)] = MapBoxBackgroundMode,
             [nameof(ITextInputLayout.EndIconVisibilityMode)] = MapEndIconVisibilityMode,
-            [nameof(ITextInputLayout.EndIconColor)] = MapEndIconColor
+            [nameof(ITextInputLayout.EndIconColor)] = MapEndIconColor,
+            [nameof(ITextInputLayout.IsEnabled)] = MapIsEnabled
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)

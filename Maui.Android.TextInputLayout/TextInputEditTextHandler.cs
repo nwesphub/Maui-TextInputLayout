@@ -23,7 +23,8 @@ namespace Maui.Android.TextInputLayout
         {
             [nameof(ITextInputEditText.BackgroundColor)] = MapBackgroundColor,
             [nameof(IEntry.Text)] = MapText,
-            [nameof(IEntry.TextColor)] = EntryHandler.MapTextColor
+            [nameof(IEntry.TextColor)] = MapTextColor,
+            [nameof(IEntry.IsEnabled)] = EntryHandler.MapIsEnabled
 
         };
 

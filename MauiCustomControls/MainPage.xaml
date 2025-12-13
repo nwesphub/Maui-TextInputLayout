@@ -13,7 +13,7 @@
         <VerticalStackLayout
             x:Name="test"
             Padding="30,0"
-            Spacing="25">
+            Spacing="8">
 
             <Image
                 Aspect="AspectFit"
@@ -22,6 +22,20 @@
                 Source="dotnet_bot.png" />
 
             <!--  EndIcon="dotnet_bot"  -->
+            <input:TextInputLayout
+                x:Name="testEntry"
+                BackgroundColor="Black"
+                BorderColor="{Binding OutlineEntryColor}"
+                BoxBackgroundMode="Outline"
+                DefaultHintColor="Red"
+                EndIconColor="#FFFFFF"
+                EndIconVisibilityMode="WhileEditing"
+                FocusedBorderColor="{Binding OutlineEntryColor}"
+                FocusedHintColor="{Binding OutlineEntryColor}"
+                Hint="Outline"
+                IsEnabled="False"
+                Text="{Binding EntryText}"
+                TextColor="{Binding OutlineEntryColor}" />
             <input:TextInputLayout
                 BackgroundColor="Black"
                 BorderColor="{Binding OutlineEntryColor}"
@@ -34,7 +48,7 @@
                 Hint="Outline"
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}" />
-            
+
             <input:TextInputLayout
                 BackgroundColor="Transparent"
                 BorderColor="#19f50a"
@@ -47,7 +61,7 @@
                 Hint="Filled"
                 Text="{Binding EntryText}"
                 TextColor="White" />
-            
+
             <input:TextInputLayout
                 BackgroundColor="White"
                 BorderColor="Blue"

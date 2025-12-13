@@ -15,6 +15,8 @@ using AndroidX.AppCompat.Widget;
 using Android.Widget;
 using Android.Text;
 using Maui.Android.TextInputLayout.Platforms.Android.Managers;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Maui.Android.TextInputLayout.Platforms.Android.Helpers;
 
 namespace Maui.Android.TextInputLayout
 {
@@ -92,6 +94,31 @@ namespace Maui.Android.TextInputLayout
             }
 
             handler.PlatformView.UpdateText(entry);
+        }
+
+        public static void MapTextColor(ITextInputEditTextHandler handler, ITextInputEditText entry)
+        {
+            if(entry.TextColor is null)
+            {
+                return;
+            }
+            int[][] _states =
+            [
+                [-RResource.StateSelected],
+                [RResource.StateSelected]
+            ];
+            ColorStateList colorStateList;
+            if (entry.IsEnabled)
+            {
+                colorStateList = new ColorStateList(_states, [entry.TextColor.ToAndroid(), entry.TextColor.ToAndroid()]);
+            }
+            else
+            {
+                colorStateList = new ColorStateList(_states, [ColorHelper.GetDesaturatedColor(entry.TextColor.ToAndroid()), ColorHelper.GetDesaturatedColor(entry.TextColor.ToAndroid())]);
+            }
+            //handler.PlatformView.TextColors = colorStateList;
+            //handler.PlatformView.UpdateTextColor();
+            handler.PlatformView.SetTextColor(colorStateList);
         }
     }
 }
