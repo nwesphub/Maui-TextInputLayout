@@ -29,7 +29,10 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
         public MauiTextInputEditText(Context context, BoxBackgroundMode boxBackgroundMode) : base(context)
         {
             SetDefaults();
-            this.SetPadding(40, 38, 100, 30);
+            if (boxBackgroundMode == BoxBackgroundMode.Outline)
+            {
+                this.SetPadding(40, 38, 100, 30);
+            }
         }
 
         public void SetDefaults()
