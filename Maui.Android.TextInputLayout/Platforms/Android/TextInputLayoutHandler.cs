@@ -58,6 +58,9 @@ namespace Maui.Android.TextInputLayout
             // This code used to be in SetVirtualView
 
             PlatformView.SetEndIconOnClickListener(VirtualView);
+
+            // This is the only way I know how to set the text cursor color - which sets other theme colors
+            PlatformView.Context.Theme.ApplyStyle(PlatformView.Context.Resources.GetIdentifier("CursorColor", "style", Context.PackageName), true);
         }
 
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -71,10 +74,6 @@ namespace Maui.Android.TextInputLayout
         }
         public static void MapBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            // This is the only way I know how to set the text cursor color - which sets other theme colors
-            var style = handler.MauiContext.Context.Resources.GetIdentifier("CursorColor", "style", handler.MauiContext.Context.PackageName);
-            handler.PlatformView.Context.Theme.ApplyStyle(style, true);
-            // todo move the code somewhere else
             BorderManager.MapBorderColor(handler, entry);
         }
         public static void MapFocusedBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
