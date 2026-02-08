@@ -98,7 +98,18 @@ namespace Maui.Android.TextInputLayout
 
         public static void MapTextColor(ITextInputEditTextHandler handler, ITextInputEditText entry)
         {
-            if(entry.TextColor is null)
+            UpdateTextColor(handler, entry);
+        }
+
+        public static void MapIsEnabled(ITextInputEditTextHandler handler, ITextInputEditText entry)
+        {
+            EntryHandler.MapIsEnabled(handler, entry);
+            UpdateTextColor(handler, entry);
+        }
+
+        private static void UpdateTextColor(ITextInputEditTextHandler handler, ITextInputEditText entry)
+        {
+            if (entry.TextColor is null)
             {
                 return;
             }

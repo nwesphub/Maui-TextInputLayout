@@ -23,6 +23,19 @@
 
             <!--  EndIcon="dotnet_bot"  -->
             <input:TextInputLayout
+                BackgroundColor="Black"
+                BorderColor="{Binding OutlineEntryColor}"
+                BoxBackgroundMode="Outline"
+                DefaultHintColor="Red"
+                EndIconColor="#FFFFFF"
+                EndIconVisibilityMode="WhileEditing"
+                FocusedBorderColor="{Binding OutlineEntryColor}"
+                FocusedHintColor="{Binding OutlineEntryColor}"
+                Hint="Outline"
+                IsEnabled="True"
+                Text="{Binding EntryText}"
+                TextColor="{Binding OutlineEntryColor}" />
+            <input:TextInputLayout
                 x:Name="testEntry"
                 BackgroundColor="Black"
                 BorderColor="{Binding OutlineEntryColor}"
@@ -33,7 +46,9 @@
                 FocusedBorderColor="{Binding OutlineEntryColor}"
                 FocusedHintColor="{Binding OutlineEntryColor}"
                 Hint="Outline"
-                IsEnabled="False"
+                IsEnabled="{Binding IsEntryEnabled}"
+                Placeholder=""
+                PlaceholderColor="White"
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}" />
             <input:TextInputLayout
@@ -49,19 +64,37 @@
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}" />
 
-            <input:TextInputLayout
-                BackgroundColor="Transparent"
-                BorderColor="#19f50a"
-                BoxBackgroundMode="Filled"
-                DefaultHintColor="#19f50a"
-                EndIcon="ic_clear_2"
-                EndIconVisibilityMode="Always"
-                FocusedBorderColor="#19f50a"
-                FocusedHintColor="#19f50a"
-                Hint="Filled"
-                Text="{Binding EntryText}"
-                TextColor="White" />
-
+            <Grid RowDefinitions="Auto, Auto">
+                <input:TextInputLayout
+                    Grid.Row="0"
+                    BackgroundColor="Transparent"
+                    BorderColor="#19f50a"
+                    BoxBackgroundMode="Filled"
+                    DefaultHintColor="#19f50a"
+                    EndIcon="ic_clear_2"
+                    EndIconVisibilityMode="Always"
+                    FocusedBorderColor="#19f50a"
+                    FocusedHintColor="#19f50a"
+                    Hint="Filled Hidden"
+                    IsEnabled="False"
+                    IsVisible="False"
+                    Text="{Binding EntryText}"
+                    TextColor="White" />
+                <input:TextInputLayout
+                    Grid.Row="1"
+                    BackgroundColor="Transparent"
+                    BorderColor="#19f50a"
+                    BoxBackgroundMode="Filled"
+                    DefaultHintColor="#19f50a"
+                    EndIcon="ic_clear_2"
+                    EndIconVisibilityMode="Always"
+                    FocusedBorderColor="#19f50a"
+                    FocusedHintColor="#19f50a"
+                    Hint="Filled"
+                    IsEnabled="False"
+                    Text="{Binding EntryText}"
+                    TextColor="White" />
+            </Grid>
             <input:TextInputLayout
                 BackgroundColor="White"
                 BorderColor="Blue"

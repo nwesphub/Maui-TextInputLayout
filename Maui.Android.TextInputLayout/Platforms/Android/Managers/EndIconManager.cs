@@ -16,7 +16,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
 {
     public static class EndIconManager
     {
-        public static async void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformEntry.FocusChange -= EndIconVisibilityFocusChanged;
             handler.PlatformEntry.TextChanged -= EndIconVisibilityFocusChanged;

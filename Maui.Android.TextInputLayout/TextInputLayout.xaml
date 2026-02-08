@@ -8,6 +8,8 @@
     <input:TextInputEditText
         x:Name="textInputEditText"
         IsEnabled="{Binding IsEnabled}"
+        Placeholder="{Binding Placeholder}"
+        PlaceholderColor="{Binding PlaceholderColor}"
         BackgroundColor="{Binding BackgroundColor}"
         BindingContext="{Binding Source={x:Reference this}}"
         BoxBackgroundMode="{Binding BoxBackgroundMode}"

@@ -26,6 +26,8 @@ using Android.Content;
 using Android.Widget;
 using Google.Android.Material.TextField;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using AndroidX.ConstraintLayout.Core.Widgets;
+using Android.Util;
 
 namespace Maui.Android.TextInputLayout
 {
@@ -69,8 +71,10 @@ namespace Maui.Android.TextInputLayout
         }
         public static void MapBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            // This is the only way I know how to set the text cursor color - which sets other theme colors
             var style = handler.MauiContext.Context.Resources.GetIdentifier("CursorColor", "style", handler.MauiContext.Context.PackageName);
             handler.PlatformView.Context.Theme.ApplyStyle(style, true);
+            // todo move the code somewhere else
             BorderManager.MapBorderColor(handler, entry);
         }
         public static void MapFocusedBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -127,7 +131,7 @@ namespace Maui.Android.TextInputLayout
             EndIconManager.MapEndIcon(handler, entry);
         }
 
-        public static async void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             EndIconManager.MapEndIconVisibilityMode(handler, entry);
         }
@@ -136,6 +140,14 @@ namespace Maui.Android.TextInputLayout
         {
             ViewHandler.MapIsEnabled(handler, entry);
             EndIconManager.MapIsEnabled(handler, entry);
+            HintManager.UpdateHintColors(handler, entry);
+   
         }
+
+        // Note:
+        // If IsEnabled changes - End icon, end icon color, text color, hint color, need to be updated
+        // If placeholder is set - hint location needs to be updated
+        // Add IsPassword
+        // Focus/Unfocus events
     }
 }

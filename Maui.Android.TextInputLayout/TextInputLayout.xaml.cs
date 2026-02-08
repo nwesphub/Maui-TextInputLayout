@@ -45,6 +45,8 @@ namespace Maui.Android.TextInputLayout
             EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
             TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextInputLayout));
             EndIconColorProperty = BindableProperty.Create(nameof(EndIconColor), typeof(Color), typeof(TextInputLayout));
+            PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(TextInputLayout));
+            PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(TextInputLayout), defaultValue: Colors.Black);
         }
 
 
@@ -66,7 +68,8 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty EndIconVisibilityModeProperty;
         public static readonly BindableProperty TextColorProperty;
         public static readonly BindableProperty EndIconColorProperty;
-
+        public static readonly BindableProperty PlaceholderProperty;
+        public static readonly BindableProperty PlaceholderColorProperty;
         public EndIconClickedEventHandler EndIconEventHandler { get; set; } = new();
 
         public Color BorderColor
@@ -148,6 +151,16 @@ namespace Maui.Android.TextInputLayout
         {
             get => (Color?)GetValue(EndIconColorProperty);
             set => SetValue(EndIconColorProperty, value);
+        }
+        public string Placeholder
+        {
+            get => GetValue(PlaceholderProperty)?.ToString() ?? string.Empty;
+            set => SetValue(PlaceholderProperty, value);
+        }
+        public Color PlaceholderColor
+        {
+            get => (Color)GetValue(PlaceholderColorProperty);
+            set => SetValue(PlaceholderColorProperty, value);
         }
     }
 }

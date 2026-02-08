@@ -18,7 +18,9 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-
+		<PublishTrimmed>false</PublishTrimmed>
+		<AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+		<RunAOTCompilation>false</RunAOTCompilation>
 		<!-- Display name -->
 		<ApplicationTitle>MauiCustomControls</ApplicationTitle>
 

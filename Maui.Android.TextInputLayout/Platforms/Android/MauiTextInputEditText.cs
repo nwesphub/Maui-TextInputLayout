@@ -31,7 +31,14 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             SetDefaults();
             if (boxBackgroundMode == BoxBackgroundMode.Outline)
             {
-                this.SetPadding(40, 38, 100, 30);
+                // Pixel 5 - 2.75x
+                int left = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 14.54f, Context.Resources.DisplayMetrics);
+                int top = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 13.81f, Context.Resources.DisplayMetrics);
+                int right = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 36.36f, Context.Resources.DisplayMetrics);
+                int bottom = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 10.91f, Context.Resources.DisplayMetrics);
+                this.SetPadding(left, top, right, bottom);
+                //this.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 48, Context.Resources.DisplayMetrics)); // Fix for 240 dp devices having a ton of padding when focused
+                //this.SetPadding(40, 38, 100, 30);
             }
         }
 

@@ -24,8 +24,9 @@ namespace Maui.Android.TextInputLayout
             [nameof(ITextInputEditText.BackgroundColor)] = MapBackgroundColor,
             [nameof(IEntry.Text)] = MapText,
             [nameof(IEntry.TextColor)] = MapTextColor,
-            [nameof(IEntry.IsEnabled)] = EntryHandler.MapIsEnabled
-
+            [nameof(IEntry.IsEnabled)] = MapIsEnabled,
+            [nameof(IEntry.Placeholder)] = EntryHandler.MapPlaceholder,
+            [nameof(IEntry.PlaceholderColor)] = EntryHandler.MapPlaceholderColor,
         };
 
         public static CommandMapper<ITextInputEditText, ITextInputEditTextHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)

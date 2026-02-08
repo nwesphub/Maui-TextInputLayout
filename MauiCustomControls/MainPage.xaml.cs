@@ -45,6 +45,7 @@ namespace MauiCustomControls
         [RelayCommand]
         private async Task ButtonClicked()
         {
+            IsEntryEnabled = !IsEntryEnabled;
         }
     }
 }

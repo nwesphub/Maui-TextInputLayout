@@ -31,13 +31,27 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
 
         public static void MapDefaultHintTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            _defaultHintColor = entry.DefaultHintColor.ToPlatform();
+            UpdateDefaultHintColor(handler, entry);
             ApplyHintColor(handler, entry);
         }
 
         public static void MapFocusedHintTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            UpdateFocusedHintColor(handler, entry);
+            ApplyHintColor(handler, entry);
+        }
+        private static void UpdateDefaultHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            _defaultHintColor = entry.DefaultHintColor.ToPlatform();
+        }
+        private static void UpdateFocusedHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
             _focusedHintColor = entry.FocusedHintColor.ToPlatform();
+        }
+        public static void UpdateHintColors(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            UpdateDefaultHintColor(handler, entry);
+            UpdateFocusedHintColor(handler, entry);
             ApplyHintColor(handler, entry);
         }
 
