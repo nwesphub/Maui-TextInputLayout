@@ -62,7 +62,7 @@ namespace Maui.Android.TextInputLayout
 
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-
+            return;
         }
 
         public static void MapBackground(ITextInputLayoutHandler handler, ITextInputLayout entry) 
