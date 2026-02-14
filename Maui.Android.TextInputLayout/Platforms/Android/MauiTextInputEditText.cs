@@ -53,5 +53,17 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
          
             SetSingleLine(true);
         }
+
+        public static void SetStaticDefaults(EditText editText)
+        {
+            editText.TextSize = 14;
+
+            // Set minimum width to a high number otherwise the input takes up a very small space and is not clickable
+            editText.SetMinimumWidth(1000000);
+            // this.SetPadding(40, 38, 100, 30); - Potential padding for layout with border - box background
+            //editText.SetPadding(PaddingLeft, PaddingTop, PaddingRight, PaddingBottom);
+
+            editText.SetSingleLine(true);
+        }
     }
 }

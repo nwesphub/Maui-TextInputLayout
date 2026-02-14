@@ -23,6 +23,23 @@
 
             <!--  EndIcon="dotnet_bot"  -->
             <input:TextInputLayout
+                x:Name="textinputlayout1"
+                BackgroundColor="Red"
+                BorderColor="{Binding OutlineEntryColor}"
+                BoxBackgroundMode="Filled"
+                DefaultHintColor="Red"
+                EndIconColor="#FFFFFF"
+                EndIconVisibilityMode="WhileEditing"
+                FocusedBorderColor="{Binding OutlineEntryColor}"
+                FocusedHintColor="{Binding OutlineEntryColor}"
+                Hint="Outline"
+                IsEnabled="True"
+                Text="{Binding EntryText}"
+                TextColor="{Binding OutlineEntryColor}">
+                <input:MaterialEntry Text="{Binding EntryText}" TextColor="White" Background="Orange" BackgroundColor="Orange" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                x:Name="textinputlayout2"
                 BackgroundColor="Black"
                 BorderColor="{Binding OutlineEntryColor}"
                 BoxBackgroundMode="Outline"
@@ -34,8 +51,56 @@
                 Hint="Outline"
                 IsEnabled="True"
                 Text="{Binding EntryText}"
-                TextColor="{Binding OutlineEntryColor}" />
+                TextColor="{Binding OutlineEntryColor}">
+                <input:MaterialEntry TextColor="White" />
+            </input:TextInputLayout>
             <input:TextInputLayout
+                BackgroundColor="Black"
+                BorderColor="{Binding OutlineEntryColor}"
+                BoxBackgroundMode="Outline"
+                DefaultHintColor="Red"
+                EndIconColor="#FFFFFF"
+                EndIconVisibilityMode="WhileEditing"
+                FocusedBorderColor="{Binding OutlineEntryColor}"
+                FocusedHintColor="{Binding OutlineEntryColor}"
+                Hint="Outline"
+                IsEnabled="True"
+                IsHintAnimated="False"
+                Text="{Binding EntryText}"
+                TextColor="{Binding OutlineEntryColor}">
+                <Picker
+                    Title="Test"
+                    BackgroundColor="#101010"
+                    TextColor="#FFFFFF"
+                    TitleColor="#FFFFFF">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Baboon</x:String>
+                            <x:String>Capuchin Monkey</x:String>
+                            <x:String>Blue Monkey</x:String>
+                            <x:String>Squirrel Monkey</x:String>
+                            <x:String>Golden Lion Tamarin</x:String>
+                            <x:String>Howler Monkey</x:String>
+                            <x:String>Japanese Macaque</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </input:TextInputLayout>
+            <Picker Title="Select a monkey" TextColor="White"
+TitleColor="White">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Baboon</x:String>
+                        <x:String>Capuchin Monkey</x:String>
+                        <x:String>Blue Monkey</x:String>
+                        <x:String>Squirrel Monkey</x:String>
+                        <x:String>Golden Lion Tamarin</x:String>
+                        <x:String>Howler Monkey</x:String>
+                        <x:String>Japanese Macaque</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <!--<input:TextInputLayout
                 x:Name="testEntry"
                 BackgroundColor="Black"
                 BorderColor="{Binding OutlineEntryColor}"
@@ -102,7 +167,7 @@
                 EndIcon="dotnet_bot2"
                 EndIconVisibilityMode="Never"
                 Hint="None"
-                Text="{Binding EntryText}" />
+                Text="{Binding EntryText}" />-->
             <Entry />
             <!--<input:TextInputLayout BackgroundColor="Transparent" BorderColor="AliceBlue" FocusedBorderColor="Red" Hint="Test Hint" DefaultHintColor="Blue" FocusedHintColor="Red" IsHintAnimated="False" />
             <input:TextInputLayout BackgroundColor="Blue"  />

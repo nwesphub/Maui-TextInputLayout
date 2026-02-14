@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AView = Android.Views.View;
 using RResource = Android.Resource.Attribute;
+using Android.Widget;
 
 namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
 {
@@ -18,6 +19,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
     {
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            
             handler.PlatformEntry.FocusChange -= EndIconVisibilityFocusChanged;
             handler.PlatformEntry.TextChanged -= EndIconVisibilityFocusChanged;
             switch (entry.EndIconVisibilityMode)
@@ -41,7 +43,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
 
         private static void EndIconVisibilityFocusChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
         {
-            if (sender is MauiTextInputEditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
+            if (sender is EditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
             {
                 EndIconVisibilityChanged(editText, layout);
             }
@@ -49,15 +51,16 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
 
         private static void EndIconVisibilityFocusChanged(object? sender, AView.FocusChangeEventArgs e)
         {
-            if (sender is MauiTextInputEditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
+            if (sender is EditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
             {
-                editText.HasFocus = e.HasFocus;
+                //editText.HasFocus = e.HasFocus;
                 EndIconVisibilityChanged(editText, layout);
             }
         }
 
-        private static void EndIconVisibilityChanged(MauiTextInputEditText editText, MauiTextInputLayout layout)
+        private static void EndIconVisibilityChanged(EditText editText, MauiTextInputLayout layout)
         {
+            
             if (editText.HasFocus && !string.IsNullOrWhiteSpace(editText.Text) && editText.Enabled)
             {
                 layout.EndIconVisible = true;

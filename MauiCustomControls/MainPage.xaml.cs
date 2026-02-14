@@ -12,7 +12,10 @@ namespace MauiCustomControls
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             InitializeComponent();
-            BindingContext = new MainPageViewModel(this);
+            var bc = new MainPageViewModel(this);
+            bc.t1 = textinputlayout1;
+            bc.t2 = textinputlayout2;
+            BindingContext = bc;
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -20,14 +23,16 @@ namespace MauiCustomControls
             
         }
 
-        public TextInputLayout GetTextInputLayout()
-        {
-            return testEntry;
-        }
+        //public TextInputLayout GetTextInputLayout()
+        //{
+        //    return testEntry;
+        //}
     }
 
     public partial class MainPageViewModel : ObservableObject
     {
+        public TextInputLayout t1;
+        public TextInputLayout t2;
         MainPage _mainPage;
         public MainPageViewModel(MainPage mainPage)
         {
@@ -45,6 +50,7 @@ namespace MauiCustomControls
         [RelayCommand]
         private async Task ButtonClicked()
         {
+            
             IsEntryEnabled = !IsEntryEnabled;
         }
     }

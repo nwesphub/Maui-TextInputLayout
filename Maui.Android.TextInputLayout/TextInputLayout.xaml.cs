@@ -20,7 +20,7 @@ namespace Maui.Android.TextInputLayout
         {
             
             InitializeComponent();
-            TextInputEditText = this.textInputEditText;
+            
 
             EndIconEventHandler.EndIconClicked += TextInputLayout_EndIconClicked;
         }
@@ -28,6 +28,14 @@ namespace Maui.Android.TextInputLayout
 
         private void TextInputLayout_EndIconClicked(object? sender, EndIconClickedEventArgs e)
         {
+            if(Content is InputView inputView)
+            {
+                inputView.Text = string.Empty;
+            }
+            if(Content is Picker pp)
+            {
+                pp.SelectedItem = null;
+            }
             Text = string.Empty;
         }
 
