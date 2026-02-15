@@ -21,13 +21,13 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
         private static int _focusedBorderColor = 0;
         public static void MapBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            _borderColor = entry.BorderColor.ToPlatform();
+            _borderColor = entry.OutlineColor.ToPlatform();
             ApplyBorderColors(handler);
         }
 
         public static void MapFocusedBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            _focusedBorderColor = entry.FocusedBorderColor.ToPlatform();
+            _focusedBorderColor = entry.FocusedOutlineColor.ToPlatform();
             ApplyBorderColors(handler);
         }
 

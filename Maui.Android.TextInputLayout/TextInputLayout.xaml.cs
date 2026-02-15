@@ -45,8 +45,8 @@ namespace Maui.Android.TextInputLayout
 
         static TextInputLayout()
         {
-            BorderColorProperty = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(TextInputLayout), defaultValue: Colors.Black);
-            FocusedBorderColorProperty = BindableProperty.Create(nameof(FocusedBorderColor), typeof(Color), typeof(TextInputLayout), defaultValue: Colors.Black);
+            OutlineColorProperty = BindableProperty.Create(nameof(OutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: Colors.Black);
+            FocusedOutlineColorProperty = BindableProperty.Create(nameof(FocusedOutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: Colors.Black);
             HintProperty = BindableProperty.Create(nameof(Hint), typeof(string), typeof(TextInputLayout));
             DefaultHintColorProperty = BindableProperty.Create(nameof(DefaultHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: (Application.Current.Resources["Primary"] as Color) ?? Colors.LightGray);
             FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: (Application.Current.Resources["Primary"] as Color) ?? Colors.LightGray);
@@ -68,8 +68,8 @@ namespace Maui.Android.TextInputLayout
                 return;
             }
 
-            control.TrySetDefaultProperty(BorderColorProperty, ThemeHelper.GetOutlineColor(mode));
-            control.TrySetDefaultProperty(FocusedBorderColorProperty, ThemeHelper.GetFocusedOutlineColor(mode));
+            control.TrySetDefaultProperty(OutlineColorProperty, ThemeHelper.GetOutlineColor(mode));
+            control.TrySetDefaultProperty(FocusedOutlineColorProperty, ThemeHelper.GetFocusedOutlineColor(mode));
         }
 
         private void TrySetDefaultProperty<T>(BindableProperty property, T value)
@@ -85,8 +85,8 @@ namespace Maui.Android.TextInputLayout
         //    return new TextInputLayoutManager(this);
         //}
 
-        public static readonly BindableProperty BorderColorProperty;
-        public static readonly BindableProperty FocusedBorderColorProperty;
+        public static readonly BindableProperty OutlineColorProperty;
+        public static readonly BindableProperty FocusedOutlineColorProperty;
         public static readonly BindableProperty HintProperty;
         public static readonly BindableProperty DefaultHintColorProperty;
         public static readonly BindableProperty FocusedHintColorProperty;
@@ -101,16 +101,16 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty PlaceholderColorProperty;
         public EndIconClickedEventHandler EndIconEventHandler { get; set; } = new();
 
-        public Color BorderColor
+        public Color OutlineColor
         {
-            get => (Color)base.GetValue(BorderColorProperty);
-            set => base.SetValue(BorderColorProperty, value);
+            get => (Color)base.GetValue(OutlineColorProperty);
+            set => base.SetValue(OutlineColorProperty, value);
         }
 
-        public Color FocusedBorderColor
+        public Color FocusedOutlineColor
         {
-            get => (Color)base.GetValue(FocusedBorderColorProperty);
-            set => base.SetValue(FocusedBorderColorProperty, value);
+            get => (Color)base.GetValue(FocusedOutlineColorProperty);
+            set => base.SetValue(FocusedOutlineColorProperty, value);
         }
 
         public string Hint

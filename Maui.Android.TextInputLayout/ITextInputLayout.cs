@@ -11,8 +11,8 @@ namespace Maui.Android.TextInputLayout
     public interface ITextInputLayout : IView, IPlaceholder, IContentView
     {
         Color BackgroundColor { get; set; }
-        Color BorderColor { get; set; }
-        Color FocusedBorderColor { get; set; }
+        Color OutlineColor { get; set; }
+        Color FocusedOutlineColor { get; set; }
         string Hint { get; set; }
         Color DefaultHintColor { get; set; }
         Color FocusedHintColor { get; set; }

@@ -9,12 +9,12 @@
     <VerticalStackLayout Padding="8" Spacing="12">
         <input:TextInputLayout
             BackgroundColor="Orange"
-            BorderColor="{Binding OutlineEntryColor}"
+            OutlineColor="{Binding OutlineEntryColor}"
             BoxBackgroundMode="Filled"
             DefaultHintColor="#49454F"
             EndIconColor="#FFFFFF"
             EndIconVisibilityMode="WhileEditing"
-            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedOutlineColor="{Binding OutlineEntryColor}"
             FocusedHintColor="#6750A4"
             Hint="Outline"
             IsEnabled="True"
@@ -27,12 +27,12 @@
         </input:TextInputLayout>
         <input:TextInputLayout
             BackgroundColor="#101010"
-            BorderColor="{Binding OutlineEntryColor}"
+            OutlineColor="{Binding OutlineEntryColor}"
             BoxBackgroundMode="Outline"
             DefaultHintColor="Red"
             EndIconColor="#FFFFFF"
             EndIconVisibilityMode="WhileEditing"
-            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedOutlineColor="{Binding OutlineEntryColor}"
             FocusedHintColor="{Binding OutlineEntryColor}"
             Hint="Outline"
             IsEnabled="True"
@@ -42,12 +42,12 @@
         </input:TextInputLayout>
         <input:TextInputLayout
             BackgroundColor="#101010"
-            BorderColor="{Binding OutlineEntryColor}"
+            OutlineColor="{Binding OutlineEntryColor}"
             BoxBackgroundMode="Filled"
             DefaultHintColor="Red"
             EndIconColor="#FFFFFF"
             EndIconVisibilityMode="WhileEditing"
-            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedOutlineColor="{Binding OutlineEntryColor}"
             FocusedHintColor="{Binding OutlineEntryColor}"
             Hint="Outline"
             IsEnabled="False"
@@ -57,12 +57,12 @@
         </input:TextInputLayout>
         <input:TextInputLayout
             BackgroundColor="#101010"
-            BorderColor="{Binding OutlineEntryColor}"
+            OutlineColor="{Binding OutlineEntryColor}"
             BoxBackgroundMode="Filled"
             DefaultHintColor="Red"
             EndIconColor="#FFFFFF"
             EndIconVisibilityMode="WhileEditing"
-            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedOutlineColor="{Binding OutlineEntryColor}"
             FocusedHintColor="{Binding OutlineEntryColor}"
             Hint="Outline"
             IsEnabled="False"
@@ -73,12 +73,12 @@
         </input:TextInputLayout>
         <input:TextInputLayout
             BackgroundColor="#101010"
-            BorderColor="{Binding OutlineEntryColor}"
+            OutlineColor="{Binding OutlineEntryColor}"
             BoxBackgroundMode="Filled"
             DefaultHintColor="Red"
             EndIconColor="#FFFFFF"
             EndIconVisibilityMode="WhileEditing"
-            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedOutlineColor="{Binding OutlineEntryColor}"
             FocusedHintColor="{Binding OutlineEntryColor}"
             Hint="Outline"
             IsEnabled="True"

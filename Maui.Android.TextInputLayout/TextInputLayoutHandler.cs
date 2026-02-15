@@ -25,8 +25,8 @@ namespace Maui.Android.TextInputLayout
         {
             [nameof(ITextInputLayout.BackgroundColor)] = MapBackgroundColor,
             [nameof(ITextInputLayout.Background)] = MapBackground,
-            [nameof(ITextInputLayout.BorderColor)] = MapBorderColor,
-            [nameof(ITextInputLayout.FocusedBorderColor)] = MapFocusedBorderColor,
+            [nameof(ITextInputLayout.OutlineColor)] = MapBorderColor,
+            [nameof(ITextInputLayout.FocusedOutlineColor)] = MapFocusedBorderColor,
             [nameof(ITextInputLayout.Hint)] = MapHint,
             [nameof(ITextInputLayout.DefaultHintColor)] = MapDefaultHintColor,
             [nameof(ITextInputLayout.FocusedHintColor)] = MapFocusedHintColor,
