@@ -5,10 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:custom="clr-namespace:MauiCustomControls"
     xmlns:input="clr-namespace:Maui.Android.TextInputLayout;assembly=Maui.Android.TextInputLayout"
-    BackgroundColor="#101010"
+    x:Name="root"
+    BackgroundColor="#1d1b20"
     Shell.BackgroundColor="#101010"
     Shell.TitleColor="#19f50a">
-
+    <!--  BackgroundColor="{DynamicResource md.comp.filled-text-field.container.color}"  -->
     <ScrollView>
         <VerticalStackLayout
             x:Name="test"
@@ -20,44 +21,52 @@
                 HeightRequest="185"
                 SemanticProperties.Description="dot net bot in a race car number eight"
                 Source="dotnet_bot.png" />
-
+            <input:TextInputLayout
+                
+                BoxBackgroundMode="Outline"
+                >
+                <input:MaterialEntry
+                     />
+            </input:TextInputLayout>
             <!--  EndIcon="dotnet_bot"  -->
             <input:TextInputLayout
                 x:Name="textinputlayout1"
-                BackgroundColor="Red"
-                BorderColor="{Binding OutlineEntryColor}"
+                BorderColor="#79747E"
                 BoxBackgroundMode="Filled"
-                DefaultHintColor="Red"
-                EndIconColor="#FFFFFF"
+                DefaultHintColor="#49454F"
+                EndIconColor="#49454F"
                 EndIconVisibilityMode="WhileEditing"
-                FocusedBorderColor="{Binding OutlineEntryColor}"
-                FocusedHintColor="{Binding OutlineEntryColor}"
+                FocusedBorderColor="#6750A4"
+                FocusedHintColor="#6750A4"
                 Hint="Outline"
                 IsEnabled="True"
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}">
-                <input:MaterialEntry Text="{Binding EntryText}" TextColor="White" Background="Orange" BackgroundColor="Orange" />
+                <input:MaterialEntry
+                    BackgroundColor="#E6E0E9"
+                    FontFamily="Roboto"
+                    Text="{Binding EntryText}"
+                    TextColor="#1D1B20" />
             </input:TextInputLayout>
             <input:TextInputLayout
                 x:Name="textinputlayout2"
-                BackgroundColor="Black"
-                BorderColor="{Binding OutlineEntryColor}"
+                BorderColor="#79747E"
                 BoxBackgroundMode="Outline"
-                DefaultHintColor="Red"
-                EndIconColor="#FFFFFF"
+                DefaultHintColor="#49454F"
+                EndIconColor="#49454F"
                 EndIconVisibilityMode="WhileEditing"
-                FocusedBorderColor="{Binding OutlineEntryColor}"
-                FocusedHintColor="{Binding OutlineEntryColor}"
+                FocusedBorderColor="#6750A4"
+                FocusedHintColor="#6750A4"
                 Hint="Outline"
                 IsEnabled="True"
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}">
-                <input:MaterialEntry TextColor="White" />
+                <input:MaterialEntry TextColor="#E6E0E9" />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BackgroundColor="Black"
                 BorderColor="{Binding OutlineEntryColor}"
-                BoxBackgroundMode="Outline"
+                BoxBackgroundMode="Filled"
                 DefaultHintColor="Red"
                 EndIconColor="#FFFFFF"
                 EndIconVisibilityMode="WhileEditing"
@@ -68,7 +77,7 @@
                 IsHintAnimated="False"
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}">
-                <Picker
+                <input:MaterialPicker
                     Title="Test"
                     BackgroundColor="#101010"
                     TextColor="#FFFFFF"
@@ -84,10 +93,12 @@
                             <x:String>Japanese Macaque</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
-                </Picker>
+                </input:MaterialPicker>
             </input:TextInputLayout>
-            <Picker Title="Select a monkey" TextColor="White"
-TitleColor="White">
+            <Picker
+                Title="Select a monkey"
+                TextColor="White"
+                TitleColor="White">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Baboon</x:String>
@@ -192,6 +203,17 @@ TitleColor="White">
                 HorizontalOptions="Fill"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Text="Click me" />
+
+            <CollectionView ItemsSource="{Binding Pages}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Command="{Binding BindingContext.GoToPageCommand, Source={x:Reference root}}"
+                            CommandParameter="{Binding}"
+                            Text="{Binding}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <!--<custom:CustomEntry />-->
         </VerticalStackLayout>
     </ScrollView>

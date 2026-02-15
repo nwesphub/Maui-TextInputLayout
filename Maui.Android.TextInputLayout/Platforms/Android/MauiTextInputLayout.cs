@@ -6,6 +6,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using Maui.Android.TextInputLayout.Models.Enums;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using AView = Android.Views.View;
 using LLayout = Android.Widget.LinearLayout;
@@ -14,20 +15,27 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
     {
-        public MauiTextInputLayout(Context context) : base(context)
+        public MauiTextInputLayout(Context context, BoxBackgroundMode boxBackgroundMode) : base(context)
         {
-            SetDefaults();
+            SetDefaults(boxBackgroundMode);
         }
         public MauiTextInputLayout(Context context, IAttributeSet? attrs, int style) : base(context, attrs, style)
         {
             
         }
 
-        private void SetDefaults()
+        private void SetDefaults(BoxBackgroundMode boxBackgroundMode)
         {
-            this.SetBoxCornerRadii(8 ,8, 8, 8);
+            if (boxBackgroundMode == Models.Enums.BoxBackgroundMode.Outline)
+            {
+                this.SetBoxCornerRadii(4, 4, 4, 4);
+            }
+            else
+            {
+                this.SetBoxCornerRadii(4, 4, 0, 0);
+            }
             this.BoxStrokeWidth = 1;
-            this.BoxStrokeWidthFocused = 2;
+            this.BoxStrokeWidthFocused = 3;
             
             SetDefaultClearButton();
         }

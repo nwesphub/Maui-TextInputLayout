@@ -30,6 +30,8 @@ using AndroidX.ConstraintLayout.Core.Widgets;
 using Android.Util;
 using AndroidX.AppCompat.Widget;
 using static Google.Android.Material.TextField.TextInputLayout;
+using Color = Microsoft.Maui.Graphics.Color;
+using Maui.Android.TextInputLayout.Models.Exceptions;
 
 namespace Maui.Android.TextInputLayout
 {
@@ -42,7 +44,7 @@ namespace Maui.Android.TextInputLayout
             //var contextThemeWrapper = new ContextThemeWrapper(Context, Resource.Style.Widget_Material3_TextInputLayout_FilledBox_Dense);
             if(_boxBackgroundMode == BoxBackgroundMode.None)
             {
-                return new MauiTextInputLayout(Context);
+                return new MauiTextInputLayout(Context, _boxBackgroundMode);
             }
             int style = Resource.Style.Widget_Material3_TextInputLayout_OutlinedBox_Dense;
             if (_boxBackgroundMode == BoxBackgroundMode.Filled)
@@ -51,35 +53,31 @@ namespace Maui.Android.TextInputLayout
             }
             var ctx = new ContextThemeWrapper(Context, style);
             var contextThemeWrapper = new ContextThemeWrapper(Context, style);
-            return new MauiTextInputLayout(contextThemeWrapper);
+            return new MauiTextInputLayout(contextThemeWrapper, _boxBackgroundMode);
         }
 
         public TaskCompletionSource TaskCompletionSource { get; set; } = new();
         public override void SetVirtualView(IView view)
         {
+            if(view is not ContentView contentView)
+            {
+                return;
+            }
+
             if(view is ITextInputLayout layout && layout.Content is IMaterialEntry materialEntry)
             {
                 _boxBackgroundMode = layout.BoxBackgroundMode;
                 materialEntry.BoxBackgroundMode = layout.BoxBackgroundMode;
             }
+            
+            PlatformEntry = contentView.Content.ToPlatform(MauiContext) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
+            MauiTextInputEditText.SetStaticDefaults(PlatformEntry);
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
         }
 
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
-            // This code used to be in SetVirtualView
-            //VirtualEntry = VirtualView.Content as ITextInputEditText ?? throw new Exception("VirtualView.Content is not ITextInputEditText");
-            //EditText editText = VirtualView.Content.ToPlatform(MauiContext) as EditText ?? throw new Exception("content is not MauiTextInputEditText");
-            //Test();
-            //MauiTextInputEditText.SetStaticDefaults(editText);
-            //PlatformEntry = editText;
-            // This code used to be in SetVirtualView
-            PlatformEntry = VirtualView.Content.ToPlatform(MauiContext) as EditText;
-            MauiTextInputEditText.SetStaticDefaults(PlatformEntry);
-            
-
-            //platformView.BoxBackgroundMode = TextInputLayout.BoxBackgroundOutline;
             PlatformView.SetEndIconOnClickListener(VirtualView);
 
             // This is the only way I know how to set the text cursor color - which sets other theme colors
@@ -90,7 +88,32 @@ namespace Maui.Android.TextInputLayout
         
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
+            handler.PlatformView.CounterEnabled = true;
+            handler.PlatformView.CounterMaxLength = 20;
+            var height = handler.PlatformView.Height;
+            return;
+            // Fixes color difference between Filled vs Outline modes
+
+            var backgroundColor = entry.BackgroundColor ?? Colors.Transparent; ;
+
+
+            int[][] states =
+[[RResource.StateEnabled],
+    new[] { -RResource.StateEnabled },                 // disabled
+    new[] { RResource.StateEnabled, RResource.StateFocused }, // focused
+    new[] { RResource.StateEnabled },                  // normal
+];
+
+            int[] colors =
+            [
+                backgroundColor.ToPlatform(),
+                Color.FromHex("#2e2200").ToPlatform(),
+                backgroundColor.ToPlatform(),
+                backgroundColor.ToPlatform(),
+            ];
+            ColorStateList csl = new ColorStateList(states, colors);
+
+            handler.PlatformView.SetBoxBackgroundColorStateList(csl);
         }
 
         public static void MapBackground(ITextInputLayoutHandler handler, ITextInputLayout entry) 
@@ -129,7 +152,7 @@ namespace Maui.Android.TextInputLayout
 
         
 
-        public static async void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             switch (entry.BoxBackgroundMode)
             {
@@ -152,6 +175,7 @@ namespace Maui.Android.TextInputLayout
 
         public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            
             EndIconManager.MapEndIcon(handler, entry);
         }
 
@@ -174,80 +198,62 @@ namespace Maui.Android.TextInputLayout
         // Add IsPassword
         // Focus/Unfocus events
     }
-    public class MyEntryHandler : EntryHandler
+    public class MaterialEntryHandler : EntryHandler
     {
         protected override AppCompatEditText CreatePlatformView()
         {
-            //Widget_Material3_TextInputLayout_FilledBox
-            //ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense
-            //var ctx = new ContextThemeWrapper(Context, Resource.Style.ThemeOverlay_Material3_TextInputEditText_FilledBox_Dense);
-            if (_boxBackgroundMode == BoxBackgroundMode.None)
-            {
-                return new AppCompatEditText(Context);
-            }
-            
-            int style = Resource.Style.ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense;
-            if (_boxBackgroundMode == BoxBackgroundMode.Filled)
-            {
-                style = Resource.Style.ThemeOverlay_Material3_TextInputEditText_FilledBox_Dense;
-            }
-            var ctx = new ContextThemeWrapper(Context, style);
-            var editText = new AppCompatEditText(ctx);
-
-            // any defaults
-            MauiTextInputEditText.SetStaticDefaults(editText);
-
-            return editText;
+            return ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new AppCompatEditText(t));
         }
         private BoxBackgroundMode _boxBackgroundMode;
         public override void SetVirtualView(IView view)
         {
-            if(view is IMaterialEntry materialEntry)
-            {
-                _boxBackgroundMode = materialEntry.BoxBackgroundMode;
-            }
+            _boxBackgroundMode = IMaterialEntry.ParseBoxBackgroundMode(view);
             base.SetVirtualView(view);
 
         }
 
     }
-    public class MyPickerHandler : PickerHandler
+    public class MaterialPickerHandler : PickerHandler
     {
+        private BoxBackgroundMode _boxBackgroundMode;
         protected override MauiPicker CreatePlatformView()
         {
-
-            
-            var ctx = new ContextThemeWrapper(Context, Resource.Style.ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense);
-            var editText = new MauiPicker(ctx);
-
-            // any defaults
-            MauiTextInputEditText.SetStaticDefaults(editText);
-
-            return editText;
+            return ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new MauiPicker(t));
         }
 
         public override void SetVirtualView(IView view)
         {
-
+            _boxBackgroundMode = IMaterialEntry.ParseBoxBackgroundMode(view);
             base.SetVirtualView(view);
-
-            //int[][] states =
-            //[
-            //    [-RResource.StateFocused],
-            //    [RResource.StateFocused],
-            //];
-            //if (view is not Picker picker)
-            //{
-            //    return;
-            //}
-            //int[] colors =
-            //[
-            //    picker?.BackgroundColor?.ToPlatform() ?? new AColor(),
-            //    picker?.BackgroundColor?.ToPlatform() ?? new AColor()
-            //];
-            //ColorStateList csl = new ColorStateList(states, colors);
-
-            //PlatformView.BackgroundTintList = csl;
         }
     }
+
+    /// <summary>
+    /// Enabled
+    /// Outlined text field outline color #79747E
+    /// </summary>
+    public static class ContextThemeHelper
+    {
+
+        public static T BuildContextThemeWrapper<T>(Context context, BoxBackgroundMode boxBackgroundMode, Func<Context, T> constructor) where T: EditText
+        {
+            if (boxBackgroundMode == BoxBackgroundMode.None)
+            {
+                return constructor(context);
+            }
+
+            int style = Resource.Style.ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense;
+            if (boxBackgroundMode == BoxBackgroundMode.Filled)
+            {
+                style = Resource.Style.ThemeOverlay_Material3_TextInputEditText_FilledBox_Dense;
+            }
+            var contextThemeWrapper = new ContextThemeWrapper(context, style);
+
+            T editText = constructor(contextThemeWrapper);
+            MauiTextInputEditText.SetStaticDefaults(editText);
+            return editText;
+        }
+    }
+
+    
 }

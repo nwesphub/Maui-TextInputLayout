@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Theme="Dark"
+             x:Class="Maui.Android.TextInputLayout.Resources.DarkTheme">
+    <!--  REGION / Enabled / Container  -->
+    <!-- Filled text field container color -->
+    <Color x:Key="md.comp.filled-text-field.container.color">#36343B</Color>
+
+    <!-- Filled text field container height -->
+    <x:Double x:Key="md.comp.filled-text-field.container.height">56</x:Double>
+
+    <!-- Filled text field container shape -->
+    <RoundRectangle x:Key="md.comp.filled-text-field.container.shape"
+                CornerRadius="4,4,0,0" />
+    <!--  END REGION / Enabled / Container  -->
+
+    <!--  REGION Enabled / Label text  -->
+    <!-- Filled text field label text color -->
+    <Color x:Key="md.comp.filled-text-field.label-text.color">#CAC4D0</Color>
+
+    <!-- Filled text field label text font -->
+    <x:String x:Key="md.comp.filled-text-field.label-text.font">Roboto</x:String>
+
+    <!-- Filled text field label text line height -->
+    <x:Double x:Key="md.comp.filled-text-field.label-text.line-height">24</x:Double>
+
+    <!-- Filled text field label text size -->
+    <x:Double x:Key="md.comp.filled-text-field.label-text.size">16</x:Double>
+
+    <!-- Filled text field label text weight -->
+    <x:Int32 x:Key="md.comp.filled-text-field.label-text.weight">400</x:Int32>
+
+    <!-- Filled text field label text tracking -->
+    <x:Double x:Key="md.comp.filled-text-field.label-text.tracking">0.5</x:Double>
+
+    <!-- Filled text field label text type -->
+    <x:String x:Key="md.comp.filled-text-field.label-text.type">Aa</x:String>
+
+    <!-- Filled text field label text populated line height -->
+    <x:Double x:Key="md.comp.filled-text-field.label-text.populated.line-height">16</x:Double>
+
+    <!-- Filled text field label text populated size -->
+    <x:Double x:Key="md.comp.filled-text-field.label-text.populated.size">12</x:Double>
+    <!--  END REGION Enabled / Label text  -->
+
+    
+    <!--  REGION Enabled / Leading icon  -->
+    <!-- Filled text field leading icon color -->
+    <Color x:Key="md.comp.filled-text-field.leading-icon.color">#CAC4D0</Color>
+
+    <!-- Filled text field leading icon size -->
+    <x:Double x:Key="md.comp.filled-text-field.leading-icon.size">24</x:Double>
+    <!--  END REGION Enabled / Leading icon  -->
+
+    
+    <!--  REGION Enabled / Trailing icon  -->
+    <!-- Filled text field trailing icon color -->
+    <Color x:Key="md.comp.filled-text-field.trailing-icon.color">#CAC4D0</Color>
+
+    <!-- Filled text field trailing icon size -->
+    <x:Double x:Key="md.comp.filled-text-field.trailing-icon.size">24</x:Double>
+    <!--  END REGION Enabled / Trailing icon  -->
+
+    
+    <!--  REGION Enabled / Active indicator  -->
+    <!-- Filled text field active indicator height -->
+    <x:Double x:Key="md.comp.filled-text-field.active-indicator.height">1</x:Double>
+
+    <!-- Filled text field active indicator color -->
+    <Color x:Key="md.comp.filled-text-field.active-indicator.color">#CAC4D0</Color>
+    <!--  END REGION Enabled / Active indicator  -->
+
+    
+    <!--  REGION Enabled / Supporting text  -->
+    <!-- Filled text field supporting text type -->
+    <x:String x:Key="md.comp.filled-text-field.supporting-text.type">Aa</x:String>
+
+    <!-- Filled text field supporting text color -->
+    <Color x:Key="md.comp.filled-text-field.supporting-text.color">#CAC4D0</Color>
+
+    <!-- Filled text field supporting text font -->
+    <x:String x:Key="md.comp.filled-text-field.supporting-text.font">Roboto</x:String>
+
+    <!-- Filled text field supporting text line height -->
+    <x:Double x:Key="md.comp.filled-text-field.supporting-text.line-height">16</x:Double>
+
+    <!-- Filled text field supporting text size -->
+    <x:Double x:Key="md.comp.filled-text-field.supporting-text.size">12</x:Double>
+
+    <!-- Filled text field supporting text weight -->
+    <x:Int32 x:Key="md.comp.filled-text-field.supporting-text.weight">400</x:Int32>
+
+    <!-- Filled text field supporting text tracking -->
+    <x:Double x:Key="md.comp.filled-text-field.supporting-text.tracking">0.4</x:Double>
+    <!--  END REGION Enabled / Supporting text  -->
+
+    
+    <!--  REGION Enabled / Input text  -->
+    <!-- Filled text field input text color -->
+    <Color x:Key="md.comp.filled-text-field.input-text.color">#E6E0E9</Color>
+
+    <!-- Filled text field input text font -->
+    <x:String x:Key="md.comp.filled-text-field.input-text.font">Roboto</x:String>
+
+    <!-- Filled text field input text line height -->
+    <x:Double x:Key="md.comp.filled-text-field.input-text.line-height">24</x:Double>
+
+    <!-- Filled text field input text size -->
+    <x:Double x:Key="md.comp.filled-text-field.input-text.size">16</x:Double>
+
+    <!-- Filled text field input text weight -->
+    <x:Int32 x:Key="md.comp.filled-text-field.input-text.weight">400</x:Int32>
+
+    <!-- Filled text field input text tracking -->
+    <x:Double x:Key="md.comp.filled-text-field.input-text.tracking">0.5</x:Double>
+
+    <!-- Filled text field input text type -->
+    <x:String x:Key="md.comp.filled-text-field.input-text.type">Aa</x:String>
+
+    <!-- Filled text field input text prefix color -->
+    <Color x:Key="md.comp.filled-text-field.input-text.prefix.color">#CAC4D0</Color>
+
+    <!-- Filled text field input text suffix color -->
+    <Color x:Key="md.comp.filled-text-field.input-text.suffix.color">#CAC4D0</Color>
+
+    <!-- Filled text field input text placeholder color -->
+    <Color x:Key="md.comp.filled-text-field.input-text.placeholder.color">#CAC4D0</Color>
+    <!--  END REGION Enabled / Input text  -->
+
+    
+    <!--  REGION Enabled / Caret  -->
+    <!-- Filled text field caret color -->
+    <Color x:Key="md.comp.filled-text-field.caret.color">#D0BCFF</Color>
+    <!--  END REGION Enabled / Caret  -->
+
+
+    <!--  REGION Disabled / Container  -->
+    <!-- Filled text field disabled container color -->
+    <Color x:Key="md.comp.filled-text-field.disabled.container.color">#E6E0E9</Color>
+
+    <!-- Filled text field disabled container opacity -->
+    <x:Double x:Key="md.comp.filled-text-field.disabled.container.opacity">0.04</x:Double>
+    <!--  END REGION Disabled / Container  -->
+
+    
+    <!--  REGION Disabled / Label text  -->
+    <!-- Filled text field disabled label text color -->
+    <Color x:Key="md.comp.filled-text-field.disabled.label-text.color">#E6E0E9</Color>
+
+    <!-- Filled text field disabled label text opacity -->
+    <x:Double x:Key="md.comp.filled-text-field.disabled.label-text.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Label text  -->
+
+    
+    <!--  REGION Disabled / Leading icon  -->
+    <!-- Filled text field disabled leading icon color -->
+    <Color x:Key="md.comp.filled-text-field.disabled.leading-icon.color">#E6E0E9</Color>
+
+    <!-- Filled text field disabled leading icon opacity -->
+    <x:Double x:Key="md.comp.filled-text-field.disabled.leading-icon.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Leading icon  -->
+
+    
+    <!--  REGION Disabled / Trailing icon  -->
+    <!-- Filled text field disabled trailing icon color -->
+    <Color x:Key="md.comp.filled-text-field.disabled.trailing-icon.color">#E6E0E9</Color>
+
+    <!-- Filled text field disabled trailing icon opacity -->
+    <x:Double x:Key="md.comp.filled-text-field.disabled.trailing-icon.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Trailing icon  -->
+
+    
+    <!--  REGION Disabled / Supporting text  -->
+    <!-- Filled text field disabled supporting text color -->
+    <Color x:Key="md.comp.filled-text-field.disabled.supporting-text.color">#E6E0E9</Color>
+
+    <!-- Filled text field disabled supporting text opacity -->
+    <x:Double x:Key="md.comp.filled-text-field.disabled.supporting-text.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Supporting text  -->
+
+    
+    <!--  REGION Disabled / Input text  -->
+    <!-- Filled text field disabled input text color -->
+    <Color x:Key="md.comp.filled-text-field.disabled.input-text.color">#E6E0E9</Color>
+
+    <!-- Filled text field disabled input text opacity -->
+    <x:Double x:Key="md.comp.filled-text-field.disabled.input-text.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Input text  -->
+
+    
+    <!--  REGION Disabled / Active indicator  -->
+    <!-- Filled text field disabled active indicator height -->
+    <x:Double x:Key="md.comp.filled-text-field.disabled.active-indicator.height">1</x:Double>
+
+    <!-- Filled text field disabled active indicator color -->
+    <Color x:Key="md.comp.filled-text-field.disabled.active-indicator.color">#E6E0E9</Color>
+
+    <!-- Filled text field disabled active indicator opacity -->
+    <x:Double x:Key="md.comp.filled-text-field.disabled.active-indicator.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Active indicator  -->
+
+
+    <!--  REGION Focused / Label text  -->
+    <!-- Filled text field focus label text color -->
+    <Color x:Key="md.comp.filled-text-field.focus.label-text.color">#D0BCFF</Color>
+    <!--  END REGION Focused / Label text  -->
+
+    
+    <!--  REGION Focused / Leading icon  -->
+    <!-- Filled text field focus leading icon color -->
+    <Color x:Key="md.comp.filled-text-field.focus.leading-icon.color">#CAC4D0</Color>
+    <!--  END REGION Focused / Leading icon  -->
+
+    
+    <!--  REGION Focused / Trailing icon  -->
+    <!-- Filled text field focus trailing icon color -->
+    <Color x:Key="md.comp.filled-text-field.focus.trailing-icon.color">#CAC4D0</Color>
+    <!--  END REGION Focused / Trailing icon  -->
+
+    
+    <!--  REGION Focused / Input text  -->
+    <!-- Filled text field focus input text color -->
+    <Color x:Key="md.comp.filled-text-field.focus.input-text.color">#E6E0E9</Color>
+    <!--  END REGION Focused / Input text  -->
+
+    
+    <!--  REGION Focused / Supporting text  -->
+    <!-- Filled text field focus supporting text color -->
+    <Color x:Key="md.comp.filled-text-field.focus.supporting-text.color">#CAC4D0</Color>
+    <!--  END REGION Focused / Supporting text  -->
+
+    
+    <!--  REGION Focused / Active indicator  -->
+    <!-- Filled text field focus active indicator height -->
+    <x:Double x:Key="md.comp.filled-text-field.focus.active-indicator.height">2</x:Double>
+
+    <!-- Filled text field focus active indicator color -->
+    <Color x:Key="md.comp.filled-text-field.focus.active-indicator.color">#D0BCFF</Color>
+
+    <!-- Filled text field focus active indicator thickness -->
+    <x:Double x:Key="md.comp.filled-text-field.focus.active-indicator.thickness">3</x:Double>
+    <!--  END REGION Focused / Active indicator  -->
+
+    
+    <!--  REGION Error  -->
+    <!-- Filled text field error active indicator color -->
+    <Color x:Key="md.comp.filled-text-field.error.active-indicator.color">#F2B8B5</Color>
+
+    <!-- Filled text field error label text color -->
+    <Color x:Key="md.comp.filled-text-field.error.label-text.color">#F2B8B5</Color>
+
+    <!-- Filled text field error input text color -->
+    <Color x:Key="md.comp.filled-text-field.error.input-text.color">#E6E0E9</Color>
+
+    <!-- Filled text field error supporting text color -->
+    <Color x:Key="md.comp.filled-text-field.error.supporting-text.color">#F2B8B5</Color>
+
+    <!-- Filled text field error leading icon color -->
+    <Color x:Key="md.comp.filled-text-field.error.leading-icon.color">#CAC4D0</Color>
+
+    <!-- Filled text field error trailing icon color -->
+    <Color x:Key="md.comp.filled-text-field.error.trailing-icon.color">#F2B8B5</Color>
+    <!--  END REGION Error  -->
+
+    
+    <!--  REGION Error / Focus  -->
+    <!-- Filled text field error focus active indicator color -->
+    <Color x:Key="md.comp.filled-text-field.error.focus.active-indicator.color">#F2B8B5</Color>
+
+    <!-- Filled text field error focus label text color -->
+    <Color x:Key="md.comp.filled-text-field.error.focus.label-text.color">#F2B8B5</Color>
+
+    <!-- Filled text field error focus input text color -->
+    <Color x:Key="md.comp.filled-text-field.error.focus.input-text.color">#E6E0E9</Color>
+
+    <!-- Filled text field error focus supporting text color -->
+    <Color x:Key="md.comp.filled-text-field.error.focus.supporting-text.color">#F2B8B5</Color>
+
+    <!-- Filled text field error focus leading icon color -->
+    <Color x:Key="md.comp.filled-text-field.error.focus.leading-icon.color">#CAC4D0</Color>
+
+    <!-- Filled text field error focus trailing icon color -->
+    <Color x:Key="md.comp.filled-text-field.error.focus.trailing-icon.color">#F2B8B5</Color>
+
+    <!-- Filled text field error focus caret color -->
+    <Color x:Key="md.comp.filled-text-field.error.focus.caret.color">#F2B8B5</Color>
+    <!--  END REGION Error / Focus  -->
+    
+    
+    <!-- OUTLINE MODE -->
+    
+
+    <!--  REGION Enabled / Container  -->
+    <!-- Outlined text field container height -->
+    <x:Double x:Key="md.comp.outlined-text-field.container.height">56</x:Double>
+
+    <!-- Outlined text field container shape -->
+    <RoundRectangle x:Key="md.comp.outlined-text-field.container.shape"
+                CornerRadius="4" />
+    <!--  END REGION Enabled / Container  -->
+
+
+    <!--  REGION Enabled / Outline  -->
+    <!-- Outlined text field outline width -->
+    <x:Double x:Key="md.comp.outlined-text-field.outline.width">1</x:Double>
+
+    <!-- Outlined text field outline color -->
+    <Color x:Key="md.comp.outlined-text-field.outline.color">#938F99</Color>
+    <!--  END REGION Enabled / Outline  -->
+
+    
+    <!--  REGION Enabled / Label text  -->
+    <!-- Outlined text field label text color -->
+    <Color x:Key="md.comp.outlined-text-field.label-text.color">#CAC4D0</Color>
+
+    <!-- Outlined text field label text font -->
+    <x:String x:Key="md.comp.outlined-text-field.label-text.font">Roboto</x:String>
+
+    <!-- Outlined text field label text line height -->
+    <x:Double x:Key="md.comp.outlined-text-field.label-text.line-height">24</x:Double>
+
+    <!-- Outlined text field label text size -->
+    <x:Double x:Key="md.comp.outlined-text-field.label-text.size">16</x:Double>
+
+    <!-- Outlined text field label text weight -->
+    <x:Int32 x:Key="md.comp.outlined-text-field.label-text.weight">400</x:Int32>
+
+    <!-- Outlined text field label text tracking -->
+    <x:Double x:Key="md.comp.outlined-text-field.label-text.tracking">0.5</x:Double>
+
+    <!-- Outlined text field label text type -->
+    <x:String x:Key="md.comp.outlined-text-field.label-text.type">Aa</x:String>
+
+    <!-- Outlined text field label text populated line height -->
+    <x:Double x:Key="md.comp.outlined-text-field.label-text.populated.line-height">16</x:Double>
+
+    <!-- Outlined text field label text populated size -->
+    <x:Double x:Key="md.comp.outlined-text-field.label-text.populated.size">12</x:Double>
+    <!--  END REGION Enabled / Label text  -->
+
+    
+    <!--  REGION Enabled / Leading icon  -->
+    <!-- Outlined text field leading icon color -->
+    <Color x:Key="md.comp.outlined-text-field.leading-icon.color">#CAC4D0</Color>
+
+    <!-- Outlined text field leading icon size -->
+    <x:Double x:Key="md.comp.outlined-text-field.leading-icon.size">24</x:Double>
+    <!--  END REGION Enabled / Leading icon  -->
+
+    
+    <!--  REGION Enabled / Trailing icon  -->
+    <!-- Outlined text field trailing icon color -->
+    <Color x:Key="md.comp.outlined-text-field.trailing-icon.color">#CAC4D0</Color>
+
+    <!-- Outlined text field trailing icon size -->
+    <x:Double x:Key="md.comp.outlined-text-field.trailing-icon.size">24</x:Double>
+    <!--  END REGION Enabled / Trailing icon  -->
+
+    
+    <!--  REGION Enabled / Supporting text  -->
+    <!-- Outlined text field supporting text color -->
+    <Color x:Key="md.comp.outlined-text-field.supporting-text.color">#CAC4D0</Color>
+
+    <!-- Outlined text field supporting text font -->
+    <x:String x:Key="md.comp.outlined-text-field.supporting-text.font">Roboto</x:String>
+
+    <!-- Outlined text field supporting text line height -->
+    <x:Double x:Key="md.comp.outlined-text-field.supporting-text.line-height">16</x:Double>
+
+    <!-- Outlined text field supporting text size -->
+    <x:Double x:Key="md.comp.outlined-text-field.supporting-text.size">12</x:Double>
+
+    <!-- Outlined text field supporting text weight -->
+    <x:Int32 x:Key="md.comp.outlined-text-field.supporting-text.weight">400</x:Int32>
+
+    <!-- Outlined text field supporting text tracking -->
+    <x:Double x:Key="md.comp.outlined-text-field.supporting-text.tracking">0.4</x:Double>
+
+    <!-- Outlined text field supporting text type -->
+    <x:String x:Key="md.comp.outlined-text-field.supporting-text.type">Aa</x:String>
+    <!--  END REGION Enabled / Supporting text  -->
+
+    
+    <!--  REGION Enabled / Input text  -->
+    <!-- Outlined text field input text color -->
+    <Color x:Key="md.comp.outlined-text-field.input-text.color">#E6E0E9</Color>
+
+    <!-- Outlined text field input text font -->
+    <x:String x:Key="md.comp.outlined-text-field.input-text.font">Roboto</x:String>
+
+    <!-- Outlined text field input text line height -->
+    <x:Double x:Key="md.comp.outlined-text-field.input-text.line-height">24</x:Double>
+
+    <!-- Outlined text field input text size -->
+    <x:Double x:Key="md.comp.outlined-text-field.input-text.size">16</x:Double>
+
+    <!-- Outlined text field input text weight -->
+    <x:Int32 x:Key="md.comp.outlined-text-field.input-text.weight">400</x:Int32>
+
+    <!-- Outlined text field input text tracking -->
+    <x:Double x:Key="md.comp.outlined-text-field.input-text.tracking">0.5</x:Double>
+
+    <!-- Outlined text field input text type -->
+    <x:String x:Key="md.comp.outlined-text-field.input-text.type">Aa</x:String>
+
+    <!-- Outlined text field input text suffix color -->
+    <Color x:Key="md.comp.outlined-text-field.input-text.suffix.color">#CAC4D0</Color>
+
+    <!-- Outlined text field input text prefix color -->
+    <Color x:Key="md.comp.outlined-text-field.input-text.prefix.color">#CAC4D0</Color>
+
+    <!-- Outlined text field input text placeholder color -->
+    <Color x:Key="md.comp.outlined-text-field.input-text.placeholder.color">#CAC4D0</Color>
+    <!--  END REGION Enabled / Input text  -->
+
+    
+    <!--  REGION Enabled / Caret  -->
+    <!-- Outlined text field caret color -->
+    <Color x:Key="md.comp.outlined-text-field.caret.color">#D0BCFF</Color>
+
+    <!-- Outlined text field error focus caret color -->
+    <Color x:Key="md.comp.outlined-text-field.error.focus.caret.color">#F2B8B5</Color>
+    <!--  END REGION Enabled / Caret  -->
+
+
+    <!--  REGION Disabled / Label text  -->
+    <!-- Outlined text field disabled label text color -->
+    <Color x:Key="md.comp.outlined-text-field.disabled.label-text.color">#E6E0E9</Color>
+
+    <!-- Outlined text field disabled label text opacity -->
+    <x:Double x:Key="md.comp.outlined-text-field.disabled.label-text.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Label text  -->
+
+    
+    <!--  REGION Disabled / Leading icon  -->
+    <!-- Outlined text field disabled leading icon color -->
+    <Color x:Key="md.comp.outlined-text-field.disabled.leading-icon.color">#E6E0E9</Color>
+
+    <!-- Outlined text field disabled leading icon opacity -->
+    <x:Double x:Key="md.comp.outlined-text-field.disabled.leading-icon.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Leading icon  -->
+
+    
+    <!--  REGION Disabled / Trailing icon  -->
+    <!-- Outlined text field disabled trailing icon color -->
+    <Color x:Key="md.comp.outlined-text-field.disabled.trailing-icon.color">#E6E0E9</Color>
+
+    <!-- Outlined text field disabled trailing icon opacity -->
+    <x:Double x:Key="md.comp.outlined-text-field.disabled.trailing-icon.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Trailing icon  -->
+
+    
+    <!--  REGION Disabled / Outline  -->
+    <!-- Outlined text field disabled outline width -->
+    <x:Double x:Key="md.comp.outlined-text-field.disabled.outline.width">1</x:Double>
+
+    <!-- Outlined text field disabled outline color -->
+    <Color x:Key="md.comp.outlined-text-field.disabled.outline.color">#E6E0E9</Color>
+
+    <!-- Outlined text field disabled outline opacity -->
+    <x:Double x:Key="md.comp.outlined-text-field.disabled.outline.opacity">0.12</x:Double>
+    <!--  END REGION Disabled / Outline  -->
+
+    
+    <!--  REGION Disabled / Supporting text  -->
+    <!-- Outlined text field disabled supporting text color -->
+    <Color x:Key="md.comp.outlined-text-field.disabled.supporting-text.color">#E6E0E9</Color>
+
+    <!-- Outlined text field disabled supporting text opacity -->
+    <x:Double x:Key="md.comp.outlined-text-field.disabled.supporting-text.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Supporting text  -->
+
+    
+    <!--  REGION Disabled / Input text  -->
+    <!-- Outlined text field disabled input text color -->
+    <Color x:Key="md.comp.outlined-text-field.disabled.input-text.color">#E6E0E9</Color>
+
+    <!-- Outlined text field disabled input text opacity -->
+    <x:Double x:Key="md.comp.outlined-text-field.disabled.input-text.opacity">0.38</x:Double>
+    <!--  END REGION Disabled / Input text  -->
+
+
+    <!--  REGION Focused / Label text  -->
+    <!-- Outlined text field focus label text color -->
+    <Color x:Key="md.comp.outlined-text-field.focus.label-text.color">#D0BCFF</Color>
+    <!--  END REGION Focused / Label text  -->
+
+    
+    <!--  REGION Focused / Leading icon  -->
+    <!-- Outlined text field focus leading icon color -->
+    <Color x:Key="md.comp.outlined-text-field.focus.leading-icon.color">#CAC4D0</Color>
+    <!--  END REGION Focused / Leading icon  -->
+
+    
+    <!--  REGION Focused / Trailing icon  -->
+    <!-- Outlined text field focus trailing icon color -->
+    <Color x:Key="md.comp.outlined-text-field.focus.trailing-icon.color">#CAC4D0</Color>
+    <!--  END REGION Focused / Trailing icon  -->
+
+    
+    <!--  REGION Focused / Outline  -->
+    <!-- Outlined text field focus outline width -->
+    <x:Double x:Key="md.comp.outlined-text-field.focus.outline.width">3</x:Double>
+
+    <!-- Outlined text field focus outline color -->
+    <Color x:Key="md.comp.outlined-text-field.focus.outline.color">#D0BCFF</Color>
+    <!--  END REGION Focused / Outline  -->
+
+    
+    <!--  REGION Focused / Input text  -->
+    <!-- Outlined text field focus input text color -->
+    <Color x:Key="md.comp.outlined-text-field.focus.input-text.color">#E6E0E9</Color>
+    <!--  END REGION Focused / Input text  -->
+
+    
+    <!--  REGION Focused / Supporting text  -->
+    <!-- Outlined text field focus supporting text color -->
+    <Color x:Key="md.comp.outlined-text-field.focus.supporting-text.color">#CAC4D0</Color>
+    <!--  END REGION Focused / Supporting text  -->
+
+    
+    <!--  REGION Focused / Focus indicator  -->
+    <!-- Outlined text field focus indicator color -->
+    <Color x:Key="md.comp.outlined-text-field.focus.indicator.outline.color">#CCC2DC</Color>
+
+    <!-- Outlined text field focus indicator color - error -->
+    <Color x:Key="md.comp.outlined-text-field.error.focus.indicator.outline.color">#F2B8B5</Color>
+
+    <!-- Outlined text field focus indicator thickness -->
+    <x:Double x:Key="md.comp.outlined-text-field.focus.indicator.outline.thickness">3</x:Double>
+    <!--  END REGION Focused / Focus indicator  -->
+
+    
+    <!--  REGION Error  -->
+    <!-- Outlined text field error outline color -->
+    <Color x:Key="md.comp.outlined-text-field.error.outline.color">#F2B8B5</Color>
+
+    <!-- Outlined text field error label text color -->
+    <Color x:Key="md.comp.outlined-text-field.error.label-text.color">#F2B8B5</Color>
+
+    <!-- Outlined text field error input text color -->
+    <Color x:Key="md.comp.outlined-text-field.error.input-text.color">#E6E0E9</Color>
+
+    <!-- Outlined text field error supporting text color -->
+    <Color x:Key="md.comp.outlined-text-field.error.supporting-text.color">#F2B8B5</Color>
+
+    <!-- Outlined text field error leading icon color -->
+    <Color x:Key="md.comp.outlined-text-field.error.leading-icon.color">#CAC4D0</Color>
+
+    <!-- Outlined text field error trailing icon color -->
+    <Color x:Key="md.comp.outlined-text-field.error.trailing-icon.color">#F2B8B5</Color>
+    <!--  END REGION Error  -->
+
+    
+    <!--  REGION Error / Focus  -->
+    <!-- Outlined text field error focus outline color -->
+    <Color x:Key="md.comp.outlined-text-field.error.focus.outline.color">#F2B8B5</Color>
+
+    <!-- Outlined text field error focus label text color -->
+    <Color x:Key="md.comp.outlined-text-field.error.focus.label-text.color">#F2B8B5</Color>
+
+    <!-- Outlined text field error focus input text color -->
+    <Color x:Key="md.comp.outlined-text-field.error.focus.input-text.color">#E6E0E9</Color>
+
+    <!-- Outlined text field error focus supporting text color -->
+    <Color x:Key="md.comp.outlined-text-field.error.focus.supporting-text.color">#F2B8B5</Color>
+
+    <!-- Outlined text field error focus leading icon color -->
+    <Color x:Key="md.comp.outlined-text-field.error.focus.leading-icon.color">#CAC4D0</Color>
+
+    <!-- Outlined text field error focus trailing icon color -->
+    <Color x:Key="md.comp.outlined-text-field.error.focus.trailing-icon.color">#F2B8B5</Color>
+    <!--  END REGION Error / Focus  -->
+</ResourceDictionary>

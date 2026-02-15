@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout
 {
-    public interface IMaterialEntry : IView
+    public class MaterialPicker : Picker, IMaterialEntry
     {
         public BoxBackgroundMode BoxBackgroundMode { get; set; }
-        public static BoxBackgroundMode ParseBoxBackgroundMode(IView view)
-        {
-            return (view as IMaterialEntry)?.BoxBackgroundMode ?? BoxBackgroundMode.None;
-        }
     }
 }

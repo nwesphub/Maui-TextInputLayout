@@ -38,7 +38,11 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
                     handler.PlatformEntry.FocusChange += EndIconVisibilityFocusChanged;
                     handler.PlatformEntry.TextChanged += EndIconVisibilityFocusChanged;
                     break;
+                case IconVisibilityMode.IfHasText:
+                    break;
             }
+
+            
         }
 
         private static void EndIconVisibilityFocusChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
@@ -53,14 +57,12 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
         {
             if (sender is EditText editText && editText?.Parent?.Parent is MauiTextInputLayout layout)
             {
-                //editText.HasFocus = e.HasFocus;
                 EndIconVisibilityChanged(editText, layout);
             }
         }
 
         private static void EndIconVisibilityChanged(EditText editText, MauiTextInputLayout layout)
         {
-            
             if (editText.HasFocus && !string.IsNullOrWhiteSpace(editText.Text) && editText.Enabled)
             {
                 layout.EndIconVisible = true;
@@ -70,6 +72,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
                 layout.EndIconVisible = false;
             }
         }
+
 
         public static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {

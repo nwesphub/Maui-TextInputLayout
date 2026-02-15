@@ -17,8 +17,10 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
     {
         private static int[][] _states =
         [
-            [-RResource.StateFocused],
-            [RResource.StateFocused],
+            [RResource.StateEnabled, RResource.StateFocused],
+            [RResource.StateEnabled, -RResource.StateFocused],
+            [-RResource.Enabled],
+
         ];
 
         private static AColor _defaultHintColor;
@@ -58,15 +60,16 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
         private static void ApplyHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             ColorStateList colorStateList;
-            if (entry.IsEnabled)
-            {
-                colorStateList = new ColorStateList(_states, [_defaultHintColor, _focusedHintColor]);
-            }
-            else
-            {
-                colorStateList = new ColorStateList(_states, [ColorHelper.GetDesaturatedColor(_defaultHintColor), ColorHelper.GetDesaturatedColor(_focusedHintColor)]);
-            }
-            
+            //if (entry.IsEnabled)
+            //{
+            //    colorStateList = new ColorStateList(_states, [_defaultHintColor, _focusedHintColor]);
+            //}
+            //else
+            //{
+            //    colorStateList = new ColorStateList(_states, [ColorHelper.GetDesaturatedColor(_defaultHintColor), ColorHelper.GetDesaturatedColor(_focusedHintColor)]);
+            //}
+            // https://m3.material.io/components/text-fields/specs
+            colorStateList = new ColorStateList(_states, [_focusedHintColor, _defaultHintColor, ColorHelper.GetDesaturatedColor(_defaultHintColor).ToColor().WithAlpha(.38f).ToPlatform()]);
             handler.PlatformView.DefaultHintTextColor = colorStateList;
         }
 

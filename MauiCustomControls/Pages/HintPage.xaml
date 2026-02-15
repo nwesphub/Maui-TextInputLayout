@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiCustomControls.Pages.HintPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:input="clr-namespace:Maui.Android.TextInputLayout;assembly=Maui.Android.TextInputLayout"
+    Title="HintPage"
+    BackgroundColor="#101010">
+    <VerticalStackLayout Padding="8" Spacing="12">
+        <input:TextInputLayout
+            BackgroundColor="Orange"
+            BorderColor="{Binding OutlineEntryColor}"
+            BoxBackgroundMode="Filled"
+            DefaultHintColor="#49454F"
+            EndIconColor="#FFFFFF"
+            EndIconVisibilityMode="WhileEditing"
+            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedHintColor="#6750A4"
+            Hint="Outline"
+            IsEnabled="True"
+            Text="{Binding EntryText}"
+            TextColor="{Binding OutlineEntryColor}">
+            <input:MaterialEntry
+                BackgroundColor="#E6E0E9"
+                Text="{Binding EntryText}"
+                TextColor="White" />
+        </input:TextInputLayout>
+        <input:TextInputLayout
+            BackgroundColor="#101010"
+            BorderColor="{Binding OutlineEntryColor}"
+            BoxBackgroundMode="Outline"
+            DefaultHintColor="Red"
+            EndIconColor="#FFFFFF"
+            EndIconVisibilityMode="WhileEditing"
+            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedHintColor="{Binding OutlineEntryColor}"
+            Hint="Outline"
+            IsEnabled="True"
+            Text="{Binding EntryText}"
+            TextColor="{Binding OutlineEntryColor}">
+            <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
+        </input:TextInputLayout>
+        <input:TextInputLayout
+            BackgroundColor="#101010"
+            BorderColor="{Binding OutlineEntryColor}"
+            BoxBackgroundMode="Filled"
+            DefaultHintColor="Red"
+            EndIconColor="#FFFFFF"
+            EndIconVisibilityMode="WhileEditing"
+            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedHintColor="{Binding OutlineEntryColor}"
+            Hint="Outline"
+            IsEnabled="False"
+            Text="{Binding EntryText}"
+            TextColor="{Binding OutlineEntryColor}">
+            <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
+        </input:TextInputLayout>
+        <input:TextInputLayout
+            BackgroundColor="#101010"
+            BorderColor="{Binding OutlineEntryColor}"
+            BoxBackgroundMode="Filled"
+            DefaultHintColor="Red"
+            EndIconColor="#FFFFFF"
+            EndIconVisibilityMode="WhileEditing"
+            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedHintColor="{Binding OutlineEntryColor}"
+            Hint="Outline"
+            IsEnabled="False"
+            IsHintAnimated="False"
+            Text="{Binding EntryText}"
+            TextColor="{Binding OutlineEntryColor}">
+            <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
+        </input:TextInputLayout>
+        <input:TextInputLayout
+            BackgroundColor="#101010"
+            BorderColor="{Binding OutlineEntryColor}"
+            BoxBackgroundMode="Filled"
+            DefaultHintColor="Red"
+            EndIconColor="#FFFFFF"
+            EndIconVisibilityMode="WhileEditing"
+            FocusedBorderColor="{Binding OutlineEntryColor}"
+            FocusedHintColor="{Binding OutlineEntryColor}"
+            Hint="Outline"
+            IsEnabled="True"
+            Text="{Binding EntryText}"
+            TextColor="{Binding OutlineEntryColor}">
+            <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
+        </input:TextInputLayout>
+    </VerticalStackLayout>
+</ContentPage>

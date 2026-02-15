@@ -68,6 +68,12 @@
 	  <ProjectReference Include="..\Maui.Android.TextInputLayout\Maui.Android.TextInputLayout.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="Pages\HintPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMauiCustomControlsHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
 		<RunAOTCompilation>false</RunAOTCompilation>

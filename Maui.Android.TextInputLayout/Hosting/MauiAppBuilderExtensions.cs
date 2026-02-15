@@ -18,30 +18,37 @@ namespace Maui.Android.TextInputLayout.Hosting
         {
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("Placeholder", (h, v) =>
             {
-                //h.PlatformView.BackgroundTintList = ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
-                //h.PlatformView.UpdateBackground(v);
+            
                 int[][] states =
             [
                 [-RResource.StateFocused],
                 [RResource.StateFocused],
             ];
+                var surface = Color.FromArgb("#121212");   // your dark background
+                var orange = Color.FromArgb("#FF9800");   // your accent
 
+                
+                var backgroundColor = Colors.Transparent;
+                if (v is VisualElement view && view.BackgroundColor is not null)
+                {
+                    backgroundColor = view.BackgroundColor;
+                }
                 int[] colors =
                 [
-                    Colors.Orange.ToPlatform(),
-                    Colors.Orange.ToPlatform()
+                    backgroundColor.ToPlatform(),
+                    backgroundColor.ToPlatform()
                 ];
+                
                 ColorStateList csl = new ColorStateList(states, colors);
 
                 h.PlatformView.BackgroundTintList = csl;
             });
             Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping("Placeholder", (h, v) =>
             {
-                Color titleColor = v.TitleColor;
-
-                if (titleColor is not null)
+                if (v.TitleColor is not null)
                 {
-                    h.PlatformView.SetHintTextColor(titleColor.ToPlatform());
+                    h.PlatformView.SetHintTextColor(v.TitleColor.ToPlatform());
+                    h.PlatformView.Focusable = false;
                 }
 
             });
@@ -50,13 +57,16 @@ namespace Maui.Android.TextInputLayout.Hosting
                 //config.AddHandler<TextInputEditText, TextInputEditTextHandler>();
                 config.AddHandler<TextInputEditText, TextInputEditTextHandler>();
                 config.AddHandler<TextInputLayout, TextInputLayoutHandler>();
-                config.AddHandler<MaterialEntry, MyEntryHandler>();
-                config.AddHandler<Picker, MyPickerHandler>();
+                config.AddHandler<MaterialEntry, MaterialEntryHandler>();
+                config.AddHandler<MaterialPicker, MaterialPickerHandler>();
             });
 
 
         }
 
-        
+        public static void Test()
+        {
+           
+        }
     }
 }

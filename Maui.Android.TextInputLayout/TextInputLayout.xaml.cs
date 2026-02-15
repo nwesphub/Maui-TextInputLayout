@@ -8,6 +8,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maui.Android.TextInputLayout.Utilities;
+using System.Runtime.CompilerServices;
+
+
 #if ANDROID
 using Microsoft.Maui.Platform;
 #endif
@@ -25,7 +29,7 @@ namespace Maui.Android.TextInputLayout
             EndIconEventHandler.EndIconClicked += TextInputLayout_EndIconClicked;
         }
 
-
+ 
         private void TextInputLayout_EndIconClicked(object? sender, EndIconClickedEventArgs e)
         {
             if(Content is InputView inputView)
@@ -49,7 +53,7 @@ namespace Maui.Android.TextInputLayout
             IsHintAnimatedProperty = BindableProperty.Create(nameof(IsHintAnimated), typeof(bool), typeof(TextInputLayout), defaultValue: true);
             TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextInputLayout), defaultBindingMode: BindingMode.TwoWay);
             EndIconProperty = BindableProperty.Create(nameof(EndIcon), typeof(ImageSource), typeof(TextInputLayout));
-            BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout));
+            BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout), defaultBindingMode: BindingMode.OneTime, propertyChanged: BoxBackgroundModePropertyChanged);
             EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
             TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextInputLayout));
             EndIconColorProperty = BindableProperty.Create(nameof(EndIconColor), typeof(Color), typeof(TextInputLayout));
@@ -57,7 +61,24 @@ namespace Maui.Android.TextInputLayout
             PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(TextInputLayout), defaultValue: Colors.Black);
         }
 
+        private static void BoxBackgroundModePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if(bindable is not TextInputLayout control || newValue is not BoxBackgroundMode mode)
+            {
+                return;
+            }
 
+            control.TrySetDefaultProperty(BorderColorProperty, ThemeHelper.GetOutlineColor(mode));
+            control.TrySetDefaultProperty(FocusedBorderColorProperty, ThemeHelper.GetFocusedOutlineColor(mode));
+        }
+
+        private void TrySetDefaultProperty<T>(BindableProperty property, T value)
+        {
+            if (!IsSet(property))
+            {
+                SetValue(property, value);
+            }
+        }
 
         //protected override ILayoutManager CreateLayoutManager()
         //{
@@ -129,6 +150,9 @@ namespace Maui.Android.TextInputLayout
             set => base.SetValue(EndIconProperty, value);
         }
 
+        /// <summary>
+        /// BoxBackground mode needs to be set upon initialization of the component. This cannot be changed once set.
+        /// </summary>
         public BoxBackgroundMode BoxBackgroundMode
         {
             get => (BoxBackgroundMode)base.GetValue(BoxBackgroundModeProperty);
@@ -170,5 +194,12 @@ namespace Maui.Android.TextInputLayout
             get => (Color)GetValue(PlaceholderColorProperty);
             set => SetValue(PlaceholderColorProperty, value);
         }
+
+
+        public static class OutlineTextField
+        {
+
+        }
+        
     }
 }

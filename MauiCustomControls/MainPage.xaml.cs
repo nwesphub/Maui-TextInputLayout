@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Maui.Android.TextInputLayout;
+using MauiCustomControls.Pages;
+using System.Collections.ObjectModel;
 
 namespace MauiCustomControls
 {
@@ -37,6 +39,7 @@ namespace MauiCustomControls
         public MainPageViewModel(MainPage mainPage)
         {
             _mainPage = mainPage;
+            Pages = new (TestPage.GetPages());
         }
         [ObservableProperty]
         string entryText = "test";
@@ -50,8 +53,35 @@ namespace MauiCustomControls
         [RelayCommand]
         private async Task ButtonClicked()
         {
-            
             IsEntryEnabled = !IsEntryEnabled;
+        }
+
+        [ObservableProperty]
+        ObservableCollection<string> pages = [];
+
+        [RelayCommand]
+        private async Task GoToPage(object obj)
+        {
+            if (string.IsNullOrWhiteSpace(obj?.ToString()))
+            {
+                return;
+            }
+
+            await Shell.Current.GoToAsync(obj.ToString());
+        }
+    }
+
+    public class TestPage
+    {
+        public string Name { get; set; }
+
+        public static IEnumerable<string> GetPages()
+        {
+            return
+            [
+                nameof(HintPage)
+            ];
+
         }
     }
 }

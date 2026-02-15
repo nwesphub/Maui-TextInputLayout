@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout
 {
-    public interface ITextInputLayout : IView, IPlaceholder
+    public interface ITextInputLayout : IView, IPlaceholder, IContentView
     {
         Color BackgroundColor { get; set; }
         Color BorderColor { get; set; }
