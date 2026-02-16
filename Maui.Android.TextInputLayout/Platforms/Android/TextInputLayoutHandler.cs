@@ -92,27 +92,42 @@ namespace Maui.Android.TextInputLayout
         
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView.CounterEnabled = true;
-            handler.PlatformView.CounterMaxLength = 20;
-
-            // Fixes color difference between Filled vs Outline modes
-
-            var backgroundColor = entry.BackgroundColor ?? Colors.Transparent; ;
-
-
             int[][] states =
-[[RResource.StateEnabled],
-    new[] { -RResource.StateEnabled },                 // disabled
-    new[] { RResource.StateEnabled, RResource.StateFocused }, // focused
-    new[] { RResource.StateEnabled },                  // normal
-];
+        [
+            new[] { RResource.StateFocused, RResource.StateEnabled },
+            new[] { RResource.StateEnabled },                  // normal
+
+            new[] { -RResource.StateEnabled },                 // disabled
+        ];
 
             int[] colors =
             [
-                backgroundColor.ToPlatform(),
-                backgroundColor.ToPlatform(),
-                backgroundColor.ToPlatform(),
-                backgroundColor.ToPlatform(),
+                entry.BackgroundColor.ToPlatform(),
+                entry.BackgroundColor.ToPlatform(),
+                entry.DisabledBackgroundColor.WithAlpha(0.04f).ToPlatform(),
+                
+            ];
+            ColorStateList csl = new ColorStateList(states, colors);
+
+            handler.PlatformView.SetBoxBackgroundColorStateList(csl);
+        }
+
+        public static void MapDisabledBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            int[][] states =
+        [
+            new[] { RResource.StateFocused, RResource.StateEnabled },
+            new[] { RResource.StateEnabled },
+            new[] { -RResource.StateEnabled },                 // disabled
+                             // normal
+        ];
+
+            int[] colors =
+            [
+                entry.BackgroundColor.ToPlatform(),
+                entry.BackgroundColor.ToPlatform(),
+
+                entry.DisabledBackgroundColor.WithAlpha(0.04f).ToPlatform(),
             ];
             ColorStateList csl = new ColorStateList(states, colors);
 

@@ -16,7 +16,7 @@ namespace Maui.Android.TextInputLayout.Utilities
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ContainerColor,
-                BoxBackgroundMode.Outline => null,
+                BoxBackgroundMode.Outline => Colors.Transparent,
                 _ => Colors.Transparent
             };
 
@@ -377,7 +377,7 @@ namespace Maui.Android.TextInputLayout.Utilities
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledContainerColor,
-                BoxBackgroundMode.Outline => null, // outlined text-field container usually transparent
+                BoxBackgroundMode.Outline => Colors.Transparent, // outlined text-field container usually transparent
                 _ => Colors.Transparent
             };
 

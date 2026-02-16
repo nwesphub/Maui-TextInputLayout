@@ -24,6 +24,7 @@ namespace Maui.Android.TextInputLayout
         public static IPropertyMapper<ITextInputLayout, ITextInputLayoutHandler> PropertyMapper = new PropertyMapper<TextInputLayout, ITextInputLayoutHandler>(ViewHandler.ViewMapper)
         {
             [nameof(ITextInputLayout.BackgroundColor)] = MapBackgroundColor,
+            [nameof(ITextInputLayout.DisabledBackgroundColor)] = MapBackgroundColor,
             [nameof(ITextInputLayout.Background)] = MapBackground,
             [nameof(ITextInputLayout.OutlineColor)] = MapOutlineColor,
             [nameof(ITextInputLayout.FocusedOutlineColor)] = MapFocusedOutlineColor,

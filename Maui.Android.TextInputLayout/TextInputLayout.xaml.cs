@@ -48,6 +48,7 @@ namespace Maui.Android.TextInputLayout
             OutlineColorProperty = BindableProperty.Create(nameof(OutlineColor), typeof(Color), typeof(TextInputLayout));
             FocusedOutlineColorProperty = BindableProperty.Create(nameof(FocusedOutlineColor), typeof(Color), typeof(TextInputLayout));
             DisabledOutlineColorProperty = BindableProperty.Create(nameof(DisabledOutlineColor), typeof(Color), typeof(TextInputLayout));
+            DisabledBackgroundColorProperty = BindableProperty.Create(nameof(DisabledBackgroundColor), typeof(Color), typeof(TextInputLayout));
             HintProperty = BindableProperty.Create(nameof(Hint), typeof(string), typeof(TextInputLayout));
             DefaultHintColorProperty = BindableProperty.Create(nameof(DefaultHintColor), typeof(Color), typeof(TextInputLayout));
             FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout));
@@ -78,6 +79,10 @@ namespace Maui.Android.TextInputLayout
             control.TrySetDefaultProperty(DefaultHintColorProperty, ThemeHelper.GetLabelTextColor(mode));
             control.TrySetDefaultProperty(FocusedHintColorProperty, ThemeHelper.GetFocusedLabelTextColor(mode));
             control.TrySetDefaultProperty(DisabledHintColorProperty, ThemeHelper.GetDisabledLabelTextColor(mode));
+
+            // Background Color / Container Color
+            control.TrySetDefaultProperty(BackgroundColorProperty, ThemeHelper.GetContainerColor(mode));
+            control.TrySetDefaultProperty(DisabledBackgroundColorProperty, ThemeHelper.GetDisabledContainerColor(mode));
         }
 
         private void TrySetDefaultProperty<T>(BindableProperty property, T value)
@@ -96,6 +101,7 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty OutlineColorProperty;
         public static readonly BindableProperty FocusedOutlineColorProperty;
         public static readonly BindableProperty DisabledOutlineColorProperty;
+        public static readonly BindableProperty DisabledBackgroundColorProperty;
         public static readonly BindableProperty HintProperty;
         public static readonly BindableProperty DefaultHintColorProperty;
         public static readonly BindableProperty FocusedHintColorProperty;
@@ -126,6 +132,12 @@ namespace Maui.Android.TextInputLayout
         {
             get => (Color)base.GetValue(DisabledOutlineColorProperty);
             set => base.SetValue(DisabledOutlineColorProperty, value);
+        }
+
+        public Color DisabledBackgroundColor
+        {
+            get => (Color)base.GetValue(DisabledBackgroundColorProperty);
+            set => base.SetValue(DisabledBackgroundColorProperty, value);
         }
 
         public string Hint

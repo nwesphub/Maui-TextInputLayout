@@ -11,6 +11,7 @@ namespace Maui.Android.TextInputLayout
     public interface ITextInputLayout : IView, IContentView
     {
         Color BackgroundColor { get; set; }
+        Color DisabledBackgroundColor { get; set; }
         Color OutlineColor { get; set; }
         Color FocusedOutlineColor { get; set; }
         Color DisabledOutlineColor { get; set; }
