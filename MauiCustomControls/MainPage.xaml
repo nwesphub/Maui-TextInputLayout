@@ -6,7 +6,8 @@
     xmlns:custom="clr-namespace:MauiCustomControls"
     xmlns:input="clr-namespace:Maui.Android.TextInputLayout;assembly=Maui.Android.TextInputLayout"
     x:Name="root"
-    BackgroundColor="#1d1b20"
+    BackgroundColor="{AppThemeBinding Light=#FFFFFF,
+                                      Dark=#101010}"
     Shell.BackgroundColor="#101010"
     Shell.TitleColor="#19f50a">
     <!--  BackgroundColor="{DynamicResource md.comp.filled-text-field.container.color}"  -->
@@ -14,32 +15,44 @@
         <VerticalStackLayout
             x:Name="test"
             Padding="30,0"
-            Spacing="8">
+            Spacing="14">
 
             <Image
                 Aspect="AspectFit"
                 HeightRequest="185"
                 SemanticProperties.Description="dot net bot in a race car number eight"
                 Source="dotnet_bot.png" />
-            <input:TextInputLayout
-                
-                BoxBackgroundMode="Outline"
-                >
-                <input:MaterialEntry
-                     />
+            <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Outline Default">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Outline Disabled" IsEnabled="False">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Outline with Text Disabled" IsEnabled="False">
+                <input:MaterialEntry Text="Outline with Text Disabled" />
+            </input:TextInputLayout>
+            <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Filled Default">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Filled Disabled" IsEnabled="False">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Filled with Text Disabled" IsEnabled="False">
+                <input:MaterialEntry Text="Filled with Text Disabled" />
             </input:TextInputLayout>
             <!--  EndIcon="dotnet_bot"  -->
             <input:TextInputLayout
+                BackgroundColor="Red"
                 x:Name="textinputlayout1"
-                OutlineColor="#79747E"
                 BoxBackgroundMode="Filled"
                 DefaultHintColor="#49454F"
                 EndIconColor="#49454F"
                 EndIconVisibilityMode="WhileEditing"
-                FocusedOutlineColor="#6750A4"
                 FocusedHintColor="#6750A4"
+                FocusedOutlineColor="#6750A4"
                 Hint="Outline"
                 IsEnabled="True"
+                OutlineColor="#79747E"
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}">
                 <input:MaterialEntry
@@ -50,31 +63,32 @@
             </input:TextInputLayout>
             <input:TextInputLayout
                 x:Name="textinputlayout2"
-                OutlineColor="#79747E"
+                BackgroundColor="Red"
                 BoxBackgroundMode="Outline"
                 DefaultHintColor="#49454F"
                 EndIconColor="#49454F"
                 EndIconVisibilityMode="WhileEditing"
-                FocusedOutlineColor="#6750A4"
                 FocusedHintColor="#6750A4"
+                FocusedOutlineColor="#6750A4"
                 Hint="Outline"
                 IsEnabled="True"
+                OutlineColor="#79747E"
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}">
                 <input:MaterialEntry TextColor="#E6E0E9" />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BackgroundColor="Black"
-                OutlineColor="{Binding OutlineEntryColor}"
                 BoxBackgroundMode="Filled"
                 DefaultHintColor="Red"
                 EndIconColor="#FFFFFF"
                 EndIconVisibilityMode="WhileEditing"
-                FocusedOutlineColor="{Binding OutlineEntryColor}"
                 FocusedHintColor="{Binding OutlineEntryColor}"
+                FocusedOutlineColor="{Binding OutlineEntryColor}"
                 Hint="Outline"
                 IsEnabled="True"
                 IsHintAnimated="False"
+                OutlineColor="{Binding OutlineEntryColor}"
                 Text="{Binding EntryText}"
                 TextColor="{Binding OutlineEntryColor}">
                 <input:MaterialPicker

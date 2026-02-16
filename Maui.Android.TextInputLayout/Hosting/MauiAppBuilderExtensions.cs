@@ -19,29 +19,29 @@ namespace Maui.Android.TextInputLayout.Hosting
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("Placeholder", (h, v) =>
             {
             
-                int[][] states =
-            [
-                [-RResource.StateFocused],
-                [RResource.StateFocused],
-            ];
-                var surface = Color.FromArgb("#121212");   // your dark background
-                var orange = Color.FromArgb("#FF9800");   // your accent
+            //    int[][] states =
+            //[
+            //    [-RResource.StateFocused],
+            //    [RResource.StateFocused],
+            //];
+            //    var surface = Color.FromArgb("#121212");   // your dark background
+            //    var orange = Color.FromArgb("#FF9800");   // your accent
 
                 
-                var backgroundColor = Colors.Transparent;
-                if (v is VisualElement view && view.BackgroundColor is not null)
-                {
-                    backgroundColor = view.BackgroundColor;
-                }
-                int[] colors =
-                [
-                    backgroundColor.ToPlatform(),
-                    backgroundColor.ToPlatform()
-                ];
+            //    var backgroundColor = Colors.Transparent;
+            //    if (v is VisualElement view && view.BackgroundColor is not null)
+            //    {
+            //        backgroundColor = view.BackgroundColor;
+            //    }
+            //    int[] colors =
+            //    [
+            //        backgroundColor.ToPlatform(),
+            //        backgroundColor.ToPlatform()
+            //    ];
                 
-                ColorStateList csl = new ColorStateList(states, colors);
+             //   ColorStateList csl = new ColorStateList(states, colors);
 
-                h.PlatformView.BackgroundTintList = csl;
+               // h.PlatformView.BackgroundTintList = csl;
             });
             Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping("Placeholder", (h, v) =>
             {

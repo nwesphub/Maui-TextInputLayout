@@ -12,12 +12,12 @@ namespace Maui.Android.TextInputLayout.Utilities
     {
   
         // ==================== Container ====================
-        public static Color? GetContainerColor(BoxBackgroundMode mode) =>
+        public static Color GetContainerColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ContainerColor,
                 BoxBackgroundMode.Outline => null,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetContainerHeight(BoxBackgroundMode mode) =>
@@ -37,12 +37,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Label text ====================
-        public static Color? GetLabelTextColor(BoxBackgroundMode mode) =>
+        public static Color GetLabelTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.LabelTextColor,
                 BoxBackgroundMode.Outline => Outlined.LabelTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static string GetLabelFont(BoxBackgroundMode mode) =>
@@ -110,12 +110,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Leading icon ====================
-        public static Color? GetLeadingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetLeadingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.LeadingIconColor,
                 BoxBackgroundMode.Outline => Outlined.LeadingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetLeadingIconSize(BoxBackgroundMode mode) =>
@@ -127,12 +127,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Trailing icon ====================
-        public static Color? GetTrailingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetTrailingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.TrailingIconColor,
                 BoxBackgroundMode.Outline => Outlined.TrailingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetTrailingIconSize(BoxBackgroundMode mode) =>
@@ -152,21 +152,21 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => 0
             };
 
-        public static Color? GetActiveIndicatorColor(BoxBackgroundMode mode) =>
+        public static Color GetActiveIndicatorColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ActiveIndicatorColor,
                 BoxBackgroundMode.Outline => Outlined.FocusIndicatorColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Supporting text ====================
-        public static Color? GetSupportingTextColor(BoxBackgroundMode mode) =>
+        public static Color GetSupportingTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.SupportingTextColor,
                 BoxBackgroundMode.Outline => Outlined.SupportingTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static string GetSupportingTextFont(BoxBackgroundMode mode) =>
@@ -210,12 +210,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Input text ====================
-        public static Color? GetInputTextColor(BoxBackgroundMode mode) =>
+        public static Color GetInputTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.InputTextColor,
                 BoxBackgroundMode.Outline => Outlined.InputTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static string GetInputTextFont(BoxBackgroundMode mode) =>
@@ -258,45 +258,45 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => 0
             };
 
-        public static Color? GetInputTextPrefixColor(BoxBackgroundMode mode) =>
+        public static Color GetInputTextPrefixColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.InputTextPrefixColor,
                 BoxBackgroundMode.Outline => Outlined.InputTextPrefixColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetInputTextSuffixColor(BoxBackgroundMode mode) =>
+        public static Color GetInputTextSuffixColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.InputTextSuffixColor,
                 BoxBackgroundMode.Outline => Outlined.InputTextSuffixColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetInputTextPlaceholderColor(BoxBackgroundMode mode) =>
+        public static Color GetInputTextPlaceholderColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.InputTextPlaceholderColor,
                 BoxBackgroundMode.Outline => Outlined.InputTextPlaceholderColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Caret ====================
-        public static Color? GetCaretColor(BoxBackgroundMode mode) =>
+        public static Color GetCaretColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.CaretColor,
                 BoxBackgroundMode.Outline => Outlined.CaretColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorFocusCaretColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorFocusCaretColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorFocusedCaretColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusCaretColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Outline (Outlined only) ====================
@@ -307,19 +307,21 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => 0
             };
 
-        public static Color? GetOutlineColor(BoxBackgroundMode mode) =>
+        public static Color GetOutlineColor(BoxBackgroundMode mode) =>
             mode switch
             {
+                BoxBackgroundMode.Filled => Filled.ActiveIndicatorColor,
                 BoxBackgroundMode.Outline => Outlined.OutlineColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Focus indicator ====================
-        public static Color? GetFocusIndicatorColor(BoxBackgroundMode mode) =>
+        public static Color GetFocusIndicatorColor(BoxBackgroundMode mode) =>
             mode switch
             {
-                BoxBackgroundMode.Outline => Outlined.FocusIndicatorColor,
-                _ => null
+                BoxBackgroundMode.Filled => Filled.FocusedActiveIndicatorColor,
+                BoxBackgroundMode.Outline => Outlined.FocusedOutlineColor,
+                _ => Colors.Transparent
             };
 
         public static double GetFocusIndicatorThickness(BoxBackgroundMode mode) =>
@@ -330,53 +332,53 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Error colors ====================
-        public static Color? GetErrorLabelTextColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorLabelTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorLabelTextColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorLabelTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorInputTextColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorInputTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorInputTextColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorInputTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorSupportingTextColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorSupportingTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorSupportingTextColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorSupportingTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorLeadingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorLeadingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorLeadingIconColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorLeadingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorTrailingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorTrailingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorTrailingIconColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorTrailingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Disabled / Container ====================
-        public static Color? GetDisabledContainerColor(BoxBackgroundMode mode) =>
+        public static Color GetDisabledContainerColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledContainerColor,
                 BoxBackgroundMode.Outline => null, // outlined text-field container usually transparent
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetDisabledContainerOpacity(BoxBackgroundMode mode) =>
@@ -388,12 +390,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Disabled / Label text ====================
-        public static Color? GetDisabledLabelTextColor(BoxBackgroundMode mode) =>
+        public static Color GetDisabledLabelTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledLabelTextColor,
                 BoxBackgroundMode.Outline => Outlined.DisabledLabelTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetDisabledLabelTextOpacity(BoxBackgroundMode mode) =>
@@ -405,12 +407,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Disabled / Leading icon ====================
-        public static Color? GetDisabledLeadingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetDisabledLeadingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledLeadingIconColor,
                 BoxBackgroundMode.Outline => Outlined.DisabledLeadingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetDisabledLeadingIconOpacity(BoxBackgroundMode mode) =>
@@ -422,12 +424,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Disabled / Trailing icon ====================
-        public static Color? GetDisabledTrailingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetDisabledTrailingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledTrailingIconColor,
                 BoxBackgroundMode.Outline => Outlined.DisabledTrailingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetDisabledTrailingIconOpacity(BoxBackgroundMode mode) =>
@@ -439,12 +441,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Disabled / Supporting text ====================
-        public static Color? GetDisabledSupportingTextColor(BoxBackgroundMode mode) =>
+        public static Color GetDisabledSupportingTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledSupportingTextColor,
                 BoxBackgroundMode.Outline => Outlined.DisabledSupportingTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetDisabledSupportingTextOpacity(BoxBackgroundMode mode) =>
@@ -456,12 +458,12 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Disabled / Input text ====================
-        public static Color? GetDisabledInputTextColor(BoxBackgroundMode mode) =>
+        public static Color GetDisabledInputTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledInputTextColor,
                 BoxBackgroundMode.Outline => Outlined.DisabledInputTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetDisabledInputTextOpacity(BoxBackgroundMode mode) =>
@@ -481,12 +483,12 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => 0
             };
 
-        public static Color? GetDisabledActiveIndicatorColor(BoxBackgroundMode mode) =>
+        public static Color GetDisabledActiveIndicatorColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledActiveIndicatorColor,
                 BoxBackgroundMode.Outline => Outlined.DisabledOutlineColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         public static double GetDisabledActiveIndicatorOpacity(BoxBackgroundMode mode) =>
@@ -498,48 +500,48 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Focused / Label text ====================
-        public static Color? GetFocusedLabelTextColor(BoxBackgroundMode mode) =>
+        public static Color GetFocusedLabelTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.FocusedLabelTextColor,
                 BoxBackgroundMode.Outline => Outlined.FocusedLabelTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Focused / Leading icon ====================
-        public static Color? GetFocusedLeadingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetFocusedLeadingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.FocusedLeadingIconColor,
                 BoxBackgroundMode.Outline => Outlined.FocusedLeadingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Focused / Trailing icon ====================
-        public static Color? GetFocusedTrailingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetFocusedTrailingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.FocusedTrailingIconColor,
                 BoxBackgroundMode.Outline => Outlined.FocusedTrailingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Focused / Input text ====================
-        public static Color? GetFocusedInputTextColor(BoxBackgroundMode mode) =>
+        public static Color GetFocusedInputTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.FocusedInputTextColor,
                 BoxBackgroundMode.Outline => Outlined.FocusedInputTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Focused / Supporting text ====================
-        public static Color? GetFocusedSupportingTextColor(BoxBackgroundMode mode) =>
+        public static Color GetFocusedSupportingTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.FocusedSupportingTextColor,
                 BoxBackgroundMode.Outline => Outlined.FocusedSupportingTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
         // ==================== Focused / Active indicator ====================
@@ -551,22 +553,28 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => 0
             };
 
-        public static Color? GetFocusedActiveIndicatorColor(BoxBackgroundMode mode) =>
+        public static Color GetFocusedActiveIndicatorColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.FocusedActiveIndicatorColor,
                 BoxBackgroundMode.Outline => Outlined.FocusedOutlineColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetFocusedOutlineColor(BoxBackgroundMode mode) =>
+        public static Color GetFocusedOutlineColor(BoxBackgroundMode mode) =>
             mode switch
             {
-                BoxBackgroundMode.Filled => null,
+                BoxBackgroundMode.Filled => Filled.FocusedActiveIndicatorColor,
                 BoxBackgroundMode.Outline => Outlined.FocusedOutlineColor,
-                _ => null
+                _ => Colors.Transparent
             };
-
+        public static Color GetDisabledOutlineColor(BoxBackgroundMode mode) =>
+            mode switch
+            {
+                BoxBackgroundMode.Filled => Filled.DisabledActiveIndicatorColor,
+                BoxBackgroundMode.Outline => Outlined.DisabledOutlineColor,
+                _ => Colors.Transparent
+            };
         public static double GetFocusedActiveIndicatorThickness(BoxBackgroundMode mode) =>
             mode switch
             {
@@ -576,60 +584,60 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Error / Focus ====================
-        public static Color? GetErrorFocusedActiveIndicatorColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorFocusedActiveIndicatorColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorFocusedActiveIndicatorColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusOutlineColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorFocusedLabelTextColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorFocusedLabelTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorFocusedLabelTextColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusLabelTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorFocusedInputTextColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorFocusedInputTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorFocusedInputTextColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusInputTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorFocusedSupportingTextColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorFocusedSupportingTextColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorFocusedSupportingTextColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusSupportingTextColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorFocusedLeadingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorFocusedLeadingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorFocusedLeadingIconColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusLeadingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorFocusedTrailingIconColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorFocusedTrailingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorFocusedTrailingIconColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusTrailingIconColor,
-                _ => null
+                _ => Colors.Transparent
             };
 
-        public static Color? GetErrorFocusedCaretColor(BoxBackgroundMode mode) =>
+        public static Color GetErrorFocusedCaretColor(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ErrorFocusedCaretColor,
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusCaretColor,
-                _ => null
+                _ => Colors.Transparent
             };
         public static class Filled
         {

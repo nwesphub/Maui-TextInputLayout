@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AColor = Android.Graphics.Color;
 
-namespace Maui.Android.TextInputLayout.Platforms.Android.Helpers
+namespace Maui.Android.TextInputLayout.Platforms.Android.Utilities
 {
     public static class ColorHelper
     {

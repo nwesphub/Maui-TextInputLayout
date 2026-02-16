@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout
 {
-    public interface ITextInputLayout : IView, IPlaceholder, IContentView
+    public interface ITextInputLayout : IView, IContentView
     {
         Color BackgroundColor { get; set; }
         Color OutlineColor { get; set; }
         Color FocusedOutlineColor { get; set; }
+        Color DisabledOutlineColor { get; set; }
         string Hint { get; set; }
         Color DefaultHintColor { get; set; }
         Color FocusedHintColor { get; set; }
+        Color DisabledHintColor { get; set; }
         bool IsHintAnimated { get; set; }
         View Content { get; set; }
         ITextInputEditText TextInputEditText { get; set; }
@@ -26,7 +28,5 @@ namespace Maui.Android.TextInputLayout
         EndIconClickedEventHandler EndIconEventHandler { get; set; }
         Color TextColor { get; set; }
         Color? EndIconColor { get; set; }
-        string Placeholder { get; set; }
-        Color PlaceholderColor { get; set; }
     }
 }

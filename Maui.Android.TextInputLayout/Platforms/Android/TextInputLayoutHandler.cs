@@ -32,7 +32,11 @@ using AndroidX.AppCompat.Widget;
 using static Google.Android.Material.TextField.TextInputLayout;
 using Color = Microsoft.Maui.Graphics.Color;
 using Maui.Android.TextInputLayout.Models.Exceptions;
-
+using Java.Lang;
+using Microsoft.Maui.Controls.Platform;
+using JMode = Android.Text.JustificationMode;
+using Android.Text;
+using ATextAlignment = Android.Views.TextAlignment;
 namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
@@ -51,9 +55,9 @@ namespace Maui.Android.TextInputLayout
             {
                 style = Resource.Style.Widget_Material3_TextInputLayout_FilledBox_Dense;
             }
-            var ctx = new ContextThemeWrapper(Context, style);
             var contextThemeWrapper = new ContextThemeWrapper(Context, style);
-            return new MauiTextInputLayout(contextThemeWrapper, _boxBackgroundMode);
+            var result =  new MauiTextInputLayout(contextThemeWrapper, _boxBackgroundMode);
+            return result;
         }
 
         public TaskCompletionSource TaskCompletionSource { get; set; } = new();
@@ -90,8 +94,7 @@ namespace Maui.Android.TextInputLayout
         {
             handler.PlatformView.CounterEnabled = true;
             handler.PlatformView.CounterMaxLength = 20;
-            var height = handler.PlatformView.Height;
-            return;
+
             // Fixes color difference between Filled vs Outline modes
 
             var backgroundColor = entry.BackgroundColor ?? Colors.Transparent; ;
@@ -107,7 +110,7 @@ namespace Maui.Android.TextInputLayout
             int[] colors =
             [
                 backgroundColor.ToPlatform(),
-                Color.FromHex("#2e2200").ToPlatform(),
+                backgroundColor.ToPlatform(),
                 backgroundColor.ToPlatform(),
                 backgroundColor.ToPlatform(),
             ];
@@ -120,26 +123,37 @@ namespace Maui.Android.TextInputLayout
         {
             
         }
-        public static void MapBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            BorderManager.MapBorderColor(handler, entry);
+            OutlineManager.ApplyOutlineColors(handler, entry);
         }
-        public static void MapFocusedBorderColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapFocusedOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            BorderManager.MapFocusedBorderColor(handler, entry);
+            OutlineManager.ApplyOutlineColors(handler, entry);
         }
+        public static void MapDisabledOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            OutlineManager.ApplyOutlineColors(handler, entry);
+        }
+        
         public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             HintManager.MapHint(handler, entry);
         }
         public static void MapDefaultHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            HintManager.MapDefaultHintTextColor(handler, entry);
+            HintManager.ApplyHintColors(handler, entry);
         }
         public static void MapFocusedHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            HintManager.MapFocusedHintTextColor(handler, entry);
+            HintManager.ApplyHintColors(handler, entry);
         }
+        public static void MapDisabledHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            HintManager.ApplyHintColors(handler, entry);
+        }
+
+
         public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             HintManager.MapIsHintAnimated(handler, entry);
@@ -188,8 +202,7 @@ namespace Maui.Android.TextInputLayout
         {
             ViewHandler.MapIsEnabled(handler, entry);
             EndIconManager.MapIsEnabled(handler, entry);
-            HintManager.UpdateHintColors(handler, entry);
-   
+            
         }
 
         // Note:
@@ -202,7 +215,9 @@ namespace Maui.Android.TextInputLayout
     {
         protected override AppCompatEditText CreatePlatformView()
         {
-            return ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new AppCompatEditText(t));
+            var editText = ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new AppCompatEditText(t));
+           
+            return editText;
         }
         private BoxBackgroundMode _boxBackgroundMode;
         public override void SetVirtualView(IView view)

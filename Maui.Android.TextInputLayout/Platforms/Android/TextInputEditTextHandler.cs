@@ -16,7 +16,8 @@ using Android.Widget;
 using Android.Text;
 using Maui.Android.TextInputLayout.Platforms.Android.Managers;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
-using Maui.Android.TextInputLayout.Platforms.Android.Helpers;
+
+using Maui.Android.TextInputLayout.Platforms.Android.Utilities;
 
 namespace Maui.Android.TextInputLayout
 {
