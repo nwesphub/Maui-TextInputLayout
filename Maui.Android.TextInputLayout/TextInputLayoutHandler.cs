@@ -19,32 +19,42 @@ namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayoutHandler : ITextInputLayoutHandler
     {
-        public ITextInputEditText VirtualEntry { get; set; }
+        public IMaterialEntry VirtualEntry { get; set; }
 
         public static IPropertyMapper<ITextInputLayout, ITextInputLayoutHandler> PropertyMapper = new PropertyMapper<TextInputLayout, ITextInputLayoutHandler>(ViewHandler.ViewMapper)
         {
             [nameof(ITextInputLayout.BackgroundColor)] = MapBackgroundColor,
             [nameof(ITextInputLayout.DisabledBackgroundColor)] = MapBackgroundColor,
+            [nameof(ITextInputLayout.DisabledBackgroundColorOpacity)] = MapBackgroundColor,
             [nameof(ITextInputLayout.Background)] = MapBackground,
             [nameof(ITextInputLayout.OutlineColor)] = MapOutlineColor,
             [nameof(ITextInputLayout.FocusedOutlineColor)] = MapFocusedOutlineColor,
             [nameof(ITextInputLayout.DisabledOutlineColor)] = MapDisabledOutlineColor,
             [nameof(ITextInputLayout.Hint)] = MapHint,
-            [nameof(ITextInputLayout.DefaultHintColor)] = MapDefaultHintColor,
-            [nameof(ITextInputLayout.FocusedHintColor)] = MapFocusedHintColor,
-            [nameof(ITextInputLayout.DisabledHintColor)] = MapDisabledHintColor,
+            [nameof(ITextInputLayout.DefaultHintColor)] = MapHintColor,
+            [nameof(ITextInputLayout.FocusedHintColor)] = MapHintColor,
+            [nameof(ITextInputLayout.DisabledHintColor)] = MapHintColor,
+            [nameof(ITextInputLayout.DisabledHintOpacity)] = MapHintOpacity,
             [nameof(ITextInputLayout.IsHintAnimated)] = MapIsHintAnimated,
             [nameof(ITextInputLayout.EndIcon)] = MapEndIcon,
             [nameof(ITextInputLayout.BoxBackgroundMode)] = MapBoxBackgroundMode,
             [nameof(ITextInputLayout.EndIconVisibilityMode)] = MapEndIconVisibilityMode,
             [nameof(ITextInputLayout.EndIconColor)] = MapEndIconColor,
-            [nameof(ITextInputLayout.IsEnabled)] = MapIsEnabled
+            [nameof(ITextInputLayout.EndIconDisabledColor)] = MapEndIconColor,
+            [nameof(ITextInputLayout.DisabledEndIconOpacity)] = MapEndIconColor,
+            [nameof(ITextInputLayout.IsEnabled)] = MapIsEnabled,
+            [nameof(ITextInputLayout.Prefix)] = MapPrefix,
+            [nameof(ITextInputLayout.Suffix)] = MapSuffix,
+            [nameof(ITextInputLayout.SupportingText)] = MapSupportingText,
+            [nameof(ITextInputLayout.DisabledOutlineOpacity)] = MapDisabledOutlineOpacity,
+            [nameof(ITextInputLayout.BoxStrokeCornerRadius)] = MapBoxStrokeCornerRadius,
+            [nameof(ITextInputLayout.BoxStrokeWidth)] = MapBoxStrokeWidth,
+            [nameof(ITextInputLayout.BoxStrokeFocusedWidth)] = MapBoxStrokeFocusedWidth,
+            [nameof(ITextInputLayout.CounterEnabled)] = MapCounterEnabled,
+            [nameof(ITextInputLayout.CounterMaxLength)] = MapCounterMaxLength,
         };
 
-        public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)
-        {
-
-        };
+        public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper);
         public TextInputLayoutHandler() : base(PropertyMapper, CommandMapper)
         {
 

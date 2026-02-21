@@ -20,7 +20,7 @@ namespace Maui.Android.TextInputLayout
         new ITextInputLayout? VirtualView { get; }
         new PlatformView PlatformView { get; }
 
-        ITextInputEditText VirtualEntry { get; set; }
+        IMaterialEntry VirtualEntry { get; set; }
         PlatformEntry PlatformEntry { get; set; }
     }
 }

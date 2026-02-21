@@ -10,6 +10,10 @@ namespace Maui.Android.TextInputLayout
 {
     public class MaterialEntry : Entry, IMaterialEntry
     {
+        public MaterialEntry() : base()
+        {
+            ReturnType = ReturnType.Next;
+        }
         public BoxBackgroundMode BoxBackgroundMode { get; set; }
     }
 }

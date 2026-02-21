@@ -18,7 +18,6 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
             [AResource.StateEnabled, AResource.StateFocused],
             [-AResource.StateEnabled],
         ];
-        private static float _disabledOpacity = .12f;
 
         public static void ApplyOutlineColors(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
@@ -27,7 +26,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
                 [
                     entry.OutlineColor.ToPlatform(), 
                     entry.FocusedOutlineColor.ToPlatform(),
-                    entry.DisabledOutlineColor.WithAlpha(_disabledOpacity).ToPlatform()
+                    entry.DisabledOutlineColor.WithAlpha(entry.DisabledOutlineOpacity).ToPlatform()
                 ]
             );
 

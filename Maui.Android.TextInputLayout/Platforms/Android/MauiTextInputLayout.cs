@@ -5,6 +5,8 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Internal;
+using Google.Android.Material.TextField;
 using Java.Lang;
 using Maui.Android.TextInputLayout.Models.Enums;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
@@ -19,23 +21,15 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
         {
             SetDefaults(boxBackgroundMode);
         }
-        public MauiTextInputLayout(Context context, IAttributeSet? attrs, int style) : base(context, attrs, style)
+        public MauiTextInputLayout(Context context, IAttributeSet? attrs, int style, BoxBackgroundMode boxBackgroundMode) : base(context, attrs, style)
         {
-            
+            SetDefaults(boxBackgroundMode);
         }
 
         private void SetDefaults(BoxBackgroundMode boxBackgroundMode)
         {
-            if (boxBackgroundMode == Models.Enums.BoxBackgroundMode.Outline)
-            {
-                this.SetBoxCornerRadii(4, 4, 4, 4);
-            }
-            else
-            {
-                this.SetBoxCornerRadii(4, 4, 0, 0);
-            }
-            this.BoxStrokeWidth = 1;
-            this.BoxStrokeWidthFocused = 3;
+            
+            
             
             SetDefaultClearButton();
         }
@@ -49,18 +43,41 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
         }
         private void SetDefaultClearButton()
         {
-            
+
             // Set end icon - clear button
+            this.EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconCustom;
             this.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
+            //var endiconview = this.FindViewById(Resource.Id.text_input_end_icon);
+            //endiconview.Focusable = false;
+            //endiconview.FocusableInTouchMode = false;
+            //endiconview.SetFocusable(ViewFocusability.NotFocusable);
+            this.SetStartIconDrawable(Resource.Drawable.ic_search_black_24);
             // Set icon callback function
             this.SetEndIconOnClickListener(new OnEndIconClickListener(this));
             // set icon visibility
-            this.EndIconVisible = true;
+            //this.EndIconVisible = true;
             // Padding to prevent text from overlapping the button
             //this.MauiTextInputEditText.SetPadding(40,0,120,0);
             // Reduces vertical padding between the button and the borders. Otherwise the entry would be very tall vertically
-            this.EndIconMinSize = 120;
+            //this.EndIconMinSize = 120;
+            
+            //Task.Run(async () =>
+            //{
+            //    await Task.Delay(10000);
+            //    var startIcon = this.FindViewById<CheckableImageButton>(
+            //Resource.Id.text_input_start_icon);
+            //    var padding1 = startIcon.PaddingLeft;
+            //    var padding3 = startIcon.PaddingRight;
+            //    var padding5 = startIcon.PaddingBottom;
+            //    var padding4 = startIcon.PaddingTop;
+            //});
 
+            //var endicon = this.FindViewById<CheckableImageButton>(
+            //Resource.Id.text_input_end_icon);
+            ////endicon.SetMinimumHeight(132);
+            //endicon.SetMinimumWidth(132);
+            //endicon.SetPaddingRelative(24,24,24,24);
+            //this.SetPadding(PaddingLeft, PaddingTop, PaddingRight + 48, PaddingBottom);
             // Removes the underline under the text in the entry
             //this.MauiTextInputEditText.InputType = InputTypes.TextVariationVisiblePassword | InputTypes.TextFlagNoSuggestions;
 

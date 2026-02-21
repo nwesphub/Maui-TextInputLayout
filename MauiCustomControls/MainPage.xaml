@@ -19,31 +19,57 @@
 
             <Image
                 Aspect="AspectFit"
-                HeightRequest="185"
+                HeightRequest="185" 
                 SemanticProperties.Description="dot net bot in a race car number eight"
                 Source="dotnet_bot.png" />
-            <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Outline Default">
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"  EndIcon="dotnet_bot.png"
+                EndIconVisibilityMode="Always" Suffix="%" Prefix="$" SupportingText="Supporting Text" CounterEnabled="true" CounterMaxLength="40" 
+                EndIconColor="{x:Null}"
+                Hint="Outline Default">
+                <input:MaterialEntry  />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"
+                EndIconVisibilityMode="WhileEditing"
+                
+                Hint="Outline Disabled"
+                IsEnabled="{Binding IsEnabled}">
                 <input:MaterialEntry />
             </input:TextInputLayout>
-            <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Outline Disabled" IsEnabled="False">
-                <input:MaterialEntry />
-            </input:TextInputLayout>
-            <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Outline with Text Disabled" IsEnabled="False">
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"
+                EndIconVisibilityMode="Always"
+                Hint="Outline with Text Disabled"
+                IsEnabled="{Binding IsEnabled}">
                 <input:MaterialEntry Text="Outline with Text Disabled" />
             </input:TextInputLayout>
-            <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Filled Default">
+            <input:TextInputLayout
+                BoxBackgroundMode="Filled"
+                EndIconVisibilityMode="Always"
+                Hint="Filled Default">
                 <input:MaterialEntry />
             </input:TextInputLayout>
-            <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Filled Disabled" IsEnabled="False">
+            <input:TextInputLayout
+                BoxBackgroundMode="Filled"
+                EndIconVisibilityMode="Always"
+                Hint="Filled Disabled"
+                IsEnabled="{Binding IsEnabled}"
+                Prefix="$">
                 <input:MaterialEntry />
             </input:TextInputLayout>
-            <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Filled with Text Disabled" IsEnabled="False">
+            <input:TextInputLayout
+                BoxBackgroundMode="Filled"
+                EndIconVisibilityMode="Always"
+                Hint="Filled with Text Disabled"
+                IsEnabled="{Binding IsEnabled}"
+                Prefix="$">
                 <input:MaterialEntry Text="Filled with Text Disabled" />
             </input:TextInputLayout>
             <!--  EndIcon="dotnet_bot"  -->
             <input:TextInputLayout
-                BackgroundColor="Red"
                 x:Name="textinputlayout1"
+                BackgroundColor="Red"
                 BoxBackgroundMode="Filled"
                 DefaultHintColor="#49454F"
                 EndIconColor="#49454F"
@@ -77,25 +103,23 @@
                 TextColor="{Binding OutlineEntryColor}">
                 <input:MaterialEntry TextColor="#E6E0E9" />
             </input:TextInputLayout>
-            <input:TextInputLayout
-                BackgroundColor="Black"
-                BoxBackgroundMode="Filled"
-                DefaultHintColor="Red"
-                EndIconColor="#FFFFFF"
-                EndIconVisibilityMode="WhileEditing"
-                FocusedHintColor="{Binding OutlineEntryColor}"
-                FocusedOutlineColor="{Binding OutlineEntryColor}"
-                Hint="Outline"
-                IsEnabled="True"
-                IsHintAnimated="False"
-                OutlineColor="{Binding OutlineEntryColor}"
-                Text="{Binding EntryText}"
-                TextColor="{Binding OutlineEntryColor}">
-                <input:MaterialPicker
-                    Title="Test"
-                    BackgroundColor="#101010"
-                    TextColor="#FFFFFF"
-                    TitleColor="#FFFFFF">
+            <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Picker">
+                <input:MaterialPicker >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Baboon</x:String>
+                            <x:String>Capuchin Monkey</x:String>
+                            <x:String>Blue Monkey</x:String>
+                            <x:String>Squirrel Monkey</x:String>
+                            <x:String>Golden Lion Tamarin</x:String>
+                            <x:String>Howler Monkey</x:String>
+                            <x:String>Japanese Macaque</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </input:MaterialPicker>
+            </input:TextInputLayout>
+            <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Picker">
+                <input:MaterialPicker >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Baboon</x:String>
@@ -200,16 +224,7 @@
             <input:TextInputLayout Hint="Layout">
                 <input:TextInputEditText />
             </input:TextInputLayout>-->
-            <Label
-                SemanticProperties.HeadingLevel="Level1"
-                Style="{StaticResource Headline}"
-                Text="Hello, World!" />
 
-            <Label
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                SemanticProperties.HeadingLevel="Level2"
-                Style="{StaticResource SubHeadline}"
-                Text="Welcome to &#10;.NET Multi-platform App UI" />
 
             <Button
                 x:Name="CounterBtn"

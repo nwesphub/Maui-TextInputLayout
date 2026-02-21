@@ -28,12 +28,12 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => 0
             };
 
-        public static object GetContainerShape(BoxBackgroundMode mode) =>
+        public static RoundRectangle GetContainerShape(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.ContainerShape,
                 BoxBackgroundMode.Outline => Outlined.ContainerShape,
-                _ => null
+                _ => new RoundRectangle()
             };
 
         // ==================== Label text ====================
@@ -300,12 +300,10 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Outline (Outlined only) ====================
-        public static double GetOutlineWidth(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Outline => Outlined.OutlineWidth,
-                _ => 0
-            };
+        public static int GetOutlineWidth(BoxBackgroundMode mode) => Outlined.OutlineWidth;
+
+
+        public static int GetFocusedOutlineWidth(BoxBackgroundMode mode) => Outlined.FocusedOutlineWidth;
 
         public static Color GetOutlineColor(BoxBackgroundMode mode) =>
             mode switch
@@ -381,12 +379,12 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => Colors.Transparent
             };
 
-        public static double GetDisabledContainerOpacity(BoxBackgroundMode mode) =>
+        public static float GetDisabledContainerOpacity(BoxBackgroundMode mode) =>
             mode switch
             {
-                BoxBackgroundMode.Filled => Filled.DisabledContainerOpacity,
-                BoxBackgroundMode.Outline => 1.0, // no opacity for outlined
-                _ => 1.0
+                BoxBackgroundMode.Filled => (float)Filled.DisabledContainerOpacity,
+                BoxBackgroundMode.Outline => 1.0f, // no opacity for outlined
+                _ => 1.0f
             };
 
         // ==================== Disabled / Label text ====================
@@ -398,13 +396,16 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => Colors.Transparent
             };
 
-        public static double GetDisabledLabelTextOpacity(BoxBackgroundMode mode) =>
-            mode switch
+        public static float GetDisabledLabelTextOpacity(BoxBackgroundMode mode)
+        {
+            var opacity = mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledLabelTextOpacity,
                 BoxBackgroundMode.Outline => Outlined.DisabledLabelTextOpacity,
                 _ => 1.0
             };
+            return (float)opacity;
+        }
 
         // ==================== Disabled / Leading icon ====================
         public static Color GetDisabledLeadingIconColor(BoxBackgroundMode mode) =>
@@ -432,13 +433,16 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => Colors.Transparent
             };
 
-        public static double GetDisabledTrailingIconOpacity(BoxBackgroundMode mode) =>
-            mode switch
+        public static float GetDisabledTrailingIconOpacity(BoxBackgroundMode mode)
+        {
+            var opacity = mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledTrailingIconOpacity,
                 BoxBackgroundMode.Outline => Outlined.DisabledTrailingIconOpacity,
                 _ => 1.0
             };
+            return (float)opacity;
+        }
 
         // ==================== Disabled / Supporting text ====================
         public static Color GetDisabledSupportingTextColor(BoxBackgroundMode mode) =>
@@ -491,13 +495,16 @@ namespace Maui.Android.TextInputLayout.Utilities
                 _ => Colors.Transparent
             };
 
-        public static double GetDisabledActiveIndicatorOpacity(BoxBackgroundMode mode) =>
-            mode switch
+        public static float GetDisabledOutlineOpacity(BoxBackgroundMode mode)
+        {
+            var opacity = mode switch
             {
                 BoxBackgroundMode.Filled => Filled.DisabledActiveIndicatorOpacity,
                 BoxBackgroundMode.Outline => Outlined.DisabledOutlineOpacity,
                 _ => 1.0
             };
+            return (float)opacity;
+        }
 
         // ==================== Focused / Label text ====================
         public static Color GetFocusedLabelTextColor(BoxBackgroundMode mode) =>
@@ -644,7 +651,7 @@ namespace Maui.Android.TextInputLayout.Utilities
             // ==================== Enabled / Container ====================
             public static Color ContainerColor => (Color)Application.Current.Resources["md.comp.filled-text-field.container.color"];
             public static double ContainerHeight => (double)Application.Current.Resources["md.comp.filled-text-field.container.height"];
-            public static Thickness ContainerShape => (Thickness)Application.Current.Resources["md.comp.filled-text-field.container.shape"]; // RoundRectangle
+            public static RoundRectangle ContainerShape => (RoundRectangle)Application.Current.Resources["md.comp.filled-text-field.container.shape"]; // RoundRectangle
 
             // ==================== Enabled / Label text ====================
             public static Color LabelTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.label-text.color"];
@@ -762,10 +769,10 @@ namespace Maui.Android.TextInputLayout.Utilities
         {
             // ==================== Enabled / Container ====================
             public static double ContainerHeight => (double)Application.Current.Resources["md.comp.outlined-text-field.container.height"];
-            public static object ContainerShape => Application.Current.Resources["md.comp.outlined-text-field.container.shape"]; // RoundRectangle
+            public static RoundRectangle ContainerShape => (RoundRectangle)Application.Current.Resources["md.comp.outlined-text-field.container.shape"]; // RoundRectangle
 
             // ==================== Enabled / Outline ====================
-            public static double OutlineWidth => (double)Application.Current.Resources["md.comp.outlined-text-field.outline.width"];
+            public static int OutlineWidth => (int)Application.Current.Resources["md.comp.outlined-text-field.outline.width"];
             public static Color OutlineColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.outline.color"];
 
             // ==================== Enabled / Label text ====================
@@ -846,7 +853,7 @@ namespace Maui.Android.TextInputLayout.Utilities
             public static Color FocusedTrailingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.trailing-icon.color"];
 
             // ==================== Focused / Outline ====================
-            public static double FocusedOutlineWidth => (double)Application.Current.Resources["md.comp.outlined-text-field.focus.outline.width"];
+            public static int FocusedOutlineWidth => (int)Application.Current.Resources["md.comp.outlined-text-field.focus.outline.width"];
             public static Color FocusedOutlineColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.outline.color"];
 
             // ==================== Focused / Input text ====================

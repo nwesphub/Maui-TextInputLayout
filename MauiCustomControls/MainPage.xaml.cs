@@ -50,10 +50,14 @@ namespace MauiCustomControls
         [ObservableProperty]
         bool isEntryEnabled;
 
+        [ObservableProperty]
+        bool isEnabled;
+
         [RelayCommand]
         private async Task ButtonClicked()
         {
             IsEntryEnabled = !IsEntryEnabled;
+            IsEnabled = !IsEnabled;
         }
 
         [ObservableProperty]

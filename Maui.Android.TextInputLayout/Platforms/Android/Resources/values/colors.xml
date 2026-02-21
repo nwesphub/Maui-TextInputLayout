@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-	<color name="my_cursor_red">#FF5722</color>
+	<color name="my_cursor_red">#B3261E</color>
 	<color name="my_cursor_blue">#2196F3</color>
 	<color name="my_cursor_green">#19f50a</color>
 </resources>

@@ -302,7 +302,7 @@
 
     <!--  REGION Enabled / Outline  -->
     <!-- Outlined text field outline width -->
-    <x:Double x:Key="md.comp.outlined-text-field.outline.width">1</x:Double>
+    <x:Int32 x:Key="md.comp.outlined-text-field.outline.width">1</x:Int32>
 
     <!-- Outlined text field outline color -->
     <Color x:Key="md.comp.outlined-text-field.outline.color">#938F99</Color>
@@ -500,7 +500,7 @@
     
     <!--  REGION Focused / Outline  -->
     <!-- Outlined text field focus outline width -->
-    <x:Double x:Key="md.comp.outlined-text-field.focus.outline.width">3</x:Double>
+    <x:Int32 x:Key="md.comp.outlined-text-field.focus.outline.width">3</x:Int32>
 
     <!-- Outlined text field focus outline color -->
     <Color x:Key="md.comp.outlined-text-field.focus.outline.color">#D0BCFF</Color>

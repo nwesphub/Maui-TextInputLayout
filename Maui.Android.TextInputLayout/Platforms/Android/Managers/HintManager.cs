@@ -17,7 +17,6 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
     public static class HintManager
     {
         private static int[][] _states = Constants.GetCommonStates();
-        private static float _disabledAlpha = .38f;
         public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView.Hint = entry.Hint;
@@ -28,7 +27,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
             handler.PlatformView.DefaultHintTextColor = new ColorStateList(
                 _states, 
                 [
-                    entry.DisabledHintColor.WithAlpha(_disabledAlpha).ToPlatform(),
+                    entry.DisabledHintColor.WithAlpha(entry.DisabledHintOpacity).ToPlatform(),
                     entry.FocusedHintColor.ToPlatform(), 
                     entry.DefaultHintColor.ToPlatform()
                 ]
