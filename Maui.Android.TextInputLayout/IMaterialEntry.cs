@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout
 {
-    public interface IMaterialEntry : IView
+    public interface IMaterialEntry : IView, ITextStyle
     {
         public BoxBackgroundMode BoxBackgroundMode { get; set; }
         public static BoxBackgroundMode ParseBoxBackgroundMode(IView view)
         {
             return (view as IMaterialEntry)?.BoxBackgroundMode ?? BoxBackgroundMode.None;
         }
+        
+        Color DisabledTextColor { get; set; }
+        float DisabledTextColorOpacity { get; set; }
     }
 }

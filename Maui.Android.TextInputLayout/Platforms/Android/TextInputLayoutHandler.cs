@@ -43,8 +43,14 @@ using ARect = Android.Graphics.Rect;
 using AndroidX.Core.Widget;
 using AndroidX.Core.Graphics.Drawable;
 using Maui.Android.TextInputLayout.Utilities;
+using static Android.Views.View;
+using static Android.Views.ViewTreeObserver;
+using Layout = Microsoft.Maui.Controls.Layout;
+using Android.Views.InputMethods;
+using static Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
 namespace Maui.Android.TextInputLayout
 {
+
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
     {
         private BoxBackgroundMode _boxBackgroundMode;
@@ -54,14 +60,16 @@ namespace Maui.Android.TextInputLayout
             {
                 return new MauiTextInputLayout(Context, _boxBackgroundMode);
             }
+
             int theme = Resource.Style.ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense;
             if (_boxBackgroundMode == BoxBackgroundMode.Filled)
             {
                 theme = Resource.Style.ThemeOverlay_Material3_TextInputEditText_FilledBox_Dense;
-                
             }
             
             var contextThemeWrapper = new ContextThemeWrapper(Context, theme);
+            var mauiContext = MauiContext;
+            
             var textInputLayout =  new MauiTextInputLayout(contextThemeWrapper, _boxBackgroundMode);
             
             // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
@@ -77,17 +85,20 @@ namespace Maui.Android.TextInputLayout
                 return;
             }
 
-            if(view is ITextInputLayout layout && layout.Content is IMaterialEntry materialEntry)
+            if(view is ITextInputLayout layout)
             {
                 _boxBackgroundMode = layout.BoxBackgroundMode;
-                materialEntry.BoxBackgroundMode = layout.BoxBackgroundMode;
-                // Setting default values in the Maui component is not working properly.
+                // Setting some default values in the Maui component is not working properly.
                 layout.DisabledHintOpacity = ThemeHelper.GetDisabledLabelTextOpacity(layout.BoxBackgroundMode);
-                VirtualEntry = materialEntry;
+                if (layout.Content is IMaterialEntry materialEntry)
+                {
+                    materialEntry.BoxBackgroundMode = layout.BoxBackgroundMode;
+                    VirtualEntry = materialEntry;
+                }
             }
             
             PlatformEntry = contentView.Content.ToPlatform(MauiContext!) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
-            MauiTextInputEditText.SetStaticDefaults(PlatformEntry);
+            PlatformEntry.SetMinimumWidth(int.MaxValue);
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
             //DrawableCompat.SetTintList(PlatformEntry.TextCursorDrawable, Colors.Red.ToDefaultColorStateList());
@@ -96,28 +107,61 @@ namespace Maui.Android.TextInputLayout
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
             base.ConnectHandler(platformView);
+            
             if (PlatformEntry is not null)
             {
                 PlatformEntry.TextChanged += PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange += PlatformEntry_FocusChange;
             }
-            
-            platformView.SetEndIconOnClickListener(VirtualView);
-        }
-
-        private void PlatformEntry_FocusChange(object? sender, AView.FocusChangeEventArgs e)
-        {
-            
-        }
-
-        private void PlatformEntry_TextChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
-        {
-            
         }
 
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
         {
             base.DisconnectHandler(platformView);
+            if (PlatformEntry is not null)
+            {
+                PlatformEntry.TextChanged -= PlatformEntry_TextChanged;
+                PlatformEntry.FocusChange -= PlatformEntry_FocusChange;
+            }
+            platformView.SetEndIconOnClickListener(null);
+        }
+
+        private void PlatformEntry_FocusChange(object? sender, AView.FocusChangeEventArgs e)
+        {
+            // Disabling for now. When end icon mode is set to custom, advancing focus past disabled entries causes the end icon to receive focus.
+            return;
+            if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.WhileEditing)
+            {
+                return;
+            }
+
+            if (e.HasFocus)
+            {
+                PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+            }
+            else
+            {
+                PlatformView?.HideEndIcon();
+            }
+        }
+
+        private void PlatformEntry_TextChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
+        {
+            // Disabling for now. When end icon mode is set to custom, advancing focus past disabled entries causes the end icon to receive focus.
+            return;
+            if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasText)
+            {
+                return;
+            }
+            
+            if (!string.IsNullOrWhiteSpace(e.Text?.ToString()))
+            {
+                PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+            }
+            else
+            {
+                PlatformView?.HideEndIcon();
+            }
         }
 
 
@@ -126,12 +170,11 @@ namespace Maui.Android.TextInputLayout
         {
             
             int[][] states =
-        [
-            new[] { RResource.StateFocused, RResource.StateEnabled },
-            new[] { RResource.StateEnabled },                  // normal
-
-            new[] { -RResource.StateEnabled },                 // disabled
-        ];
+            [
+                [RResource.StateFocused, RResource.StateEnabled],
+                [RResource.StateEnabled],
+                [-RResource.StateEnabled],
+            ];
 
             int[] colors =
             [
@@ -140,11 +183,11 @@ namespace Maui.Android.TextInputLayout
                 entry.DisabledBackgroundColor.WithAlpha(entry.DisabledBackgroundColorOpacity).ToPlatform(),
                 
             ];
-            ColorStateList csl = new ColorStateList(states, colors);
 
-            handler.PlatformView.SetBoxBackgroundColorStateList(csl);
+            handler.PlatformView.SetBoxBackgroundColorStateList(new ColorStateList(states, colors));
         }
 
+        
 
         public static void MapBackground(ITextInputLayoutHandler handler, ITextInputLayout entry) 
         {
@@ -181,62 +224,48 @@ namespace Maui.Android.TextInputLayout
         }
         public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            HintManager.MapHint(handler, entry);
+            handler.PlatformView?.MapHint(entry);
         }
         public static void MapHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            HintManager.ApplyHintColors(handler, entry);
+            handler.PlatformView?.ApplyHintColors(entry);
         }
         public static void MapHintOpacity(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            var opacity = entry.DisabledHintOpacity;
-            HintManager.ApplyHintColors(handler, entry);
+            handler.PlatformView?.ApplyHintColors(entry);
         }
 
 
         public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            HintManager.MapIsHintAnimated(handler, entry);       
-        }
-
-        public static void MapCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            
-        }
-
-        
+            handler?.PlatformView?.MapIsHintAnimated(entry);
+        }  
 
         public static void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            switch (entry.BoxBackgroundMode)
-            {
-                case BoxBackgroundMode.None:
-                    break;
-                case BoxBackgroundMode.Outline:
-                    handler.PlatformView.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundOutline;
-                    
-                    break;
-                case BoxBackgroundMode.Filled:
-                    handler.PlatformView.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundFilled;
-                    break;
-            }
+            handler.PlatformView?.UpdateBoxBackgroundMode(entry);
         }
 
         public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            EndIconManager.MapEndIconColor(handler, entry);
+            handler.PlatformView?.UpdateEndIconColor(entry);
         }
 
         public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
-            EndIconManager.MapEndIcon(handler, entry);
+            handler.PlatformView?.MapCustomEndIcon(entry, handler.MauiContext);
         }
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
-            EndIconManager.MapEndIconVisibilityMode(handler, entry);
+            if(entry.EndIconVisibilityMode == IconVisibilityMode.Always)
+            {
+                handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
+            }
+            else if(entry.EndIconVisibilityMode == IconVisibilityMode.Never)
+            {
+                handler.PlatformView?.HideEndIcon();
+            }
         }
 
         private static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -265,7 +294,22 @@ namespace Maui.Android.TextInputLayout
         }
         private static void MapSupportingText(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            
             handler.PlatformView.HelperText = entry.SupportingText;
+            
+        }
+        private static void MapErrorText(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView.Error = entry.ErrorText;
+            
+        }
+        private static void MapPrefixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+
+        }
+        private static void MapSuffixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+
         }
 
         private static void MapCounterEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -276,9 +320,49 @@ namespace Maui.Android.TextInputLayout
         {
             handler.PlatformView.CounterMaxLength = entry.CounterMaxLength;
         }
+        private static void MapPadding(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            var padding = entry.Padding;
+            handler.PlatformView?.SetPadding((int)padding.Left, (int)padding.Top, (int)padding.Right, (int)padding.Bottom);
+        }
+        //private static void MapIsMultiLine(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        //{
+        //    handler.PlatformEntry.SetSingleLine(!entry.IsMultiLine);
+
+        //    return;
+        //    // Hacky solution to prevent border getting cut off on entries below the multi line. InvalidateMeasure(view) needs to be called on the affected views
+
+        //    if (entry is Microsoft.Maui.Controls.View view)
+        //    {
+        //        view.SizeChanged += View_SizeChanged;
+        //    }
+
+        //}
+
+        private static void View_SizeChanged(object? sender, EventArgs e)
+        {
+            if (sender is Microsoft.Maui.Controls.View view)
+            {
+                if (view.Parent is Layout layout)
+                {
+                    if (layout.Handler is LayoutHandler layoutHandler)
+                    {
+                        //layoutHandler.PlatformView.Invalidate();
+                        //layoutHandler.PlatformView.InvalidateMeasure(view);
+                        //layoutHandler.PlatformView.RefreshDrawableState();
+                    }
+                }
+                if (view is TextInputLayout til && til.Handler is ITextInputLayoutHandler itilh)
+                {
+                    //itilh.PlatformView.Invalidate();
+                    itilh.PlatformView.InvalidateMeasure(view);
+                    //itilh.PlatformView.RefreshDrawableState();
+                }
+            }
+        }
 
     }
-    public class MaterialEntryHandler : EntryHandler
+    public partial class MaterialEntryHandler : EntryHandler
     {
         protected override AppCompatEditText CreatePlatformView()
         {
@@ -291,7 +375,6 @@ namespace Maui.Android.TextInputLayout
             var contextThemeWrapper = new ContextThemeWrapper(Context, theme);
             var editText = new AppCompatEditText(contextThemeWrapper);
             
-           
             return editText;
 
 

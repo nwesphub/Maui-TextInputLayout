@@ -28,7 +28,7 @@ namespace Maui.Android.TextInputLayout
         ImageSource EndIcon { get; set; }
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
-        EndIconClickedEventHandler EndIconEventHandler { get; set; }
+        void EndIconClicked();
         Color TextColor { get; set; }
         Color EndIconColor { get; set; }
         Color EndIconDisabledColor { get; set; }
@@ -36,10 +36,18 @@ namespace Maui.Android.TextInputLayout
         string? Prefix { get; set; }
         string? Suffix { get; set; }
         string? SupportingText { get; set; }
+        string? ErrorText { get; set; }
         CornerRadius BoxStrokeCornerRadius { get; set; }
         int BoxStrokeWidth { get; set; }
         int BoxStrokeFocusedWidth { get; set; }
         bool CounterEnabled { get; set; }
         int CounterMaxLength { get; set; }
+
+        Color SuffixTextColor { get; set; }
+        Color DisabledSuffixTextColor { get; set; }
+        float DisabledSuffixTextColorOpacity { get; set; }
+        Color PrefixTextColor { get; set; }
+        Color DisabledPrefixTextColor { get; set; }
+        float DisabledPrefixTextColorOpacity { get; set; }
     }
 }

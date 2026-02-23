@@ -51,7 +51,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             // this.SetPadding(40, 38, 100, 30); - Potential padding for layout with border - box background
             //this.SetPadding(PaddingLeft, PaddingTop, PaddingRight + 24, PaddingBottom);
          
-            SetSingleLine(true);
+            //SetSingleLine(true);
         }
 
         public static void SetStaticDefaults(EditText editText)

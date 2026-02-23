@@ -15,24 +15,53 @@
         <VerticalStackLayout
             x:Name="test"
             Padding="30,0"
-            Spacing="14">
+            Spacing="8">
 
-            <Image
-                Aspect="AspectFit"
-                HeightRequest="185" 
-                SemanticProperties.Description="dot net bot in a race car number eight"
-                Source="dotnet_bot.png" />
             <input:TextInputLayout
-                BoxBackgroundMode="Outline"  EndIcon="dotnet_bot.png"
-                EndIconVisibilityMode="Always" Suffix="%" Prefix="$" SupportingText="Supporting Text" CounterEnabled="true" CounterMaxLength="40" 
+                BoxBackgroundMode="Outline"
+                EndIcon="dotnet_bot.png"
                 EndIconColor="{x:Null}"
-                Hint="Outline Default">
-                <input:MaterialEntry  />
+                EndIconVisibilityMode="WhileEditing"
+                Hint="Outline Default"
+                Prefix="$"
+                Suffix="%">
+                <input:MaterialEntry TextColor="Red" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"
+                EndIcon="dotnet_bot.png"
+                EndIconColor="{x:Null}"
+                EndIconVisibilityMode="HasText"
+                Hint="Outline Default"
+                Prefix="$"
+                Suffix="%">
+                <input:MaterialEntry TextColor="Red" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"
+                EndIconVisibilityMode="Always"
+                Hint="Outline Default"
+                Prefix="$"
+                Suffix="%">
+                <input:MaterialEntry TextColor="Red" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"
+                CounterEnabled="true"
+                CounterMaxLength="40"
+                EndIcon="dotnet_bot.png"
+                EndIconClickedCommand="{Binding EndIconClickedCommand}"
+                EndIconColor="{x:Null}"
+                EndIconVisibilityMode="Always"
+                Hint="Outline Default"
+                Prefix="$"
+                Suffix="%"
+                SupportingText="Supporting Text">
+                <input:MaterialEntry TextColor="Red" />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
                 EndIconVisibilityMode="WhileEditing"
-                
                 Hint="Outline Disabled"
                 IsEnabled="{Binding IsEnabled}">
                 <input:MaterialEntry />
@@ -42,7 +71,13 @@
                 EndIconVisibilityMode="Always"
                 Hint="Outline with Text Disabled"
                 IsEnabled="{Binding IsEnabled}">
-                <input:MaterialEntry Text="Outline with Text Disabled" />
+                <input:MaterialEntry DisabledTextColor="Purple" Text="Outline with Text Disabled" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"
+                EndIconVisibilityMode="Always"
+                Hint="Filled Default">
+                <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="Filled"
@@ -104,7 +139,7 @@
                 <input:MaterialEntry TextColor="#E6E0E9" />
             </input:TextInputLayout>
             <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Picker">
-                <input:MaterialPicker >
+                <input:MaterialPicker>
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Baboon</x:String>
@@ -119,7 +154,7 @@
                 </input:MaterialPicker>
             </input:TextInputLayout>
             <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Picker">
-                <input:MaterialPicker >
+                <input:MaterialPicker>
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Baboon</x:String>

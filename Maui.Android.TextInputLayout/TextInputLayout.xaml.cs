@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Maui.Android.TextInputLayout.Utilities;
 using System.Runtime.CompilerServices;
 using Microsoft.Maui.Controls.Shapes;
+using System.Windows.Input;
+
 
 
 
@@ -24,25 +26,15 @@ namespace Maui.Android.TextInputLayout
         
         public TextInputLayout()
         {
-            
+            Microsoft.Maui.ILayout l1;
+            Microsoft.Maui.Controls.ILayout l2;
             InitializeComponent();
-            
-
-            EndIconEventHandler.EndIconClicked += TextInputLayout_EndIconClicked;
         }
 
  
         private void TextInputLayout_EndIconClicked(object? sender, EndIconClickedEventArgs e)
         {
-            if(Content is InputView inputView)
-            {
-                inputView.Text = string.Empty;
-            }
-            if(Content is Picker pp)
-            {
-                pp.SelectedItem = null;
-            }
-            Text = string.Empty;
+            
         }
 
         static TextInputLayout()
@@ -75,6 +67,8 @@ namespace Maui.Android.TextInputLayout
             CounterEnabledProperty = BindableProperty.Create(nameof(CounterEnabled), typeof(bool), typeof(TextInputLayout));
             CounterMaxLengthProperty = BindableProperty.Create(nameof(CounterMaxLength), typeof(int), typeof(TextInputLayout));
             DisabledBackgroundColorOpacityProperty = BindableProperty.Create(nameof(DisabledBackgroundColorOpacity), typeof(float), typeof(TextInputLayout));
+            ErrorTextProperty = BindableProperty.Create(nameof(ErrorText), typeof(string), typeof(TextInputLayout));
+            EndIconClickedCommandProperty = BindableProperty.Create(nameof(EndIconClickedCommand), typeof(ICommand), typeof(TextInputLayout));
         }
 
         private static void BoxBackgroundModePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -131,6 +125,7 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty DisabledOutlineColorProperty;
         public static readonly BindableProperty DisabledOutlineOpacityProperty;
         public static readonly BindableProperty DisabledBackgroundColorProperty;
+        public static readonly BindableProperty DisabledBackgroundColorOpacityProperty;
         public static readonly BindableProperty HintProperty;
         public static readonly BindableProperty DefaultHintColorProperty;
         public static readonly BindableProperty FocusedHintColorProperty;
@@ -150,14 +145,39 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty PrefixProperty;
         public static readonly BindableProperty SuffixProperty;
         public static readonly BindableProperty SupportingTextProperty;
+        public static readonly BindableProperty ErrorTextProperty;
         public static readonly BindableProperty BoxStrokeCornerRadiusProperty;
         public static readonly BindableProperty BoxStrokeWidthProperty;
         public static readonly BindableProperty BoxStrokeFocusedWidthProperty;
         public static readonly BindableProperty CounterEnabledProperty;
         public static readonly BindableProperty CounterMaxLengthProperty;
-        public static readonly BindableProperty DisabledBackgroundColorOpacityProperty;
-        public EndIconClickedEventHandler EndIconEventHandler { get; set; } = new();
+        public static readonly BindableProperty SuffixTextColorProperty;
+        public static readonly BindableProperty DisabledSuffixTextColorProperty;
+        public static readonly BindableProperty DisabledSuffixTextColorOpacityProperty;
+        public static readonly BindableProperty PrefixTextColorProperty;
+        public static readonly BindableProperty DisabledPrefixTextColorProperty;
+        public static readonly BindableProperty DisabledPrefixTextColorOpacityProperty;
+        public static readonly BindableProperty EndIconClickedCommandProperty;
 
+        
+        public void EndIconClicked()
+        {
+            if (EndIconClickedCommand is not null)
+            {
+                EndIconClickedCommand.Execute(null);
+                return;
+            }
+
+            if (Content is InputView inputView)
+            {
+                inputView.Text = string.Empty;
+            }
+            if (Content is Picker pp)
+            {
+                pp.SelectedItem = null;
+            }
+            Text = string.Empty;
+        }
         public Color OutlineColor
         {
             get => (Color)base.GetValue(OutlineColorProperty);
@@ -289,10 +309,40 @@ namespace Maui.Android.TextInputLayout
             get => base.GetValue(PrefixProperty)?.ToString();
             set => base.SetValue(PrefixProperty, value);
         }
+        public Color PrefixTextColor
+        {
+            get => (Color)GetValue(PrefixTextColorProperty);
+            set => SetValue(PrefixTextColorProperty, value);
+        }
+        public Color DisabledPrefixTextColor
+        {
+            get => (Color)GetValue(DisabledPrefixTextColorProperty);
+            set => SetValue(DisabledPrefixTextColorProperty, value);
+        }
+        public float DisabledPrefixTextColorOpacity
+        {
+            get => (float)GetValue(DisabledPrefixTextColorOpacityProperty);
+            set => SetValue(DisabledPrefixTextColorOpacityProperty, value);
+        }
         public string? Suffix
         {
             get => base.GetValue(SuffixProperty)?.ToString();
             set => base.SetValue(SuffixProperty, value);
+        }
+        public Color SuffixTextColor
+        {
+            get => (Color)GetValue(SuffixTextColorProperty);
+            set => SetValue(SuffixTextColorProperty, value);
+        }
+        public Color DisabledSuffixTextColor
+        {
+            get => (Color)GetValue(DisabledSuffixTextColorProperty);
+            set => SetValue(DisabledSuffixTextColorProperty, value);
+        }
+        public float DisabledSuffixTextColorOpacity
+        {
+            get => (float)GetValue(DisabledSuffixTextColorOpacityProperty);
+            set => SetValue(DisabledSuffixTextColorOpacityProperty, value);
         }
         public string? SupportingText
         {
@@ -326,6 +376,19 @@ namespace Maui.Android.TextInputLayout
             get => (int)GetValue(CounterMaxLengthProperty);
             set => SetValue(CounterMaxLengthProperty, value);
         }
+        public string? ErrorText
+        {
+            get => GetValue(ErrorTextProperty)?.ToString();
+            set => SetValue(ErrorTextProperty, value);
+        }
+
+        //
+        public ICommand EndIconClickedCommand
+        {
+            get => (ICommand)GetValue(EndIconClickedCommandProperty);
+            set => SetValue(EndIconClickedCommandProperty, value);
+        }
+
         public static class OutlineTextField
         {
 

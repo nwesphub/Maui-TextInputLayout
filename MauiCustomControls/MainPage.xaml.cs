@@ -73,6 +73,12 @@ namespace MauiCustomControls
 
             await Shell.Current.GoToAsync(obj.ToString());
         }
+
+        [RelayCommand]
+        private async Task EndIconClicked()
+        {
+
+        }
     }
 
     public class TestPage

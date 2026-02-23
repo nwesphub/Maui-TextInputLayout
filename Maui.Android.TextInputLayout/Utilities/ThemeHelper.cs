@@ -210,13 +210,13 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Input text ====================
-        public static Color GetInputTextColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.InputTextColor,
-                BoxBackgroundMode.Outline => Outlined.InputTextColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetInputTextColor() => Filled.InputTextColor;
+            //mode switch
+            //{
+            //    BoxBackgroundMode.Filled => Filled.InputTextColor,
+            //    BoxBackgroundMode.Outline => Outlined.InputTextColor,
+            //    _ => Colors.Transparent
+            //};
 
         public static string GetInputTextFont(BoxBackgroundMode mode) =>
             mode switch
@@ -462,21 +462,21 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Disabled / Input text ====================
-        public static Color GetDisabledInputTextColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.DisabledInputTextColor,
-                BoxBackgroundMode.Outline => Outlined.DisabledInputTextColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetDisabledInputTextColor() => Filled.DisabledInputTextColor;
+        //mode switch
+        //{
+        //    BoxBackgroundMode.Filled => Filled.DisabledInputTextColor,
+        //    BoxBackgroundMode.Outline => Outlined.DisabledInputTextColor,
+        //    _ => Colors.Transparent
+        //};
 
-        public static double GetDisabledInputTextOpacity(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.DisabledInputTextOpacity,
-                BoxBackgroundMode.Outline => Outlined.DisabledInputTextOpacity,
-                _ => 1.0
-            };
+        public static float GetDisabledInputTextOpacity() => (float)Filled.DisabledInputTextOpacity;
+            //mode switch
+            //{
+            //    BoxBackgroundMode.Filled => Filled.DisabledInputTextOpacity,
+            //    BoxBackgroundMode.Outline => Outlined.DisabledInputTextOpacity,
+            //    _ => 1.0
+            //};
 
         // ==================== Disabled / Active indicator ====================
         public static double GetDisabledActiveIndicatorHeight(BoxBackgroundMode mode) =>

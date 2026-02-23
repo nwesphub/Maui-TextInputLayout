@@ -16,7 +16,12 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
 {
     public static class HintManager
     {
-        private static int[][] _states = Constants.GetCommonStates();
+        private static int[][] _states = 
+        [
+            [-RResource.StateEnabled],                        // Disabled
+            [RResource.StateEnabled, RResource.StateFocused], // Enabled & Focused
+            [RResource.StateEnabled],                         // Normal
+        ];
         public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView.Hint = entry.Hint;
@@ -37,6 +42,28 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
         public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView.ExpandedHintEnabled = entry.IsHintAnimated;
+        }
+
+        public static void MapHint(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.Hint = virtualView.Hint;
+        }
+
+        public static void ApplyHintColors(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.DefaultHintTextColor = new ColorStateList(
+                _states,
+                [
+                    virtualView.DisabledHintColor.WithAlpha(virtualView.DisabledHintOpacity).ToPlatform(),
+                    virtualView.FocusedHintColor.ToPlatform(),
+                    virtualView.DefaultHintColor.ToPlatform()
+                ]
+            );
+        }
+
+        public static void MapIsHintAnimated(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.ExpandedHintEnabled = virtualView.IsHintAnimated;
         }
     }
 }

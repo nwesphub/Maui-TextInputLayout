@@ -17,6 +17,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
     {
+        public bool HasTextAndFocus => !string.IsNullOrEmpty(EditText?.Text) && EditText?.HasFocus == true;
         public MauiTextInputLayout(Context context, BoxBackgroundMode boxBackgroundMode) : base(context)
         {
             SetDefaults(boxBackgroundMode);
@@ -34,26 +35,28 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             SetDefaultClearButton();
         }
 
-        public void SetEndIconOnClickListener(ITextInputLayout textInputLayout)
-        {
-            if(textInputLayout is not null)
-            {
-                this.SetEndIconOnClickListener(new OnEndIconClickListener(this, textInputLayout));
-            }
-        }
+
         private void SetDefaultClearButton()
         {
 
-            // Set end icon - clear button
-            this.EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconCustom;
-            this.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
+            // IMPORTANT: Test focus navigation when changing this code
+            //this.EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconClearText;
+            
+            //Post(() =>
+            //{
+            //    this.EndIconVisible = true;
+
+            //});
+            //this.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
+            // IMPORTANT: Test focus navigation when changing this code
+
             //var endiconview = this.FindViewById(Resource.Id.text_input_end_icon);
             //endiconview.Focusable = false;
             //endiconview.FocusableInTouchMode = false;
             //endiconview.SetFocusable(ViewFocusability.NotFocusable);
             this.SetStartIconDrawable(Resource.Drawable.ic_search_black_24);
             // Set icon callback function
-            this.SetEndIconOnClickListener(new OnEndIconClickListener(this));
+            //this.SetEndIconOnClickListener(new OnEndIconClickListener(this));
             // set icon visibility
             //this.EndIconVisible = true;
             // Padding to prevent text from overlapping the button
@@ -95,24 +98,15 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 
         public class OnEndIconClickListener : Java.Lang.Object, IOnClickListener
         {
-            MauiTextInputLayout? _mauiTextInputLayout;
-            ITextInputLayout? _textInputLayout;
-            public OnEndIconClickListener(MauiTextInputLayout mauiTextInputLayout, ITextInputLayout? textInputLayout = null)
+            ITextInputLayout _textInputLayout;
+            public OnEndIconClickListener(ITextInputLayout textInputLayout)
             {
-                _mauiTextInputLayout = mauiTextInputLayout;
                 _textInputLayout = textInputLayout;
             }
 
             public void OnClick(AView? v)
             {
-                if (_textInputLayout is not null)
-                {
-                    _textInputLayout.EndIconEventHandler?.RaiseEvent(_mauiTextInputLayout, _mauiTextInputLayout?.EditText?.Text);
-                }
-                else if (_mauiTextInputLayout?.EditText is not null)
-                {
-                    _mauiTextInputLayout.EditText.Text = string.Empty;
-                }
+                _textInputLayout.EndIconClicked();
             }
         }
 
