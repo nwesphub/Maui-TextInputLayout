@@ -23,47 +23,43 @@ namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayout : ContentView, ITextInputLayout
     {
-        
         public TextInputLayout()
         {
-            Microsoft.Maui.ILayout l1;
-            Microsoft.Maui.Controls.ILayout l2;
-            InitializeComponent();
-        }
 
- 
-        private void TextInputLayout_EndIconClicked(object? sender, EndIconClickedEventArgs e)
-        {
-            
+            InitializeComponent();
         }
 
         static TextInputLayout()
         {
-            OutlineColorProperty = BindableProperty.Create(nameof(OutlineColor), typeof(Color), typeof(TextInputLayout));
-            FocusedOutlineColorProperty = BindableProperty.Create(nameof(FocusedOutlineColor), typeof(Color), typeof(TextInputLayout));
-            DisabledOutlineColorProperty = BindableProperty.Create(nameof(DisabledOutlineColor), typeof(Color), typeof(TextInputLayout));
-            DisabledOutlineOpacityProperty = BindableProperty.Create(nameof(DisabledOutlineOpacity), typeof(float), typeof(TextInputLayout));
+            OutlineColorProperty = BindableProperty.Create(nameof(OutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetOutlineColor());
+            FocusedOutlineColorProperty = BindableProperty.Create(nameof(FocusedOutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetFocusedOutlineColor());
+            DisabledOutlineColorProperty = BindableProperty.Create(nameof(DisabledOutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledOutlineColor());
+            DisabledOutlineOpacityProperty = BindableProperty.Create(nameof(DisabledOutlineOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledOutlineOpacity());
             DisabledBackgroundColorProperty = BindableProperty.Create(nameof(DisabledBackgroundColor), typeof(Color), typeof(TextInputLayout));
             HintProperty = BindableProperty.Create(nameof(Hint), typeof(string), typeof(TextInputLayout));
-            DefaultHintColorProperty = BindableProperty.Create(nameof(DefaultHintColor), typeof(Color), typeof(TextInputLayout));
-            FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout));
-            DisabledHintColorProperty = BindableProperty.Create(nameof(DisabledHintColor), typeof(Color), typeof(TextInputLayout));
-            DisabledHintOpacityProperty = BindableProperty.Create(nameof(DisabledHintOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextOpacity(BoxBackgroundMode.Filled));
+            DefaultHintColorProperty = BindableProperty.Create(nameof(DefaultHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetLabelTextColor());
+            FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetFocusedLabelTextColor());
+            DisabledHintColorProperty = BindableProperty.Create(nameof(DisabledHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextColor());
+            DisabledHintOpacityProperty = BindableProperty.Create(nameof(DisabledHintOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextOpacity());
             IsHintAnimatedProperty = BindableProperty.Create(nameof(IsHintAnimated), typeof(bool), typeof(TextInputLayout), defaultValue: true);
-            TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextInputLayout), defaultBindingMode: BindingMode.TwoWay);
             EndIconProperty = BindableProperty.Create(nameof(EndIcon), typeof(ImageSource), typeof(TextInputLayout));
             BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout), defaultBindingMode: BindingMode.OneTime, propertyChanged: BoxBackgroundModePropertyChanged);
             EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
-            TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextInputLayout));
-            EndIconColorProperty = BindableProperty.Create(nameof(EndIconColor), typeof(Color), typeof(TextInputLayout));
-            EndIconDisabledColorProperty = BindableProperty.Create(nameof(EndIconColor), typeof(Color), typeof(TextInputLayout));
-            DisabledEndIconOpacityProperty = BindableProperty.Create(nameof(DisabledEndIconOpacity), typeof(float), typeof(TextInputLayout));
+            EndIconColorProperty = BindableProperty.Create(nameof(EndIconColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetTrailingIconColor());
+            EndIconDisabledColorProperty = BindableProperty.Create(nameof(EndIconColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledTrailingIconColor());
+            DisabledEndIconOpacityProperty = BindableProperty.Create(nameof(DisabledEndIconOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledTrailingIconOpacity());
             PrefixProperty = BindableProperty.Create(nameof(Prefix), typeof(string), typeof(TextInputLayout));
+            PrefixTextColorProperty = BindableProperty.Create(nameof(PrefixTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetInputTextPrefixColor());
+            DisabledPrefixTextColorProperty = BindableProperty.Create(nameof(DisabledPrefixTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledInputTextColor());
+            DisabledPrefixTextColorOpacityProperty = BindableProperty.Create(nameof(DisabledPrefixTextColorOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledInputTextOpacity());
             SuffixProperty = BindableProperty.Create(nameof(Suffix), typeof(string), typeof(TextInputLayout));
+            SuffixTextColorProperty = BindableProperty.Create(nameof(SuffixTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetInputTextSuffixColor());
+            DisabledSuffixTextColorProperty = BindableProperty.Create(nameof(DisabledSuffixTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledInputTextColor());
+            DisabledSuffixTextColorOpacityProperty = BindableProperty.Create(nameof(DisabledSuffixTextColorOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledInputTextOpacity());
             SupportingTextProperty = BindableProperty.Create(nameof(SupportingText), typeof(string), typeof(TextInputLayout));
             BoxStrokeCornerRadiusProperty = BindableProperty.Create(nameof(BoxStrokeCornerRadius), typeof(CornerRadius), typeof(TextInputLayout));
-            BoxStrokeWidthProperty = BindableProperty.Create(nameof(BoxStrokeWidth), typeof(int), typeof(TextInputLayout));
-            BoxStrokeFocusedWidthProperty = BindableProperty.Create(nameof(BoxStrokeFocusedWidth), typeof(int), typeof(TextInputLayout));
+            BoxStrokeWidthProperty = BindableProperty.Create(nameof(BoxStrokeWidth), typeof(int), typeof(TextInputLayout), defaultValue: ThemeHelper.GetOutlineWidth());
+            BoxStrokeFocusedWidthProperty = BindableProperty.Create(nameof(BoxStrokeFocusedWidth), typeof(int), typeof(TextInputLayout), defaultValue: ThemeHelper.GetFocusedOutlineWidth());
             CounterEnabledProperty = BindableProperty.Create(nameof(CounterEnabled), typeof(bool), typeof(TextInputLayout));
             CounterMaxLengthProperty = BindableProperty.Create(nameof(CounterMaxLength), typeof(int), typeof(TextInputLayout));
             DisabledBackgroundColorOpacityProperty = BindableProperty.Create(nameof(DisabledBackgroundColorOpacity), typeof(float), typeof(TextInputLayout));
@@ -77,20 +73,18 @@ namespace Maui.Android.TextInputLayout
             {
                 return;
             }
-            var obj = ThemeHelper.GetDisabledOutlineOpacity(mode);
-            float f = ThemeHelper.GetDisabledLabelTextOpacity(mode);
-            var box = ThemeHelper.GetContainerShape(mode);
+
             // Outline
-            control.TrySetDefaultProperty(OutlineColorProperty, ThemeHelper.GetOutlineColor(mode));
-            control.TrySetDefaultProperty(FocusedOutlineColorProperty, ThemeHelper.GetFocusedOutlineColor(mode));
-            control.TrySetDefaultProperty(DisabledOutlineColorProperty, ThemeHelper.GetDisabledOutlineColor(mode));
-            control.TrySetDefaultProperty(DisabledOutlineOpacityProperty, ThemeHelper.GetDisabledOutlineOpacity(mode));
+            //control.TrySetDefaultProperty(OutlineColorProperty, ThemeHelper.GetOutlineColor());
+            //control.TrySetDefaultProperty(FocusedOutlineColorProperty, ThemeHelper.GetFocusedOutlineColor());
+            //control.TrySetDefaultProperty(DisabledOutlineColorProperty, ThemeHelper.GetDisabledOutlineColor());
+            //control.TrySetDefaultProperty(DisabledOutlineOpacityProperty, ThemeHelper.GetDisabledOutlineOpacity());
 
             // Hint
-            control.TrySetDefaultProperty(DefaultHintColorProperty, ThemeHelper.GetLabelTextColor(mode));
-            control.TrySetDefaultProperty(FocusedHintColorProperty, ThemeHelper.GetFocusedLabelTextColor(mode));
-            control.TrySetDefaultProperty(DisabledHintColorProperty, ThemeHelper.GetDisabledLabelTextColor(mode));
-            control.TrySetDefaultProperty(DisabledHintOpacityProperty, ThemeHelper.GetDisabledLabelTextOpacity(mode));
+            //control.TrySetDefaultProperty(DefaultHintColorProperty, ThemeHelper.GetLabelTextColor());
+            //control.TrySetDefaultProperty(FocusedHintColorProperty, ThemeHelper.GetFocusedLabelTextColor());
+            //control.TrySetDefaultProperty(DisabledHintColorProperty, ThemeHelper.GetDisabledLabelTextColor());
+            //control.TrySetDefaultProperty(DisabledHintOpacityProperty, ThemeHelper.GetDisabledLabelTextOpacity());
 
             // Background Color / Container Color
             control.TrySetDefaultProperty(BackgroundColorProperty, ThemeHelper.GetContainerColor(mode));
@@ -98,13 +92,13 @@ namespace Maui.Android.TextInputLayout
             control.TrySetDefaultProperty(DisabledBackgroundColorOpacityProperty, ThemeHelper.GetDisabledContainerOpacity(mode));
 
             // End Icon color
-            control.TrySetDefaultProperty(EndIconColorProperty, ThemeHelper.GetTrailingIconColor(mode));
-            control.TrySetDefaultProperty(EndIconDisabledColorProperty, ThemeHelper.GetDisabledTrailingIconColor(mode));
-            control.TrySetDefaultProperty(DisabledEndIconOpacityProperty, ThemeHelper.GetDisabledTrailingIconOpacity(mode));
+            //control.TrySetDefaultProperty(EndIconColorProperty, ThemeHelper.GetTrailingIconColor());
+            //control.TrySetDefaultProperty(EndIconDisabledColorProperty, ThemeHelper.GetDisabledTrailingIconColor());
+            //control.TrySetDefaultProperty(DisabledEndIconOpacityProperty, ThemeHelper.GetDisabledTrailingIconOpacity());
 
             control.TrySetDefaultProperty(BoxStrokeCornerRadiusProperty, ThemeHelper.GetContainerShape(mode));
-            control.TrySetDefaultProperty(BoxStrokeWidthProperty, ThemeHelper.GetOutlineWidth(mode));
-            control.TrySetDefaultProperty(BoxStrokeFocusedWidthProperty, ThemeHelper.GetFocusedOutlineWidth(mode));
+            //control.TrySetDefaultProperty(BoxStrokeWidthProperty, ThemeHelper.GetOutlineWidth());
+            //control.TrySetDefaultProperty(BoxStrokeFocusedWidthProperty, ThemeHelper.GetFocusedOutlineWidth());
         }
 
         private void TrySetDefaultProperty<T>(BindableProperty property, T value)
@@ -115,10 +109,6 @@ namespace Maui.Android.TextInputLayout
             }
         }
 
-        //protected override ILayoutManager CreateLayoutManager()
-        //{
-        //    return new TextInputLayoutManager(this);
-        //}
 
         public static readonly BindableProperty OutlineColorProperty;
         public static readonly BindableProperty FocusedOutlineColorProperty;
@@ -132,11 +122,9 @@ namespace Maui.Android.TextInputLayout
         public static readonly BindableProperty DisabledHintColorProperty;
         public static readonly BindableProperty DisabledHintOpacityProperty;
         public static readonly BindableProperty IsHintAnimatedProperty;
-        public static readonly BindableProperty TextProperty;
         public static readonly BindableProperty EndIconProperty;
         public static readonly BindableProperty BoxBackgroundModeProperty;
         public static readonly BindableProperty EndIconVisibilityModeProperty;
-        public static readonly BindableProperty TextColorProperty;
         public static readonly BindableProperty EndIconColorProperty;
         public static readonly BindableProperty EndIconDisabledColorProperty;
         public static readonly BindableProperty DisabledEndIconOpacityProperty;
@@ -172,11 +160,10 @@ namespace Maui.Android.TextInputLayout
             {
                 inputView.Text = string.Empty;
             }
-            if (Content is Picker pp)
+            else if (Content is Picker picker)
             {
-                pp.SelectedItem = null;
+                picker.SelectedItem = null;
             }
-            Text = string.Empty;
         }
         public Color OutlineColor
         {
@@ -245,11 +232,6 @@ namespace Maui.Android.TextInputLayout
             set => base.SetValue(IsHintAnimatedProperty, value);
         }
 
-        public string? Text
-        {
-            get => base.GetValue(TextProperty)?.ToString();
-            set => base.SetValue(TextProperty, value);
-        }
 
         [TypeConverter(typeof(ImageSourceConverter))]
         public ImageSource EndIcon
@@ -272,20 +254,6 @@ namespace Maui.Android.TextInputLayout
             set => base.SetValue(EndIconVisibilityModeProperty, value);
         }
 
-        public Color TextColor
-        {
-            get => (Color)GetValue(TextColorProperty);
-            set => SetValue(TextColorProperty, value);
-        }
-
-        /// <summary>
-        /// Unused
-        /// </summary>
-        public Color CursorColor
-        {
-            get => (Color)GetValue(TextColorProperty);
-            set => SetValue(TextColorProperty, value);
-        }
 
         public Color EndIconColor
         {
@@ -382,17 +350,10 @@ namespace Maui.Android.TextInputLayout
             set => SetValue(ErrorTextProperty, value);
         }
 
-        //
         public ICommand EndIconClickedCommand
         {
             get => (ICommand)GetValue(EndIconClickedCommandProperty);
             set => SetValue(EndIconClickedCommandProperty, value);
         }
-
-        public static class OutlineTextField
-        {
-
-        }
-        
     }
 }

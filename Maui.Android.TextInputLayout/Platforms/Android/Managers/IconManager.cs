@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AView = Android.Views.View;
-using RResource = Android.Resource.Attribute;
+using AResource = Android.Resource.Attribute;
 using Android.Widget;
 using Microsoft.Maui.Platform;
 using Google.Android.Material.TextField;
@@ -18,20 +18,20 @@ using static Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
 
 namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
 {
-    public static class EndIconManager
+    public static class IconManager
     {
 
         public static async void ShowEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext mauiContext)
         {
             
             platformView.EndIconVisible = true;
-            platformView.Post(() =>
-            {
+            //platformView.Post(() =>
+            //{
                 platformView.EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconClearText;
                 platformView.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
                 platformView.MapCustomEndIcon(virtualView, mauiContext);
                 platformView.SetEndIconOnClickListener(new OnEndIconClickListener(virtualView));
-            });
+            //});
             
         }
 
@@ -53,20 +53,17 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
                 return;
             }
 
-            platformView.SetEndIconTintList
-            (
-                new ColorStateList
-                (
-                    [
-                        [-RResource.StateEnabled],
-                        [RResource.StateEnabled],
-                    ],
-                    [
-                        virtualView.EndIconDisabledColor.WithAlpha(virtualView.DisabledEndIconOpacity).ToAndroid(),
-                        virtualView.EndIconColor.ToAndroid()
-                    ]
-                )
-            );
+            int[][] states =
+            [
+                [-AResource.StateEnabled],
+                [AResource.StateEnabled],
+            ];
+            int[] colors =
+            [
+                virtualView.EndIconDisabledColor.WithAlpha(virtualView.DisabledEndIconOpacity).ToAndroid(),
+                virtualView.EndIconColor.ToAndroid()
+            ];
+            platformView.SetEndIconTintList(new ColorStateList(states, colors));
         }
 
         public static async void MapCustomEndIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext mauiContext)

@@ -8,12 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RResource = Android.Resource.Attribute;
+using AResource = Android.Resource.Attribute;
 using LLayout = Android.Widget.LinearLayout;
 using Android.Views;
 using Maui.Android.TextInputLayout.Models.Enums;
 namespace Maui.Android.TextInputLayout.Platforms.Android
 {
+    [Obsolete]
     public class MauiTextInputEditText : Google.Android.Material.TextField.TextInputEditText
     {
         public new bool HasFocus { get; set; }

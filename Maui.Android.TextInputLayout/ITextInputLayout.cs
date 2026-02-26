@@ -24,12 +24,10 @@ namespace Maui.Android.TextInputLayout
         Color DisabledHintColor { get; set; }
         float DisabledHintOpacity { get; set; }
         bool IsHintAnimated { get; set; }
-        string? Text { get; set; }
         ImageSource EndIcon { get; set; }
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
         void EndIconClicked();
-        Color TextColor { get; set; }
         Color EndIconColor { get; set; }
         Color EndIconDisabledColor { get; set; }
         float DisabledEndIconOpacity { get; set; }
@@ -42,7 +40,6 @@ namespace Maui.Android.TextInputLayout
         int BoxStrokeFocusedWidth { get; set; }
         bool CounterEnabled { get; set; }
         int CounterMaxLength { get; set; }
-
         Color SuffixTextColor { get; set; }
         Color DisabledSuffixTextColor { get; set; }
         float DisabledSuffixTextColorOpacity { get; set; }

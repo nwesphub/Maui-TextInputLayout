@@ -13,7 +13,6 @@ namespace Maui.Android.TextInputLayout
     {
         public MaterialEntry() : base()
         {
-            ReturnType = ReturnType.Next;
         }
         public BoxBackgroundMode BoxBackgroundMode { get; set; }
 

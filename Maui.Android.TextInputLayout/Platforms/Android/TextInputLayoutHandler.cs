@@ -15,7 +15,7 @@ using static Android.Icu.Text.CaseMap;
 using static Android.Provider.MediaStore;
 using AColor = Android.Graphics.Color;
 using ContextThemeWrapper = AndroidX.AppCompat.View.ContextThemeWrapper;
-using RResource = Android.Resource.Attribute;
+using AResource = Android.Resource.Attribute;
 using AView = Android.Views.View;
 using Maui.Android.TextInputLayout.Platforms.Android.Managers;
 using Javax.Crypto;
@@ -89,7 +89,7 @@ namespace Maui.Android.TextInputLayout
             {
                 _boxBackgroundMode = layout.BoxBackgroundMode;
                 // Setting some default values in the Maui component is not working properly.
-                layout.DisabledHintOpacity = ThemeHelper.GetDisabledLabelTextOpacity(layout.BoxBackgroundMode);
+                layout.DisabledHintOpacity = ThemeHelper.GetDisabledLabelTextOpacity();
                 if (layout.Content is IMaterialEntry materialEntry)
                 {
                     materialEntry.BoxBackgroundMode = layout.BoxBackgroundMode;
@@ -171,9 +171,9 @@ namespace Maui.Android.TextInputLayout
             
             int[][] states =
             [
-                [RResource.StateFocused, RResource.StateEnabled],
-                [RResource.StateEnabled],
-                [-RResource.StateEnabled],
+                [AResource.StateFocused, AResource.StateEnabled],
+                [AResource.StateEnabled],
+                [-AResource.StateEnabled],
             ];
 
             int[] colors =
@@ -188,11 +188,6 @@ namespace Maui.Android.TextInputLayout
         }
 
         
-
-        public static void MapBackground(ITextInputLayoutHandler handler, ITextInputLayout entry) 
-        {
-            
-        }
         public static void MapOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             OutlineManager.ApplyOutlineColors(handler, entry);
@@ -235,7 +230,6 @@ namespace Maui.Android.TextInputLayout
             handler.PlatformView?.ApplyHintColors(entry);
         }
 
-
         public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler?.PlatformView?.MapIsHintAnimated(entry);
@@ -258,7 +252,10 @@ namespace Maui.Android.TextInputLayout
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            if(entry.EndIconVisibilityMode == IconVisibilityMode.Always)
+            // Todo fix end icon visibility modes
+            handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
+            return;
+            if (entry.EndIconVisibilityMode == IconVisibilityMode.Always)
             {
                 handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
             }
@@ -268,12 +265,7 @@ namespace Maui.Android.TextInputLayout
             }
         }
 
-        private static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            ViewHandler.MapIsEnabled(handler, entry);
-            //EndIconManager.MapIsEnabled(handler, entry);
-            
-        }
+  
         private static void MapPrefix(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             if(string.Equals(handler.PlatformView.PrefixText, entry.Prefix, StringComparison.CurrentCulture))
@@ -294,22 +286,41 @@ namespace Maui.Android.TextInputLayout
         }
         private static void MapSupportingText(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
             handler.PlatformView.HelperText = entry.SupportingText;
-            
         }
         private static void MapErrorText(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView.Error = entry.ErrorText;
-            
         }
         private static void MapPrefixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            int[][] states =
+            [
+                [AResource.StateEnabled],
+                [-AResource.StateEnabled]
+            ];
 
+            int[] colors =
+            [
+                entry.PrefixTextColor.ToPlatform(),
+                entry.DisabledPrefixTextColor.WithAlpha(entry.DisabledPrefixTextColorOpacity).ToPlatform()
+            ];
+            handler.PlatformView.PrefixTextColor = new ColorStateList(states, colors);
         }
         private static void MapSuffixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            int[][] states =
+            [
+                [AResource.StateEnabled],
+                [-AResource.StateEnabled]
+            ];
 
+            int[] colors =
+            [
+                entry.SuffixTextColor.ToPlatform(),
+                entry.DisabledSuffixTextColor.WithAlpha(entry.DisabledSuffixTextColorOpacity).ToPlatform()
+            ];
+            handler.PlatformView.SuffixTextColor = new ColorStateList(states, colors);
         }
 
         private static void MapCounterEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)

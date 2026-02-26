@@ -7,9 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RResource = Android.Resource.Attribute;
+using AResource = Android.Resource.Attribute;
 using AColor = Android.Graphics.Color;
-using Maui.Android.TextInputLayout.Platforms.Android.Utilities;
 
 
 namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
@@ -18,32 +17,11 @@ namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
     {
         private static int[][] _states = 
         [
-            [-RResource.StateEnabled],                        // Disabled
-            [RResource.StateEnabled, RResource.StateFocused], // Enabled & Focused
-            [RResource.StateEnabled],                         // Normal
+            [-AResource.StateEnabled],                        // Disabled
+            [AResource.StateEnabled, AResource.StateFocused], // Enabled & Focused
+            [AResource.StateEnabled],                         // Normal
         ];
-        public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView.Hint = entry.Hint;
-        }
-  
-        public static void ApplyHintColors(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView.DefaultHintTextColor = new ColorStateList(
-                _states, 
-                [
-                    entry.DisabledHintColor.WithAlpha(entry.DisabledHintOpacity).ToPlatform(),
-                    entry.FocusedHintColor.ToPlatform(), 
-                    entry.DefaultHintColor.ToPlatform()
-                ]
-            );
-        }
-
-        public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView.ExpandedHintEnabled = entry.IsHintAnimated;
-        }
-
+        
         public static void MapHint(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             platformView.Hint = virtualView.Hint;

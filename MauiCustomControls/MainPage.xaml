@@ -25,7 +25,7 @@
                 Hint="Outline Default"
                 Prefix="$"
                 Suffix="%">
-                <input:MaterialEntry TextColor="Red" />
+                <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
@@ -97,6 +97,9 @@
                 BoxBackgroundMode="Filled"
                 EndIconVisibilityMode="Always"
                 Hint="Filled with Text Disabled"
+                DisabledPrefixTextColor="Red"
+                DisabledSuffixTextColor="Purple"
+                Suffix="%"
                 IsEnabled="{Binding IsEnabled}"
                 Prefix="$">
                 <input:MaterialEntry Text="Filled with Text Disabled" />
@@ -113,9 +116,7 @@
                 FocusedOutlineColor="#6750A4"
                 Hint="Outline"
                 IsEnabled="True"
-                OutlineColor="#79747E"
-                Text="{Binding EntryText}"
-                TextColor="{Binding OutlineEntryColor}">
+                OutlineColor="#79747E">
                 <input:MaterialEntry
                     BackgroundColor="#E6E0E9"
                     FontFamily="Roboto"
@@ -133,9 +134,7 @@
                 FocusedOutlineColor="#6750A4"
                 Hint="Outline"
                 IsEnabled="True"
-                OutlineColor="#79747E"
-                Text="{Binding EntryText}"
-                TextColor="{Binding OutlineEntryColor}">
+                OutlineColor="#79747E">
                 <input:MaterialEntry TextColor="#E6E0E9" />
             </input:TextInputLayout>
             <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Picker">

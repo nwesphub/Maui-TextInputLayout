@@ -17,6 +17,7 @@ using PlatformView = System.Object;
 #endif
 namespace Maui.Android.TextInputLayout
 {
+    [Obsolete]
     public partial class TextInputEditTextHandler : ITextInputEditTextHandler
     {
         public static IPropertyMapper<ITextInputEditText, ITextInputEditTextHandler> PropertyMapper = new PropertyMapper<TextInputEditText, ITextInputEditTextHandler>(ViewHandler.ViewMapper)

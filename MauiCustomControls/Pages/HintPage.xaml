@@ -17,9 +17,7 @@
             FocusedOutlineColor="{Binding OutlineEntryColor}"
             FocusedHintColor="#6750A4"
             Hint="Outline"
-            IsEnabled="True"
-            Text="{Binding EntryText}"
-            TextColor="{Binding OutlineEntryColor}">
+            IsEnabled="True">
             <input:MaterialEntry
                 BackgroundColor="#E6E0E9"
                 Text="{Binding EntryText}"
@@ -35,9 +33,20 @@
             FocusedOutlineColor="{Binding OutlineEntryColor}"
             FocusedHintColor="{Binding OutlineEntryColor}"
             Hint="Outline"
-            IsEnabled="True"
-            Text="{Binding EntryText}"
-            TextColor="{Binding OutlineEntryColor}">
+            IsEnabled="True">
+            <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
+        </input:TextInputLayout>
+        <input:TextInputLayout
+            BackgroundColor="#101010"
+            OutlineColor="{Binding OutlineEntryColor}"
+            BoxBackgroundMode="Filled"
+            DefaultHintColor="Red"
+            EndIconColor="#FFFFFF"
+            EndIconVisibilityMode="WhileEditing"
+            FocusedOutlineColor="{Binding OutlineEntryColor}"
+            FocusedHintColor="{Binding OutlineEntryColor}"
+            Hint="Outline"
+            IsEnabled="False">
             <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
         </input:TextInputLayout>
         <input:TextInputLayout
@@ -51,8 +60,7 @@
             FocusedHintColor="{Binding OutlineEntryColor}"
             Hint="Outline"
             IsEnabled="False"
-            Text="{Binding EntryText}"
-            TextColor="{Binding OutlineEntryColor}">
+            IsHintAnimated="False">
             <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
         </input:TextInputLayout>
         <input:TextInputLayout
@@ -65,25 +73,7 @@
             FocusedOutlineColor="{Binding OutlineEntryColor}"
             FocusedHintColor="{Binding OutlineEntryColor}"
             Hint="Outline"
-            IsEnabled="False"
-            IsHintAnimated="False"
-            Text="{Binding EntryText}"
-            TextColor="{Binding OutlineEntryColor}">
-            <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
-        </input:TextInputLayout>
-        <input:TextInputLayout
-            BackgroundColor="#101010"
-            OutlineColor="{Binding OutlineEntryColor}"
-            BoxBackgroundMode="Filled"
-            DefaultHintColor="Red"
-            EndIconColor="#FFFFFF"
-            EndIconVisibilityMode="WhileEditing"
-            FocusedOutlineColor="{Binding OutlineEntryColor}"
-            FocusedHintColor="{Binding OutlineEntryColor}"
-            Hint="Outline"
-            IsEnabled="True"
-            Text="{Binding EntryText}"
-            TextColor="{Binding OutlineEntryColor}">
+            IsEnabled="True">
             <input:MaterialEntry BackgroundColor="MediumPurple" TextColor="White" />
         </input:TextInputLayout>
     </VerticalStackLayout>

@@ -1,5 +1,4 @@
 ﻿using Android.Content.Res;
-using Maui.Android.TextInputLayout.Platforms.Android.Utilities;
 using Microsoft.Maui.Platform;
 using System;
 using System.Collections.Generic;

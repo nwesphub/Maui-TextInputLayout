@@ -22,19 +22,19 @@ using PlatformEntry = Maui.Android.TextInputLayout.Platforms.Windows.MauiTextInp
 using PlatformView = Maui.Android.TextInputLayout.Platforms.iOS.MauiTextInputLayout;
 using PlatformEntry = Maui.Android.TextInputLayout.Platforms.iOS.MauiTextInputLayout;
 #endif
-using RResource = Android.Resource.Attribute;
+using AResource = Android.Resource.Attribute;
 namespace Maui.Android.TextInputLayout
 {
     public partial class TextInputLayoutHandler : ITextInputLayoutHandler
     {
         public IMaterialEntry VirtualEntry { get; set; }
+        public PlatformEntry PlatformEntry { get; set; }
 
         public static IPropertyMapper<ITextInputLayout, ITextInputLayoutHandler> PropertyMapper = new PropertyMapper<TextInputLayout, ITextInputLayoutHandler>(ViewHandler.ViewMapper)
         {
             [nameof(ITextInputLayout.BackgroundColor)] = MapBackgroundColor,
             [nameof(ITextInputLayout.DisabledBackgroundColor)] = MapBackgroundColor,
             [nameof(ITextInputLayout.DisabledBackgroundColorOpacity)] = MapBackgroundColor,
-            [nameof(ITextInputLayout.Background)] = MapBackground,
             [nameof(ITextInputLayout.OutlineColor)] = MapOutlineColor,
             [nameof(ITextInputLayout.FocusedOutlineColor)] = MapFocusedOutlineColor,
             [nameof(ITextInputLayout.DisabledOutlineColor)] = MapDisabledOutlineColor,
@@ -66,7 +66,6 @@ namespace Maui.Android.TextInputLayout
             [nameof(ITextInputLayout.SuffixTextColor)] = MapSuffixTextColor,
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
-            //[nameof(Microsoft.Maui.ILayout.Padding)] = MapPadding,
             [nameof(IPadding.Padding)] = MapPadding,
         };
 
@@ -74,22 +73,6 @@ namespace Maui.Android.TextInputLayout
         public TextInputLayoutHandler() : base(PropertyMapper, CommandMapper)
         {
             
-        }
-
-        //public MauiTextInputEditText NativeEntry { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        ITextInputLayout? ITextInputLayoutHandler.VirtualView => base.VirtualView;
-
-        private PlatformEntry _platformEntry = default!;
-
-        public PlatformEntry PlatformEntry
-        {
-            get => _platformEntry;
-            set => _platformEntry = value;
-        }
-
-        public void DisconnectHandler()
-        {
         }
     }
 

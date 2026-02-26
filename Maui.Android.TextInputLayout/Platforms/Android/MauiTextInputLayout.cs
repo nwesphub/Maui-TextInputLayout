@@ -12,7 +12,7 @@ using Maui.Android.TextInputLayout.Models.Enums;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using AView = Android.Views.View;
 using LLayout = Android.Widget.LinearLayout;
-using RResource = Android.Resource.Attribute;
+using AResource = Android.Resource.Attribute;
 namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
