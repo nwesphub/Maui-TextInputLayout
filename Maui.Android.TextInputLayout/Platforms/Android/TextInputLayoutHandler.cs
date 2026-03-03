@@ -47,7 +47,16 @@ using static Android.Views.View;
 using static Android.Views.ViewTreeObserver;
 using Layout = Microsoft.Maui.Controls.Layout;
 using Android.Views.InputMethods;
+using AViewGroup = Android.Views.ViewGroup;
 using static Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
+using AViewStates = Android.Views.ViewStates;
+using Microsoft.Maui.Graphics;
+using Google.Android.Material.Internal;
+using Android.Graphics.Drawables.Shapes;
+using AShapeDrawable = Android.Graphics.Drawables.ShapeDrawable;
+using Android.Animation;
+using ABlendMode = Android.Graphics.BlendMode;
+using AProgressBar = Android.Widget.ProgressBar;
 namespace Maui.Android.TextInputLayout
 {
 
@@ -74,11 +83,16 @@ namespace Maui.Android.TextInputLayout
             
             // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
             textInputLayout.BoxCollapsedPaddingTop = 20;
-
+            textInputLayout.EditTextAttached += TextInputLayout_EditTextAttached;
             return textInputLayout;
         }
 
-        public override async void SetVirtualView(IView view)
+        private void TextInputLayout_EditTextAttached(object? sender, EditTextAttachedEventArgs e)
+        {
+
+        }
+
+        public override void SetVirtualView(IView view)
         {
             if(view is not ContentView contentView)
             {
@@ -97,11 +111,18 @@ namespace Maui.Android.TextInputLayout
                 }
             }
             
+            //this.ContainerView.ViewAttachedToWindow += ContainerView_ViewAttachedToWindow;
             PlatformEntry = contentView.Content.ToPlatform(MauiContext!) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
             PlatformEntry.SetMinimumWidth(int.MaxValue);
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
+            
             //DrawableCompat.SetTintList(PlatformEntry.TextCursorDrawable, Colors.Red.ToDefaultColorStateList());
+        }
+
+        private void ContainerView_ViewAttachedToWindow(object? sender, ViewAttachedToWindowEventArgs e)
+        {
+            
         }
 
         protected override void ConnectHandler(MauiTextInputLayout platformView)
@@ -112,6 +133,14 @@ namespace Maui.Android.TextInputLayout
             {
                 PlatformEntry.TextChanged += PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange += PlatformEntry_FocusChange;
+            }
+            PlatformView.SetStartIconOnClickListener(new OnStartIconClickListener(VirtualView));
+            
+            var startIconView = PlatformView.FindViewById<AView>(Resource.Id.text_input_start_icon) as CheckableImageButton;
+  
+            if (startIconView.Background is RippleDrawable rippleDrawable)
+            {
+                //rippleDrawable.SetColor(Colors.Red.ToDefaultColorStateList());
             }
         }
 
@@ -124,6 +153,7 @@ namespace Maui.Android.TextInputLayout
                 PlatformEntry.FocusChange -= PlatformEntry_FocusChange;
             }
             platformView.SetEndIconOnClickListener(null);
+            platformView.SetStartIconOnClickListener(null);
         }
 
         private void PlatformEntry_FocusChange(object? sender, AView.FocusChangeEventArgs e)
@@ -168,10 +198,8 @@ namespace Maui.Android.TextInputLayout
 
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
             int[][] states =
             [
-                [AResource.StateFocused, AResource.StateEnabled],
                 [AResource.StateEnabled],
                 [-AResource.StateEnabled],
             ];
@@ -179,11 +207,11 @@ namespace Maui.Android.TextInputLayout
             int[] colors =
             [
                 entry.BackgroundColor.ToPlatform(),
-                entry.BackgroundColor.ToPlatform(),
                 entry.DisabledBackgroundColor.WithAlpha(entry.DisabledBackgroundColorOpacity).ToPlatform(),
-                
             ];
 
+            // Make sure the background tint is null for Filled mode.
+            handler.PlatformView.BackgroundTintList = Colors.Transparent.ToDefaultColorStateList();
             handler.PlatformView.SetBoxBackgroundColorStateList(new ColorStateList(states, colors));
         }
 
@@ -207,7 +235,13 @@ namespace Maui.Android.TextInputLayout
         public static void MapBoxStrokeCornerRadius(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             var rect = entry.BoxStrokeCornerRadius;
-            handler.PlatformView.SetBoxCornerRadii((float)rect.TopLeft, (float)rect.TopRight, (float)rect.BottomLeft, (float)rect.BottomRight);
+            float density = handler.PlatformView.Context.Resources.DisplayMetrics.Density;
+            float topLeft = (int)(rect.TopLeft * density + 0.5f);
+            float topRight = (int)(rect.TopRight * density + 0.5f);
+            float bottomLeft = (int)(rect.BottomLeft * density + 0.5f);
+            float bottomRight = (int)(rect.BottomRight * density + 0.5f);
+            handler.PlatformView.SetBoxCornerRadii(topLeft, topRight, bottomLeft, bottomRight);
+
         }
         public static void MapBoxStrokeWidth(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
@@ -245,9 +279,19 @@ namespace Maui.Android.TextInputLayout
             handler.PlatformView?.UpdateEndIconColor(entry);
         }
 
+        public static void MapStartIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateStartIconColor(entry);
+        }
+
         public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.MapCustomEndIcon(entry, handler.MauiContext);
+        }
+
+        public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.MapCustomStartIcon(entry, handler.MauiContext);
         }
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -386,6 +430,9 @@ namespace Maui.Android.TextInputLayout
             var contextThemeWrapper = new ContextThemeWrapper(Context, theme);
             var editText = new AppCompatEditText(contextThemeWrapper);
             
+            //editText.SetBackgroundColor(new AColor());
+            // HACK - without start icon
+            //editText.Focus(new FocusRequest(false));
             return editText;
 
 

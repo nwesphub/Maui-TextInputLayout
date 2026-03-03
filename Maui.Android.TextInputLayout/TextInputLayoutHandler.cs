@@ -9,9 +9,6 @@ using Microsoft.Maui.Platform;
 using Maui.Android.TextInputLayout.Utilities;
 using Maui.Android.TextInputLayout.Platforms.Android;
 
-
-
-
 #if ANDROID
 using PlatformView = Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
 using PlatformEntry = Android.Widget.EditText;
@@ -45,11 +42,16 @@ namespace Maui.Android.TextInputLayout
             [nameof(ITextInputLayout.DisabledHintOpacity)] = MapHintOpacity,
             [nameof(ITextInputLayout.IsHintAnimated)] = MapIsHintAnimated,
             [nameof(ITextInputLayout.EndIcon)] = MapEndIcon,
+            [nameof(ITextInputLayout.EndIconColor)] = MapEndIconColor,
+            [nameof(ITextInputLayout.DisabledEndIconColor)] = MapEndIconColor,
+            [nameof(ITextInputLayout.DisabledEndIconOpacity)] = MapEndIconColor,
+            [nameof(ITextInputLayout.StartIcon)] = MapStartIcon,
+            [nameof(ITextInputLayout.StartIconColor)] = MapStartIconColor,
+            [nameof(ITextInputLayout.DisabledStartIconColor)] = MapStartIconColor,
+            [nameof(ITextInputLayout.DisabledStartIconOpacity)] = MapStartIconColor,
             [nameof(ITextInputLayout.BoxBackgroundMode)] = MapBoxBackgroundMode,
             [nameof(ITextInputLayout.EndIconVisibilityMode)] = MapEndIconVisibilityMode,
-            [nameof(ITextInputLayout.EndIconColor)] = MapEndIconColor,
-            [nameof(ITextInputLayout.EndIconDisabledColor)] = MapEndIconColor,
-            [nameof(ITextInputLayout.DisabledEndIconOpacity)] = MapEndIconColor,
+            
             [nameof(ITextInputLayout.Prefix)] = MapPrefix,
             [nameof(ITextInputLayout.Suffix)] = MapSuffix,
             [nameof(ITextInputLayout.SupportingText)] = MapSupportingText,
@@ -66,7 +68,7 @@ namespace Maui.Android.TextInputLayout
             [nameof(ITextInputLayout.SuffixTextColor)] = MapSuffixTextColor,
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
-            [nameof(IPadding.Padding)] = MapPadding,
+            [nameof(IPadding.Padding)] = MapPadding, // Padding isn't mapped by default.
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper);
@@ -80,8 +82,9 @@ namespace Maui.Android.TextInputLayout
     {
         public static new IPropertyMapper<MaterialEntry, MaterialEntryHandler> Mapper = new PropertyMapper<MaterialEntry, MaterialEntryHandler>(EntryHandler.Mapper)
         {
-            [nameof(IMaterialEntry.DisabledTextColor)] = MapDisabledTextColor,
-            [nameof(IMaterialEntry.DisabledTextColorOpacity)] = MapDisabledTextColor,
+            [nameof(IMaterialEntry.TextColor)] = MapTextColor,
+            [nameof(IMaterialEntry.DisabledTextColor)] = MapTextColor,
+            [nameof(IMaterialEntry.DisabledTextColorOpacity)] = MapTextColor,
         };
         public static CommandMapper<MaterialEntry, MaterialEntryHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)
         {
@@ -94,9 +97,10 @@ namespace Maui.Android.TextInputLayout
         {
         }
 
-        public static void MapDisabledTextColor(MaterialEntryHandler handler, MaterialEntry view)
+        public static void MapTextColor(MaterialEntryHandler handler, MaterialEntry view)
         {
-            handler.PlatformView?.UpdateDisabledTextColor(view);
+            
+            handler.PlatformView?.UpdateTextColor(view);
         }
     }
 }

@@ -24,13 +24,21 @@ namespace Maui.Android.TextInputLayout
         Color DisabledHintColor { get; set; }
         float DisabledHintOpacity { get; set; }
         bool IsHintAnimated { get; set; }
-        ImageSource EndIcon { get; set; }
+        
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
         void EndIconClicked();
+
+        ImageSource EndIcon { get; set; }
         Color EndIconColor { get; set; }
-        Color EndIconDisabledColor { get; set; }
+        Color DisabledEndIconColor { get; set; }
         float DisabledEndIconOpacity { get; set; }
+
+        ImageSource StartIcon { get; set; }
+        Color StartIconColor { get; set; }
+        Color DisabledStartIconColor { get; set; }
+        float DisabledStartIconOpacity { get; set; }
+
         string? Prefix { get; set; }
         string? Suffix { get; set; }
         string? SupportingText { get; set; }

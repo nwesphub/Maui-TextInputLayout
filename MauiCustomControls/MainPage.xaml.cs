@@ -15,8 +15,7 @@ namespace MauiCustomControls
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             InitializeComponent();
             var bc = new MainPageViewModel(this);
-            bc.t1 = textinputlayout1;
-            bc.t2 = textinputlayout2;
+      
             BindingContext = bc;
         }
 

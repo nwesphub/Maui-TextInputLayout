@@ -105,13 +105,8 @@ namespace Maui.Android.TextInputLayout.Utilities
             };
 
         // ==================== Leading icon ====================
-        public static Color GetLeadingIconColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.LeadingIconColor,
-                BoxBackgroundMode.Outline => Outlined.LeadingIconColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetLeadingIconColor() => Filled.LeadingIconColor;
+
 
         public static double GetLeadingIconSize(BoxBackgroundMode mode) =>
             mode switch
@@ -365,21 +360,10 @@ namespace Maui.Android.TextInputLayout.Utilities
 
 
         // ==================== Disabled / Leading icon ====================
-        public static Color GetDisabledLeadingIconColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.DisabledLeadingIconColor,
-                BoxBackgroundMode.Outline => Outlined.DisabledLeadingIconColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetDisabledLeadingIconColor() => Filled.DisabledLeadingIconColor;
 
-        public static double GetDisabledLeadingIconOpacity(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.DisabledLeadingIconOpacity,
-                BoxBackgroundMode.Outline => Outlined.DisabledLeadingIconOpacity,
-                _ => 1.0
-            };
+
+        public static float GetDisabledLeadingIconOpacity() => (float)Filled.DisabledLeadingIconOpacity;
 
         // ==================== Disabled / Trailing icon ====================
         public static Color GetDisabledTrailingIconColor() => Filled.DisabledTrailingIconColor;

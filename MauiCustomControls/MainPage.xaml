@@ -15,22 +15,23 @@
         <VerticalStackLayout
             x:Name="test"
             Padding="30,0"
-            Spacing="8">
+            Spacing="4">
 
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-                EndIcon="dotnet_bot.png"
-                EndIconColor="{x:Null}"
+             EndIcon="dotnet_bot.png"
+                StartIcon="search_black.svg"
+
                 EndIconVisibilityMode="WhileEditing"
                 Hint="Outline Default"
+                SupportingText="Test"
                 Prefix="$"
                 Suffix="%">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-                EndIcon="dotnet_bot.png"
-                EndIconColor="{x:Null}"
+    SupportingText="Test"
                 EndIconVisibilityMode="HasText"
                 Hint="Outline Default"
                 Prefix="$"
@@ -41,26 +42,24 @@
                 BoxBackgroundMode="Outline"
                 EndIconVisibilityMode="Always"
                 Hint="Outline Default"
-                Prefix="$"
+                Prefix="$" SupportingText="Test"
                 Suffix="%">
                 <input:MaterialEntry TextColor="Red" />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-                CounterEnabled="true"
-                CounterMaxLength="40"
-                EndIcon="dotnet_bot.png"
+
+             SupportingText="Test"
                 EndIconClickedCommand="{Binding EndIconClickedCommand}"
-                EndIconColor="{x:Null}"
+             
                 EndIconVisibilityMode="Always"
                 Hint="Outline Default"
                 Prefix="$"
-                Suffix="%"
-                SupportingText="Supporting Text">
+                Suffix="%">
                 <input:MaterialEntry TextColor="Red" />
             </input:TextInputLayout>
             <input:TextInputLayout
-                BoxBackgroundMode="Outline"
+                BoxBackgroundMode="Outline" SupportingText="Test"
                 EndIconVisibilityMode="WhileEditing"
                 Hint="Outline Disabled"
                 IsEnabled="{Binding IsEnabled}">
@@ -102,7 +101,7 @@
                 Suffix="%"
                 IsEnabled="{Binding IsEnabled}"
                 Prefix="$">
-                <input:MaterialEntry Text="Filled with Text Disabled" />
+                <input:MaterialEntry Text="Filled with Text Disabled"  />
             </input:TextInputLayout>
             <!--  EndIcon="dotnet_bot"  -->
             <input:TextInputLayout

@@ -12,20 +12,20 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
 {
     public static class MaterialEditTextExtensions
     {
-        public static void UpdateDisabledTextColor(this EditText editText, IMaterialEntry entry)
+        public static void UpdateTextColor(this EditText editText, IMaterialEntry entry)
         {
             int[][] states =
             [
                 [AResource.StateEnabled],
                 [-AResource.StateEnabled]
             ];
-
             
             int[] colors =
             [
-                entry.TextColor?.ToPlatform() ?? ThemeHelper.GetInputTextColor().ToPlatform(),
-                entry.DisabledTextColor?.WithAlpha(entry.DisabledTextColorOpacity)?.ToPlatform() ?? ThemeHelper.GetDisabledInputTextColor().WithAlpha(entry.DisabledTextColorOpacity).ToPlatform()
+                entry.TextColor.ToPlatform(),
+                entry.DisabledTextColor.WithAlpha(entry.DisabledTextColorOpacity).ToPlatform()
             ];
+
             editText.SetTextColor(new ColorStateList(states, colors));
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Maui.Android.TextInputLayout.Models.Enums;
+using Maui.Android.TextInputLayout.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace Maui.Android.TextInputLayout
 {
     public class MaterialPicker : Picker, IMaterialEntry
     {
+        public MaterialPicker()
+        {
+            TextColor = ThemeHelper.GetInputTextColor();
+        }
         public BoxBackgroundMode BoxBackgroundMode { get; set; }
         public static readonly BindableProperty DisabledTextColorProperty = BindableProperty.Create(nameof(DisabledTextColor), typeof(Color), typeof(MaterialPicker));
         public Color DisabledTextColor

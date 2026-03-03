@@ -13,6 +13,7 @@ namespace Maui.Android.TextInputLayout
     {
         public MaterialEntry() : base()
         {
+            TextColor = ThemeHelper.GetInputTextColor();
         }
         public BoxBackgroundMode BoxBackgroundMode { get; set; }
 

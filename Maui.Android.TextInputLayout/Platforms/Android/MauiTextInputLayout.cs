@@ -30,18 +30,17 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
         private void SetDefaults(BoxBackgroundMode boxBackgroundMode)
         {
             
-            
-            
+       
             SetDefaultClearButton();
         }
 
-
+        static int i = 0;
         private void SetDefaultClearButton()
         {
 
             // IMPORTANT: Test focus navigation when changing this code
             //this.EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconClearText;
-            
+
             //Post(() =>
             //{
             //    this.EndIconVisible = true;
@@ -54,7 +53,13 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             //endiconview.Focusable = false;
             //endiconview.FocusableInTouchMode = false;
             //endiconview.SetFocusable(ViewFocusability.NotFocusable);
+            // Removing start icon causes layout to change
+            this.EndIconVisible = true;
+            this.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
+            if(i == 1)
             this.SetStartIconDrawable(Resource.Drawable.ic_search_black_24);
+            
+            i++;
             // Set icon callback function
             //this.SetEndIconOnClickListener(new OnEndIconClickListener(this));
             // set icon visibility
@@ -63,7 +68,7 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
             //this.MauiTextInputEditText.SetPadding(40,0,120,0);
             // Reduces vertical padding between the button and the borders. Otherwise the entry would be very tall vertically
             //this.EndIconMinSize = 120;
-            
+
             //Task.Run(async () =>
             //{
             //    await Task.Delay(10000);
@@ -100,6 +105,20 @@ namespace Maui.Android.TextInputLayout.Platforms.Android
         {
             ITextInputLayout _textInputLayout;
             public OnEndIconClickListener(ITextInputLayout textInputLayout)
+            {
+                _textInputLayout = textInputLayout;
+            }
+
+            public void OnClick(AView? v)
+            {
+                _textInputLayout.EndIconClicked();
+            }
+        }
+
+        public class OnStartIconClickListener : Java.Lang.Object, IOnClickListener
+        {
+            ITextInputLayout _textInputLayout;
+            public OnStartIconClickListener(ITextInputLayout textInputLayout)
             {
                 _textInputLayout = textInputLayout;
             }
