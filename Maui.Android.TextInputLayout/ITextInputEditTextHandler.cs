@@ -15,6 +15,7 @@ using PlatformView = Maui.Android.TextInputLayout.Platforms.iOS.MauiTextInputEdi
 #endif
 namespace Maui.Android.TextInputLayout
 {
+    [Obsolete]
     public interface ITextInputEditTextHandler : IEntryHandler
     {
         new ITextInputEditText? VirtualView { get; }

@@ -54,7 +54,11 @@
 
 	<ItemGroup>
 	  <AndroidResource Remove="Platforms\Android\Resources\layout\maui_text_input_layout.xml" />
-	  <AndroidResource Remove="Platforms\Android\Resources\values\styles.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Platforms\Android\Resources\values\styles.xml" />
+	  <None Remove="Resources\Images\search_black.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -66,6 +70,12 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Maui.Android.TextInputLayout\Maui.Android.TextInputLayout.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\HintPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMauiCustomControlsHideInfoBar="True" /></VisualStudio></ProjectExtensions>

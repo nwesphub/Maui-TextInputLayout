@@ -10,6 +10,7 @@ namespace Maui.Android.TextInputLayout.Models.Enums
     {
         Never,
         Always,
-        WhileEditing
+        WhileEditing,
+        HasText
     }
 }

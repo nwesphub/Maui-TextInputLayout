@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Maui.Android.TextInputLayout
 {
+    [Obsolete]
     public class TextInputEditText : Entry, ITextInputEditText
     {
         public TextInputEditText()

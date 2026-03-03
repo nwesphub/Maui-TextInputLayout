@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 #if ANDROID
 using PlatformView = Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
-using PlatformEntry = Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputEditText;
+using PlatformEntry = Android.Widget.EditText;
 #elif WINDOWS
 using PlatformView = Maui.Android.TextInputLayout.Platforms.Windows.MauiTextInputLayout;
 using PlatformEntry = Maui.Android.TextInputLayout.Platforms.Windows.MauiTextInputEditText;
@@ -20,7 +20,7 @@ namespace Maui.Android.TextInputLayout
         new ITextInputLayout? VirtualView { get; }
         new PlatformView PlatformView { get; }
 
-        ITextInputEditText VirtualEntry { get; set; }
+        IMaterialEntry VirtualEntry { get; set; }
         PlatformEntry PlatformEntry { get; set; }
     }
 }
