@@ -21,13 +21,8 @@ using Microsoft.Maui.Platform;
 #endif
 namespace Nwesp.Maui.Android
 {
-    public partial class TextInputLayout : ContentView, ITextInputLayout
+    public class TextInputLayout : ContentView, ITextInputLayout
     {
-        public TextInputLayout()
-        {
-
-            InitializeComponent();
-        }
 
         static TextInputLayout()
         {
