@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\values\styles.xml" />
+	  <None Remove="Resources\Images\ic_clear_3.svg" />
 	  <None Remove="Resources\Images\search_black.svg" />
 	</ItemGroup>
 

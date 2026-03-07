@@ -9,6 +9,8 @@ using Microsoft.Maui.Platform;
 using Nwesp.Maui.Android.Utilities;
 using Nwesp.Maui.Android.Platforms.Android;
 using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Controls;
+
 
 
 #if ANDROID

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static AndroidX.ConstraintLayout.Core.Motion.Utils.HyperSpline;
 
-namespace Nwesp.Maui.Android
+namespace Nwesp.Maui.Android.Controls
 {
     public class MaterialEntry : Entry, IMaterialEntry
     {
@@ -21,14 +21,14 @@ namespace Nwesp.Maui.Android
         public static readonly BindableProperty DisabledTextColorProperty = BindableProperty.Create(nameof(DisabledTextColor), typeof(Color), typeof(MaterialEntry), defaultValue: ThemeHelper.GetDisabledInputTextColor());
         public Color DisabledTextColor
         {
-            get => (Color)base.GetValue(DisabledTextColorProperty);
-            set => base.SetValue(DisabledTextColorProperty, value);
+            get => (Color)GetValue(DisabledTextColorProperty);
+            set => SetValue(DisabledTextColorProperty, value);
         }
         public static readonly BindableProperty DisabledTextColorOpacityProperty = BindableProperty.Create(nameof(DisabledTextColorOpacity), typeof(float), typeof(MaterialEntry), defaultValue: ThemeHelper.GetDisabledInputTextOpacity());
         public float DisabledTextColorOpacity
         {
-            get => (float)base.GetValue(DisabledTextColorOpacityProperty);
-            set => base.SetValue(DisabledTextColorOpacityProperty, value);
+            get => (float)GetValue(DisabledTextColorOpacityProperty);
+            set => SetValue(DisabledTextColorOpacityProperty, value);
         }
     }
 }

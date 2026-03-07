@@ -58,6 +58,7 @@ using Android.Animation;
 using ABlendMode = Android.Graphics.BlendMode;
 using AProgressBar = Android.Widget.ProgressBar;
 using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Controls;
 namespace Nwesp.Maui.Android
 {
 
@@ -415,7 +416,7 @@ namespace Nwesp.Maui.Android
                         //layoutHandler.PlatformView.RefreshDrawableState();
                     }
                 }
-                if (view is TextInputLayout til && til.Handler is ITextInputLayoutHandler itilh)
+                if (view is Controls.TextInputLayout til && til.Handler is ITextInputLayoutHandler itilh)
                 {
                     //itilh.PlatformView.Invalidate();
                     itilh.PlatformView.InvalidateMeasure(view);

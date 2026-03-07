@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nwesp.Maui.Android
+namespace Nwesp.Maui.Android.Controls
 {
     [Obsolete]
     public class TextInputEditText : Entry, ITextInputEditText
@@ -15,7 +15,7 @@ namespace Nwesp.Maui.Android
         {
 
         }
-        ITextInputLayout ITextInputEditText.Parent => this.Parent as ITextInputLayout;
+        ITextInputLayout ITextInputEditText.Parent => Parent as ITextInputLayout;
         static TextInputEditText()
         {
             BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TextInputEditText));
@@ -26,13 +26,13 @@ namespace Nwesp.Maui.Android
         public static readonly BindableProperty BoxBackgroundModeProperty;
         public new Color BackgroundColor
         {
-            get => (Color)base.GetValue(BackgroundColorProperty);
-            set => base.SetValue(BackgroundColorProperty, value);
+            get => (Color)GetValue(BackgroundColorProperty);
+            set => SetValue(BackgroundColorProperty, value);
         }
         public BoxBackgroundMode BoxBackgroundMode
         {
-            get => (BoxBackgroundMode)base.GetValue(BoxBackgroundModeProperty);
-            set => base.SetValue(BoxBackgroundModeProperty, value);
-        } 
+            get => (BoxBackgroundMode)GetValue(BoxBackgroundModeProperty);
+            set => SetValue(BoxBackgroundModeProperty, value);
+        }
     }
 }

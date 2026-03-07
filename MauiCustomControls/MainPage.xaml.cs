@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Nwesp.Maui.Android;
 using MauiCustomControls.Pages;
 using System.Collections.ObjectModel;
+using Nwesp.Maui.Android.Controls;
 
 namespace MauiCustomControls
 {

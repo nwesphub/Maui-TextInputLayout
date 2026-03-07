@@ -18,10 +18,11 @@ using Nwesp.Maui.Android.Abstractions;
 
 
 
+
 #if ANDROID
 using Microsoft.Maui.Platform;
 #endif
-namespace Nwesp.Maui.Android
+namespace Nwesp.Maui.Android.Controls
 {
     public class TextInputLayout : ContentView, ITextInputLayout
     {
@@ -39,7 +40,7 @@ namespace Nwesp.Maui.Android
             DisabledHintColorProperty = BindableProperty.Create(nameof(DisabledHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextColor());
             DisabledHintOpacityProperty = BindableProperty.Create(nameof(DisabledHintOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextOpacity());
             IsHintAnimatedProperty = BindableProperty.Create(nameof(IsHintAnimated), typeof(bool), typeof(TextInputLayout), defaultValue: true);
-            
+
             BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout), defaultBindingMode: BindingMode.OneTime, propertyChanged: BoxBackgroundModePropertyChanged);
             EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
 
@@ -80,7 +81,7 @@ namespace Nwesp.Maui.Android
 
         private static void BoxBackgroundModePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if(bindable is not TextInputLayout control || newValue is not BoxBackgroundMode mode)
+            if (bindable is not TextInputLayout control || newValue is not BoxBackgroundMode mode)
             {
                 return;
             }
@@ -133,7 +134,7 @@ namespace Nwesp.Maui.Android
         public static readonly BindableProperty DisabledHintColorProperty;
         public static readonly BindableProperty DisabledHintOpacityProperty;
         public static readonly BindableProperty IsHintAnimatedProperty;
-        
+
         public static readonly BindableProperty BoxBackgroundModeProperty;
         public static readonly BindableProperty EndIconVisibilityModeProperty;
 
@@ -166,7 +167,7 @@ namespace Nwesp.Maui.Android
         public static readonly BindableProperty DisabledPrefixTextColorOpacityProperty;
         public static readonly BindableProperty EndIconClickedCommandProperty;
 
-        
+
         public void EndIconClicked()
         {
             if (EndIconClickedCommand is not null)
@@ -186,69 +187,69 @@ namespace Nwesp.Maui.Android
         }
         public Color OutlineColor
         {
-            get => (Color)base.GetValue(OutlineColorProperty);
-            set => base.SetValue(OutlineColorProperty, value);
+            get => (Color)GetValue(OutlineColorProperty);
+            set => SetValue(OutlineColorProperty, value);
         }
 
         public Color FocusedOutlineColor
         {
-            get => (Color)base.GetValue(FocusedOutlineColorProperty);
-            set => base.SetValue(FocusedOutlineColorProperty, value);
+            get => (Color)GetValue(FocusedOutlineColorProperty);
+            set => SetValue(FocusedOutlineColorProperty, value);
         }
         public Color DisabledOutlineColor
         {
-            get => (Color)base.GetValue(DisabledOutlineColorProperty);
-            set => base.SetValue(DisabledOutlineColorProperty, value);
+            get => (Color)GetValue(DisabledOutlineColorProperty);
+            set => SetValue(DisabledOutlineColorProperty, value);
         }
         public float DisabledOutlineOpacity
         {
-            get => (float)base.GetValue(DisabledOutlineOpacityProperty);
-            set => base.SetValue(DisabledOutlineOpacityProperty, value);
+            get => (float)GetValue(DisabledOutlineOpacityProperty);
+            set => SetValue(DisabledOutlineOpacityProperty, value);
         }
         public Color DisabledBackgroundColor
         {
-            get => (Color)base.GetValue(DisabledBackgroundColorProperty);
-            set => base.SetValue(DisabledBackgroundColorProperty, value);
+            get => (Color)GetValue(DisabledBackgroundColorProperty);
+            set => SetValue(DisabledBackgroundColorProperty, value);
         }
 
         public float DisabledBackgroundColorOpacity
         {
-            get => (float)base.GetValue(DisabledBackgroundColorOpacityProperty);
-            set => base.SetValue(DisabledBackgroundColorOpacityProperty, value);
+            get => (float)GetValue(DisabledBackgroundColorOpacityProperty);
+            set => SetValue(DisabledBackgroundColorOpacityProperty, value);
         }
 
         public string Hint
         {
-            get => base.GetValue(HintProperty)?.ToString() ?? string.Empty;
-            set => base.SetValue(HintProperty, value);
+            get => GetValue(HintProperty)?.ToString() ?? string.Empty;
+            set => SetValue(HintProperty, value);
         }
 
         public Color DefaultHintColor
         {
-            get => (Color)base.GetValue(DefaultHintColorProperty);
-            set => base.SetValue(DefaultHintColorProperty, value);
+            get => (Color)GetValue(DefaultHintColorProperty);
+            set => SetValue(DefaultHintColorProperty, value);
         }
 
         public Color FocusedHintColor
         {
-            get => (Color)base.GetValue(FocusedHintColorProperty);
-            set => base.SetValue(FocusedHintColorProperty, value);
+            get => (Color)GetValue(FocusedHintColorProperty);
+            set => SetValue(FocusedHintColorProperty, value);
         }
         public Color DisabledHintColor
         {
-            get => (Color)base.GetValue(DisabledHintColorProperty);
-            set => base.SetValue(DisabledHintColorProperty, value);
+            get => (Color)GetValue(DisabledHintColorProperty);
+            set => SetValue(DisabledHintColorProperty, value);
         }
         public float DisabledHintOpacity
         {
-            get => (float)base.GetValue(DisabledOutlineOpacityProperty);
-            set => base.SetValue(DisabledOutlineOpacityProperty, value);
+            get => (float)GetValue(DisabledOutlineOpacityProperty);
+            set => SetValue(DisabledOutlineOpacityProperty, value);
         }
 
         public bool IsHintAnimated
         {
-            get => (bool)base.GetValue(IsHintAnimatedProperty);
-            set => base.SetValue(IsHintAnimatedProperty, value);
+            get => (bool)GetValue(IsHintAnimatedProperty);
+            set => SetValue(IsHintAnimatedProperty, value);
         }
 
         /// <summary>
@@ -256,20 +257,20 @@ namespace Nwesp.Maui.Android
         /// </summary>
         public BoxBackgroundMode BoxBackgroundMode
         {
-            get => (BoxBackgroundMode)base.GetValue(BoxBackgroundModeProperty);
-            set => base.SetValue(BoxBackgroundModeProperty, value);
+            get => (BoxBackgroundMode)GetValue(BoxBackgroundModeProperty);
+            set => SetValue(BoxBackgroundModeProperty, value);
         }
         public IconVisibilityMode EndIconVisibilityMode
         {
-            get => (IconVisibilityMode)base.GetValue(EndIconVisibilityModeProperty);
-            set => base.SetValue(EndIconVisibilityModeProperty, value);
+            get => (IconVisibilityMode)GetValue(EndIconVisibilityModeProperty);
+            set => SetValue(EndIconVisibilityModeProperty, value);
         }
 
         [TypeConverter(typeof(ImageSourceConverter))]
         public ImageSource EndIcon
         {
-            get => (ImageSource)base.GetValue(EndIconProperty);
-            set => base.SetValue(EndIconProperty, value);
+            get => (ImageSource)GetValue(EndIconProperty);
+            set => SetValue(EndIconProperty, value);
         }
         public Color EndIconColor
         {
@@ -291,8 +292,8 @@ namespace Nwesp.Maui.Android
         [TypeConverter(typeof(ImageSourceConverter))]
         public ImageSource StartIcon
         {
-            get => (ImageSource)base.GetValue(StartIconProperty);
-            set => base.SetValue(StartIconProperty, value);
+            get => (ImageSource)GetValue(StartIconProperty);
+            set => SetValue(StartIconProperty, value);
         }
         public Color StartIconColor
         {
@@ -313,8 +314,8 @@ namespace Nwesp.Maui.Android
 
         public string? Prefix
         {
-            get => base.GetValue(PrefixProperty)?.ToString();
-            set => base.SetValue(PrefixProperty, value);
+            get => GetValue(PrefixProperty)?.ToString();
+            set => SetValue(PrefixProperty, value);
         }
         public Color PrefixTextColor
         {
@@ -333,8 +334,8 @@ namespace Nwesp.Maui.Android
         }
         public string? Suffix
         {
-            get => base.GetValue(SuffixProperty)?.ToString();
-            set => base.SetValue(SuffixProperty, value);
+            get => GetValue(SuffixProperty)?.ToString();
+            set => SetValue(SuffixProperty, value);
         }
         public Color SuffixTextColor
         {
@@ -353,14 +354,14 @@ namespace Nwesp.Maui.Android
         }
         public string? SupportingText
         {
-            get => base.GetValue(SupportingTextProperty)?.ToString();
-            set => base.SetValue(SupportingTextProperty, value);
+            get => GetValue(SupportingTextProperty)?.ToString();
+            set => SetValue(SupportingTextProperty, value);
         }
 
         public CornerRadius BoxStrokeCornerRadius
         {
-            get => (CornerRadius)base.GetValue(BoxStrokeCornerRadiusProperty);
-            set => base.SetValue(BoxStrokeCornerRadiusProperty, value);
+            get => (CornerRadius)GetValue(BoxStrokeCornerRadiusProperty);
+            set => SetValue(BoxStrokeCornerRadiusProperty, value);
         }
         public int BoxStrokeWidth
         {

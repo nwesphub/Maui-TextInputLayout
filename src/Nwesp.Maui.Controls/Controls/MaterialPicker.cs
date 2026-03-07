@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nwesp.Maui.Android
+namespace Nwesp.Maui.Android.Controls
 {
     public class MaterialPicker : Picker, IMaterialEntry
     {
@@ -19,14 +19,14 @@ namespace Nwesp.Maui.Android
         public static readonly BindableProperty DisabledTextColorProperty = BindableProperty.Create(nameof(DisabledTextColor), typeof(Color), typeof(MaterialPicker));
         public Color DisabledTextColor
         {
-            get => (Color)base.GetValue(DisabledTextColorProperty);
-            set => base.SetValue(DisabledTextColorProperty, value);
+            get => (Color)GetValue(DisabledTextColorProperty);
+            set => SetValue(DisabledTextColorProperty, value);
         }
         public static readonly BindableProperty DisabledTextColorOpacityProperty = BindableProperty.Create(nameof(DisabledTextColorOpacity), typeof(float), typeof(MaterialPicker));
         public float DisabledTextColorOpacity
         {
-            get => (float)base.GetValue(DisabledTextColorOpacityProperty);
-            set => base.SetValue(DisabledTextColorOpacityProperty, value);
+            get => (float)GetValue(DisabledTextColorOpacityProperty);
+            set => SetValue(DisabledTextColorOpacityProperty, value);
         }
     }
 }
