@@ -13,6 +13,7 @@ using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using AView = Android.Views.View;
 using LLayout = Android.Widget.LinearLayout;
 using AResource = Android.Resource.Attribute;
+using ASound = Android.Views.SoundEffects;
 using Nwesp.Maui.Android.Abstractions;
 namespace Nwesp.Maui.Android.Platforms.Android
 {
@@ -35,71 +36,11 @@ namespace Nwesp.Maui.Android.Platforms.Android
             SetDefaultClearButton();
         }
 
-        static int i = 0;
         private void SetDefaultClearButton()
         {
-
-            // IMPORTANT: Test focus navigation when changing this code
-            //this.EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconClearText;
-
-            //Post(() =>
-            //{
-            //    this.EndIconVisible = true;
-
-            //});
-            //this.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
-            // IMPORTANT: Test focus navigation when changing this code
-
-            //var endiconview = this.FindViewById(Resource.Id.text_input_end_icon);
-            //endiconview.Focusable = false;
-            //endiconview.FocusableInTouchMode = false;
-            //endiconview.SetFocusable(ViewFocusability.NotFocusable);
-            // Removing start icon causes layout to change
-            this.EndIconVisible = true;
-            this.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
-            if(i == 1)
-            this.SetStartIconDrawable(Resource.Drawable.ic_search_black_24);
+            //EndIconVisible = false;
+            EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconClearText;
             
-            i++;
-            // Set icon callback function
-            //this.SetEndIconOnClickListener(new OnEndIconClickListener(this));
-            // set icon visibility
-            //this.EndIconVisible = true;
-            // Padding to prevent text from overlapping the button
-            //this.MauiTextInputEditText.SetPadding(40,0,120,0);
-            // Reduces vertical padding between the button and the borders. Otherwise the entry would be very tall vertically
-            //this.EndIconMinSize = 120;
-
-            //Task.Run(async () =>
-            //{
-            //    await Task.Delay(10000);
-            //    var startIcon = this.FindViewById<CheckableImageButton>(
-            //Resource.Id.text_input_start_icon);
-            //    var padding1 = startIcon.PaddingLeft;
-            //    var padding3 = startIcon.PaddingRight;
-            //    var padding5 = startIcon.PaddingBottom;
-            //    var padding4 = startIcon.PaddingTop;
-            //});
-
-            //var endicon = this.FindViewById<CheckableImageButton>(
-            //Resource.Id.text_input_end_icon);
-            ////endicon.SetMinimumHeight(132);
-            //endicon.SetMinimumWidth(132);
-            //endicon.SetPaddingRelative(24,24,24,24);
-            //this.SetPadding(PaddingLeft, PaddingTop, PaddingRight + 48, PaddingBottom);
-            // Removes the underline under the text in the entry
-            //this.MauiTextInputEditText.InputType = InputTypes.TextVariationVisiblePassword | InputTypes.TextFlagNoSuggestions;
-
-            //// Set end icon - clear button
-            //this.SetStartIconDrawable(Resource.Drawable.ic_clear_2);
-            //// Set icon callback function
-            //this.SetStartIconOnClickListener(new OnEndIconClickListener(this));
-            //// set icon visibility
-            //this.StartIconVisible = true;
-            //// Padding to prevent text from overlapping the button
-            ////this.MauiTextInputEditText.SetPadding(40,0,120,0);
-            //// Reduces vertical padding between the button and the borders. Otherwise the entry would be very tall vertically
-            //this.StartIconMinSize = 120;
         }
 
         public class OnEndIconClickListener : Java.Lang.Object, IOnClickListener

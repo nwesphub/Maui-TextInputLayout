@@ -26,13 +26,10 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 
         public static async void ShowEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext mauiContext)
         {
-           
-            platformView.EndIconVisible = true;
+    
             platformView.Post(() =>
             {
-            
-                platformView.EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconClearText;
-                platformView.SetEndIconDrawable(Resource.Drawable.ic_clear_2);
+                platformView.EndIconVisible = true;
                 platformView.MapCustomEndIcon(virtualView, mauiContext);
                 platformView.SetEndIconOnClickListener(new OnEndIconClickListener(virtualView));
             });
@@ -41,10 +38,9 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 
         public static void HideEndIcon(this MauiTextInputLayout platformView)
         {
-            
+   
             platformView.Post(() =>
             {
-                platformView.EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconNone;
                 platformView.EndIconVisible = false;
             });
         }
@@ -87,63 +83,34 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             platformView.SetStartIconTintList(GetIconColorStateList(virtualView.StartIconColor, virtualView.DisabledStartIconColor, virtualView.DisabledStartIconOpacity));
         }
 
-        public static async void MapCustomEndIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext mauiContext)
+        public static async Task MapCustomEndIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext? mauiContext)
         {
-            //return;
-            if (entry.EndIcon is null)
-            {
-                return;
-            }
-            try
-            {
-
-
-                var result = await entry.EndIcon.GetPlatformImageAsync(mauiContext);
-                if (result?.Value is not BitmapDrawable bitmapDrawable)
-                    return;
-
-                // Convert 24dp to pixels
-                float density = handler.Context.Resources.DisplayMetrics.Density;
-                int sizePx = (int)(24 * density + 0.5f);
-
-                var scaledBitmap = Bitmap.CreateScaledBitmap(
-                    bitmapDrawable.Bitmap,
-                    sizePx,
-                    sizePx,
-                    true);
-
-                var drawable = new BitmapDrawable(handler.Context.Resources, scaledBitmap);
-
-                handler.EndIconDrawable = drawable;
-                handler.SetEndIconTintList(null);
-                
-            }
-            catch (Exception ex)
-            {
-
-            }
+            handler.EndIconDrawable = await MapCustomIcon(entry.EndIcon, mauiContext);
         }
 
-        public static async void MapCustomStartIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext mauiContext)
+        public static async Task MapCustomStartIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext? mauiContext)
         {
-            //return;
-            if (entry.StartIcon is null)
-            {
-                return;
-            }
-            try
-            {
-                var result = await entry.StartIcon.GetPlatformImageAsync(mauiContext);
-                handler.StartIconDrawable = result.Value;
-                handler.SetStartIconTintList(null);
-
-            }
-            catch (Exception ex)
-            {
-
-            }
+            handler.StartIconDrawable =  await MapCustomIcon(entry.StartIcon, mauiContext);
         }
 
+        private static async Task<Drawable?> MapCustomIcon(ImageSource icon, IMauiContext? mauiContext)
+        {
+            if (icon is null || mauiContext is null)
+            {
+                return null;
+            }
+
+            Drawable? result = null;
+            try
+            {
+                result = (await icon.GetPlatformImageAsync(mauiContext))?.Value;
+            }
+            catch(Exception) 
+            { 
+            }
+
+            return result;
+        }
 
     }
 }

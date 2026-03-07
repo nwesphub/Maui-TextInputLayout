@@ -21,8 +21,8 @@
 	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\drawable\colors.xml" />
 	  <None Remove="Platforms\Android\Resources\drawable\ic_clear.xml" />
-	  <None Remove="Platforms\Android\Resources\drawable\ic_clear_2.xml" />
 	  <None Remove="Platforms\Android\Resources\styles\textinputstyles.xml" />
+	  <None Remove="Resources\Images\material_clear.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -49,6 +49,10 @@
 	  <Folder Include="Platforms\Android\Resources\layout\" />
 	  <Folder Include="Platforms\Android\Resources\styles\" />
 	  <Folder Include="Platforms\Android\Resources\values\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\material_clear.svg" />
 	</ItemGroup>
 
 </Project>

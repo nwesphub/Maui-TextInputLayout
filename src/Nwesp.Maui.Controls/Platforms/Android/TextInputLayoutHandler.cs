@@ -85,14 +85,10 @@ namespace Nwesp.Maui.Android
 
             // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
             textInputLayout.BoxCollapsedPaddingTop = (int)(8 * density);
-            textInputLayout.EditTextAttached += TextInputLayout_EditTextAttached;
             return textInputLayout;
         }
 
-        private void TextInputLayout_EditTextAttached(object? sender, EditTextAttachedEventArgs e)
-        {
-
-        }
+  
 
         public override void SetVirtualView(IView view)
         {
@@ -111,6 +107,7 @@ namespace Nwesp.Maui.Android
                     materialEntry.BoxBackgroundMode = layout.BoxBackgroundMode;
                     VirtualEntry = materialEntry;
                 }
+            
             }
             
             //this.ContainerView.ViewAttachedToWindow += ContainerView_ViewAttachedToWindow;
@@ -138,12 +135,12 @@ namespace Nwesp.Maui.Android
             }
             PlatformView.SetStartIconOnClickListener(new OnStartIconClickListener(VirtualView));
             
-            var startIconView = PlatformView.FindViewById<AView>(Resource.Id.text_input_start_icon) as CheckableImageButton;
+            //var startIconView = PlatformView.FindViewById<AView>(Resource.Id.text_input_start_icon) as CheckableImageButton;
   
-            if (startIconView.Background is RippleDrawable rippleDrawable)
-            {
-                //rippleDrawable.SetColor(Colors.Red.ToDefaultColorStateList());
-            }
+            //if (startIconView.Background is RippleDrawable rippleDrawable)
+            //{
+            //    //rippleDrawable.SetColor(Colors.Red.ToDefaultColorStateList());
+            //}
         }
 
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
@@ -298,7 +295,6 @@ namespace Nwesp.Maui.Android
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            // Todo fix end icon visibility modes
             handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
             return;
             if (entry.EndIconVisibilityMode == IconVisibilityMode.Always)
@@ -323,12 +319,22 @@ namespace Nwesp.Maui.Android
             handler.PlatformView.Post(() =>
             {
                 handler.PlatformView.PrefixText = entry.Prefix;
+                handler.PlatformView.InvalidateMeasure(entry);
             });
         }
 
         private static void MapSuffix(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView.SuffixText = entry.Suffix;
+            if (string.Equals(handler.PlatformView.SuffixText, entry.Suffix, StringComparison.CurrentCulture))
+            {
+                return;
+            }
+
+            handler.PlatformView.Post(() =>
+            {
+                handler.PlatformView.SuffixText = entry.Suffix;
+                handler.PlatformView.InvalidateMeasure(entry);
+            });
         }
         private static void MapSupportingText(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {

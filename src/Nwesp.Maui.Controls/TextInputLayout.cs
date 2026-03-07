@@ -43,7 +43,7 @@ namespace Nwesp.Maui.Android
             BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout), defaultBindingMode: BindingMode.OneTime, propertyChanged: BoxBackgroundModePropertyChanged);
             EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
 
-            EndIconProperty = BindableProperty.Create(nameof(EndIcon), typeof(ImageSource), typeof(TextInputLayout));
+            EndIconProperty = BindableProperty.Create(nameof(EndIcon), typeof(ImageSource), typeof(TextInputLayout), defaultValue: ImageSource.FromFile("material_clear.svg"));
             EndIconColorProperty = BindableProperty.Create(nameof(EndIconColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetTrailingIconColor());
             DisabledEndIconColorProperty = BindableProperty.Create(nameof(DisabledEndIconColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledTrailingIconColor());
             DisabledEndIconOpacityProperty = BindableProperty.Create(nameof(DisabledEndIconOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledTrailingIconOpacity());
