@@ -57,6 +57,7 @@ using AShapeDrawable = Android.Graphics.Drawables.ShapeDrawable;
 using Android.Animation;
 using ABlendMode = Android.Graphics.BlendMode;
 using AProgressBar = Android.Widget.ProgressBar;
+using Nwesp.Maui.Android.Abstractions;
 namespace Nwesp.Maui.Android
 {
 

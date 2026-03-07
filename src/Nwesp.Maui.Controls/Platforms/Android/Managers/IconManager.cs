@@ -17,6 +17,7 @@ using Google.Android.Material.TextField;
 using static Nwesp.Maui.Android.Platforms.Android.MauiTextInputLayout;
 using AndroidX.Core.Graphics.Drawable;
 using MColor = Microsoft.Maui.Graphics.Color;
+using Nwesp.Maui.Android.Abstractions;
 
 namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {

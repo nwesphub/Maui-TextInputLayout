@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AResource = Android.Resource.Attribute;
 using AColor = Android.Graphics.Color;
+using Nwesp.Maui.Android.Abstractions;
 
 
 namespace Nwesp.Maui.Android.Platforms.Android.Managers

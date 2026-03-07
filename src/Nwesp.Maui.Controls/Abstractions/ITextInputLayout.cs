@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nwesp.Maui.Android
+namespace Nwesp.Maui.Android.Abstractions
 {
     public interface ITextInputLayout : IView, IContentView
     {
@@ -24,7 +24,7 @@ namespace Nwesp.Maui.Android
         Color DisabledHintColor { get; set; }
         float DisabledHintOpacity { get; set; }
         bool IsHintAnimated { get; set; }
-        
+
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
         void EndIconClicked();

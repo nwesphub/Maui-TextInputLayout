@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nwesp.Maui.Android
+namespace Nwesp.Maui.Android.Abstractions
 {
     [Obsolete]
     public interface ITextInputEditText : IEntry

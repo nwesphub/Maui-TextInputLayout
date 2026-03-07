@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AResource = Android.Resource.Attribute;
+using Nwesp.Maui.Android.Abstractions;
 namespace Nwesp.Maui.Android.Platforms.Android
 {
     public static class MaterialEditTextExtensions

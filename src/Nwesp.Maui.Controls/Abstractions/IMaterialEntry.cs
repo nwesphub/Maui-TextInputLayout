@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nwesp.Maui.Android
+namespace Nwesp.Maui.Android.Abstractions
 {
     public interface IMaterialEntry : IView, ITextStyle
     {
@@ -14,7 +14,7 @@ namespace Nwesp.Maui.Android
         {
             return (view as IMaterialEntry)?.BoxBackgroundMode ?? BoxBackgroundMode.None;
         }
-        
+
         Color DisabledTextColor { get; set; }
         float DisabledTextColorOpacity { get; set; }
     }

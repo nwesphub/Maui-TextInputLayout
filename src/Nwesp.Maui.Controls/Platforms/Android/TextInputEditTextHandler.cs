@@ -16,6 +16,7 @@ using Android.Widget;
 using Android.Text;
 using Nwesp.Maui.Android.Platforms.Android.Managers;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Nwesp.Maui.Android.Abstractions;
 
 
 namespace Nwesp.Maui.Android

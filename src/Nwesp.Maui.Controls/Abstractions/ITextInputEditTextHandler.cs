@@ -13,7 +13,7 @@ using ATextInputLayout = object;
 #elif IOS || MACCATALYST
 using PlatformView = Nwesp.Maui.Android.Platforms.iOS.MauiTextInputEditText;
 #endif
-namespace Nwesp.Maui.Android
+namespace Nwesp.Maui.Android.Abstractions
 {
     [Obsolete]
     public interface ITextInputEditTextHandler : IEntryHandler

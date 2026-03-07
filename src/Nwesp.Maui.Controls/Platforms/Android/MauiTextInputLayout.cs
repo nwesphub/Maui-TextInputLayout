@@ -13,6 +13,7 @@ using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using AView = Android.Views.View;
 using LLayout = Android.Widget.LinearLayout;
 using AResource = Android.Resource.Attribute;
+using Nwesp.Maui.Android.Abstractions;
 namespace Nwesp.Maui.Android.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
