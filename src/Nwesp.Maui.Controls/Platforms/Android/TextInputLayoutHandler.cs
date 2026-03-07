@@ -69,7 +69,7 @@ namespace Nwesp.Maui.Android
         {
             if(_boxBackgroundMode == BoxBackgroundMode.None)
             {
-                return new MauiTextInputLayout(Context, _boxBackgroundMode);
+                return new MauiTextInputLayout(Context);
             }
 
             int theme = Resource.Style.ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense;
@@ -79,13 +79,8 @@ namespace Nwesp.Maui.Android
             }
             
             var contextThemeWrapper = new ContextThemeWrapper(Context, theme);
-            var mauiContext = MauiContext;
             
-            var textInputLayout =  new MauiTextInputLayout(contextThemeWrapper, _boxBackgroundMode);
-            var density = Context.Resources.DisplayMetrics.Density;
-
-            // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
-            textInputLayout.BoxCollapsedPaddingTop = (int)(8 * density);
+            var textInputLayout =  new MauiTextInputLayout(contextThemeWrapper);
             return textInputLayout;
         }
 
@@ -111,7 +106,6 @@ namespace Nwesp.Maui.Android
             
             }
             
-            //this.ContainerView.ViewAttachedToWindow += ContainerView_ViewAttachedToWindow;
             PlatformEntry = contentView.Content.ToPlatform(MauiContext!) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
             PlatformEntry.SetMinimumWidth(int.MaxValue);
             base.SetVirtualView(view);
@@ -120,10 +114,6 @@ namespace Nwesp.Maui.Android
             //DrawableCompat.SetTintList(PlatformEntry.TextCursorDrawable, Colors.Red.ToDefaultColorStateList());
         }
 
-        private void ContainerView_ViewAttachedToWindow(object? sender, ViewAttachedToWindowEventArgs e)
-        {
-            
-        }
 
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
@@ -235,7 +225,7 @@ namespace Nwesp.Maui.Android
         public static void MapBoxStrokeCornerRadius(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             var rect = entry.BoxStrokeCornerRadius;
-            float density = handler.PlatformView.Context.Resources.DisplayMetrics.Density;
+            float density = handler.PlatformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75f;
             float topLeft = (int)(rect.TopLeft * density + 0.5f);
             float topRight = (int)(rect.TopRight * density + 0.5f);
             float bottomLeft = (int)(rect.BottomLeft * density + 0.5f);
@@ -389,41 +379,6 @@ namespace Nwesp.Maui.Android
             var padding = entry.Padding;
             handler.PlatformView?.SetPadding((int)padding.Left, (int)padding.Top, (int)padding.Right, (int)padding.Bottom);
         }
-        //private static void MapIsMultiLine(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        //{
-        //    handler.PlatformEntry.SetSingleLine(!entry.IsMultiLine);
-
-        //    return;
-        //    // Hacky solution to prevent border getting cut off on entries below the multi line. InvalidateMeasure(view) needs to be called on the affected views
-
-        //    if (entry is Microsoft.Maui.Controls.View view)
-        //    {
-        //        view.SizeChanged += View_SizeChanged;
-        //    }
-
-        //}
-
-        private static void View_SizeChanged(object? sender, EventArgs e)
-        {
-            if (sender is Microsoft.Maui.Controls.View view)
-            {
-                if (view.Parent is Layout layout)
-                {
-                    if (layout.Handler is LayoutHandler layoutHandler)
-                    {
-                        //layoutHandler.PlatformView.Invalidate();
-                        //layoutHandler.PlatformView.InvalidateMeasure(view);
-                        //layoutHandler.PlatformView.RefreshDrawableState();
-                    }
-                }
-                if (view is Controls.TextInputLayout til && til.Handler is ITextInputLayoutHandler itilh)
-                {
-                    //itilh.PlatformView.Invalidate();
-                    itilh.PlatformView.InvalidateMeasure(view);
-                    //itilh.PlatformView.RefreshDrawableState();
-                }
-            }
-        }
 
     }
     public partial class MaterialEntryHandler : EntryHandler
@@ -438,13 +393,7 @@ namespace Nwesp.Maui.Android
 
             var contextThemeWrapper = new ContextThemeWrapper(Context, theme);
             var editText = new AppCompatEditText(contextThemeWrapper);
-            
-            //editText.SetBackgroundColor(new AColor());
-            // HACK - without start icon
-            //editText.Focus(new FocusRequest(false));
             return editText;
-
-
         }
         private BoxBackgroundMode _boxBackgroundMode;
         public override void SetVirtualView(IView view)
@@ -487,10 +436,7 @@ namespace Nwesp.Maui.Android
             var contextThemeWrapper = new ContextThemeWrapper(context, style);
 
             T editText = constructor(contextThemeWrapper);
-            MauiTextInputEditText.SetStaticDefaults(editText);
             return editText;
         }
     }
-
-    
 }

@@ -86,31 +86,12 @@ namespace Nwesp.Maui.Android.Controls
                 return;
             }
 
-            // Outline
-            //control.TrySetDefaultProperty(OutlineColorProperty, ThemeHelper.GetOutlineColor());
-            //control.TrySetDefaultProperty(FocusedOutlineColorProperty, ThemeHelper.GetFocusedOutlineColor());
-            //control.TrySetDefaultProperty(DisabledOutlineColorProperty, ThemeHelper.GetDisabledOutlineColor());
-            //control.TrySetDefaultProperty(DisabledOutlineOpacityProperty, ThemeHelper.GetDisabledOutlineOpacity());
-
-            // Hint
-            //control.TrySetDefaultProperty(DefaultHintColorProperty, ThemeHelper.GetLabelTextColor());
-            //control.TrySetDefaultProperty(FocusedHintColorProperty, ThemeHelper.GetFocusedLabelTextColor());
-            //control.TrySetDefaultProperty(DisabledHintColorProperty, ThemeHelper.GetDisabledLabelTextColor());
-            //control.TrySetDefaultProperty(DisabledHintOpacityProperty, ThemeHelper.GetDisabledLabelTextOpacity());
-
             // Background Color / Container Color
             control.TrySetDefaultProperty(BackgroundColorProperty, ThemeHelper.GetContainerColor(mode));
             control.TrySetDefaultProperty(DisabledBackgroundColorProperty, ThemeHelper.GetDisabledContainerColor(mode));
             control.TrySetDefaultProperty(DisabledBackgroundColorOpacityProperty, ThemeHelper.GetDisabledContainerOpacity(mode));
 
-            // End Icon color
-            //control.TrySetDefaultProperty(EndIconColorProperty, ThemeHelper.GetTrailingIconColor());
-            //control.TrySetDefaultProperty(EndIconDisabledColorProperty, ThemeHelper.GetDisabledTrailingIconColor());
-            //control.TrySetDefaultProperty(DisabledEndIconOpacityProperty, ThemeHelper.GetDisabledTrailingIconOpacity());
-
             control.TrySetDefaultProperty(BoxStrokeCornerRadiusProperty, ThemeHelper.GetContainerShape(mode).CornerRadius);
-            //control.TrySetDefaultProperty(BoxStrokeWidthProperty, ThemeHelper.GetOutlineWidth());
-            //control.TrySetDefaultProperty(BoxStrokeFocusedWidthProperty, ThemeHelper.GetFocusedOutlineWidth());
         }
 
         private void TrySetDefaultProperty<T>(BindableProperty property, T value)
@@ -126,8 +107,10 @@ namespace Nwesp.Maui.Android.Controls
         public static readonly BindableProperty FocusedOutlineColorProperty;
         public static readonly BindableProperty DisabledOutlineColorProperty;
         public static readonly BindableProperty DisabledOutlineOpacityProperty;
+
         public static readonly BindableProperty DisabledBackgroundColorProperty;
         public static readonly BindableProperty DisabledBackgroundColorOpacityProperty;
+
         public static readonly BindableProperty HintProperty;
         public static readonly BindableProperty DefaultHintColorProperty;
         public static readonly BindableProperty FocusedHintColorProperty;
@@ -148,23 +131,28 @@ namespace Nwesp.Maui.Android.Controls
         public static readonly BindableProperty DisabledStartIconColorProperty;
         public static readonly BindableProperty DisabledStartIconOpacityProperty;
 
-        public static readonly BindableProperty PlaceholderProperty;
-        public static readonly BindableProperty PlaceholderColorProperty;
         public static readonly BindableProperty PrefixProperty;
-        public static readonly BindableProperty SuffixProperty;
-        public static readonly BindableProperty SupportingTextProperty;
-        public static readonly BindableProperty ErrorTextProperty;
-        public static readonly BindableProperty BoxStrokeCornerRadiusProperty;
-        public static readonly BindableProperty BoxStrokeWidthProperty;
-        public static readonly BindableProperty BoxStrokeFocusedWidthProperty;
-        public static readonly BindableProperty CounterEnabledProperty;
-        public static readonly BindableProperty CounterMaxLengthProperty;
-        public static readonly BindableProperty SuffixTextColorProperty;
-        public static readonly BindableProperty DisabledSuffixTextColorProperty;
-        public static readonly BindableProperty DisabledSuffixTextColorOpacityProperty;
         public static readonly BindableProperty PrefixTextColorProperty;
         public static readonly BindableProperty DisabledPrefixTextColorProperty;
         public static readonly BindableProperty DisabledPrefixTextColorOpacityProperty;
+
+        public static readonly BindableProperty SuffixProperty;
+        public static readonly BindableProperty SuffixTextColorProperty;
+        public static readonly BindableProperty DisabledSuffixTextColorProperty;
+        public static readonly BindableProperty DisabledSuffixTextColorOpacityProperty;
+
+        public static readonly BindableProperty BoxStrokeCornerRadiusProperty;
+        public static readonly BindableProperty BoxStrokeWidthProperty;
+        public static readonly BindableProperty BoxStrokeFocusedWidthProperty;
+
+        public static readonly BindableProperty SupportingTextProperty;
+        public static readonly BindableProperty ErrorTextProperty;
+        
+        public static readonly BindableProperty CounterEnabledProperty;
+        public static readonly BindableProperty CounterMaxLengthProperty;
+        
+        
+        
         public static readonly BindableProperty EndIconClickedCommandProperty;
 
 

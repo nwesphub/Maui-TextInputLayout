@@ -15,33 +15,20 @@ using LLayout = Android.Widget.LinearLayout;
 using AResource = Android.Resource.Attribute;
 using ASound = Android.Views.SoundEffects;
 using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Controls;
 namespace Nwesp.Maui.Android.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
     {
-        public bool HasTextAndFocus => !string.IsNullOrEmpty(EditText?.Text) && EditText?.HasFocus == true;
-        public MauiTextInputLayout(Context context, BoxBackgroundMode boxBackgroundMode) : base(context)
+        public MauiTextInputLayout(Context context) : base(context)
         {
-            SetDefaults(boxBackgroundMode);
-        }
-        public MauiTextInputLayout(Context context, IAttributeSet? attrs, int style, BoxBackgroundMode boxBackgroundMode) : base(context, attrs, style)
-        {
-            SetDefaults(boxBackgroundMode);
-        }
+            var density = Context?.Resources?.DisplayMetrics?.Density ?? 2.75;
 
-        private void SetDefaults(BoxBackgroundMode boxBackgroundMode)
-        {
-            
-       
-            SetDefaultClearButton();
-        }
-
-        private void SetDefaultClearButton()
-        {
-            //EndIconVisible = false;
+            // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
+            BoxCollapsedPaddingTop = (int)(8 * density);
             EndIconMode = Google.Android.Material.TextField.TextInputLayout.EndIconClearText;
-            
         }
+
 
         public class OnEndIconClickListener : Java.Lang.Object, IOnClickListener
         {

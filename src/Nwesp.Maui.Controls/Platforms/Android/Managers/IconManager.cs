@@ -18,6 +18,7 @@ using static Nwesp.Maui.Android.Platforms.Android.MauiTextInputLayout;
 using AndroidX.Core.Graphics.Drawable;
 using MColor = Microsoft.Maui.Graphics.Color;
 using Nwesp.Maui.Android.Abstractions;
+using static Google.Android.Material.TextField.TextInputLayout;
 
 namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
@@ -27,10 +28,10 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
         public static async void ShowEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext mauiContext)
         {
     
-            platformView.Post(() =>
+            platformView.Post(async () =>
             {
                 platformView.EndIconVisible = true;
-                platformView.MapCustomEndIcon(virtualView, mauiContext);
+                await platformView.MapCustomEndIcon(virtualView, mauiContext);
                 platformView.SetEndIconOnClickListener(new OnEndIconClickListener(virtualView));
             });
             
