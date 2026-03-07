@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 #if IOS || MACCATALYST
-using PlatformView = Maui.Android.TextInputLayout.Platforms.iOS.MauiTextInputLayout;
+using PlatformView = Nwesp.Maui.Android.Platforms.iOS.MauiTextInputLayout;
 #endif
-namespace Maui.Android.TextInputLayout.Platforms.iOS
+namespace Nwesp.Maui.Android.Platforms.iOS
 {
     public class MauiTextInputLayout : UIKit.UIView
     {

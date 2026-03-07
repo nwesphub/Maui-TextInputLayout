@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Maui.Android.TextInputLayout.Models.Enums;
+using Nwesp.Maui.Android.Models.Enums;
 
-namespace Maui.Android.TextInputLayout.Platforms.Android
+namespace Nwesp.Maui.Android.Platforms.Android
 {
     public static class MauiTextInputLayoutExtensions
     {

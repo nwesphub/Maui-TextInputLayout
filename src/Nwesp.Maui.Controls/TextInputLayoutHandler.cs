@@ -6,21 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Android.Content.Res;
 using Microsoft.Maui.Platform;
-using Maui.Android.TextInputLayout.Utilities;
-using Maui.Android.TextInputLayout.Platforms.Android;
+using Nwesp.Maui.Android.Utilities;
+using Nwesp.Maui.Android.Platforms.Android;
 
 #if ANDROID
-using PlatformView = Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
+using PlatformView = Nwesp.Maui.Android.Platforms.Android.MauiTextInputLayout;
 using PlatformEntry = Android.Widget.EditText;
 #elif WINDOWS
-using PlatformView = Maui.Android.TextInputLayout.Platforms.Windows.MauiTextInputLayout;
-using PlatformEntry = Maui.Android.TextInputLayout.Platforms.Windows.MauiTextInputEditText;
+using PlatformView = Nwesp.Maui.Android.Platforms.Windows.MauiTextInputLayout;
+using PlatformEntry = Nwesp.Maui.Android.Platforms.Windows.MauiTextInputEditText;
 #elif IOS || MACCATALYST
-using PlatformView = Maui.Android.TextInputLayout.Platforms.iOS.MauiTextInputLayout;
-using PlatformEntry = Maui.Android.TextInputLayout.Platforms.iOS.MauiTextInputLayout;
+using PlatformView = Nwesp.Maui.Android.Platforms.iOS.MauiTextInputLayout;
+using PlatformEntry = Nwesp.Maui.Android.Platforms.iOS.MauiTextInputLayout;
 #endif
 using AResource = Android.Resource.Attribute;
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
     public partial class TextInputLayoutHandler : ITextInputLayoutHandler
     {

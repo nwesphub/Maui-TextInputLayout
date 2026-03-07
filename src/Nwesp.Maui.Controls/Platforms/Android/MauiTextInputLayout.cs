@@ -8,12 +8,12 @@ using Android.Widget;
 using Google.Android.Material.Internal;
 using Google.Android.Material.TextField;
 using Java.Lang;
-using Maui.Android.TextInputLayout.Models.Enums;
+using Nwesp.Maui.Android.Models.Enums;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using AView = Android.Views.View;
 using LLayout = Android.Widget.LinearLayout;
 using AResource = Android.Resource.Attribute;
-namespace Maui.Android.TextInputLayout.Platforms.Android
+namespace Nwesp.Maui.Android.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
     {

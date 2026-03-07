@@ -1,5 +1,5 @@
-﻿using Maui.Android.TextInputLayout.Models.Enums;
-using Maui.Android.TextInputLayout.Models.Events;
+﻿using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Models.Events;
 using Microsoft.Maui.Controls.Shapes;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
     public interface ITextInputLayout : IView, IContentView
     {

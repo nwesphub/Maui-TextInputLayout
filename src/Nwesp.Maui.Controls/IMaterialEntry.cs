@@ -1,11 +1,11 @@
-﻿using Maui.Android.TextInputLayout.Models.Enums;
+﻿using Nwesp.Maui.Android.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
     public interface IMaterialEntry : IView, ITextStyle
     {

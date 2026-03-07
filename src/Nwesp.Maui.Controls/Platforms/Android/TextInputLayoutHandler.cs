@@ -2,7 +2,7 @@
 using Android.Content.Res;
 using Android.Views;
 using AndroidX.AppCompat.View;
-using Maui.Android.TextInputLayout.Platforms.Android;
+using Nwesp.Maui.Android.Platforms.Android;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
@@ -17,11 +17,11 @@ using AColor = Android.Graphics.Color;
 using ContextThemeWrapper = AndroidX.AppCompat.View.ContextThemeWrapper;
 using AResource = Android.Resource.Attribute;
 using AView = Android.Views.View;
-using Maui.Android.TextInputLayout.Platforms.Android.Managers;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
 using Javax.Crypto;
 using Android.Graphics.Drawables;
 using Android.Graphics;
-using Maui.Android.TextInputLayout.Models.Enums;
+using Nwesp.Maui.Android.Models.Enums;
 using Android.Content;
 using Android.Widget;
 using Google.Android.Material.TextField;
@@ -31,7 +31,7 @@ using Android.Util;
 using AndroidX.AppCompat.Widget;
 using static Google.Android.Material.TextField.TextInputLayout;
 using Color = Microsoft.Maui.Graphics.Color;
-using Maui.Android.TextInputLayout.Models.Exceptions;
+using Nwesp.Maui.Android.Models.Exceptions;
 using Java.Lang;
 using Microsoft.Maui.Controls.Platform;
 using JMode = Android.Text.JustificationMode;
@@ -42,13 +42,13 @@ using ATheme = Android.Content.Res;
 using ARect = Android.Graphics.Rect;
 using AndroidX.Core.Widget;
 using AndroidX.Core.Graphics.Drawable;
-using Maui.Android.TextInputLayout.Utilities;
+using Nwesp.Maui.Android.Utilities;
 using static Android.Views.View;
 using static Android.Views.ViewTreeObserver;
 using Layout = Microsoft.Maui.Controls.Layout;
 using Android.Views.InputMethods;
 using AViewGroup = Android.Views.ViewGroup;
-using static Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
+using static Nwesp.Maui.Android.Platforms.Android.MauiTextInputLayout;
 using AViewStates = Android.Views.ViewStates;
 using Microsoft.Maui.Graphics;
 using Google.Android.Material.Internal;
@@ -57,7 +57,7 @@ using AShapeDrawable = Android.Graphics.Drawables.ShapeDrawable;
 using Android.Animation;
 using ABlendMode = Android.Graphics.BlendMode;
 using AProgressBar = Android.Widget.ProgressBar;
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
 
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
@@ -80,9 +80,10 @@ namespace Maui.Android.TextInputLayout
             var mauiContext = MauiContext;
             
             var textInputLayout =  new MauiTextInputLayout(contextThemeWrapper, _boxBackgroundMode);
-            
+            var density = Context.Resources.DisplayMetrics.Density;
+
             // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
-            textInputLayout.BoxCollapsedPaddingTop = 20;
+            textInputLayout.BoxCollapsedPaddingTop = (int)(8 * density);
             textInputLayout.EditTextAttached += TextInputLayout_EditTextAttached;
             return textInputLayout;
         }

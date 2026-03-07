@@ -1,7 +1,7 @@
 ﻿using Android.Content.Res;
 using Android.Graphics.Drawables;
 using Android.Graphics;
-using Maui.Android.TextInputLayout.Models.Enums;
+using Nwesp.Maui.Android.Models.Enums;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Handlers;
 using System;
@@ -14,11 +14,11 @@ using AResource = Android.Resource.Attribute;
 using Android.Widget;
 using Microsoft.Maui.Platform;
 using Google.Android.Material.TextField;
-using static Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputLayout;
+using static Nwesp.Maui.Android.Platforms.Android.MauiTextInputLayout;
 using AndroidX.Core.Graphics.Drawable;
 using MColor = Microsoft.Maui.Graphics.Color;
 
-namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
+namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
     public static class IconManager
     {

@@ -1,4 +1,4 @@
-﻿using Maui.Android.TextInputLayout.Platforms.Windows;
+﻿using Nwesp.Maui.Android.Platforms.Windows;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using Microsoft.UI.Xaml.Controls;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
     public partial class TextInputEditTextHandler : ViewHandler<ITextInputEditText, MauiTextInputEditText>
     {

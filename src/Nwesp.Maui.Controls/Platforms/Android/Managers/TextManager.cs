@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
+namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
     // Taken from Microsoft.Maui.Platform.EditTextExtensions
     public static class TextManager

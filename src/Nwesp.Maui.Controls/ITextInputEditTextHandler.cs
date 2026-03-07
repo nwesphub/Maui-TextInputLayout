@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 #if ANDROID
-using PlatformView = Maui.Android.TextInputLayout.Platforms.Android.MauiTextInputEditText;
+using PlatformView = Nwesp.Maui.Android.Platforms.Android.MauiTextInputEditText;
 #elif WINDOWS
-using PlatformView = Maui.Android.TextInputLayout.Platforms.Windows.MauiTextInputEditText;
+using PlatformView = Nwesp.Maui.Android.Platforms.Windows.MauiTextInputEditText;
 using ATextInputLayout = object;
 #elif IOS || MACCATALYST
-using PlatformView = Maui.Android.TextInputLayout.Platforms.iOS.MauiTextInputEditText;
+using PlatformView = Nwesp.Maui.Android.Platforms.iOS.MauiTextInputEditText;
 #endif
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
     [Obsolete]
     public interface ITextInputEditTextHandler : IEntryHandler

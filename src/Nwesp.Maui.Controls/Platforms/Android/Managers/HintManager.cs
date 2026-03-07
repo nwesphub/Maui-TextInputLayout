@@ -11,7 +11,7 @@ using AResource = Android.Resource.Attribute;
 using AColor = Android.Graphics.Color;
 
 
-namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
+namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
     public static class HintManager
     {

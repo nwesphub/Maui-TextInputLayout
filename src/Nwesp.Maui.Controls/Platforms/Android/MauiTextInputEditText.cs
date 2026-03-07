@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 using AResource = Android.Resource.Attribute;
 using LLayout = Android.Widget.LinearLayout;
 using Android.Views;
-using Maui.Android.TextInputLayout.Models.Enums;
-namespace Maui.Android.TextInputLayout.Platforms.Android
+using Nwesp.Maui.Android.Models.Enums;
+namespace Nwesp.Maui.Android.Platforms.Android
 {
     [Obsolete]
     public class MauiTextInputEditText : Google.Android.Material.TextField.TextInputEditText

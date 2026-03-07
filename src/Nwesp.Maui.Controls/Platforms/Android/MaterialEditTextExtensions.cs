@@ -1,6 +1,6 @@
 ﻿using Android.Content.Res;
 using Android.Widget;
-using Maui.Android.TextInputLayout.Utilities;
+using Nwesp.Maui.Android.Utilities;
 using Microsoft.Maui.Platform;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AResource = Android.Resource.Attribute;
-namespace Maui.Android.TextInputLayout.Platforms.Android
+namespace Nwesp.Maui.Android.Platforms.Android
 {
     public static class MaterialEditTextExtensions
     {

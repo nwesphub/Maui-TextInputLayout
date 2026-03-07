@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout.Models.Events
+namespace Nwesp.Maui.Android.Models.Events
 {
     public class EndIconClickedEventArgs : EventArgs
     {

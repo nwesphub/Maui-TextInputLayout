@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
 
     public partial class TextInputEditTextHandler : ViewHandler<TextInputEditText, MauiTextInputEditText>

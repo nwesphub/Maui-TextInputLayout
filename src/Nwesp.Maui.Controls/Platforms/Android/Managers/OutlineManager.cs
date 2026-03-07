@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AResource = Android.Resource.Attribute;
 
-namespace Maui.Android.TextInputLayout.Platforms.Android.Managers
+namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
     public static class OutlineManager
     {

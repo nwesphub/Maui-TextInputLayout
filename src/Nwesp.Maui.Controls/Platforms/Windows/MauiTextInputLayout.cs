@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout.Platforms.Windows
+namespace Nwesp.Maui.Android.Platforms.Windows
 {
     public class MauiTextInputLayout : FrameworkElement
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UIKit;
 
-namespace Maui.Android.TextInputLayout.Platforms.MacCatalyst
+namespace Nwesp.Maui.Android.Platforms.MacCatalyst
 {
     public class MauiTextInputLayout : UIView
     {

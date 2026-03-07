@@ -1,6 +1,6 @@
 ﻿using Android.Content.Res;
 using AndroidX.AppCompat.View;
-using Maui.Android.TextInputLayout.Platforms.Android;
+using Nwesp.Maui.Android.Platforms.Android;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using System;
@@ -10,15 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using AResource = Android.Resource.Attribute;
 using AColor = Android.Graphics.Color;
-using Maui.Android.TextInputLayout.Models.Enums;
+using Nwesp.Maui.Android.Models.Enums;
 using AndroidX.AppCompat.Widget;
 using Android.Widget;
 using Android.Text;
-using Maui.Android.TextInputLayout.Platforms.Android.Managers;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 
 
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
     public partial class TextInputEditTextHandler : ViewHandler<ITextInputEditText, MauiTextInputEditText>
     {

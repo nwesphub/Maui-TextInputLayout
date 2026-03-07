@@ -1,5 +1,5 @@
 ﻿using Android.Content.Res;
-using Maui.Android.TextInputLayout;
+using Nwesp.Maui.Android;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Hosting;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace Maui.Android.TextInputLayout.Hosting
+namespace Nwesp.Maui.Android.Hosting
 {
     public static class MauiAppBuilderExtensions
     {

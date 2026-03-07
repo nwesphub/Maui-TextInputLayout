@@ -3,7 +3,7 @@
     x:Class="MauiCustomControls.Pages.HintPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:input="clr-namespace:Maui.Android.TextInputLayout;assembly=Maui.Android.TextInputLayout"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android;assembly=Nwesp.Maui.Android"
     Title="HintPage"
     BackgroundColor="#101010">
     <VerticalStackLayout Padding="8" Spacing="12">

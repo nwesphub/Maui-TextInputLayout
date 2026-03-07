@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout.Models.Exceptions
+namespace Nwesp.Maui.Android.Models.Exceptions
 {
     public class IllegalContentException : Exception
     {

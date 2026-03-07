@@ -1,4 +1,4 @@
-namespace Maui.Android.TextInputLayout.Resources;
+namespace Nwesp.Maui.Android.Resources;
 
 public partial class DarkTheme : ResourceDictionary
 {

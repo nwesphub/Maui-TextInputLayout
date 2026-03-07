@@ -1,5 +1,5 @@
-using Maui.Android.TextInputLayout.Models.Enums;
-using Maui.Android.TextInputLayout.Models.Events;
+using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Models.Events;
 using Microsoft.Maui;
 using Microsoft.Maui.Layouts;
 using System;
@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Maui.Android.TextInputLayout.Utilities;
+using Nwesp.Maui.Android.Utilities;
 using System.Runtime.CompilerServices;
 using Microsoft.Maui.Controls.Shapes;
 using System.Windows.Input;
@@ -19,7 +19,7 @@ using System.Windows.Input;
 #if ANDROID
 using Microsoft.Maui.Platform;
 #endif
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
     public partial class TextInputLayout : ContentView, ITextInputLayout
     {

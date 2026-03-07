@@ -1,12 +1,12 @@
-﻿using Maui.Android.TextInputLayout.Models.Enums;
-using Maui.Android.TextInputLayout.Utilities;
+﻿using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maui.Android.TextInputLayout
+namespace Nwesp.Maui.Android
 {
     public class MaterialPicker : Picker, IMaterialEntry
     {
