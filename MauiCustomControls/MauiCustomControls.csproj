@@ -70,6 +70,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Maui.Android.TextInputLayout\Maui.Android.TextInputLayout.csproj" />
+	  <ProjectReference Include="..\src\Maui.Android.TextInputLayout\Maui.Android.TextInputLayout.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
