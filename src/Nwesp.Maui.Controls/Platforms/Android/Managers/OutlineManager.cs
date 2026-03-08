@@ -19,18 +19,18 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             [-AResource.StateEnabled],
         ];
 
-        public static void ApplyOutlineColors(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void UpdateOutlineColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             ColorStateList csl = new ColorStateList(
                 _states,
                 [
-                    entry.OutlineColor.ToPlatform(), 
-                    entry.FocusedOutlineColor.ToPlatform(),
-                    entry.DisabledOutlineColor.WithAlpha(entry.DisabledOutlineOpacity).ToPlatform()
+                    virtualView.OutlineColor.ToPlatform(),
+                    virtualView.FocusedOutlineColor.ToPlatform(),
+                    virtualView.DisabledOutlineColor.WithAlpha(virtualView.DisabledOutlineOpacity).ToPlatform()
                 ]
             );
 
-            handler.PlatformView.SetBoxStrokeColorStateList(csl);
+            platformView.SetBoxStrokeColorStateList(csl);
         }
     }
 }

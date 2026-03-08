@@ -64,27 +64,12 @@ namespace Nwesp.Maui.Android
 
     public partial class TextInputLayoutHandler : ViewHandler<ITextInputLayout, MauiTextInputLayout>
     {
-        private BoxBackgroundMode _boxBackgroundMode;
         protected override MauiTextInputLayout CreatePlatformView()
         {
-            if(_boxBackgroundMode == BoxBackgroundMode.None)
-            {
-                return new MauiTextInputLayout(Context);
-            }
-
-            int theme = Resource.Style.ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense;
-            if (_boxBackgroundMode == BoxBackgroundMode.Filled)
-            {
-                theme = Resource.Style.ThemeOverlay_Material3_TextInputEditText_FilledBox_Dense;
-            }
-            
-            var contextThemeWrapper = new ContextThemeWrapper(Context, theme);
-            
-            var textInputLayout =  new MauiTextInputLayout(contextThemeWrapper);
+ 
+            var textInputLayout =  new MauiTextInputLayout(Context);
             return textInputLayout;
         }
-
-  
 
         public override void SetVirtualView(IView view)
         {
@@ -95,7 +80,6 @@ namespace Nwesp.Maui.Android
 
             if(view is ITextInputLayout layout)
             {
-                _boxBackgroundMode = layout.BoxBackgroundMode;
                 // Setting some default values in the Maui component is not working properly.
                 layout.DisabledHintOpacity = ThemeHelper.GetDisabledLabelTextOpacity();
                 if (layout.Content is IMaterialEntry materialEntry)
@@ -103,15 +87,12 @@ namespace Nwesp.Maui.Android
                     materialEntry.BoxBackgroundMode = layout.BoxBackgroundMode;
                     VirtualEntry = materialEntry;
                 }
-            
             }
             
             PlatformEntry = contentView.Content.ToPlatform(MauiContext!) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
             PlatformEntry.SetMinimumWidth(int.MaxValue);
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
-            
-            //DrawableCompat.SetTintList(PlatformEntry.TextCursorDrawable, Colors.Red.ToDefaultColorStateList());
         }
 
 
@@ -126,12 +107,6 @@ namespace Nwesp.Maui.Android
             }
             PlatformView.SetStartIconOnClickListener(new OnStartIconClickListener(VirtualView));
             
-            //var startIconView = PlatformView.FindViewById<AView>(Resource.Id.text_input_start_icon) as CheckableImageButton;
-  
-            //if (startIconView.Background is RippleDrawable rippleDrawable)
-            //{
-            //    //rippleDrawable.SetColor(Colors.Red.ToDefaultColorStateList());
-            //}
         }
 
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
@@ -188,67 +163,54 @@ namespace Nwesp.Maui.Android
 
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            int[][] states =
-            [
-                [AResource.StateEnabled],
-                [-AResource.StateEnabled],
-            ];
-
-            int[] colors =
-            [
-                entry.BackgroundColor.ToPlatform(),
-                entry.DisabledBackgroundColor.WithAlpha(entry.DisabledBackgroundColorOpacity).ToPlatform(),
-            ];
-
-            // Make sure the background tint is null for Filled mode.
-            handler.PlatformView.BackgroundTintList = Colors.Transparent.ToDefaultColorStateList();
-            handler.PlatformView.SetBoxBackgroundColorStateList(new ColorStateList(states, colors));
+            handler.PlatformView?.UpdateBackgroundColor(entry);
         }
 
-        
         public static void MapOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            OutlineManager.ApplyOutlineColors(handler, entry);
+            handler.PlatformView?.UpdateOutlineColor(entry);
         }
+
         public static void MapFocusedOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            OutlineManager.ApplyOutlineColors(handler, entry);
+            handler.PlatformView?.UpdateOutlineColor(entry);
         }
+
         public static void MapDisabledOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            OutlineManager.ApplyOutlineColors(handler, entry);
+            handler.PlatformView?.UpdateOutlineColor(entry);
         }
+
         public static void MapDisabledOutlineOpacity(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            OutlineManager.ApplyOutlineColors(handler, entry);
+            handler.PlatformView?.UpdateOutlineColor(entry);
         }
+
         public static void MapBoxStrokeCornerRadius(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            var rect = entry.BoxStrokeCornerRadius;
-            float density = handler.PlatformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75f;
-            float topLeft = (int)(rect.TopLeft * density + 0.5f);
-            float topRight = (int)(rect.TopRight * density + 0.5f);
-            float bottomLeft = (int)(rect.BottomLeft * density + 0.5f);
-            float bottomRight = (int)(rect.BottomRight * density + 0.5f);
-            handler.PlatformView.SetBoxCornerRadii(topLeft, topRight, bottomLeft, bottomRight);
-
+            handler.PlatformView?.UpdateBoxCornerRadius(entry);
         }
+
         public static void MapBoxStrokeWidth(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView.BoxStrokeWidth = entry.BoxStrokeWidth;
+            handler.PlatformView?.UpdateBoxStrokeWidth(entry);
         }
+
         public static void MapBoxStrokeFocusedWidth(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView.BoxStrokeWidthFocused = entry.BoxStrokeFocusedWidth;
+            handler.PlatformView?.UpdateBoxStrokeFocusedWidth(entry);
         }
+
         public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.MapHint(entry);
         }
+
         public static void MapHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateHintColors(entry);
         }
+
         public static void MapHintOpacity(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateHintColors(entry);
@@ -257,21 +219,11 @@ namespace Nwesp.Maui.Android
         public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler?.PlatformView?.MapIsHintAnimated(entry);
-        }  
+        }
 
         public static void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateBoxBackgroundMode(entry);
-        }
-
-        public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView?.UpdateEndIconColor(entry);
-        }
-
-        public static void MapStartIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView?.UpdateStartIconColor(entry);
         }
 
         public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -279,9 +231,19 @@ namespace Nwesp.Maui.Android
             handler.PlatformView?.MapCustomEndIcon(entry, handler.MauiContext);
         }
 
+        public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateEndIconColor(entry);
+        }
+
         public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.MapCustomStartIcon(entry, handler.MauiContext);
+        }
+
+        public static void MapStartIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateStartIconColor(entry);
         }
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -298,88 +260,50 @@ namespace Nwesp.Maui.Android
             }
         }
 
-  
-        private static void MapPrefix(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapPrefix(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            if(string.Equals(handler.PlatformView.PrefixText, entry.Prefix, StringComparison.CurrentCulture))
-            {
-                return;
-            }
-
-            // Prefix gets misaligned from input text.
-            handler.PlatformView.Post(() =>
-            {
-                handler.PlatformView.PrefixText = entry.Prefix;
-                handler.PlatformView.InvalidateMeasure(entry);
-            });
+            handler.PlatformView?.UpdatePrefixText(entry);
         }
 
-        private static void MapSuffix(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapPrefixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            if (string.Equals(handler.PlatformView.SuffixText, entry.Suffix, StringComparison.CurrentCulture))
-            {
-                return;
-            }
-
-            handler.PlatformView.Post(() =>
-            {
-                handler.PlatformView.SuffixText = entry.Suffix;
-                handler.PlatformView.InvalidateMeasure(entry);
-            });
-        }
-        private static void MapSupportingText(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView.HelperText = entry.SupportingText;
-        }
-        private static void MapErrorText(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView.Error = entry.ErrorText;
-        }
-        private static void MapPrefixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            int[][] states =
-            [
-                [AResource.StateEnabled],
-                [-AResource.StateEnabled]
-            ];
-
-            int[] colors =
-            [
-                entry.PrefixTextColor.ToPlatform(),
-                entry.DisabledPrefixTextColor.WithAlpha(entry.DisabledPrefixTextColorOpacity).ToPlatform()
-            ];
-            handler.PlatformView.PrefixTextColor = new ColorStateList(states, colors);
-        }
-        private static void MapSuffixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            int[][] states =
-            [
-                [AResource.StateEnabled],
-                [-AResource.StateEnabled]
-            ];
-
-            int[] colors =
-            [
-                entry.SuffixTextColor.ToPlatform(),
-                entry.DisabledSuffixTextColor.WithAlpha(entry.DisabledSuffixTextColorOpacity).ToPlatform()
-            ];
-            handler.PlatformView.SuffixTextColor = new ColorStateList(states, colors);
+            handler.PlatformView?.UpdatePrefixTextColor(entry);
         }
 
-        private static void MapCounterEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapSuffix(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView.CounterEnabled = entry.CounterEnabled;
-        }
-        private static void MapCounterMaxLength(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView.CounterMaxLength = entry.CounterMaxLength;
-        }
-        private static void MapPadding(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            var padding = entry.Padding;
-            handler.PlatformView?.SetPadding((int)padding.Left, (int)padding.Top, (int)padding.Right, (int)padding.Bottom);
+            handler.PlatformView?.UpdateSuffixText(entry);
         }
 
+        public static void MapSuffixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateSuffixTextColor(entry);
+        }
+
+        public static void MapSupportingText(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateSupportingText(entry);
+        }
+
+        public static void MapErrorText(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateErrorText(entry);
+        }
+
+        public static void MapCounterEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateCounterEnabled(entry);
+        }
+
+        public static void MapCounterMaxLength(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateCounterMaxLength(entry);
+        }
+
+        public static void MapPadding(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdatePadding(entry);
+        }
     }
 
     public class MaterialPickerHandler : PickerHandler
