@@ -82,29 +82,5 @@ namespace Nwesp.Maui.Android
         }
     }
 
-    public partial class MaterialEntryHandler : EntryHandler
-    {
-        public static new IPropertyMapper<MaterialEntry, MaterialEntryHandler> Mapper = new PropertyMapper<MaterialEntry, MaterialEntryHandler>(EntryHandler.Mapper)
-        {
-            [nameof(IMaterialEntry.TextColor)] = MapTextColor,
-            [nameof(IMaterialEntry.DisabledTextColor)] = MapTextColor,
-            [nameof(IMaterialEntry.DisabledTextColorOpacity)] = MapTextColor,
-        };
-        public static CommandMapper<MaterialEntry, MaterialEntryHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)
-        {
-           
-        };
-
-        
-
-        public MaterialEntryHandler() : base(Mapper, CommandMapper)
-        {
-        }
-
-        public static void MapTextColor(MaterialEntryHandler handler, MaterialEntry view)
-        {
-            
-            handler.PlatformView?.UpdateTextColor(view);
-        }
-    }
+    
 }

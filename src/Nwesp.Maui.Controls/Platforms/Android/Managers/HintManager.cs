@@ -28,7 +28,7 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             platformView.Hint = virtualView.Hint;
         }
 
-        public static void ApplyHintColors(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        public static void UpdateHintColors(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             platformView.DefaultHintTextColor = new ColorStateList(
                 _states,

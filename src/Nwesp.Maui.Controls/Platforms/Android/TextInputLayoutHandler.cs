@@ -247,11 +247,11 @@ namespace Nwesp.Maui.Android
         }
         public static void MapHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView?.ApplyHintColors(entry);
+            handler.PlatformView?.UpdateHintColors(entry);
         }
         public static void MapHintOpacity(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView?.ApplyHintColors(entry);
+            handler.PlatformView?.UpdateHintColors(entry);
         }
 
         public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -381,27 +381,7 @@ namespace Nwesp.Maui.Android
         }
 
     }
-    public partial class MaterialEntryHandler : EntryHandler
-    {
-        protected override AppCompatEditText CreatePlatformView()
-        {
-            int theme = Resource.Style.ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense;
-            if (_boxBackgroundMode == BoxBackgroundMode.Filled)
-            {
-                theme = Resource.Style.ThemeOverlay_Material3_TextInputEditText_FilledBox_Dense;
-            }
 
-            var contextThemeWrapper = new ContextThemeWrapper(Context, theme);
-            var editText = new AppCompatEditText(contextThemeWrapper);
-            return editText;
-        }
-        private BoxBackgroundMode _boxBackgroundMode;
-        public override void SetVirtualView(IView view)
-        {
-            _boxBackgroundMode = IMaterialEntry.ParseBoxBackgroundMode(view);
-            base.SetVirtualView(view);
-        }
-    }
     public class MaterialPickerHandler : PickerHandler
     {
         private BoxBackgroundMode _boxBackgroundMode;
@@ -414,29 +394,6 @@ namespace Nwesp.Maui.Android
         {
             _boxBackgroundMode = IMaterialEntry.ParseBoxBackgroundMode(view);
             base.SetVirtualView(view);
-        }
-    }
-
-
-    public static class ContextThemeHelper
-    {
-
-        public static T BuildContextThemeWrapper<T>(Context context, BoxBackgroundMode boxBackgroundMode, Func<Context, T> constructor) where T: EditText
-        {
-            if (boxBackgroundMode == BoxBackgroundMode.None)
-            {
-                return constructor(context);
-            }
-            
-            int style = Resource.Style.ThemeOverlay_Material3_TextInputEditText_OutlinedBox_Dense;
-            if (boxBackgroundMode == BoxBackgroundMode.Filled)
-            {
-                style = Resource.Style.ThemeOverlay_Material3_TextInputEditText_FilledBox_Dense;
-            }
-            var contextThemeWrapper = new ContextThemeWrapper(context, style);
-
-            T editText = constructor(contextThemeWrapper);
-            return editText;
         }
     }
 }
