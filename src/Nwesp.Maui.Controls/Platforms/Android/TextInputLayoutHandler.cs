@@ -66,7 +66,6 @@ namespace Nwesp.Maui.Android
     {
         protected override MauiTextInputLayout CreatePlatformView()
         {
- 
             var textInputLayout =  new MauiTextInputLayout(Context);
             return textInputLayout;
         }
@@ -236,16 +235,6 @@ namespace Nwesp.Maui.Android
             handler.PlatformView?.UpdateEndIconColor(entry);
         }
 
-        public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView?.MapCustomStartIcon(entry, handler.MauiContext);
-        }
-
-        public static void MapStartIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
-        {
-            handler.PlatformView?.UpdateStartIconColor(entry);
-        }
-
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
@@ -254,10 +243,20 @@ namespace Nwesp.Maui.Android
             {
                 handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
             }
-            else if(entry.EndIconVisibilityMode == IconVisibilityMode.Never)
+            else if (entry.EndIconVisibilityMode == IconVisibilityMode.Never)
             {
                 handler.PlatformView?.HideEndIcon();
             }
+        }
+
+        public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.MapCustomStartIcon(entry, handler.MauiContext);
+        }
+
+        public static void MapStartIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateStartIconColor(entry);
         }
 
         public static void MapPrefix(ITextInputLayoutHandler handler, ITextInputLayout entry)

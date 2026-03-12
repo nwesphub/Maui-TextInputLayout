@@ -15,13 +15,15 @@ namespace Nwesp.Maui.Android.Hosting
     {
         public static MauiAppBuilder AddTextInputLayout(this MauiAppBuilder builder)
         {
-            return builder.ConfigureMauiHandlers(config =>
+            builder.ConfigureMauiHandlers(config =>
             {
                 config.AddHandler<TextInputEditText, TextInputEditTextHandler>();
                 config.AddHandler<TextInputLayout, TextInputLayoutHandler>();
                 config.AddHandler<MaterialEntry, MaterialEntryHandler>();
                 config.AddHandler<MaterialPicker, MaterialPickerHandler>();
             });
+
+            return builder;
         }
     }
 }

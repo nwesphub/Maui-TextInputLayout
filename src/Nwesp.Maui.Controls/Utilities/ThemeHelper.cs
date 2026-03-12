@@ -45,7 +45,7 @@ namespace Nwesp.Maui.Android.Utilities
             {
                 BoxBackgroundMode.Filled => Filled.LabelFont,
                 BoxBackgroundMode.Outline => Outlined.LabelFont,
-                _ => null
+                _ => string.Empty
             };
 
         public static double GetLabelLineHeight(BoxBackgroundMode mode) =>
@@ -85,7 +85,7 @@ namespace Nwesp.Maui.Android.Utilities
             {
                 BoxBackgroundMode.Filled => Filled.LabelType,
                 BoxBackgroundMode.Outline => Outlined.LabelType,
-                _ => null
+                _ => string.Empty
             };
 
         public static double GetLabelPopulatedLineHeight(BoxBackgroundMode mode) =>
@@ -158,7 +158,7 @@ namespace Nwesp.Maui.Android.Utilities
             {
                 BoxBackgroundMode.Filled => Filled.SupportingTextFont,
                 BoxBackgroundMode.Outline => Outlined.SupportingTextFont,
-                _ => null
+                _ => string.Empty
             };
 
         public static double GetSupportingTextLineHeight(BoxBackgroundMode mode) =>
@@ -195,19 +195,19 @@ namespace Nwesp.Maui.Android.Utilities
 
         // ==================== Input text ====================
         public static Color GetInputTextColor() => Filled.InputTextColor;
-            //mode switch
-            //{
-            //    BoxBackgroundMode.Filled => Filled.InputTextColor,
-            //    BoxBackgroundMode.Outline => Outlined.InputTextColor,
-            //    _ => Colors.Transparent
-            //};
+        //mode switch
+        //{
+        //    BoxBackgroundMode.Filled => Filled.InputTextColor,
+        //    BoxBackgroundMode.Outline => Outlined.InputTextColor,
+        //    _ => Colors.Transparent
+        //};
 
         public static string GetInputTextFont(BoxBackgroundMode mode) =>
             mode switch
             {
                 BoxBackgroundMode.Filled => Filled.InputTextFont,
                 BoxBackgroundMode.Outline => Outlined.InputTextFont,
-                _ => null
+                _ => string.Empty
             };
 
         public static double GetInputTextLineHeight(BoxBackgroundMode mode) =>
@@ -548,243 +548,274 @@ namespace Nwesp.Maui.Android.Utilities
                 BoxBackgroundMode.Outline => Outlined.ErrorFocusCaretColor,
                 _ => Colors.Transparent
             };
+
+        public class ThemeException : Exception
+        {
+            public ThemeException(string? message) : base(message)
+            {
+
+            }
+        }
+        public static class ResourceHelper
+        {
+            private static ResourceDictionary Resources => Application.Current?.Resources ?? throw new InvalidOperationException("Application.Current is null.");
+
+            public static T Get<T>(string key)
+            {
+                if (!Resources.TryGetValue(key, out object value))
+                {
+                    string message = $"Material theme resource '{key}' not found. Ensure AppExtensions.ConfigureMaterialThemes is called upon application startup.";
+                    System.Diagnostics.Debug.WriteLine(message);
+                    throw new ThemeException(message);
+                }
+
+                if (value is not T typed)
+                {
+                    string message = $"Material resource '{key}' is not of type {typeof(T).Name}.";
+                    throw new ThemeException(message);
+                }
+
+                return typed;
+            }
+        }
+
         public static class Filled
         {
             // ==================== Enabled / Container ====================
-            public static Color ContainerColor => (Color)Application.Current.Resources["md.comp.filled-text-field.container.color"];
-            public static double ContainerHeight => (double)Application.Current.Resources["md.comp.filled-text-field.container.height"];
-            public static RoundRectangle ContainerShape => (RoundRectangle)Application.Current.Resources["md.comp.filled-text-field.container.shape"]; // RoundRectangle
+            public static Color ContainerColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.container.color");
+            public static double ContainerHeight => ResourceHelper.Get<double>("md.comp.filled-text-field.container.height");
+            public static RoundRectangle ContainerShape => ResourceHelper.Get<RoundRectangle>("md.comp.filled-text-field.container.shape"); // RoundRectangle
 
             // ==================== Enabled / Label text ====================
-            public static Color LabelTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.label-text.color"];
-            public static string LabelFont => (string)Application.Current.Resources["md.comp.filled-text-field.label-text.font"];
-            public static double LabelLineHeight => (double)Application.Current.Resources["md.comp.filled-text-field.label-text.line-height"];
-            public static double LabelSize => (double)Application.Current.Resources["md.comp.filled-text-field.label-text.size"];
-            public static int LabelWeight => (int)Application.Current.Resources["md.comp.filled-text-field.label-text.weight"];
-            public static double LabelTracking => (double)Application.Current.Resources["md.comp.filled-text-field.label-text.tracking"];
-            public static string LabelType => (string)Application.Current.Resources["md.comp.filled-text-field.label-text.type"];
-            public static double LabelPopulatedLineHeight => (double)Application.Current.Resources["md.comp.filled-text-field.label-text.populated.line-height"];
-            public static double LabelPopulatedSize => (double)Application.Current.Resources["md.comp.filled-text-field.label-text.populated.size"];
+            public static Color LabelTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.label-text.color");
+            public static string LabelFont => ResourceHelper.Get<string>("md.comp.filled-text-field.label-text.font");
+            public static double LabelLineHeight => ResourceHelper.Get<double>("md.comp.filled-text-field.label-text.line-height");
+            public static double LabelSize => ResourceHelper.Get<double>("md.comp.filled-text-field.label-text.size");
+            public static int LabelWeight => ResourceHelper.Get<int>("md.comp.filled-text-field.label-text.weight");
+            public static double LabelTracking => ResourceHelper.Get<double>("md.comp.filled-text-field.label-text.tracking");
+            public static string LabelType => ResourceHelper.Get<string>("md.comp.filled-text-field.label-text.type");
+            public static double LabelPopulatedLineHeight => ResourceHelper.Get<double>("md.comp.filled-text-field.label-text.populated.line-height");
+            public static double LabelPopulatedSize => ResourceHelper.Get<double>("md.comp.filled-text-field.label-text.populated.size");
 
             // ==================== Enabled / Leading icon ====================
-            public static Color LeadingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.leading-icon.color"];
-            public static double LeadingIconSize => (double)Application.Current.Resources["md.comp.filled-text-field.leading-icon.size"];
+            public static Color LeadingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.leading-icon.color");
+            public static double LeadingIconSize => ResourceHelper.Get<double>("md.comp.filled-text-field.leading-icon.size");
 
             // ==================== Enabled / Trailing icon ====================
-            public static Color TrailingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.trailing-icon.color"];
-            public static double TrailingIconSize => (double)Application.Current.Resources["md.comp.filled-text-field.trailing-icon.size"];
+            public static Color TrailingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.trailing-icon.color");
+            public static double TrailingIconSize => ResourceHelper.Get<double>("md.comp.filled-text-field.trailing-icon.size");
 
             // ==================== Enabled / Active indicator ====================
-            public static double ActiveIndicatorHeight => (double)Application.Current.Resources["md.comp.filled-text-field.active-indicator.height"];
-            public static Color ActiveIndicatorColor => (Color)Application.Current.Resources["md.comp.filled-text-field.active-indicator.color"];
+            public static double ActiveIndicatorHeight => ResourceHelper.Get<double>("md.comp.filled-text-field.active-indicator.height");
+            public static Color ActiveIndicatorColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.active-indicator.color");
 
             // ==================== Enabled / Supporting text ====================
-            public static Color SupportingTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.supporting-text.color"];
-            public static string SupportingTextFont => (string)Application.Current.Resources["md.comp.filled-text-field.supporting-text.font"];
-            public static double SupportingTextLineHeight => (double)Application.Current.Resources["md.comp.filled-text-field.supporting-text.line-height"];
-            public static double SupportingTextSize => (double)Application.Current.Resources["md.comp.filled-text-field.supporting-text.size"];
-            public static int SupportingTextWeight => (int)Application.Current.Resources["md.comp.filled-text-field.supporting-text.weight"];
-            public static double SupportingTextTracking => (double)Application.Current.Resources["md.comp.filled-text-field.supporting-text.tracking"];
+            public static Color SupportingTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.supporting-text.color");
+            public static string SupportingTextFont => ResourceHelper.Get<string>("md.comp.filled-text-field.supporting-text.font");
+            public static double SupportingTextLineHeight => ResourceHelper.Get<double>("md.comp.filled-text-field.supporting-text.line-height");
+            public static double SupportingTextSize => ResourceHelper.Get<double>("md.comp.filled-text-field.supporting-text.size");
+            public static int SupportingTextWeight => ResourceHelper.Get<int>("md.comp.filled-text-field.supporting-text.weight");
+            public static double SupportingTextTracking => ResourceHelper.Get<double>("md.comp.filled-text-field.supporting-text.tracking");
 
             // ==================== Enabled / Input text ====================
-            public static Color InputTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.input-text.color"];
-            public static string InputTextFont => (string)Application.Current.Resources["md.comp.filled-text-field.input-text.font"];
-            public static double InputTextLineHeight => (double)Application.Current.Resources["md.comp.filled-text-field.input-text.line-height"];
-            public static double InputTextSize => (double)Application.Current.Resources["md.comp.filled-text-field.input-text.size"];
-            public static int InputTextWeight => (int)Application.Current.Resources["md.comp.filled-text-field.input-text.weight"];
-            public static double InputTextTracking => (double)Application.Current.Resources["md.comp.filled-text-field.input-text.tracking"];
-            public static Color InputTextPrefixColor => (Color)Application.Current.Resources["md.comp.filled-text-field.input-text.prefix.color"];
-            public static Color InputTextSuffixColor => (Color)Application.Current.Resources["md.comp.filled-text-field.input-text.suffix.color"];
-            public static Color InputTextPlaceholderColor => (Color)Application.Current.Resources["md.comp.filled-text-field.input-text.placeholder.color"];
+            public static Color InputTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.input-text.color");
+            public static string InputTextFont => ResourceHelper.Get<string>("md.comp.filled-text-field.input-text.font");
+            public static double InputTextLineHeight => ResourceHelper.Get<double>("md.comp.filled-text-field.input-text.line-height");
+            public static double InputTextSize => ResourceHelper.Get<double>("md.comp.filled-text-field.input-text.size");
+            public static int InputTextWeight => ResourceHelper.Get<int>("md.comp.filled-text-field.input-text.weight");
+            public static double InputTextTracking => ResourceHelper.Get<double>("md.comp.filled-text-field.input-text.tracking");
+            public static Color InputTextPrefixColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.input-text.prefix.color");
+            public static Color InputTextSuffixColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.input-text.suffix.color");
+            public static Color InputTextPlaceholderColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.input-text.placeholder.color");
 
             // ==================== Enabled / Caret ====================
-            public static Color CaretColor => (Color)Application.Current.Resources["md.comp.filled-text-field.caret.color"];
+            public static Color CaretColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.caret.color");
 
             // ==================== Disabled / Container ====================
-            public static Color DisabledContainerColor => (Color)Application.Current.Resources["md.comp.filled-text-field.disabled.container.color"];
-            public static double DisabledContainerOpacity => (double)Application.Current.Resources["md.comp.filled-text-field.disabled.container.opacity"];
+            public static Color DisabledContainerColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.disabled.container.color");
+            public static double DisabledContainerOpacity => ResourceHelper.Get<double>("md.comp.filled-text-field.disabled.container.opacity");
 
             // ==================== Disabled / Label text ====================
-            public static Color DisabledLabelTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.disabled.label-text.color"];
-            public static double DisabledLabelTextOpacity => (double)Application.Current.Resources["md.comp.filled-text-field.disabled.label-text.opacity"];
+            public static Color DisabledLabelTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.disabled.label-text.color");
+            public static double DisabledLabelTextOpacity => ResourceHelper.Get<double>("md.comp.filled-text-field.disabled.label-text.opacity");
 
             // ==================== Disabled / Leading icon ====================
-            public static Color DisabledLeadingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.disabled.leading-icon.color"];
-            public static double DisabledLeadingIconOpacity => (double)Application.Current.Resources["md.comp.filled-text-field.disabled.leading-icon.opacity"];
+            public static Color DisabledLeadingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.disabled.leading-icon.color");
+            public static double DisabledLeadingIconOpacity => ResourceHelper.Get<double>("md.comp.filled-text-field.disabled.leading-icon.opacity");
 
             // ==================== Disabled / Trailing icon ====================
-            public static Color DisabledTrailingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.disabled.trailing-icon.color"];
-            public static double DisabledTrailingIconOpacity => (double)Application.Current.Resources["md.comp.filled-text-field.disabled.trailing-icon.opacity"];
+            public static Color DisabledTrailingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.disabled.trailing-icon.color");
+            public static double DisabledTrailingIconOpacity => ResourceHelper.Get<double>("md.comp.filled-text-field.disabled.trailing-icon.opacity");
 
             // ==================== Disabled / Supporting text ====================
-            public static Color DisabledSupportingTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.disabled.supporting-text.color"];
-            public static double DisabledSupportingTextOpacity => (double)Application.Current.Resources["md.comp.filled-text-field.disabled.supporting-text.opacity"];
+            public static Color DisabledSupportingTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.disabled.supporting-text.color");
+            public static double DisabledSupportingTextOpacity => ResourceHelper.Get<double>("md.comp.filled-text-field.disabled.supporting-text.opacity");
 
             // ==================== Disabled / Input text ====================
-            public static Color DisabledInputTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.disabled.input-text.color"];
-            public static double DisabledInputTextOpacity => (double)Application.Current.Resources["md.comp.filled-text-field.disabled.input-text.opacity"];
+            public static Color DisabledInputTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.disabled.input-text.color");
+            public static double DisabledInputTextOpacity => ResourceHelper.Get<double>("md.comp.filled-text-field.disabled.input-text.opacity");
 
             // ==================== Disabled / Active indicator ====================
-            public static double DisabledActiveIndicatorHeight => (double)Application.Current.Resources["md.comp.filled-text-field.disabled.active-indicator.height"];
-            public static Color DisabledActiveIndicatorColor => (Color)Application.Current.Resources["md.comp.filled-text-field.disabled.active-indicator.color"];
-            public static double DisabledActiveIndicatorOpacity => (double)Application.Current.Resources["md.comp.filled-text-field.disabled.active-indicator.opacity"];
+            public static double DisabledActiveIndicatorHeight => ResourceHelper.Get<double>("md.comp.filled-text-field.disabled.active-indicator.height");
+            public static Color DisabledActiveIndicatorColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.disabled.active-indicator.color");
+            public static double DisabledActiveIndicatorOpacity => ResourceHelper.Get<double>("md.comp.filled-text-field.disabled.active-indicator.opacity");
 
             // ==================== Focused / Label text ====================
-            public static Color FocusedLabelTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.focus.label-text.color"];
+            public static Color FocusedLabelTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.focus.label-text.color");
 
             // ==================== Focused / Leading icon ====================
-            public static Color FocusedLeadingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.focus.leading-icon.color"];
+            public static Color FocusedLeadingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.focus.leading-icon.color");
 
             // ==================== Focused / Trailing icon ====================
-            public static Color FocusedTrailingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.focus.trailing-icon.color"];
+            public static Color FocusedTrailingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.focus.trailing-icon.color");
 
             // ==================== Focused / Input text ====================
-            public static Color FocusedInputTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.focus.input-text.color"];
+            public static Color FocusedInputTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.focus.input-text.color");
 
             // ==================== Focused / Supporting text ====================
-            public static Color FocusedSupportingTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.focus.supporting-text.color"];
+            public static Color FocusedSupportingTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.focus.supporting-text.color");
 
             // ==================== Focused / Active indicator ====================
-            public static double FocusedActiveIndicatorHeight => (double)Application.Current.Resources["md.comp.filled-text-field.focus.active-indicator.height"];
-            public static Color FocusedActiveIndicatorColor => (Color)Application.Current.Resources["md.comp.filled-text-field.focus.active-indicator.color"];
-            public static double FocusedActiveIndicatorThickness => (double)Application.Current.Resources["md.comp.filled-text-field.focus.active-indicator.thickness"];
+            public static double FocusedActiveIndicatorHeight => ResourceHelper.Get<double>("md.comp.filled-text-field.focus.active-indicator.height");
+            public static Color FocusedActiveIndicatorColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.focus.active-indicator.color");
+            public static double FocusedActiveIndicatorThickness => ResourceHelper.Get<double>("md.comp.filled-text-field.focus.active-indicator.thickness");
 
             // ==================== Error ====================
-            public static Color ErrorActiveIndicatorColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.active-indicator.color"];
-            public static Color ErrorLabelTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.label-text.color"];
-            public static Color ErrorInputTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.input-text.color"];
-            public static Color ErrorSupportingTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.supporting-text.color"];
-            public static Color ErrorLeadingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.leading-icon.color"];
-            public static Color ErrorTrailingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.trailing-icon.color"];
+            public static Color ErrorActiveIndicatorColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.active-indicator.color");
+            public static Color ErrorLabelTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.label-text.color");
+            public static Color ErrorInputTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.input-text.color");
+            public static Color ErrorSupportingTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.supporting-text.color");
+            public static Color ErrorLeadingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.leading-icon.color");
+            public static Color ErrorTrailingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.trailing-icon.color");
 
             // ==================== Error / Focus ====================
-            public static Color ErrorFocusedActiveIndicatorColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.focus.active-indicator.color"];
-            public static Color ErrorFocusedLabelTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.focus.label-text.color"];
-            public static Color ErrorFocusedInputTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.focus.input-text.color"];
-            public static Color ErrorFocusedSupportingTextColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.focus.supporting-text.color"];
-            public static Color ErrorFocusedLeadingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.focus.leading-icon.color"];
-            public static Color ErrorFocusedTrailingIconColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.focus.trailing-icon.color"];
-            public static Color ErrorFocusedCaretColor => (Color)Application.Current.Resources["md.comp.filled-text-field.error.focus.caret.color"];
+            public static Color ErrorFocusedActiveIndicatorColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.focus.active-indicator.color");
+            public static Color ErrorFocusedLabelTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.focus.label-text.color");
+            public static Color ErrorFocusedInputTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.focus.input-text.color");
+            public static Color ErrorFocusedSupportingTextColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.focus.supporting-text.color");
+            public static Color ErrorFocusedLeadingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.focus.leading-icon.color");
+            public static Color ErrorFocusedTrailingIconColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.focus.trailing-icon.color");
+            public static Color ErrorFocusedCaretColor => ResourceHelper.Get<Color>("md.comp.filled-text-field.error.focus.caret.color");
         }
 
         public static class Outlined
         {
             // ==================== Enabled / Container ====================
-            public static double ContainerHeight => (double)Application.Current.Resources["md.comp.outlined-text-field.container.height"];
-            public static RoundRectangle ContainerShape => (RoundRectangle)Application.Current.Resources["md.comp.outlined-text-field.container.shape"]; // RoundRectangle
+            public static double ContainerHeight => ResourceHelper.Get<double>("md.comp.outlined-text-field.container.height");
+            public static RoundRectangle ContainerShape => ResourceHelper.Get<RoundRectangle>("md.comp.outlined-text-field.container.shape"); // RoundRectangle
 
             // ==================== Enabled / Outline ====================
-            public static int OutlineWidth => (int)Application.Current.Resources["md.comp.outlined-text-field.outline.width"];
-            public static Color OutlineColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.outline.color"];
+            public static int OutlineWidth => ResourceHelper.Get<int>("md.comp.outlined-text-field.outline.width");
+            public static Color OutlineColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.outline.color");
 
             // ==================== Enabled / Label text ====================
-            public static Color LabelTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.label-text.color"];
-            public static string LabelFont => (string)Application.Current.Resources["md.comp.outlined-text-field.label-text.font"];
-            public static double LabelLineHeight => (double)Application.Current.Resources["md.comp.outlined-text-field.label-text.line-height"];
-            public static double LabelSize => (double)Application.Current.Resources["md.comp.outlined-text-field.label-text.size"];
-            public static int LabelWeight => (int)Application.Current.Resources["md.comp.outlined-text-field.label-text.weight"];
-            public static double LabelTracking => (double)Application.Current.Resources["md.comp.outlined-text-field.label-text.tracking"];
-            public static string LabelType => (string)Application.Current.Resources["md.comp.outlined-text-field.label-text.type"];
-            public static double LabelPopulatedLineHeight => (double)Application.Current.Resources["md.comp.outlined-text-field.label-text.populated.line-height"];
-            public static double LabelPopulatedSize => (double)Application.Current.Resources["md.comp.outlined-text-field.label-text.populated.size"];
+            public static Color LabelTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.label-text.color");
+            public static string LabelFont => ResourceHelper.Get<string>("md.comp.outlined-text-field.label-text.font");
+            public static double LabelLineHeight => ResourceHelper.Get<double>("md.comp.outlined-text-field.label-text.line-height");
+            public static double LabelSize => ResourceHelper.Get<double>("md.comp.outlined-text-field.label-text.size");
+            public static int LabelWeight => ResourceHelper.Get<int>("md.comp.outlined-text-field.label-text.weight");
+            public static double LabelTracking => ResourceHelper.Get<double>("md.comp.outlined-text-field.label-text.tracking");
+            public static string LabelType => ResourceHelper.Get<string>("md.comp.outlined-text-field.label-text.type");
+            public static double LabelPopulatedLineHeight => ResourceHelper.Get<double>("md.comp.outlined-text-field.label-text.populated.line-height");
+            public static double LabelPopulatedSize => ResourceHelper.Get<double>("md.comp.outlined-text-field.label-text.populated.size");
 
             // ==================== Enabled / Leading icon ====================
-            public static Color LeadingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.leading-icon.color"];
-            public static double LeadingIconSize => (double)Application.Current.Resources["md.comp.outlined-text-field.leading-icon.size"];
+            public static Color LeadingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.leading-icon.color");
+            public static double LeadingIconSize => ResourceHelper.Get<double>("md.comp.outlined-text-field.leading-icon.size");
 
             // ==================== Enabled / Trailing icon ====================
-            public static Color TrailingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.trailing-icon.color"];
-            public static double TrailingIconSize => (double)Application.Current.Resources["md.comp.outlined-text-field.trailing-icon.size"];
+            public static Color TrailingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.trailing-icon.color");
+            public static double TrailingIconSize => ResourceHelper.Get<double>("md.comp.outlined-text-field.trailing-icon.size");
 
             // ==================== Enabled / Supporting text ====================
-            public static Color SupportingTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.supporting-text.color"];
-            public static string SupportingTextFont => (string)Application.Current.Resources["md.comp.outlined-text-field.supporting-text.font"];
-            public static double SupportingTextLineHeight => (double)Application.Current.Resources["md.comp.outlined-text-field.supporting-text.line-height"];
-            public static double SupportingTextSize => (double)Application.Current.Resources["md.comp.outlined-text-field.supporting-text.size"];
-            public static int SupportingTextWeight => (int)Application.Current.Resources["md.comp.outlined-text-field.supporting-text.weight"];
-            public static double SupportingTextTracking => (double)Application.Current.Resources["md.comp.outlined-text-field.supporting-text.tracking"];
+            public static Color SupportingTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.supporting-text.color");
+            public static string SupportingTextFont => ResourceHelper.Get<string>("md.comp.outlined-text-field.supporting-text.font");
+            public static double SupportingTextLineHeight => ResourceHelper.Get<double>("md.comp.outlined-text-field.supporting-text.line-height");
+            public static double SupportingTextSize => ResourceHelper.Get<double>("md.comp.outlined-text-field.supporting-text.size");
+            public static int SupportingTextWeight => ResourceHelper.Get<int>("md.comp.outlined-text-field.supporting-text.weight");
+            public static double SupportingTextTracking => ResourceHelper.Get<double>("md.comp.outlined-text-field.supporting-text.tracking");
 
             // ==================== Enabled / Input text ====================
-            public static Color InputTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.input-text.color"];
-            public static string InputTextFont => (string)Application.Current.Resources["md.comp.outlined-text-field.input-text.font"];
-            public static double InputTextLineHeight => (double)Application.Current.Resources["md.comp.outlined-text-field.input-text.line-height"];
-            public static double InputTextSize => (double)Application.Current.Resources["md.comp.outlined-text-field.input-text.size"];
-            public static int InputTextWeight => (int)Application.Current.Resources["md.comp.outlined-text-field.input-text.weight"];
-            public static double InputTextTracking => (double)Application.Current.Resources["md.comp.outlined-text-field.input-text.tracking"];
-            public static string InputTextType => (string)Application.Current.Resources["md.comp.outlined-text-field.input-text.type"];
-            public static Color InputTextSuffixColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.input-text.suffix.color"];
-            public static Color InputTextPrefixColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.input-text.prefix.color"];
-            public static Color InputTextPlaceholderColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.input-text.placeholder.color"];
+            public static Color InputTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.input-text.color");
+            public static string InputTextFont => ResourceHelper.Get<string>("md.comp.outlined-text-field.input-text.font");
+            public static double InputTextLineHeight => ResourceHelper.Get<double>("md.comp.outlined-text-field.input-text.line-height");
+            public static double InputTextSize => ResourceHelper.Get<double>("md.comp.outlined-text-field.input-text.size");
+            public static int InputTextWeight => ResourceHelper.Get<int>("md.comp.outlined-text-field.input-text.weight");
+            public static double InputTextTracking => ResourceHelper.Get<double>("md.comp.outlined-text-field.input-text.tracking");
+            public static string InputTextType => ResourceHelper.Get<string>("md.comp.outlined-text-field.input-text.type");
+            public static Color InputTextSuffixColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.input-text.suffix.color");
+            public static Color InputTextPrefixColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.input-text.prefix.color");
+            public static Color InputTextPlaceholderColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.input-text.placeholder.color");
 
             // ==================== Enabled / Caret ====================
-            public static Color CaretColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.caret.color"];
-            public static Color ErrorFocusCaretColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.focus.caret.color"];
+            public static Color CaretColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.caret.color");
+            public static Color ErrorFocusCaretColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.focus.caret.color");
 
             // ==================== Disabled / Label text ====================
-            public static Color DisabledLabelTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.disabled.label-text.color"];
-            public static double DisabledLabelTextOpacity => (double)Application.Current.Resources["md.comp.outlined-text-field.disabled.label-text.opacity"];
+            public static Color DisabledLabelTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.disabled.label-text.color");
+            public static double DisabledLabelTextOpacity => ResourceHelper.Get<double>("md.comp.outlined-text-field.disabled.label-text.opacity");
 
             // ==================== Disabled / Leading icon ====================
-            public static Color DisabledLeadingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.disabled.leading-icon.color"];
-            public static double DisabledLeadingIconOpacity => (double)Application.Current.Resources["md.comp.outlined-text-field.disabled.leading-icon.opacity"];
+            public static Color DisabledLeadingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.disabled.leading-icon.color");
+            public static double DisabledLeadingIconOpacity => ResourceHelper.Get<double>("md.comp.outlined-text-field.disabled.leading-icon.opacity");
 
             // ==================== Disabled / Trailing icon ====================
-            public static Color DisabledTrailingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.disabled.trailing-icon.color"];
-            public static double DisabledTrailingIconOpacity => (double)Application.Current.Resources["md.comp.outlined-text-field.disabled.trailing-icon.opacity"];
+            public static Color DisabledTrailingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.disabled.trailing-icon.color");
+            public static double DisabledTrailingIconOpacity => ResourceHelper.Get<double>("md.comp.outlined-text-field.disabled.trailing-icon.opacity");
 
             // ==================== Disabled / Outline ====================
-            public static double DisabledOutlineWidth => (double)Application.Current.Resources["md.comp.outlined-text-field.disabled.outline.width"];
-            public static Color DisabledOutlineColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.disabled.outline.color"];
-            public static double DisabledOutlineOpacity => (double)Application.Current.Resources["md.comp.outlined-text-field.disabled.outline.opacity"];
+            public static double DisabledOutlineWidth => ResourceHelper.Get<double>("md.comp.outlined-text-field.disabled.outline.width");
+            public static Color DisabledOutlineColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.disabled.outline.color");
+            public static double DisabledOutlineOpacity => ResourceHelper.Get<double>("md.comp.outlined-text-field.disabled.outline.opacity");
 
             // ==================== Disabled / Supporting text ====================
-            public static Color DisabledSupportingTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.disabled.supporting-text.color"];
-            public static double DisabledSupportingTextOpacity => (double)Application.Current.Resources["md.comp.outlined-text-field.disabled.supporting-text.opacity"];
+            public static Color DisabledSupportingTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.disabled.supporting-text.color");
+            public static double DisabledSupportingTextOpacity => ResourceHelper.Get<double>("md.comp.outlined-text-field.disabled.supporting-text.opacity");
 
             // ==================== Disabled / Input text ====================
-            public static Color DisabledInputTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.disabled.input-text.color"];
-            public static double DisabledInputTextOpacity => (double)Application.Current.Resources["md.comp.outlined-text-field.disabled.input-text.opacity"];
+            public static Color DisabledInputTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.disabled.input-text.color");
+            public static double DisabledInputTextOpacity => ResourceHelper.Get<double>("md.comp.outlined-text-field.disabled.input-text.opacity");
 
             // ==================== Focused / Label text ====================
-            public static Color FocusedLabelTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.label-text.color"];
+            public static Color FocusedLabelTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.focus.label-text.color");
 
             // ==================== Focused / Leading icon ====================
-            public static Color FocusedLeadingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.leading-icon.color"];
+            public static Color FocusedLeadingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.focus.leading-icon.color");
 
             // ==================== Focused / Trailing icon ====================
-            public static Color FocusedTrailingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.trailing-icon.color"];
+            public static Color FocusedTrailingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.focus.trailing-icon.color");
 
             // ==================== Focused / Outline ====================
-            public static int FocusedOutlineWidth => (int)Application.Current.Resources["md.comp.outlined-text-field.focus.outline.width"];
-            public static Color FocusedOutlineColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.outline.color"];
+            public static int FocusedOutlineWidth => ResourceHelper.Get<int>("md.comp.outlined-text-field.focus.outline.width");
+            public static Color FocusedOutlineColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.focus.outline.color");
 
             // ==================== Focused / Input text ====================
-            public static Color FocusedInputTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.input-text.color"];
+            public static Color FocusedInputTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.focus.input-text.color");
 
             // ==================== Focused / Supporting text ====================
-            public static Color FocusedSupportingTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.supporting-text.color"];
+            public static Color FocusedSupportingTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.focus.supporting-text.color");
 
             // ==================== Focused / Focus indicator ====================
-            public static Color FocusIndicatorColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.focus.indicator.outline.color"];
-            public static Color ErrorFocusIndicatorColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.focus.indicator.outline.color"];
-            public static double FocusIndicatorThickness => (double)Application.Current.Resources["md.comp.outlined-text-field.focus.indicator.outline.thickness"];
+            public static Color FocusIndicatorColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.focus.indicator.outline.color");
+            public static Color ErrorFocusIndicatorColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.focus.indicator.outline.color");
+            public static double FocusIndicatorThickness => ResourceHelper.Get<double>("md.comp.outlined-text-field.focus.indicator.outline.thickness");
 
             // ==================== Error ====================
-            public static Color ErrorOutlineColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.outline.color"];
-            public static Color ErrorLabelTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.label-text.color"];
-            public static Color ErrorInputTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.input-text.color"];
-            public static Color ErrorSupportingTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.supporting-text.color"];
-            public static Color ErrorLeadingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.leading-icon.color"];
-            public static Color ErrorTrailingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.trailing-icon.color"];
+            public static Color ErrorOutlineColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.outline.color");
+            public static Color ErrorLabelTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.label-text.color");
+            public static Color ErrorInputTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.input-text.color");
+            public static Color ErrorSupportingTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.supporting-text.color");
+            public static Color ErrorLeadingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.leading-icon.color");
+            public static Color ErrorTrailingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.trailing-icon.color");
 
             // ==================== Error / Focus ====================
-            public static Color ErrorFocusOutlineColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.focus.outline.color"];
-            public static Color ErrorFocusLabelTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.focus.label-text.color"];
-            public static Color ErrorFocusInputTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.focus.input-text.color"];
-            public static Color ErrorFocusSupportingTextColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.focus.supporting-text.color"];
-            public static Color ErrorFocusLeadingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.focus.leading-icon.color"];
-            public static Color ErrorFocusTrailingIconColor => (Color)Application.Current.Resources["md.comp.outlined-text-field.error.focus.trailing-icon.color"];
-                
+            public static Color ErrorFocusOutlineColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.focus.outline.color");
+            public static Color ErrorFocusLabelTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.focus.label-text.color");
+            public static Color ErrorFocusInputTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.focus.input-text.color");
+            public static Color ErrorFocusSupportingTextColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.focus.supporting-text.color");
+            public static Color ErrorFocusLeadingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.focus.leading-icon.color");
+            public static Color ErrorFocusTrailingIconColor => ResourceHelper.Get<Color>("md.comp.outlined-text-field.error.focus.trailing-icon.color");
+
         }
     }
 }
