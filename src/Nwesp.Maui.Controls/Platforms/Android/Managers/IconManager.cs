@@ -24,28 +24,16 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
     public static class IconManager
     {
-
-        public static async void ShowEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext mauiContext)
+        public static async void ShowEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
         {
-    
-            platformView.Post(async () =>
-            {
-                platformView.EndIconVisible = true;
-                await platformView.MapCustomEndIcon(virtualView, mauiContext);
-                platformView.SetEndIconOnClickListener(new OnEndIconClickListener(virtualView));
-            });
-            
+            platformView.EndIconVisible = true;
+            await platformView.MapCustomEndIcon(virtualView, mauiContext);
         }
 
         public static void HideEndIcon(this MauiTextInputLayout platformView)
         {
-   
-            platformView.Post(() =>
-            {
-                platformView.EndIconVisible = false;
-            });
+            platformView.EndIconVisible = false;
         }
-
 
         public static void UpdateEndIconColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
@@ -91,7 +79,7 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 
         public static async Task MapCustomStartIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext? mauiContext)
         {
-            handler.StartIconDrawable =  await MapCustomIcon(entry.StartIcon, mauiContext);
+            handler.StartIconDrawable = await MapCustomIcon(entry.StartIcon, mauiContext);
         }
 
         private static async Task<Drawable?> MapCustomIcon(ImageSource icon, IMauiContext? mauiContext)

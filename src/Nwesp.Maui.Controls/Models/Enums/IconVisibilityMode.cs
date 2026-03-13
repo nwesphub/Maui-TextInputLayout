@@ -11,6 +11,7 @@ namespace Nwesp.Maui.Android.Models.Enums
         Never,
         Always,
         WhileEditing,
-        HasText
+        HasText,
+        HasTextWhileEditing
     }
 }

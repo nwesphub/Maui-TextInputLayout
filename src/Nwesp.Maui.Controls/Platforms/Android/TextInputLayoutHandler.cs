@@ -104,8 +104,9 @@ namespace Nwesp.Maui.Android
                 PlatformEntry.TextChanged += PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange += PlatformEntry_FocusChange;
             }
+            PlatformView.SetEndIconOnClickListener(new OnEndIconClickListener(VirtualView));
             PlatformView.SetStartIconOnClickListener(new OnStartIconClickListener(VirtualView));
-            
+            PlatformView.SetErrorIconOnClickListener(null);
         }
 
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
@@ -118,43 +119,74 @@ namespace Nwesp.Maui.Android
             }
             platformView.SetEndIconOnClickListener(null);
             platformView.SetStartIconOnClickListener(null);
+            platformView.SetErrorIconOnClickListener(null);
         }
 
         private void PlatformEntry_FocusChange(object? sender, AView.FocusChangeEventArgs e)
         {
             // Disabling for now. When end icon mode is set to custom, advancing focus past disabled entries causes the end icon to receive focus.
-            return;
-            if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.WhileEditing)
+            
+            if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.WhileEditing && 
+                VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
             {
                 return;
             }
 
-            if (e.HasFocus)
+            if (VirtualView.EndIconVisibilityMode == IconVisibilityMode.HasTextWhileEditing)
             {
-                PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                if (PlatformView?.HasTextAndFocus() == true)
+                {
+                    PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                }
+                else
+                {
+                    PlatformView?.HideEndIcon();
+                }
             }
             else
             {
-                PlatformView?.HideEndIcon();
+                if (e.HasFocus)
+                {
+                    PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                }
+                else
+                {
+                    PlatformView?.HideEndIcon();
+                }
             }
         }
 
         private void PlatformEntry_TextChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
         {
             // Disabling for now. When end icon mode is set to custom, advancing focus past disabled entries causes the end icon to receive focus.
-            return;
-            if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasText)
+            
+            if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasText &&
+                VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
             {
                 return;
             }
-            
-            if (!string.IsNullOrWhiteSpace(e.Text?.ToString()))
+
+            if (VirtualView.EndIconVisibilityMode == IconVisibilityMode.HasTextWhileEditing)
             {
-                PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                if (PlatformView?.HasTextAndFocus() == true)
+                {
+                    PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                }
+                else
+                {
+                    PlatformView?.HideEndIcon();
+                }
             }
             else
             {
-                PlatformView?.HideEndIcon();
+                if (!string.IsNullOrWhiteSpace(e.Text?.ToString()))
+                {
+                    PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                }
+                else
+                {
+                    PlatformView?.HideEndIcon();
+                }
             }
         }
 
@@ -237,8 +269,7 @@ namespace Nwesp.Maui.Android
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
-            return;
+            
             if (entry.EndIconVisibilityMode == IconVisibilityMode.Always)
             {
                 handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
