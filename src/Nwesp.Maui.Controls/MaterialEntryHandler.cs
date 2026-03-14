@@ -1,5 +1,11 @@
-﻿using AndroidX.AppCompat.View;
+﻿using Android.Graphics;
+using Android.Text;
+using Android.Text.Method;
+using Android.Text.Style;
+using AndroidX.AppCompat.View;
 using AndroidX.AppCompat.Widget;
+using Java.Lang;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using Nwesp.Maui.Android.Abstractions;
@@ -46,9 +52,41 @@ namespace Nwesp.Maui.Android
             base.SetVirtualView(view);
         }
 
+        protected override void ConnectHandler(AppCompatEditText platformView)
+        {
+            base.ConnectHandler(platformView);
+            //platformView.AddTextChangedListener(new TextWatcher());
+        }
+
         public static void MapTextColor(MaterialEntryHandler handler, MaterialEntry view)
         {
             handler.PlatformView?.UpdateTextColor(view);
+        }
+
+        private class TextWatcher : Java.Lang.Object, ITextWatcher
+        {
+            public void AfterTextChanged(IEditable? s)
+            {
+                var spans = s?.GetSpans(0, s.Length(), Java.Lang.Class.FromType(typeof(UnderlineSpan)))?.Cast<UnderlineSpan>();
+
+                if(spans is null)
+                {
+                    return;
+                }
+
+                foreach (UnderlineSpan span in spans)
+                {
+                    s?.RemoveSpan(span);
+                }
+            }
+
+            public void BeforeTextChanged(ICharSequence? s, int start, int count, int after)
+            {
+            }
+
+            public void OnTextChanged(ICharSequence? s, int start, int before, int count)
+            {
+            }
         }
     }
 }
