@@ -59,6 +59,7 @@ using ABlendMode = Android.Graphics.BlendMode;
 using AProgressBar = Android.Widget.ProgressBar;
 using Nwesp.Maui.Android.Abstractions;
 using Nwesp.Maui.Android.Controls;
+using Nwesp.Maui.Android.Platforms.Android.Listeners;
 namespace Nwesp.Maui.Android
 {
 
@@ -104,9 +105,21 @@ namespace Nwesp.Maui.Android
                 PlatformEntry.TextChanged += PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange += PlatformEntry_FocusChange;
             }
-            PlatformView.SetEndIconOnClickListener(new OnEndIconClickListener(VirtualView));
-            PlatformView.SetStartIconOnClickListener(new OnStartIconClickListener(VirtualView));
-            PlatformView.SetErrorIconOnClickListener(null);
+
+            PlatformView.SetEndIconOnClickListener(new OnClickListener(() =>
+            {
+                VirtualView?.EndIconClicked();
+            }));
+
+            PlatformView.SetStartIconOnClickListener(new OnClickListener(() =>
+            {
+                VirtualView?.StartIconClicked();
+            }));
+
+            PlatformView.SetErrorIconOnClickListener(new OnClickListener(() =>
+            {
+                VirtualView?.ErrorIconClicked();
+            }));
         }
 
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
@@ -124,8 +137,6 @@ namespace Nwesp.Maui.Android
 
         private void PlatformEntry_FocusChange(object? sender, AView.FocusChangeEventArgs e)
         {
-            // Disabling for now. When end icon mode is set to custom, advancing focus past disabled entries causes the end icon to receive focus.
-            
             if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.WhileEditing && 
                 VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
             {
@@ -134,7 +145,7 @@ namespace Nwesp.Maui.Android
 
             if (VirtualView.EndIconVisibilityMode == IconVisibilityMode.HasTextWhileEditing)
             {
-                if (PlatformView?.HasTextAndFocus() == true)
+                if (PlatformView?.HasTextAndFocus(e) == true)
                 {
                     PlatformView?.ShowEndIcon(VirtualView, MauiContext);
                 }
@@ -158,8 +169,6 @@ namespace Nwesp.Maui.Android
 
         private void PlatformEntry_TextChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
         {
-            // Disabling for now. When end icon mode is set to custom, advancing focus past disabled entries causes the end icon to receive focus.
-            
             if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasText &&
                 VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
             {
@@ -346,7 +355,7 @@ namespace Nwesp.Maui.Android
 
         public override void SetVirtualView(IView view)
         {
-            _boxBackgroundMode = IMaterialEntry.ParseBoxBackgroundMode(view);
+            _boxBackgroundMode = OutlineManager.ParseBoxBackgroundMode(view);
             base.SetVirtualView(view);
         }
     }

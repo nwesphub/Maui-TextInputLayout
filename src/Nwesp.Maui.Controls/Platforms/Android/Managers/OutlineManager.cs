@@ -1,6 +1,7 @@
 ﻿using Android.Content.Res;
 using Microsoft.Maui.Platform;
 using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,11 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             );
 
             platformView.SetBoxStrokeColorStateList(csl);
+        }
+
+        public static BoxBackgroundMode ParseBoxBackgroundMode(IView view)
+        {
+            return (view as IMaterialEntry)?.BoxBackgroundMode ?? BoxBackgroundMode.None;
         }
     }
 }

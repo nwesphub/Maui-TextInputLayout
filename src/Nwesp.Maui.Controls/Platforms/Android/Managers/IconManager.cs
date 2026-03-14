@@ -24,10 +24,9 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
     public static class IconManager
     {
-        public static async void ShowEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
+        public static void ShowEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
         {
             platformView.EndIconVisible = true;
-            await platformView.MapCustomEndIcon(virtualView, mauiContext);
         }
 
         public static void HideEndIcon(this MauiTextInputLayout platformView)

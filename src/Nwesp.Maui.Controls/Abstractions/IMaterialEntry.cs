@@ -9,12 +9,7 @@ namespace Nwesp.Maui.Android.Abstractions
 {
     public interface IMaterialEntry : IView, ITextStyle
     {
-        public BoxBackgroundMode BoxBackgroundMode { get; set; }
-        public static BoxBackgroundMode ParseBoxBackgroundMode(IView view)
-        {
-            return (view as IMaterialEntry)?.BoxBackgroundMode ?? BoxBackgroundMode.None;
-        }
-
+        BoxBackgroundMode BoxBackgroundMode { get; set; }
         Color DisabledTextColor { get; set; }
         float DisabledTextColorOpacity { get; set; }
     }

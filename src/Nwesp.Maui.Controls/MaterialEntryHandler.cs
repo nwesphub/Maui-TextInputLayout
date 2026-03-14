@@ -6,6 +6,7 @@ using Nwesp.Maui.Android.Abstractions;
 using Nwesp.Maui.Android.Controls;
 using Nwesp.Maui.Android.Models.Enums;
 using Nwesp.Maui.Android.Platforms.Android;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
 using Nwesp.Maui.Android.Utilities;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace Nwesp.Maui.Android
         private BoxBackgroundMode _boxBackgroundMode;
         public override void SetVirtualView(IView view)
         {
-            _boxBackgroundMode = IMaterialEntry.ParseBoxBackgroundMode(view);
+            _boxBackgroundMode = OutlineManager.ParseBoxBackgroundMode(view);
             base.SetVirtualView(view);
         }
 

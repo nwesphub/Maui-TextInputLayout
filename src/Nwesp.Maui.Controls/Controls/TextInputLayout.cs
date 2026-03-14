@@ -173,6 +173,17 @@ namespace Nwesp.Maui.Android.Controls
                 picker.SelectedItem = null;
             }
         }
+
+        public void StartIconClicked()
+        {
+  
+        }
+
+        public void ErrorIconClicked()
+        {
+
+        }
+
         public Color OutlineColor
         {
             get => (Color)GetValue(OutlineColorProperty);

@@ -72,59 +72,5 @@ namespace Nwesp.Maui.Android.Platforms.Android
                 endIcon.Alpha = 1f;
             });
         }
-
-
-        public class OnEndIconClickListener : Java.Lang.Object, IOnClickListener
-        {
-            ITextInputLayout _textInputLayout;
-            public OnEndIconClickListener(ITextInputLayout textInputLayout)
-            {
-                _textInputLayout = textInputLayout;
-            }
-
-            public void OnClick(AView? v)
-            {
-                _textInputLayout.EndIconClicked();
-            }
-        }
-
-        public class OnStartIconClickListener : Java.Lang.Object, IOnClickListener
-        {
-            ITextInputLayout _textInputLayout;
-            public OnStartIconClickListener(ITextInputLayout textInputLayout)
-            {
-                _textInputLayout = textInputLayout;
-            }
-
-            public void OnClick(AView? v)
-            {
-                _textInputLayout.EndIconClicked();
-            }
-        }
-
-        public class TextChangedListener : Java.Lang.Object, ITextWatcher
-        {
-            public void AfterTextChanged(IEditable? s)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void BeforeTextChanged(ICharSequence? s, int start, int count, int after)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void OnTextChanged(ICharSequence? s, int start, int before, int count)
-            {
-                if(s is null)
-                {
-                    return;
-                }
-                foreach(char seq in s)
-                {
-                    
-                }
-            }
-        }
     }
 }
