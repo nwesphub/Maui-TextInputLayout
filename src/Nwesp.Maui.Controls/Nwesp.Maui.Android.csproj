@@ -22,6 +22,12 @@
 	  <None Remove="Platforms\Android\Resources\drawable\colors.xml" />
 	  <None Remove="Platforms\Android\Resources\drawable\ic_clear.xml" />
 	  <None Remove="Platforms\Android\Resources\styles\textinputstyles.xml" />
+	  <None Remove="Resources\Images\eye_off.svg" />
+	  <None Remove="Resources\Images\eye_off1.svg" />
+	  <None Remove="Resources\Images\eye_off2.svg" />
+	  <None Remove="Resources\Images\eye_on.svg" />
+	  <None Remove="Resources\Images\eye_on1.svg" />
+	  <None Remove="Resources\Images\eye_on2.svg" />
 	  <None Remove="Resources\Images\material_clear.svg" />
 	</ItemGroup>
 
@@ -52,6 +58,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\eye_off.svg" />
+	  <MauiImage Include="Resources\Images\eye_off1.svg" />
+	  <MauiImage Include="Resources\Images\eye_off2.svg" />
+	  <MauiImage Include="Resources\Images\eye_on.svg" />
+	  <MauiImage Include="Resources\Images\eye_on1.svg" />
+	  <MauiImage Include="Resources\Images\eye_on2.svg" />
 	  <MauiImage Include="Resources\Images\material_clear.svg" />
 	</ItemGroup>
 
