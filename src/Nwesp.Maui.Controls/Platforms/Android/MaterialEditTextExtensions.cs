@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AResource = Android.Resource.Attribute;
 using Nwesp.Maui.Android.Abstractions;
+using Android.Text;
+using Microsoft.Maui;
 namespace Nwesp.Maui.Android.Platforms.Android
 {
     public static class MaterialEditTextExtensions
@@ -28,6 +30,22 @@ namespace Nwesp.Maui.Android.Platforms.Android
             ];
 
             editText.SetTextColor(new ColorStateList(states, colors));
+        }
+
+        public static void TogglePasswordOn(this EditText editText)
+        {
+            if (editText.InputType.HasFlag(InputTypes.ClassText))
+                editText.InputType |= InputTypes.TextVariationPassword;
+            if (editText.InputType.HasFlag(InputTypes.ClassNumber))
+                editText.InputType |= InputTypes.NumberVariationPassword;
+        }
+
+        public static void TogglePasswordOff(this EditText editText)
+        {
+            if (editText.InputType.HasFlag(InputTypes.ClassText))
+                editText.InputType &= ~InputTypes.TextVariationPassword;
+            if (editText.InputType.HasFlag(InputTypes.ClassNumber))
+                editText.InputType &= ~InputTypes.NumberVariationPassword;
         }
     }
 }

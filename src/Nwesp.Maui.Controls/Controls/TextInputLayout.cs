@@ -26,7 +26,6 @@ namespace Nwesp.Maui.Android.Controls
 {
     public class TextInputLayout : ContentView, ITextInputLayout
     {
-
         static TextInputLayout()
         {
             OutlineColorProperty = BindableProperty.Create(nameof(OutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetOutlineColor());
@@ -42,7 +41,8 @@ namespace Nwesp.Maui.Android.Controls
             IsHintAnimatedProperty = BindableProperty.Create(nameof(IsHintAnimated), typeof(bool), typeof(TextInputLayout), defaultValue: true);
 
             BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout), defaultBindingMode: BindingMode.OneTime, propertyChanged: BoxBackgroundModePropertyChanged);
-            EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout));
+            EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout), defaultValue: IconVisibilityMode.HasTextWhileEditing);
+            EndIconModeProperty = BindableProperty.Create(nameof(EndIconMode), typeof(EndIconMode), typeof(TextInputLayout), defaultValue: EndIconMode.ClearText);
 
             EndIconProperty = BindableProperty.Create(nameof(EndIcon), typeof(ImageSource), typeof(TextInputLayout), defaultValue: ImageSource.FromFile("material_clear.svg"));
             EndIconColorProperty = BindableProperty.Create(nameof(EndIconColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetTrailingIconColor());
@@ -120,6 +120,7 @@ namespace Nwesp.Maui.Android.Controls
 
         public static readonly BindableProperty BoxBackgroundModeProperty;
         public static readonly BindableProperty EndIconVisibilityModeProperty;
+        public static readonly BindableProperty EndIconModeProperty;
 
         public static readonly BindableProperty EndIconProperty;
         public static readonly BindableProperty EndIconColorProperty;
@@ -164,13 +165,16 @@ namespace Nwesp.Maui.Android.Controls
                 return;
             }
 
-            if (Content is InputView inputView)
+            if(EndIconMode == EndIconMode.ClearText)
             {
-                inputView.Text = string.Empty;
-            }
-            else if (Content is Picker picker)
-            {
-                picker.SelectedItem = null;
+                if (Content is InputView inputView)
+                {
+                    inputView.Text = string.Empty;
+                }
+                else if (Content is Picker picker)
+                {
+                    picker.SelectedItem = null;
+                }
             }
         }
 
@@ -263,6 +267,11 @@ namespace Nwesp.Maui.Android.Controls
         {
             get => (IconVisibilityMode)GetValue(EndIconVisibilityModeProperty);
             set => SetValue(EndIconVisibilityModeProperty, value);
+        }
+        public EndIconMode EndIconMode
+        {
+            get => (EndIconMode)GetValue(EndIconModeProperty);
+            set => SetValue(EndIconModeProperty, value);
         }
 
         [TypeConverter(typeof(ImageSourceConverter))]

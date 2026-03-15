@@ -55,7 +55,7 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.DisabledStartIconOpacity)] = MapStartIconColor,
             [nameof(ITextInputLayout.BoxBackgroundMode)] = MapBoxBackgroundMode,
             [nameof(ITextInputLayout.EndIconVisibilityMode)] = MapEndIconVisibilityMode,
-            
+            [nameof(ITextInputLayout.EndIconMode)] = MapEndIconMode,
             [nameof(ITextInputLayout.Prefix)] = MapPrefix,
             [nameof(ITextInputLayout.Suffix)] = MapSuffix,
             [nameof(ITextInputLayout.SupportingText)] = MapSupportingText,

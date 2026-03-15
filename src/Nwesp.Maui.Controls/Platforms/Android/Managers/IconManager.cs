@@ -19,19 +19,60 @@ using AndroidX.Core.Graphics.Drawable;
 using MColor = Microsoft.Maui.Graphics.Color;
 using Nwesp.Maui.Android.Abstractions;
 using static Google.Android.Material.TextField.TextInputLayout;
+using System.Collections.Concurrent;
+using Microsoft.Maui;
+using Android.Text;
+using System.Runtime.CompilerServices;
 
 namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
     public static class IconManager
     {
-        public static void ShowEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
+        private static ConcurrentDictionary<string, Drawable> DrawableDictionary = new ();
+
+        public static void UpdateEndIconMode(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
         {
-            platformView.EndIconVisible = true;
+            platformView.CustomEndIconMode = virtualView.EndIconMode;
+
+            if(platformView.CustomEndIconMode == EndIconMode.Password && virtualView.Content is IEntry entry)
+            {
+                if(entry.IsPassword)
+                {
+                    platformView.SetToggleOffPasswordIcon(mauiContext);
+                }
+                else
+                {
+                    platformView.SetToggleOnPasswordIcon(mauiContext);
+                }
+            }
+        }
+
+        public static async void SetToggleOffPasswordIcon(this MauiTextInputLayout platformView, IMauiContext? mauiContext)
+        {
+            platformView.IsPassword = true;
+            platformView.EndIconDrawable = await MapCustomIcon(ImageSource.FromFile("eye_off2.svg"), mauiContext);
+        }
+
+        public static async void SetToggleOnPasswordIcon(this MauiTextInputLayout platformView, IMauiContext? mauiContext)
+        {
+            platformView.IsPassword = false;
+            platformView.EndIconDrawable = await MapCustomIcon(ImageSource.FromFile("eye_on2.svg"), mauiContext);
+        }
+
+        public static void ShowEndIcon(this MauiTextInputLayout platformView)
+        {
+            platformView.Post(() =>
+            {
+                platformView.EndIconVisible = true;
+            });
         }
 
         public static void HideEndIcon(this MauiTextInputLayout platformView)
         {
-            platformView.EndIconVisible = false;
+            platformView.Post(() =>
+            {
+                platformView.EndIconVisible = false;
+            });
         }
 
         public static void UpdateEndIconColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
@@ -87,18 +128,36 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             {
                 return null;
             }
-
+            
             Drawable? result = null;
             try
             {
-                result = (await icon.GetPlatformImageAsync(mauiContext))?.Value;
+                if (icon is FileImageSource fileImageSource)
+                {
+                    if (DrawableDictionary.TryGetValue(fileImageSource.File, out Drawable? image))
+                    {
+                        result = image;
+                    }
+                    else
+                    {
+                        result = (await icon.GetPlatformImageAsync(mauiContext))?.Value;
+                        if (result is not null)
+                        {
+                            DrawableDictionary.TryAdd(fileImageSource.File, result);
+                        }
+                    }
+                }
+                else
+                {
+                    result = (await icon.GetPlatformImageAsync(mauiContext))?.Value;
+                }
             }
-            catch(Exception) 
-            { 
+            catch(Exception ex) 
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
             }
 
             return result;
         }
-
     }
 }
