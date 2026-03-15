@@ -12,11 +12,11 @@ namespace MauiCustomControls
             RegisterRoute<HintPage>();
             if(PlatformAppTheme == AppTheme.Light)
             {
-                Resources.MergedDictionaries.Add(new Maui.Android.TextInputLayout.Resources.LightTheme());
+                Resources.MergedDictionaries.Add(new Nwesp.Maui.Android.Resources.LightTheme());
             }
             else if(PlatformAppTheme == AppTheme.Dark)
             {
-                Resources.MergedDictionaries.Add(new Maui.Android.TextInputLayout.Resources.DarkTheme());
+                Resources.MergedDictionaries.Add(new Nwesp.Maui.Android.Resources.DarkTheme());
             }
             this.RequestedThemeChanged += App_RequestedThemeChanged;
         }
@@ -25,21 +25,21 @@ namespace MauiCustomControls
         {
             if(e.RequestedTheme == AppTheme.Light)
             {
-                var foundDictionary = Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Maui.Android.TextInputLayout.Resources.DarkTheme));
+                var foundDictionary = Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Nwesp.Maui.Android.Resources.DarkTheme));
                 if (foundDictionary is not null)
                 {
-                    Resources.MergedDictionaries.Remove(Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Maui.Android.TextInputLayout.Resources.DarkTheme)));
+                    Resources.MergedDictionaries.Remove(Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Nwesp.Maui.Android.Resources.DarkTheme)));
                 }
-                Resources.MergedDictionaries.Add(new Maui.Android.TextInputLayout.Resources.LightTheme());
+                Resources.MergedDictionaries.Add(new Nwesp.Maui.Android.Resources.LightTheme());
             }
             else if(e.RequestedTheme == AppTheme.Dark)
             {
-                var foundDictionary = Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Maui.Android.TextInputLayout.Resources.LightTheme));
+                var foundDictionary = Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Nwesp.Maui.Android.Resources.LightTheme));
                 if (foundDictionary is not null)
                 {
-                    Resources.MergedDictionaries.Remove(Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Maui.Android.TextInputLayout.Resources.LightTheme)));
+                    Resources.MergedDictionaries.Remove(Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Nwesp.Maui.Android.Resources.LightTheme)));
                 }
-                Resources.MergedDictionaries.Add(new Maui.Android.TextInputLayout.Resources.DarkTheme());
+                Resources.MergedDictionaries.Add(new Nwesp.Maui.Android.Resources.DarkTheme());
             }
         }
 

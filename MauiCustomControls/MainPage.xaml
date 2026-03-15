@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:custom="clr-namespace:MauiCustomControls"
-    xmlns:input="clr-namespace:Maui.Android.TextInputLayout;assembly=Maui.Android.TextInputLayout"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
     x:Name="root"
     BackgroundColor="{AppThemeBinding Light=#FFFFFF,
                                       Dark=#101010}"
@@ -19,34 +19,31 @@
 
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-             EndIcon="dotnet_bot.png"
-                StartIcon="search_black.svg"
-
-                EndIconVisibilityMode="WhileEditing"
-                Hint="Outline Default"
-                SupportingText="Test"
-                Prefix="$"
-                Suffix="%">
-                <input:MaterialEntry />
-            </input:TextInputLayout>
-            <input:TextInputLayout
-                BoxBackgroundMode="Outline"
-    SupportingText="Test"
+       
+              Prefix="$" Suffix="%"
                 EndIconVisibilityMode="HasText"
                 Hint="Outline Default"
-                Prefix="$"
-                Suffix="%">
-                <input:MaterialEntry TextColor="Red" />
+                SupportingText="Test"
+            >
+                <input:MaterialEntry />
             </input:TextInputLayout>
-            <input:TextInputLayout
+            <input:TextInputLayout Prefix="$" Suffix="%"
                 BoxBackgroundMode="Outline"
+    SupportingText="Test"
                 EndIconVisibilityMode="Always"
                 Hint="Outline Default"
-                Prefix="$" SupportingText="Test"
-                Suffix="%">
+            >
                 <input:MaterialEntry TextColor="Red" />
             </input:TextInputLayout>
-            <input:TextInputLayout
+            <input:TextInputLayout Prefix="$" Suffix="%"
+                BoxBackgroundMode="Outline" 
+                EndIconVisibilityMode="Always"
+                Hint="Outline Default"
+           SupportingText="Test"
+         >
+                <input:MaterialEntry TextColor="Red" />
+            </input:TextInputLayout>
+            <input:TextInputLayout  Prefix="$" Suffix="%"
                 BoxBackgroundMode="Outline"
 
              SupportingText="Test"
@@ -54,11 +51,10 @@
              
                 EndIconVisibilityMode="Always"
                 Hint="Outline Default"
-                Prefix="$"
-                Suffix="%">
+     >
                 <input:MaterialEntry TextColor="Red" />
             </input:TextInputLayout>
-            <input:TextInputLayout
+            <input:TextInputLayout 
                 BoxBackgroundMode="Outline" SupportingText="Test"
                 EndIconVisibilityMode="WhileEditing"
                 Hint="Outline Disabled"
@@ -74,7 +70,7 @@
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-                EndIconVisibilityMode="Always"
+                EndIconVisibilityMode="Always" 
                 Hint="Filled Default">
                 <input:MaterialEntry />
             </input:TextInputLayout>

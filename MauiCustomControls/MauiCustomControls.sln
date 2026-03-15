@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiCustomControls", "MauiCustomControls.csproj", "{03E089BE-38EC-412A-9493-57FAFB009E56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiCustomControls", "MauiCustomControls.csproj", "{03E089BE-38EC-412A-9493-57FAFB009E56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maui.Android.TextInputLayout", "..\Maui.Android.TextInputLayout\Maui.Android.TextInputLayout.csproj", "{FE68B501-1A1B-41D5-BB6D-3B4E4C76CE13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nwesp.Maui.Android", "..\src\Nwesp.Maui.Controls\Nwesp.Maui.Android.csproj", "{095C879D-B6AF-4CF3-9E82-96EE52A58E37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{03E089BE-38EC-412A-9493-57FAFB009E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03E089BE-38EC-412A-9493-57FAFB009E56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03E089BE-38EC-412A-9493-57FAFB009E56}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{FE68B501-1A1B-41D5-BB6D-3B4E4C76CE13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE68B501-1A1B-41D5-BB6D-3B4E4C76CE13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE68B501-1A1B-41D5-BB6D-3B4E4C76CE13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE68B501-1A1B-41D5-BB6D-3B4E4C76CE13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{095C879D-B6AF-4CF3-9E82-96EE52A58E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{095C879D-B6AF-4CF3-9E82-96EE52A58E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{095C879D-B6AF-4CF3-9E82-96EE52A58E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{095C879D-B6AF-4CF3-9E82-96EE52A58E37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

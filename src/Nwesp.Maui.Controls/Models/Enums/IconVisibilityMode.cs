@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Nwesp.Maui.Android.Models.Enums
+{
+    public enum IconVisibilityMode
+    {
+        Never,
+        Always,
+        WhileEditing,
+        HasText,
+        HasTextWhileEditing
+    }
+}
