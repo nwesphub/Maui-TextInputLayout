@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiCustomControls", "MauiCustomControls.csproj", "{03E089BE-38EC-412A-9493-57FAFB009E56}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nwesp.Maui.Android", "..\src\Nwesp.Maui.Controls\Nwesp.Maui.Android.csproj", "{095C879D-B6AF-4CF3-9E82-96EE52A58E37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nwesp.Maui.Android", "..\..\src\Nwesp.Maui.Controls\Nwesp.Maui.Android.csproj", "{9F2651B6-EA21-44C2-AD59-B362F524C540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nwesp.Maui.Android.Samples", "..\samples\Nwesp.Maui.Android.Samples\Nwesp.Maui.Android.Samples.csproj", "{B78F3540-0D05-409A-8A6A-A49390092939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nwesp.Maui.Android.Samples", "Nwesp.Maui.Android.Samples.csproj", "{684A2DA1-3FB0-4548-8665-9031319CC2B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +21,16 @@ Global
 		{03E089BE-38EC-412A-9493-57FAFB009E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03E089BE-38EC-412A-9493-57FAFB009E56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03E089BE-38EC-412A-9493-57FAFB009E56}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{095C879D-B6AF-4CF3-9E82-96EE52A58E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{095C879D-B6AF-4CF3-9E82-96EE52A58E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{095C879D-B6AF-4CF3-9E82-96EE52A58E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{095C879D-B6AF-4CF3-9E82-96EE52A58E37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B78F3540-0D05-409A-8A6A-A49390092939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B78F3540-0D05-409A-8A6A-A49390092939}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B78F3540-0D05-409A-8A6A-A49390092939}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{B78F3540-0D05-409A-8A6A-A49390092939}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B78F3540-0D05-409A-8A6A-A49390092939}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B78F3540-0D05-409A-8A6A-A49390092939}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9F2651B6-EA21-44C2-AD59-B362F524C540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F2651B6-EA21-44C2-AD59-B362F524C540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F2651B6-EA21-44C2-AD59-B362F524C540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F2651B6-EA21-44C2-AD59-B362F524C540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{684A2DA1-3FB0-4548-8665-9031319CC2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{684A2DA1-3FB0-4548-8665-9031319CC2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{684A2DA1-3FB0-4548-8665-9031319CC2B8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{684A2DA1-3FB0-4548-8665-9031319CC2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{684A2DA1-3FB0-4548-8665-9031319CC2B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{684A2DA1-3FB0-4548-8665-9031319CC2B8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
