@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Nwesp.Maui.Android.Hosting;
 
 namespace Nwesp.Maui.Android.Samples
