@@ -17,6 +17,7 @@ namespace MauiCustomControls
             var bc = new MainPageViewModel(this);
       
             BindingContext = bc;
+            var font = materialentry.FontFamily;
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

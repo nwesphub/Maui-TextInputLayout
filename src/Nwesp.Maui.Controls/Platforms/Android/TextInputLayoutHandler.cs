@@ -60,6 +60,8 @@ using AProgressBar = Android.Widget.ProgressBar;
 using Nwesp.Maui.Android.Abstractions;
 using Nwesp.Maui.Android.Controls;
 using Nwesp.Maui.Android.Platforms.Android.Listeners;
+using ATextChangedEventArgs = Android.Text.TextChangedEventArgs;
+
 namespace Nwesp.Maui.Android
 {
 
@@ -93,6 +95,11 @@ namespace Nwesp.Maui.Android
             PlatformEntry.SetMinimumWidth(int.MaxValue);
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
+
+            if(!string.IsNullOrEmpty(PlatformEntry.Text))
+            {
+                PlatformEntry_TextChanged(null, new ATextChangedEventArgs(PlatformEntry.Text, 0, 0, 0));
+            }
         }
 
 
@@ -105,9 +112,23 @@ namespace Nwesp.Maui.Android
                 PlatformEntry.TextChanged += PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange += PlatformEntry_FocusChange;
             }
-
+            
             PlatformView.SetEndIconOnClickListener(new OnClickListener(() =>
             {
+                if(PlatformView.CustomEndIconMode == EndIconMode.Password)
+                {
+                    if (PlatformView.IsPassword)
+                    {
+                        PlatformView.SetToggleOnPasswordIcon(MauiContext);
+                        PlatformEntry?.TogglePasswordOff();
+                    }
+                    else
+                    {
+                        PlatformView.SetToggleOffPasswordIcon(MauiContext);
+                        PlatformEntry?.TogglePasswordOn();
+                    }
+                    PlatformEntry?.SetSelection(PlatformEntry.Text?.Length ?? 0);
+                }
                 VirtualView?.EndIconClicked();
             }));
 
@@ -147,7 +168,7 @@ namespace Nwesp.Maui.Android
             {
                 if (PlatformView?.HasTextAndFocus(e) == true)
                 {
-                    PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                    PlatformView?.ShowEndIcon();
                 }
                 else
                 {
@@ -158,7 +179,7 @@ namespace Nwesp.Maui.Android
             {
                 if (e.HasFocus)
                 {
-                    PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                    PlatformView?.ShowEndIcon();
                 }
                 else
                 {
@@ -167,7 +188,7 @@ namespace Nwesp.Maui.Android
             }
         }
 
-        private void PlatformEntry_TextChanged(object? sender, global::Android.Text.TextChangedEventArgs e)
+        private void PlatformEntry_TextChanged(object? sender, ATextChangedEventArgs e)
         {
             if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasText &&
                 VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
@@ -179,7 +200,7 @@ namespace Nwesp.Maui.Android
             {
                 if (PlatformView?.HasTextAndFocus() == true)
                 {
-                    PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                    PlatformView?.ShowEndIcon();
                 }
                 else
                 {
@@ -190,7 +211,7 @@ namespace Nwesp.Maui.Android
             {
                 if (!string.IsNullOrWhiteSpace(e.Text?.ToString()))
                 {
-                    PlatformView?.ShowEndIcon(VirtualView, MauiContext);
+                    PlatformView?.ShowEndIcon();
                 }
                 else
                 {
@@ -278,15 +299,19 @@ namespace Nwesp.Maui.Android
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
             if (entry.EndIconVisibilityMode == IconVisibilityMode.Always)
             {
-                handler.PlatformView?.ShowEndIcon(entry, handler.MauiContext);
+                handler.PlatformView?.ShowEndIcon();
             }
             else if (entry.EndIconVisibilityMode == IconVisibilityMode.Never)
             {
                 handler.PlatformView?.HideEndIcon();
             }
+        }
+
+        public static void MapEndIconMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateEndIconMode(entry, handler.MauiContext);
         }
 
         public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)

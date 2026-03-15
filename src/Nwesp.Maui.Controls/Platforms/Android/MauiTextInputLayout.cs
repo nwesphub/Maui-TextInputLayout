@@ -20,6 +20,9 @@ namespace Nwesp.Maui.Android.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
     {
+        public EndIconMode CustomEndIconMode { get; set; }
+        public bool IsPassword { get; set; }
+
         public bool HasTextAndFocus(FocusChangeEventArgs? focusArgs = null)
         {
             bool hasFocus = HasFocus;
@@ -44,7 +47,6 @@ namespace Nwesp.Maui.Android.Platforms.Android
             }
 
             // Hack. The following are workarounds for various issues with the end icon.
-            // Workaround for several End Icon issues:
             // 1. Icon initially visible before focus state is applied
             // 2. Border shifting when navigating forms if the icon starts hidden
             // 3. End icon occasionally receiving focus during keyboard navigation

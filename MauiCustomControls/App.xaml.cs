@@ -1,4 +1,7 @@
-﻿using MauiCustomControls.Pages;
+﻿using Android.Content.Res;
+using MauiCustomControls.Pages;
+using Nwesp.Maui.Android.Hosting;
+using Nwesp.Maui.Android.Resources;
 
 namespace MauiCustomControls
 {
@@ -10,38 +13,9 @@ namespace MauiCustomControls
 
             MainPage = shell;
             RegisterRoute<HintPage>();
-            if(PlatformAppTheme == AppTheme.Light)
-            {
-                Resources.MergedDictionaries.Add(new Nwesp.Maui.Android.Resources.LightTheme());
-            }
-            else if(PlatformAppTheme == AppTheme.Dark)
-            {
-                Resources.MergedDictionaries.Add(new Nwesp.Maui.Android.Resources.DarkTheme());
-            }
-            this.RequestedThemeChanged += App_RequestedThemeChanged;
+            this.ConfigureTextInputLayoutThemes();
         }
 
-        private void App_RequestedThemeChanged(object? sender, AppThemeChangedEventArgs e)
-        {
-            if(e.RequestedTheme == AppTheme.Light)
-            {
-                var foundDictionary = Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Nwesp.Maui.Android.Resources.DarkTheme));
-                if (foundDictionary is not null)
-                {
-                    Resources.MergedDictionaries.Remove(Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Nwesp.Maui.Android.Resources.DarkTheme)));
-                }
-                Resources.MergedDictionaries.Add(new Nwesp.Maui.Android.Resources.LightTheme());
-            }
-            else if(e.RequestedTheme == AppTheme.Dark)
-            {
-                var foundDictionary = Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Nwesp.Maui.Android.Resources.LightTheme));
-                if (foundDictionary is not null)
-                {
-                    Resources.MergedDictionaries.Remove(Resources.MergedDictionaries.FirstOrDefault(x => x.GetType() == typeof(Nwesp.Maui.Android.Resources.LightTheme)));
-                }
-                Resources.MergedDictionaries.Add(new Nwesp.Maui.Android.Resources.DarkTheme());
-            }
-        }
 
         private static void RegisterRoute<T>()
         {

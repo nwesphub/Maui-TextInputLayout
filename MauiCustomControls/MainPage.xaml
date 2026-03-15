@@ -16,49 +16,52 @@
             x:Name="test"
             Padding="30,0"
             Spacing="4">
+            
 
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-       
-              Prefix="$" Suffix="%"
                 EndIconVisibilityMode="HasText"
                 Hint="Outline Default"
-                SupportingText="Test"
-            >
+                Prefix="$"
+                StartIcon="eye_off2.svg"
+                Suffix="%"
+                SupportingText="Test">
+                <input:MaterialEntry FontFamily="Roboto" x:Name="materialentry" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"
+                EndIconVisibilityMode="HasTextWhileEditing"
+                Hint="Outline Default"
+                Prefix="$"
+                Suffix="%"
+                SupportingText="Test">
                 <input:MaterialEntry />
             </input:TextInputLayout>
-            <input:TextInputLayout Prefix="$" Suffix="%"
+            <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-    SupportingText="Test"
-                EndIconVisibilityMode="Always"
+                EndIconVisibilityMode="HasText"
                 Hint="Outline Default"
-            >
-                <input:MaterialEntry TextColor="Red" />
+                Prefix="$"
+                Suffix="%"
+                SupportingText="Test">
+                <input:MaterialEntry />
             </input:TextInputLayout>
-            <input:TextInputLayout Prefix="$" Suffix="%"
-                BoxBackgroundMode="Outline" 
-                EndIconVisibilityMode="Always"
-                Hint="Outline Default"
-           SupportingText="Test"
-         >
-                <input:MaterialEntry TextColor="Red" />
-            </input:TextInputLayout>
-            <input:TextInputLayout  Prefix="$" Suffix="%"
+            <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-
-             SupportingText="Test"
                 EndIconClickedCommand="{Binding EndIconClickedCommand}"
-             
-                EndIconVisibilityMode="Always"
+                EndIconVisibilityMode="WhileEditing"
                 Hint="Outline Default"
-     >
-                <input:MaterialEntry TextColor="Red" />
+                Prefix="$"
+                Suffix="%"
+                SupportingText="Test">
+                <input:MaterialEntry  />
             </input:TextInputLayout>
-            <input:TextInputLayout 
-                BoxBackgroundMode="Outline" SupportingText="Test"
+            <input:TextInputLayout
+                BoxBackgroundMode="Outline"
                 EndIconVisibilityMode="WhileEditing"
                 Hint="Outline Disabled"
-                IsEnabled="{Binding IsEnabled}">
+                IsEnabled="{Binding IsEnabled}"
+                SupportingText="Test">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
@@ -70,7 +73,7 @@
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="Outline"
-                EndIconVisibilityMode="Always" 
+                EndIconVisibilityMode="Always"
                 Hint="Filled Default">
                 <input:MaterialEntry />
             </input:TextInputLayout>
@@ -90,14 +93,14 @@
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="Filled"
-                EndIconVisibilityMode="Always"
-                Hint="Filled with Text Disabled"
                 DisabledPrefixTextColor="Red"
                 DisabledSuffixTextColor="Purple"
-                Suffix="%"
+                EndIconVisibilityMode="Always"
+                Hint="Filled with Text Disabled"
                 IsEnabled="{Binding IsEnabled}"
-                Prefix="$">
-                <input:MaterialEntry Text="Filled with Text Disabled"  />
+                Prefix="$"
+                Suffix="%">
+                <input:MaterialEntry Text="Filled with Text Disabled" />
             </input:TextInputLayout>
             <!--  EndIcon="dotnet_bot"  -->
             <input:TextInputLayout

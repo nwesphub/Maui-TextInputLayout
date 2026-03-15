@@ -2,6 +2,7 @@
 using Android.Text;
 using Android.Text.Method;
 using Android.Text.Style;
+using Android.Widget;
 using AndroidX.AppCompat.View;
 using AndroidX.AppCompat.Widget;
 using Java.Lang;
@@ -42,14 +43,25 @@ namespace Nwesp.Maui.Android
 
         protected override AppCompatEditText CreatePlatformView()
         {
-            return ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new AppCompatEditText(t));
+            var editText = ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new AppCompatEditText(t));
+
+            return editText;
         }
 
         private BoxBackgroundMode _boxBackgroundMode;
         public override void SetVirtualView(IView view)
         {
             _boxBackgroundMode = OutlineManager.ParseBoxBackgroundMode(view);
+
             base.SetVirtualView(view);
+            if(view is IEntry entry && entry.IsPassword)
+            {
+                // Hack: Fix for password mask spacing upon initial load.
+                PlatformView.Post(() =>
+                {
+                    PlatformView?.TogglePasswordOn();
+                });
+            } 
         }
 
         protected override void ConnectHandler(AppCompatEditText platformView)
