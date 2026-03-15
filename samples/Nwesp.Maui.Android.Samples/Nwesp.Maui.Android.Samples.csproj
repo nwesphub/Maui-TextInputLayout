@@ -60,7 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\Nwesp.Maui.Controls\Nwesp.Maui.Android.csproj" />
+	  <ProjectReference Include="..\..\src\Nwesp.Maui.Android\Nwesp.Maui.Android.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
