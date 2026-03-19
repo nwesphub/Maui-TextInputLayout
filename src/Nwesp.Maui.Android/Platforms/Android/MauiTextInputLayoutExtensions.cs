@@ -10,6 +10,7 @@ using Nwesp.Maui.Android.Abstractions;
 using Microsoft.Maui.Platform;
 using Android.Content.Res;
 using AResource = Android.Resource.Attribute;
+using Nwesp.Maui.Android.Utilities;
 
 namespace Nwesp.Maui.Android.Platforms.Android
 {
@@ -128,8 +129,8 @@ namespace Nwesp.Maui.Android.Platforms.Android
 
             int[] colors =
             [
-                virtualView.BackgroundColor.ToPlatform(),
-                virtualView.DisabledBackgroundColor.WithAlpha(virtualView.DisabledBackgroundColorOpacity).ToPlatform(),
+                virtualView.BackgroundColor?.ToPlatform() ?? ThemeHelper.GetContainerColor(virtualView.BoxBackgroundMode).ToPlatform(),
+                virtualView.DisabledBackgroundColor?.WithAlpha(virtualView.DisabledBackgroundColorOpacity).ToPlatform() ?? ThemeHelper.GetDisabledContainerColor(virtualView.BoxBackgroundMode).WithAlpha(ThemeHelper.GetDisabledContainerOpacity(virtualView.BoxBackgroundMode)).ToPlatform(),
             ];
 
             // Make sure the background tint is null for Filled mode.
