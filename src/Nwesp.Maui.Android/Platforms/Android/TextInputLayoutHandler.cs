@@ -90,7 +90,7 @@ namespace Nwesp.Maui.Android
                     VirtualEntry = materialEntry;
                 }
             }
-            
+
             PlatformEntry = contentView.Content.ToPlatform(MauiContext!) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
             PlatformEntry.SetMinimumWidth(int.MaxValue);
             base.SetVirtualView(view);
@@ -100,19 +100,28 @@ namespace Nwesp.Maui.Android
             {
                 PlatformEntry_TextChanged(null, new ATextChangedEventArgs(PlatformEntry.Text, 0, 0, 0));
             }
+            if (PlatformView.ViewTreeObserver is not null)
+            {
+                PlatformView.ViewTreeObserver.GlobalLayout += ViewTreeObserver_GlobalLayout;
+            }
         }
 
+        // Fix for Borders clipping when the control is rearranged on screen (toggling visibility. adding/removing views)
+        private void ViewTreeObserver_GlobalLayout(object? sender, EventArgs e)
+        {
+            PlatformView?.InvalidateMeasure(VirtualView);
+        }
 
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
             base.ConnectHandler(platformView);
-            
+
             if (PlatformEntry is not null)
             {
                 PlatformEntry.TextChanged += PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange += PlatformEntry_FocusChange;
             }
-            
+
             PlatformView.SetEndIconOnClickListener(new OnClickListener(() =>
             {
                 if(PlatformView.CustomEndIconMode == EndIconMode.Password)
