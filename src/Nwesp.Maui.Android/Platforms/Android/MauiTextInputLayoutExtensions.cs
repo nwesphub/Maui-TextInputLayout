@@ -44,11 +44,15 @@ namespace Nwesp.Maui.Android.Platforms.Android
 
         public static void UpdateBoxStrokeWidth(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            platformView.BoxStrokeWidth = virtualView.BoxStrokeWidth;
+            int density = (int)Math.Floor(platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75);
+            int width = virtualView.BoxStrokeWidth * density;
+            platformView.BoxStrokeWidth = (int)(width);
         }
         public static void UpdateBoxStrokeFocusedWidth(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            platformView.BoxStrokeWidthFocused = virtualView.BoxStrokeFocusedWidth;
+            int density = (int)Math.Floor(platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75);
+            int width = virtualView.BoxStrokeFocusedWidth * density;
+            platformView.BoxStrokeWidthFocused = width; 
         }
 
         public static void UpdatePrefixText(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
