@@ -42,7 +42,14 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 
         public static void MapIsHintAnimated(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            platformView.ExpandedHintEnabled = virtualView.IsHintAnimated;
+            
+            // Hack. Fix for Filled mode. When IsHintAnimated is set to true and the edit text does not have text, focusing the entry adds height to the layout which causes other elements in the layout to shift.
+            platformView.Post(async () =>
+            {
+                platformView.ExpandedHintEnabled = false;
+                await Task.Yield();
+                platformView.ExpandedHintEnabled = virtualView.IsHintAnimated;
+            });
         }
     }
 }
