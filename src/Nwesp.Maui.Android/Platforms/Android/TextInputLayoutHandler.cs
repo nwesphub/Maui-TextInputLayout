@@ -177,6 +177,10 @@ namespace Nwesp.Maui.Android
                 PlatformEntry.TextChanged -= PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange -= PlatformEntry_FocusChange;
             }
+            if (platformView.ViewTreeObserver is not null)
+            {
+                platformView.ViewTreeObserver.GlobalLayout -= ViewTreeObserver_GlobalLayout;
+            }
             platformView.SetEndIconOnClickListener(null);
             platformView.SetStartIconOnClickListener(null);
             platformView.SetErrorIconOnClickListener(null);
