@@ -96,6 +96,7 @@ namespace Nwesp.Maui.Android
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
 
+            // Trigger end icon visibility upon initial load
             if(!string.IsNullOrEmpty(PlatformEntry.Text))
             {
                 PlatformEntry_TextChanged(null, new ATextChangedEventArgs(PlatformEntry.Text, 0, 0, 0));
@@ -109,7 +110,23 @@ namespace Nwesp.Maui.Android
         // Fix for Borders clipping when the control is rearranged on screen (toggling visibility. adding/removing views)
         private void ViewTreeObserver_GlobalLayout(object? sender, EventArgs e)
         {
-            PlatformView?.InvalidateMeasure(VirtualView);
+            if (PlatformView is null || VirtualView is null)
+            {
+                return;
+            }
+
+            var x = PlatformView.GetX();
+            var y = PlatformView.GetY();
+            if (x != PlatformView.PreviousX || y != PlatformView.PreviousY)
+            {
+                PlatformView.PreviousX = x;
+                PlatformView.PreviousY = y;
+
+                if (PlatformView.IsAttachedToWindow)
+                {
+                    PlatformView.InvalidateMeasure(VirtualView);
+                }
+            }
         }
 
         protected override void ConnectHandler(MauiTextInputLayout platformView)

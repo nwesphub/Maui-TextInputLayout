@@ -44,7 +44,7 @@ namespace Nwesp.Maui.Android
         protected override AppCompatEditText CreatePlatformView()
         {
             var editText = ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new AppCompatEditText(t));
-
+            
             return editText;
         }
 
@@ -77,6 +77,7 @@ namespace Nwesp.Maui.Android
 
         private class TextWatcher : Java.Lang.Object, ITextWatcher
         {
+            // Removes underline from current word while typing
             public void AfterTextChanged(IEditable? s)
             {
                 var spans = s?.GetSpans(0, s.Length(), Java.Lang.Class.FromType(typeof(UnderlineSpan)))?.Cast<UnderlineSpan>();

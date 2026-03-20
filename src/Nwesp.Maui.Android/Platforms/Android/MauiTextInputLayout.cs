@@ -22,7 +22,8 @@ namespace Nwesp.Maui.Android.Platforms.Android
     {
         public EndIconMode CustomEndIconMode { get; set; }
         public bool IsPassword { get; set; }
-
+        public float PreviousX { get; set; }
+        public float PreviousY { get; set; }
         public bool HasTextAndFocus(FocusChangeEventArgs? focusArgs = null)
         {
             bool hasFocus = HasFocus;
@@ -38,8 +39,9 @@ namespace Nwesp.Maui.Android.Platforms.Android
         {
             var density = Context?.Resources?.DisplayMetrics?.Density ?? 2.75;
 
-            // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
-            BoxCollapsedPaddingTop = (int)(8 * density);
+            // Update: No longer needed? Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
+            //BoxCollapsedPaddingTop = (int)(8 * density);
+
             var endIcon = this.FindViewById<CheckableImageButton>(Resource.Id.text_input_end_icon);
             if (endIcon is null)
             {
