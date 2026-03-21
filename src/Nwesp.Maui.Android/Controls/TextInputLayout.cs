@@ -38,7 +38,7 @@ namespace Nwesp.Maui.Android.Controls
             FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetFocusedLabelTextColor());
             DisabledHintColorProperty = BindableProperty.Create(nameof(DisabledHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextColor());
             DisabledHintOpacityProperty = BindableProperty.Create(nameof(DisabledHintOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextOpacity());
-            IsHintAnimatedProperty = BindableProperty.Create(nameof(IsHintAnimated), typeof(bool), typeof(TextInputLayout), defaultValue: true);
+            IsHintAlwaysExpandedProperty = BindableProperty.Create(nameof(IsHintAlwaysExpanded), typeof(bool), typeof(TextInputLayout));
 
             BoxBackgroundModeProperty = BindableProperty.Create(nameof(BoxBackgroundMode), typeof(BoxBackgroundMode), typeof(TextInputLayout), defaultBindingMode: BindingMode.OneTime, propertyChanged: BoxBackgroundModePropertyChanged);
             EndIconVisibilityModeProperty = BindableProperty.Create(nameof(EndIconVisibilityMode), typeof(IconVisibilityMode), typeof(TextInputLayout), defaultValue: IconVisibilityMode.HasTextWhileEditing);
@@ -116,7 +116,7 @@ namespace Nwesp.Maui.Android.Controls
         public static readonly BindableProperty FocusedHintColorProperty;
         public static readonly BindableProperty DisabledHintColorProperty;
         public static readonly BindableProperty DisabledHintOpacityProperty;
-        public static readonly BindableProperty IsHintAnimatedProperty;
+        public static readonly BindableProperty IsHintAlwaysExpandedProperty;
 
         public static readonly BindableProperty BoxBackgroundModeProperty;
         public static readonly BindableProperty EndIconVisibilityModeProperty;
@@ -249,10 +249,10 @@ namespace Nwesp.Maui.Android.Controls
             set => SetValue(DisabledOutlineOpacityProperty, value);
         }
 
-        public bool IsHintAnimated
+        public bool IsHintAlwaysExpanded
         {
-            get => (bool)GetValue(IsHintAnimatedProperty);
-            set => SetValue(IsHintAnimatedProperty, value);
+            get => (bool)GetValue(IsHintAlwaysExpandedProperty);
+            set => SetValue(IsHintAlwaysExpandedProperty, value);
         }
 
         /// <summary>

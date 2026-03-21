@@ -256,9 +256,9 @@ namespace Nwesp.Maui.Android
             handler.PlatformView?.UpdateHintColors(entry);
         }
 
-        public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapIsHintAlwaysExpanded(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler?.PlatformView?.MapIsHintAnimated(entry);
+            handler?.PlatformView?.MapIsHintAlwaysExpanded(entry);
         }
 
         public static void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)

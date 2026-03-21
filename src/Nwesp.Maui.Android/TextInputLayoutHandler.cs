@@ -44,7 +44,7 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.FocusedHintColor)] = MapHintColor,
             [nameof(ITextInputLayout.DisabledHintColor)] = MapHintColor,
             [nameof(ITextInputLayout.DisabledHintOpacity)] = MapHintOpacity,
-            [nameof(ITextInputLayout.IsHintAnimated)] = MapIsHintAnimated,
+            [nameof(ITextInputLayout.IsHintAlwaysExpanded)] = MapIsHintAlwaysExpanded,
             [nameof(ITextInputLayout.EndIcon)] = MapEndIcon,
             [nameof(ITextInputLayout.EndIconColor)] = MapEndIconColor,
             [nameof(ITextInputLayout.DisabledEndIconColor)] = MapEndIconColor,

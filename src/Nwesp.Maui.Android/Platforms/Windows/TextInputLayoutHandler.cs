@@ -40,7 +40,7 @@ namespace Nwesp.Maui.Android
         {
 
         }
-        public static void MapIsHintAnimated(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapIsHintAlwaysExpanded(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
 
         }

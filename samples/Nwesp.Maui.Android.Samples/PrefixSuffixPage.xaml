@@ -34,7 +34,7 @@
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
                 Hint="Prefix only"
-                IsHintAnimated="False"
+                IsHintAlwaysExpanded="True"
                 Prefix="{Binding Prefix}">
                 <input:MaterialEntry />
             </input:TextInputLayout>
@@ -51,7 +51,7 @@
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
                 Hint="Suffix only"
-                IsHintAnimated="False"
+                IsHintAlwaysExpanded="True"
                 Suffix="{Binding Suffix}">
                 <input:MaterialEntry />
             </input:TextInputLayout>
@@ -66,7 +66,7 @@
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
-                Hint="Prefix and Suffix" IsHintAnimated="False"
+                Hint="Prefix and Suffix" IsHintAlwaysExpanded="True"
                 Prefix="{Binding Prefix}"
                 Suffix="{Binding Suffix}">
                 <input:MaterialEntry />

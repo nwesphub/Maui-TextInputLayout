@@ -23,7 +23,7 @@ namespace Nwesp.Maui.Android.Abstractions
         Color FocusedHintColor { get; set; }
         Color DisabledHintColor { get; set; }
         float DisabledHintOpacity { get; set; }
-        bool IsHintAnimated { get; set; }
+        bool IsHintAlwaysExpanded { get; set; }
 
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
