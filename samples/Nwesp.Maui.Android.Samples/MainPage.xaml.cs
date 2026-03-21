@@ -1,62 +1,54 @@
-﻿using System.Collections.ObjectModel;
+﻿using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Samples.Services;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using static AndroidX.ConstraintLayout.Core.Motion.Utils.HyperSpline;
 
 namespace Nwesp.Maui.Android.Samples
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+     
+        private readonly BoxBackgroundService _boxBackgroundModeService;
 
         public MainPage()
         {
+            _boxBackgroundModeService = Application.Current?.Handler?.MauiContext?.Services.GetService<BoxBackgroundService>() ?? new();
             InitializeComponent();
+           
+            
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                
+            };
+            AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
+            {
+
+            };
+
+            FilledCommand = new Command(async () =>
+            {
+                _boxBackgroundModeService.SetBackground(BoxBackgroundMode.Filled);
+                await Shell.Current.GoToAsync(nameof(DemoPage), new Dictionary<string, object>()
+                {
+                    { nameof(BoxBackgroundMode), BoxBackgroundMode.Filled }
+                });
+            });
+
+            OutlineCommand = new Command(async () =>
+            {
+                _boxBackgroundModeService.SetBackground(BoxBackgroundMode.Outline);
+                await Shell.Current.GoToAsync(nameof(DemoPage), new Dictionary<string, object>()
+                {
+                    { nameof(BoxBackgroundMode), BoxBackgroundMode.Outline }
+                });
+            });
+
             BindingContext = this;
-            Data = new(PageRoute.GetPages());
-            PageCommand = new Command<object>(GoToPage);
         }
 
-        private ObservableCollection<PageRoute> _data;
-        public ObservableCollection<PageRoute> Data
-        {
-            get => _data;
-            set
-            {
-                _data = value;
-                OnPropertyChanged();
-            }
-        }
+        public ICommand FilledCommand { get; }
+        public ICommand OutlineCommand { get; }
 
-        public ICommand PageCommand { get; }
-
- 
-        private async void GoToPage(object obj)
-        {
-            if(obj is not string page)
-            {
-                return;
-            }
-
-            await Shell.Current.GoToAsync(page);
-        }
-    }
-
-
-    public class PageRoute
-    {
-        public string Route { get; set; }
-        public string Description { get; set; }
-
-        public PageRoute(string route, string description)
-        {
-            Route = route;
-            Description = description;
-        }
-
-        public static IEnumerable<PageRoute> GetPages()
-        {
-            return [
-                new PageRoute(nameof(PasswordPage), "Password Demo")
-            ];
-        }
     }
 }

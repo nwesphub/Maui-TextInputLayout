@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseDemoPage
+    x:Class="Nwesp.Maui.Android.Samples.PrefixSuffixPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    Title="PrefixSuffixPage">
+    <ScrollView Padding="8">
+        <VerticalStackLayout IsClippedToBounds="False" Spacing="4">
+            <Grid
+                Padding="0,0,0,40"
+                RowDefinitions="Auto, Auto, Auto, Auto,Auto"
+                RowSpacing="10">
+                <Label Grid.Row="0" Text="Enter Prefix / Suffix in the two entries below" />
+                <input:TextInputLayout
+                    Grid.Row="1"
+                    BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                    EndIconMode="ClearText"
+                    Hint="Enter Prefix">
+                    <input:MaterialEntry Text="{Binding Prefix}" />
+                </input:TextInputLayout>
+
+                <input:TextInputLayout
+                    Grid.Row="2"
+                    BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                    EndIconMode="ClearText"
+                    Hint="Enter Suffix">
+                    <input:MaterialEntry Text="{Binding Suffix}" />
+                </input:TextInputLayout>
+
+            </Grid>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Prefix only"
+                IsHintAnimated="False"
+                Prefix="{Binding Prefix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Prefix only"
+ 
+                Prefix="{Binding Prefix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Suffix only"
+                IsHintAnimated="False"
+                Suffix="{Binding Suffix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Suffix only"
+                Suffix="{Binding Suffix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Prefix and Suffix" IsHintAnimated="False"
+                Prefix="{Binding Prefix}"
+                Suffix="{Binding Suffix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Prefix and Suffix"
+                Prefix="{Binding Prefix}"
+                Suffix="{Binding Suffix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+           
+        </VerticalStackLayout>
+    </ScrollView>
+</base:BaseDemoPage>

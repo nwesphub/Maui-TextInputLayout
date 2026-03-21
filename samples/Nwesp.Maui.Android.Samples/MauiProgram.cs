@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Nwesp.Maui.Android.Hosting;
+using Nwesp.Maui.Android.Samples.Services;
 
 namespace Nwesp.Maui.Android.Samples
 {
@@ -20,15 +21,28 @@ namespace Nwesp.Maui.Android.Samples
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            builder.RegisterPages();
+            builder
+                .RegisterPages()
+                .RegisterServices();
             return builder.Build();
         }
 
-        private static void RegisterPages(this MauiAppBuilder builder)
+        private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<BoxBackgroundService>();
+
+            return builder;
+        }
+
+        private static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<AppShell>();
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<DemoPage>();
             builder.Services.AddTransient<PasswordPage>();
+            builder.Services.AddTransient<PrefixSuffixPage>();
+
+            return builder;
         }
     }
 }

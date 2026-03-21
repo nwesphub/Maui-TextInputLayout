@@ -9,10 +9,16 @@ namespace Nwesp.Maui.Android.Samples
             InitializeComponent();
 
             MainPage = shell;
-            RegisterRoute<PasswordPage>();
+            RegisterPages();
             this.ConfigureTextInputLayoutThemes();
         }
 
+        private static void RegisterPages()
+        {
+            RegisterRoute<DemoPage>();
+            RegisterRoute<PasswordPage>();
+            RegisterRoute<PrefixSuffixPage>();
+        }
         private static void RegisterRoute<T>()
         {
             var name = typeof(T).Name;
