@@ -24,14 +24,8 @@ namespace Nwesp.Maui.Android.Platforms.Android
         public bool IsPassword { get; set; }
         public float PreviousX { get; set; }
         public float PreviousY { get; set; }
-        public bool HasTextAndFocus(FocusChangeEventArgs? focusArgs = null)
+        public bool HasTextAndFocus(bool hasFocus)
         {
-            bool hasFocus = HasFocus;
-            if(focusArgs is not null)
-            {
-                hasFocus = focusArgs.HasFocus;
-            }
-
             return hasFocus && !string.IsNullOrWhiteSpace(EditText?.Text);
         }
 

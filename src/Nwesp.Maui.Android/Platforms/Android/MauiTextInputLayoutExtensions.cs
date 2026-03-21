@@ -11,6 +11,13 @@ using Microsoft.Maui.Platform;
 using Android.Content.Res;
 using AResource = Android.Resource.Attribute;
 using Nwesp.Maui.Android.Utilities;
+using static Android.Views.View;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
+using ATextChangedEventArgs = Android.Text.TextChangedEventArgs;
+using Android.Net;
+using Android.Text.Style;
+using Android.Text;
+using ATypeFaceStyle = Android.Graphics.TypefaceStyle;
 
 namespace Nwesp.Maui.Android.Platforms.Android
 {
@@ -62,13 +69,23 @@ namespace Nwesp.Maui.Android.Platforms.Android
             {
                 return;
             }
+            //var spannable = new SpannableString(virtualView.Prefix);
+            //spannable.SetSpan(
+            //    new StyleSpan(ATypeFaceStyle.Bold),
+            //    0,
+            //    virtualView.Prefix.Length,
+            //    SpanTypes.ExclusiveExclusive);
+            //platformView.PrefixTextFormatted = spannable;
 
+            // No longer needed?
             // Prefix gets misaligned from input text.
-            platformView.Post(() =>
-            {
+           // platformView.Post(() =>
+           // {
                 platformView.PrefixText = virtualView.Prefix;
                 platformView.InvalidateMeasure(virtualView);
-            });
+           // });
+            
+            
         }
 
         public static void UpdatePrefixTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
@@ -159,6 +176,80 @@ namespace Nwesp.Maui.Android.Platforms.Android
         {
             var padding = virtualView.Padding;
             platformView.SetPadding((int)padding.Left, (int)padding.Top, (int)padding.Right, (int)padding.Bottom);
+        }
+
+        public static void TextInputLayoutFocusChanged(this MauiTextInputLayout platformView, ITextInputLayout virtualView, bool hasFocus)
+        {
+            if(virtualView is null)
+            {
+                return;
+            }
+
+            if (virtualView.EndIconVisibilityMode != IconVisibilityMode.WhileEditing &&
+                virtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
+            {
+                return;
+            }
+
+            if (virtualView.EndIconVisibilityMode == IconVisibilityMode.HasTextWhileEditing)
+            {
+                if (platformView.HasTextAndFocus(hasFocus))
+                {
+                    platformView.ShowEndIcon();
+                }
+                else
+                {
+                    platformView.HideEndIcon();
+                }
+            }
+            else
+            {
+                if (hasFocus)
+                {
+                    platformView.ShowEndIcon();
+                }
+                else
+                {
+                    platformView.HideEndIcon();
+                }
+            }
+        }
+
+        public static void TextInputLayoutTextChanged(this MauiTextInputLayout platformView, ITextInputLayout virtualView, string? text)
+        {
+            if (virtualView is null)
+            {
+                return;
+            }
+
+            if (virtualView.EndIconVisibilityMode != IconVisibilityMode.HasText &&
+                virtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
+            {
+                return;
+            }
+
+            if (virtualView.EndIconVisibilityMode == IconVisibilityMode.HasTextWhileEditing)
+            {
+                if (platformView.HasTextAndFocus(platformView.HasFocus))
+                {
+                    platformView.ShowEndIcon();
+                }
+                else
+                {
+                    platformView.HideEndIcon();
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    platformView.ShowEndIcon();
+                }
+                else
+                {
+                    platformView.HideEndIcon();
+                }
+            }
         }
     }
 }

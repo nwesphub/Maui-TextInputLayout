@@ -97,10 +97,10 @@ namespace Nwesp.Maui.Android
             PlatformView.AddView(PlatformEntry);
 
             // Trigger end icon visibility upon initial load
-            if(!string.IsNullOrEmpty(PlatformEntry.Text))
-            {
-                PlatformEntry_TextChanged(null, new ATextChangedEventArgs(PlatformEntry.Text, 0, 0, 0));
-            }
+            //if(!string.IsNullOrEmpty(PlatformEntry.Text))
+            //{
+            //    PlatformEntry_TextChanged(null, new ATextChangedEventArgs(PlatformEntry.Text, 0, 0, 0));
+            //}
             if (PlatformView.ViewTreeObserver is not null)
             {
                 PlatformView.ViewTreeObserver.GlobalLayout += ViewTreeObserver_GlobalLayout;
@@ -188,66 +188,15 @@ namespace Nwesp.Maui.Android
 
         private void PlatformEntry_FocusChange(object? sender, AView.FocusChangeEventArgs e)
         {
-            if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.WhileEditing && 
-                VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
-            {
-                return;
-            }
-
-            if (VirtualView.EndIconVisibilityMode == IconVisibilityMode.HasTextWhileEditing)
-            {
-                if (PlatformView?.HasTextAndFocus(e) == true)
-                {
-                    PlatformView?.ShowEndIcon();
-                }
-                else
-                {
-                    PlatformView?.HideEndIcon();
-                }
-            }
-            else
-            {
-                if (e.HasFocus)
-                {
-                    PlatformView?.ShowEndIcon();
-                }
-                else
-                {
-                    PlatformView?.HideEndIcon();
-                }
-            }
+            PlatformView?.TextInputLayoutFocusChanged(VirtualView, e.HasFocus);
         }
+
+        
 
         private void PlatformEntry_TextChanged(object? sender, ATextChangedEventArgs e)
         {
-            if(VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasText &&
-                VirtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
-            {
-                return;
-            }
-
-            if (VirtualView.EndIconVisibilityMode == IconVisibilityMode.HasTextWhileEditing)
-            {
-                if (PlatformView?.HasTextAndFocus() == true)
-                {
-                    PlatformView?.ShowEndIcon();
-                }
-                else
-                {
-                    PlatformView?.HideEndIcon();
-                }
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(e.Text?.ToString()))
-                {
-                    PlatformView?.ShowEndIcon();
-                }
-                else
-                {
-                    PlatformView?.HideEndIcon();
-                }
-            }
+            var text = e.Text?.ToString();
+            PlatformView?.TextInputLayoutTextChanged(VirtualView, e.Text?.ToString());
         }
 
 
@@ -329,6 +278,9 @@ namespace Nwesp.Maui.Android
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
+            handler.PlatformView?.TextInputLayoutFocusChanged(handler.VirtualView, handler.PlatformView.HasFocus);
+            handler.PlatformView?.TextInputLayoutTextChanged(handler.VirtualView, handler.PlatformEntry.Text);
+
             if (entry.EndIconVisibilityMode == IconVisibilityMode.Always)
             {
                 handler.PlatformView?.ShowEndIcon();
@@ -405,7 +357,13 @@ namespace Nwesp.Maui.Android
         private BoxBackgroundMode _boxBackgroundMode;
         protected override MauiPicker CreatePlatformView()
         {
-            return ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new MauiPicker(t));
+            var picker = ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new MauiPicker(t));
+            // Don't allow free form text
+            picker.Focusable = false;
+            picker.FocusableInTouchMode = false;
+            picker.InputType = InputTypes.Null;
+            picker.ShowSoftInputOnFocus = false;
+            return picker;
         }
 
         public override void SetVirtualView(IView view)
