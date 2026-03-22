@@ -18,6 +18,7 @@ using Android.Net;
 using Android.Text.Style;
 using Android.Text;
 using ATypeFaceStyle = Android.Graphics.TypefaceStyle;
+using AComplexUnitType = Android.Util.ComplexUnitType;
 
 namespace Nwesp.Maui.Android.Platforms.Android
 {
@@ -76,15 +77,20 @@ namespace Nwesp.Maui.Android.Platforms.Android
             //    virtualView.Prefix.Length,
             //    SpanTypes.ExclusiveExclusive);
             //platformView.PrefixTextFormatted = spannable;
+            
+            //float textSize = (float)(virtualView.MaterialEntry?.FontSize ?? 14f);
+            //platformView.PrefixTextView.SetTextSize(AComplexUnitType.Dip, 16f);
+
+            // Default prefix/suffix text size is 16. This returns 44. (16 * 2.75(density))
+            //var textSize1 = platformView.PrefixTextView.TextSize;
 
             // No longer needed?
             // Prefix gets misaligned from input text.
-           // platformView.Post(() =>
-           // {
-                platformView.PrefixText = virtualView.Prefix;
+            // platformView.Post(() =>
+            // {
+            platformView.PrefixText = virtualView.Prefix;
                 platformView.InvalidateMeasure(virtualView);
            // });
-            
             
         }
 
@@ -110,7 +116,8 @@ namespace Nwesp.Maui.Android.Platforms.Android
             {
                 return;
             }
-
+            //float textSize = (float)(virtualView.MaterialEntry?.FontSize ?? 14f);
+            //platformView.SuffixTextView.SetTextSize(AComplexUnitType.Dip, textSize);
             platformView.Post(() =>
             {
                 platformView.SuffixText = virtualView.Suffix;
