@@ -56,5 +56,6 @@ namespace Nwesp.Maui.Android.Abstractions
         Color PrefixTextColor { get; set; }
         Color DisabledPrefixTextColor { get; set; }
         float DisabledPrefixTextColorOpacity { get; set; }
+        IMaterialEntry? MaterialEntry { get; }
     }
 }

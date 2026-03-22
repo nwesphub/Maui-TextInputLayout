@@ -26,6 +26,7 @@ namespace Nwesp.Maui.Android.Controls
 {
     public class TextInputLayout : ContentView, ITextInputLayout
     {
+        public IMaterialEntry? MaterialEntry => Content as IMaterialEntry;
         static TextInputLayout()
         {
             OutlineColorProperty = BindableProperty.Create(nameof(OutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetOutlineColor());
