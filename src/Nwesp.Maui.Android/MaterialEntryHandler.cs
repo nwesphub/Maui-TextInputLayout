@@ -41,9 +41,9 @@ namespace Nwesp.Maui.Android
         {
         }
 
-        protected override AppCompatEditText CreatePlatformView()
+        protected override MauiAppCompatEditText CreatePlatformView()
         {
-            var editText = ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new AppCompatEditText(t));
+            var editText = ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new MauiAppCompatEditText(t));
             
             return editText;
         }
@@ -64,7 +64,7 @@ namespace Nwesp.Maui.Android
             } 
         }
 
-        protected override void ConnectHandler(AppCompatEditText platformView)
+        protected override void ConnectHandler(MauiAppCompatEditText platformView)
         {
             base.ConnectHandler(platformView);
             //platformView.AddTextChangedListener(new TextWatcher());
