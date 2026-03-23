@@ -19,7 +19,7 @@ namespace Nwesp.Maui.Android.Abstractions
 {
     public interface ITextInputLayoutHandler : IViewHandler
     {
-        new ITextInputLayout? VirtualView { get; }
+        new ITextInputLayout VirtualView { get; }
         new PlatformView PlatformView { get; }
 
         IMaterialEntry VirtualEntry { get; set; }

@@ -16,14 +16,13 @@ using AResource = Android.Resource.Attribute;
 using ASound = Android.Views.SoundEffects;
 using Nwesp.Maui.Android.Abstractions;
 using Nwesp.Maui.Android.Controls;
+using AndroidX.AppCompat.Widget;
 namespace Nwesp.Maui.Android.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
     {
         public EndIconMode CustomEndIconMode { get; set; }
         public bool IsPassword { get; set; }
-        public float PreviousX { get; set; }
-        public float PreviousY { get; set; }
         public bool HasTextAndFocus(bool hasFocus)
         {
             return hasFocus && !string.IsNullOrWhiteSpace(EditText?.Text);
@@ -36,7 +35,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
             // Update: No longer needed? Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
             //BoxCollapsedPaddingTop = (int)(8 * density);
 
-            var endIcon = this.FindViewById<CheckableImageButton>(Resource.Id.text_input_end_icon);
+            var endIcon = this.FindViewById<AppCompatImageButton>(Resource.Id.text_input_end_icon);
             if (endIcon is null)
             {
                 return;
