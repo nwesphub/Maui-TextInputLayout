@@ -17,7 +17,6 @@ namespace Nwesp.Maui.Android.Hosting
         {
             builder.ConfigureMauiHandlers(config =>
             {
-                config.AddHandler<TextInputEditText, TextInputEditTextHandler>();
                 config.AddHandler<TextInputLayout, TextInputLayoutHandler>();
                 config.AddHandler<MaterialEntry, MaterialEntryHandler>();
                 config.AddHandler<MaterialPicker, MaterialPickerHandler>();
