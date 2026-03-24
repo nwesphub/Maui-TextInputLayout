@@ -70,6 +70,11 @@ namespace Nwesp.Maui.Android
             //platformView.AddTextChangedListener(new TextWatcher());
         }
 
+        protected override void DisconnectHandler(MauiAppCompatEditText platformView)
+        {
+            base.DisconnectHandler(platformView);
+        }
+
         public static void MapTextColor(MaterialEntryHandler handler, MaterialEntry view)
         {
             handler.PlatformView?.UpdateTextColor(view);

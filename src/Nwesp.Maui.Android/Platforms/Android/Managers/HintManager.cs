@@ -48,7 +48,7 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             {
                 platformView.ExpandedHintEnabled = false;
                 await Task.Yield();
-                platformView.ExpandedHintEnabled = virtualView.IsHintAlwaysExpanded;
+                platformView.ExpandedHintEnabled = !virtualView.IsHintAlwaysExpanded;
             });
         }
     }

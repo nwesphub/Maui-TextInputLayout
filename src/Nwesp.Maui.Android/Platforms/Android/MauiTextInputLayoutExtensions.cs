@@ -43,10 +43,10 @@ namespace Nwesp.Maui.Android.Platforms.Android
         {
             var rect = virtualView.BoxStrokeCornerRadius;
             float density = platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75f;
-            float topLeft = (int)(rect.TopLeft * density + 0.5f);
-            float topRight = (int)(rect.TopRight * density + 0.5f);
-            float bottomLeft = (int)(rect.BottomLeft * density + 0.5f);
-            float bottomRight = (int)(rect.BottomRight * density + 0.5f);
+            float topLeft = (int)(rect.TopLeft * density);
+            float topRight = (int)(rect.TopRight * density);
+            float bottomLeft = (int)(rect.BottomLeft * density);
+            float bottomRight = (int)(rect.BottomRight * density);
 
             platformView.SetBoxCornerRadii(topLeft, topRight, bottomLeft, bottomRight);
         }

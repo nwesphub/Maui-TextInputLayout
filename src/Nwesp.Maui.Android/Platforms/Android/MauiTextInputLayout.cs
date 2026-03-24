@@ -32,8 +32,8 @@ namespace Nwesp.Maui.Android.Platforms.Android
         {
             var density = Context?.Resources?.DisplayMetrics?.Density ?? 2.75;
 
-            // Update: No longer needed? Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
-            //BoxCollapsedPaddingTop = (int)(8 * density);
+            // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
+            BoxCollapsedPaddingTop = (int)(8 * density);
 
             var endIcon = this.FindViewById<AppCompatImageButton>(Resource.Id.text_input_end_icon);
             if (endIcon is null)
