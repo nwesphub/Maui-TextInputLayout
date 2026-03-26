@@ -1,24 +1,25 @@
-﻿using Android.Graphics.Drawables;
+﻿using Android.Content.Res;
 using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Net;
+using Android.Text;
+using Android.Text.Style;
+using Microsoft.Maui;
+using Microsoft.Maui.Platform;
+using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
+using Nwesp.Maui.Android.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nwesp.Maui.Android.Models.Enums;
-using Nwesp.Maui.Android.Abstractions;
-using Microsoft.Maui.Platform;
-using Android.Content.Res;
-using AResource = Android.Resource.Attribute;
-using Nwesp.Maui.Android.Utilities;
 using static Android.Views.View;
-using Nwesp.Maui.Android.Platforms.Android.Managers;
-using ATextChangedEventArgs = Android.Text.TextChangedEventArgs;
-using Android.Net;
-using Android.Text.Style;
-using Android.Text;
-using ATypeFaceStyle = Android.Graphics.TypefaceStyle;
 using AComplexUnitType = Android.Util.ComplexUnitType;
+using AResource = Android.Resource.Attribute;
+using ATextChangedEventArgs = Android.Text.TextChangedEventArgs;
+using ATypeFaceStyle = Android.Graphics.TypefaceStyle;
 
 namespace Nwesp.Maui.Android.Platforms.Android
 {
@@ -42,7 +43,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
         public static void UpdateBoxCornerRadius(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             var rect = virtualView.BoxStrokeCornerRadius;
-            float density = platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75f;
+            float density = DisplayHelper.GetDensity(platformView.Context);
             float topLeft = (int)(rect.TopLeft * density);
             float topRight = (int)(rect.TopRight * density);
             float bottomLeft = (int)(rect.BottomLeft * density);
@@ -53,13 +54,13 @@ namespace Nwesp.Maui.Android.Platforms.Android
 
         public static void UpdateBoxStrokeWidth(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            int density = (int)Math.Floor(platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75);
+            int density = (int)Math.Floor(DisplayHelper.GetDensity(platformView.Context));
             int width = virtualView.BoxStrokeWidth * density;
             platformView.BoxStrokeWidth = (int)(width);
         }
         public static void UpdateBoxStrokeFocusedWidth(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            int density = (int)Math.Floor(platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75);
+            int density = (int)Math.Floor(DisplayHelper.GetDensity(platformView.Context));
             int width = virtualView.BoxStrokeFocusedWidth * density;
             platformView.BoxStrokeWidthFocused = width; 
         }

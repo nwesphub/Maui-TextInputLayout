@@ -23,6 +23,7 @@ using System.Collections.Concurrent;
 using Microsoft.Maui;
 using Android.Text;
 using System.Runtime.CompilerServices;
+using Nwesp.Maui.Android.Utilities;
 
 namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
@@ -129,27 +130,27 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
                 return null;
             }
             
-            Drawable? result = null;
+            Drawable? drawable = null;
             try
             {
                 if (icon is FileImageSource fileImageSource)
                 {
                     if (DrawableDictionary.TryGetValue(fileImageSource.File, out Drawable? image))
                     {
-                        result = image;
+                        drawable = image;
                     }
                     else
                     {
-                        result = (await icon.GetPlatformImageAsync(mauiContext))?.Value;
-                        if (result is not null)
+                        drawable = await CreateScaledDrawable(icon, mauiContext);
+                        if (drawable is not null)
                         {
-                            DrawableDictionary.TryAdd(fileImageSource.File, result);
+                            DrawableDictionary.TryAdd(fileImageSource.File, drawable);
                         }
                     }
                 }
                 else
                 {
-                    result = (await icon.GetPlatformImageAsync(mauiContext))?.Value;
+                    drawable = await CreateScaledDrawable(icon, mauiContext);
                 }
             }
             catch(Exception ex) 
@@ -157,7 +158,27 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
                 System.Diagnostics.Debug.WriteLine(ex);
             }
 
-            return result;
+            return drawable;
+        }
+
+        private static async Task<Drawable?> CreateScaledDrawable(ImageSource icon, IMauiContext mauiContext)
+        {
+            var drawable = (await icon.GetPlatformImageAsync(mauiContext))?.Value;
+            if (drawable is BitmapDrawable bitmapDrawable && bitmapDrawable.Bitmap is not null)
+            {
+                var density = DisplayHelper.GetDensity(mauiContext?.Context);
+                int sizePx = (int)(DisplayHelper.IconSize * density);
+
+                var scaled = Bitmap.CreateScaledBitmap(
+                    bitmapDrawable.Bitmap,
+                    sizePx,
+                    sizePx,
+                    true);
+
+                drawable = new BitmapDrawable(mauiContext?.Context?.Resources, scaled);
+            }
+
+            return drawable;
         }
     }
 }

@@ -5,18 +5,20 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.Widget;
 using Google.Android.Material.Internal;
 using Google.Android.Material.TextField;
 using Java.Lang;
-using Nwesp.Maui.Android.Models.Enums;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
-using AView = Android.Views.View;
-using LLayout = Android.Widget.LinearLayout;
-using AResource = Android.Resource.Attribute;
-using ASound = Android.Views.SoundEffects;
 using Nwesp.Maui.Android.Abstractions;
 using Nwesp.Maui.Android.Controls;
-using AndroidX.AppCompat.Widget;
+using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Utilities;
+using AResource = Android.Resource.Attribute;
+using ASound = Android.Views.SoundEffects;
+using AView = Android.Views.View;
+using LLayout = Android.Widget.LinearLayout;
 namespace Nwesp.Maui.Android.Platforms.Android
 {
     public class MauiTextInputLayout : Google.Android.Material.TextField.TextInputLayout
@@ -30,7 +32,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
 
         public MauiTextInputLayout(Context context) : base(context)
         {
-            var density = Context?.Resources?.DisplayMetrics?.Density ?? 2.75;
+            var density = DisplayHelper.GetDensity(Context);
 
             // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
             BoxCollapsedPaddingTop = (int)(8 * density);
