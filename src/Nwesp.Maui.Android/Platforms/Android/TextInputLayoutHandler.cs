@@ -92,7 +92,6 @@ namespace Nwesp.Maui.Android
             }
 
             PlatformEntry = contentView.Content.ToPlatform(MauiContext!) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
-            PlatformEntry.SetMinimumWidth(int.MaxValue);
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
         }
@@ -118,7 +117,7 @@ namespace Nwesp.Maui.Android
         //        }
         //    }
         //}
-
+        
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
             base.ConnectHandler(platformView);

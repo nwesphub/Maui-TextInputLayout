@@ -29,11 +29,18 @@ namespace Nwesp.Maui.Android.Platforms.Android
         {
             return hasFocus && !string.IsNullOrWhiteSpace(EditText?.Text);
         }
-
+        protected override void OnLayout(bool changed, int l, int t, int r, int b)
+        {
+            base.OnLayout(changed, l, t, r, b);
+            if (changed && EditText is not null) 
+            {
+                EditText.SetMinimumWidth(this.Width);
+            }
+        }
         public MauiTextInputLayout(Context context) : base(context)
         {
             var density = DisplayHelper.GetDensity(Context);
-
+            
             // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text
             BoxCollapsedPaddingTop = (int)(8 * density);
 
