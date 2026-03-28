@@ -19,7 +19,8 @@ namespace Nwesp.Maui.Android.Samples
             
             AppDomain.CurrentDomain.UnhandledException += (s, e) =>
             {
-                
+                var stack = (e.ExceptionObject as Exception).ToString();
+
             };
             AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
             {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseDemoPage
+    x:Class="Nwesp.Maui.Android.Samples.ErrorTextCounterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    Title="SupportingErrorTextCounterPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="8" Spacing="8">
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                CounterEnabled="True"
+                EndIconMode="ClearText"
+                Hint="Counter only"
+                SupportingText="Counting...">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                CounterEnabled="True"
+                CounterMaxLength="5"
+                EndIconMode="ClearText"
+                Hint="Counter max length"
+                IsErrorEnabled="True">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                CounterEnabled="True"
+                CounterMaxLength="5"
+                CounterOverflowTextColor="{StaticResource NwespGreen}"
+                EndIconMode="ClearText"
+                ErrorCursorColor="{StaticResource NwespGreen}"
+                ErrorOutlineColor="{StaticResource NwespGreen}"
+                Hint="Counter max length"
+                SupportingText="Set counter overflow to success color">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</base:BaseDemoPage>

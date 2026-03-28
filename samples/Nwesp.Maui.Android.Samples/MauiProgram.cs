@@ -41,7 +41,8 @@ namespace Nwesp.Maui.Android.Samples
             builder.Services.AddTransient<DemoPage>();
             builder.Services.AddTransient<PasswordPage>();
             builder.Services.AddTransient<PrefixSuffixPage>();
-
+            builder.Services.AddTransient<TestPage>();
+            builder.Services.AddTransient<ErrorTextCounterPage>();
             return builder;
         }
     }

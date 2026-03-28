@@ -1,69 +1,34 @@
-﻿using Android.Graphics.Drawables;
+﻿using Android.Content.Res;
 using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Net;
+using Android.Text;
+using Android.Text.Style;
+using Android.Util;
+using Android.Widget;
+using Microsoft.Maui;
+using Microsoft.Maui.Platform;
+using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
+using Nwesp.Maui.Android.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nwesp.Maui.Android.Models.Enums;
-using Nwesp.Maui.Android.Abstractions;
-using Microsoft.Maui.Platform;
-using Android.Content.Res;
-using AResource = Android.Resource.Attribute;
-using Nwesp.Maui.Android.Utilities;
 using static Android.Views.View;
-using Nwesp.Maui.Android.Platforms.Android.Managers;
-using ATextChangedEventArgs = Android.Text.TextChangedEventArgs;
-using Android.Net;
-using Android.Text.Style;
-using Android.Text;
-using ATypeFaceStyle = Android.Graphics.TypefaceStyle;
+using AColor = Android.Graphics.Color;
 using AComplexUnitType = Android.Util.ComplexUnitType;
+using AResource = Android.Resource.Attribute;
+using ATextChangedEventArgs = Android.Text.TextChangedEventArgs;
+using ATypeFaceStyle = Android.Graphics.TypefaceStyle;
+using MColor = Microsoft.Maui.Graphics.Color;
 
 namespace Nwesp.Maui.Android.Platforms.Android
 {
     public static class MauiTextInputLayoutExtensions
     {
-        public static void UpdateBoxBackgroundMode(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
-        {
-            switch (virtualView.BoxBackgroundMode)
-            {
-                case BoxBackgroundMode.None:
-                    break;
-                case BoxBackgroundMode.Outline:
-                    platformView.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundOutline;
-                    break;
-                case BoxBackgroundMode.Filled:
-                    platformView.BoxBackgroundMode = Google.Android.Material.TextField.TextInputLayout.BoxBackgroundFilled;
-                    break;
-            }
-        }
-
-        public static void UpdateBoxCornerRadius(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
-        {
-            var rect = virtualView.BoxStrokeCornerRadius;
-            float density = platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75f;
-            float topLeft = (int)(rect.TopLeft * density + 0.5f);
-            float topRight = (int)(rect.TopRight * density + 0.5f);
-            float bottomLeft = (int)(rect.BottomLeft * density + 0.5f);
-            float bottomRight = (int)(rect.BottomRight * density + 0.5f);
-
-            platformView.SetBoxCornerRadii(topLeft, topRight, bottomLeft, bottomRight);
-        }
-
-        public static void UpdateBoxStrokeWidth(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
-        {
-            int density = (int)Math.Floor(platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75);
-            int width = virtualView.BoxStrokeWidth * density;
-            platformView.BoxStrokeWidth = (int)(width);
-        }
-        public static void UpdateBoxStrokeFocusedWidth(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
-        {
-            int density = (int)Math.Floor(platformView.Context?.Resources?.DisplayMetrics?.Density ?? 2.75);
-            int width = virtualView.BoxStrokeFocusedWidth * density;
-            platformView.BoxStrokeWidthFocused = width; 
-        }
-
         public static void UpdatePrefixText(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             if (string.Equals(platformView.PrefixText, virtualView.Prefix, StringComparison.CurrentCulture))
@@ -88,7 +53,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
             // Prefix gets misaligned from input text.
             // platformView.Post(() =>
             // {
-            platformView.PrefixText = virtualView.Prefix;
+                platformView.PrefixText = virtualView.Prefix;
                 platformView.InvalidateMeasure(virtualView);
            // });
             
@@ -142,26 +107,6 @@ namespace Nwesp.Maui.Android.Platforms.Android
         }
 
 
-
-        public static void UpdateBackgroundColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
-        {
-            int[][] states =
-            [
-                [AResource.StateEnabled],
-                [-AResource.StateEnabled],
-            ];
-
-            int[] colors =
-            [
-                virtualView.BackgroundColor?.ToPlatform() ?? ThemeHelper.GetContainerColor(virtualView.BoxBackgroundMode).ToPlatform(),
-                virtualView.DisabledBackgroundColor?.WithAlpha(virtualView.DisabledBackgroundColorOpacity).ToPlatform() ?? ThemeHelper.GetDisabledContainerColor(virtualView.BoxBackgroundMode).WithAlpha(ThemeHelper.GetDisabledContainerOpacity(virtualView.BoxBackgroundMode)).ToPlatform(),
-            ];
-
-            // Make sure the background tint is null for Filled mode.
-            platformView.BackgroundTintList = Colors.Transparent.ToDefaultColorStateList();
-            platformView.SetBoxBackgroundColorStateList(new ColorStateList(states, colors));
-        }
-
         public static void UpdateSupportingText(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             platformView.HelperText = virtualView.SupportingText;
@@ -185,12 +130,19 @@ namespace Nwesp.Maui.Android.Platforms.Android
             platformView.SetPadding((int)padding.Left, (int)padding.Top, (int)padding.Right, (int)padding.Bottom);
         }
 
+        public static void UpdateIsErrorEnabled(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.ErrorEnabled = virtualView.IsErrorEnabled;
+        }
+
         public static void TextInputLayoutFocusChanged(this MauiTextInputLayout platformView, ITextInputLayout virtualView, bool hasFocus)
         {
             if(virtualView is null)
             {
                 return;
             }
+
+            platformView.UpdateSupportingTextColor(virtualView, hasFocus);
 
             if (virtualView.EndIconVisibilityMode != IconVisibilityMode.WhileEditing &&
                 virtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
@@ -257,6 +209,29 @@ namespace Nwesp.Maui.Android.Platforms.Android
                     platformView.HideEndIcon();
                 }
             }
+        }
+
+        public static void UpdateCursorColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.CursorColor = virtualView.CursorColor.ToDefaultColorStateList();
+        }
+        public static void UpdateErrorCursorColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.CursorErrorColor = virtualView.ErrorCursorColor.ToDefaultColorStateList();
+        }
+        public static void UpdateSupportingTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView, bool hasFocus)
+        {
+            platformView.SetHelperTextColor(ColorStateHelper.GetSupportingTextColorStateList(virtualView, hasFocus));
+        }
+
+        public static void UpdateCounterTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.CounterTextColor = virtualView.CounterTextColor.ToDefaultColorStateList();
+        }
+
+        public static void UpdateCounterOverflowTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.CounterOverflowTextColor = virtualView.CounterOverflowTextColor.ToDefaultColorStateList();
         }
     }
 }

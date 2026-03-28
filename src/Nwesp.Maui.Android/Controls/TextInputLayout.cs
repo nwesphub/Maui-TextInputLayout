@@ -13,6 +13,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.Maui.Controls.Shapes;
 using System.Windows.Input;
 using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Models;
 
 
 
@@ -78,6 +79,23 @@ namespace Nwesp.Maui.Android.Controls
 
             DisabledBackgroundColorProperty = BindableProperty.Create(nameof(DisabledBackgroundColor), typeof(Color), typeof(TextInputLayout));
             DisabledBackgroundColorOpacityProperty = BindableProperty.Create(nameof(DisabledBackgroundColorOpacity), typeof(float), typeof(TextInputLayout));
+
+            IsErrorEnabledProperty = BindableProperty.Create(nameof(IsErrorEnabled), typeof(bool), typeof(TextInputLayout), defaultValue: false); // Default true adds spacing where text would be
+
+            CursorColorProperty = BindableProperty.Create(nameof(CursorColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetCaretColor());
+            ErrorCursorColorProperty = BindableProperty.Create(nameof(ErrorCursorColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorCaretColor());
+
+            ErrorOutlineColorProperty = BindableProperty.Create(nameof(ErrorOutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorFocusedActiveIndicatorColor());
+            FocusedErrorOutlineColorProperty = BindableProperty.Create(nameof(FocusedErrorOutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorFocusedActiveIndicatorColor());
+
+            CounterTextColorProperty = BindableProperty.Create(nameof(CounterTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetInputTextColor());
+            CounterOverflowTextColorProperty = BindableProperty.Create(nameof(CounterOverflowTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorSupportingTextColor());
+            FocusedCounterOverflowTextColorProperty = BindableProperty.Create(nameof(FocusedCounterOverflowTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorSupportingTextColor());
+
+            SupportingTextColorProperty = BindableProperty.Create(nameof(SupportingTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetSupportingTextColor());
+            DisabledSupportingTextColorProperty = BindableProperty.Create(nameof(DisabledSupportingTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledSupportingTextColor());
+            FocusedSupportingTextColorProperty = BindableProperty.Create(nameof(FocusedSupportingTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetFocusedSupportingTextColor());
+            DisabledSupportingTextColorOpacityProperty = BindableProperty.Create(nameof(DisabledSupportingTextColorOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledSupportingTextOpacity());
         }
 
         private static void BoxBackgroundModePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -152,12 +170,27 @@ namespace Nwesp.Maui.Android.Controls
         
         public static readonly BindableProperty CounterEnabledProperty;
         public static readonly BindableProperty CounterMaxLengthProperty;
-        
-        
-        
+
+        public static readonly BindableProperty IsErrorEnabledProperty;
+
         public static readonly BindableProperty EndIconClickedCommandProperty;
 
+        public static readonly BindableProperty CursorColorProperty;
+        public static readonly BindableProperty ErrorCursorColorProperty;
 
+        public static readonly BindableProperty ErrorOutlineColorProperty;
+        public static readonly BindableProperty FocusedErrorOutlineColorProperty;
+
+        public static readonly BindableProperty CounterTextColorProperty;
+        public static readonly BindableProperty CounterOverflowTextColorProperty;
+        public static readonly BindableProperty FocusedCounterOverflowTextColorProperty;
+
+        public static readonly BindableProperty SupportingTextColorProperty;
+        public static readonly BindableProperty DisabledSupportingTextColorProperty;
+        public static readonly BindableProperty FocusedSupportingTextColorProperty;
+        public static readonly BindableProperty DisabledSupportingTextColorOpacityProperty;
+
+        
         public void EndIconClicked()
         {
             if (EndIconClickedCommand is not null)
@@ -186,7 +219,7 @@ namespace Nwesp.Maui.Android.Controls
 
         public void ErrorIconClicked()
         {
-
+            
         }
 
         public Color OutlineColor
@@ -194,7 +227,7 @@ namespace Nwesp.Maui.Android.Controls
             get => (Color)GetValue(OutlineColorProperty);
             set => SetValue(OutlineColorProperty, value);
         }
-
+        
         public Color FocusedOutlineColor
         {
             get => (Color)GetValue(FocusedOutlineColorProperty);
@@ -399,10 +432,84 @@ namespace Nwesp.Maui.Android.Controls
             set => SetValue(ErrorTextProperty, value);
         }
 
+        public bool IsErrorEnabled
+        {
+            get => (bool)GetValue(IsErrorEnabledProperty);
+            set => SetValue(IsErrorEnabledProperty, value);
+        }
+
         public ICommand EndIconClickedCommand
         {
             get => (ICommand)GetValue(EndIconClickedCommandProperty);
             set => SetValue(EndIconClickedCommandProperty, value);
         }
+        
+        public Color CursorColor
+        {
+            get => (Color)GetValue(CursorColorProperty);
+            set => SetValue(CursorColorProperty, value);
+        }
+        public Color ErrorCursorColor
+        {
+            get => (Color)GetValue(ErrorCursorColorProperty);
+            set => SetValue(ErrorCursorColorProperty, value);
+        }
+        public Color ErrorOutlineColor
+        {
+            get => (Color)GetValue(ErrorOutlineColorProperty);
+            set => SetValue(ErrorOutlineColorProperty, value);
+        }
+        
+        public Color FocusedErrorOutlineColor
+        {
+            get => (Color)GetValue(FocusedErrorOutlineColorProperty);
+            set => SetValue(FocusedErrorOutlineColorProperty, value);
+        }
+
+        public Color CounterTextColor
+        {
+            get => (Color)GetValue(CounterTextColorProperty);
+            set => SetValue(CounterTextColorProperty, value);
+        }
+
+        public Color CounterOverflowTextColor
+        {
+            get => (Color)GetValue(CounterOverflowTextColorProperty);
+            set => SetValue(CounterOverflowTextColorProperty, value);
+        }
+
+        public Color FocusedCounterOverflowTextColor
+        {
+            get => (Color)GetValue(FocusedCounterOverflowTextColorProperty);
+            set => SetValue(FocusedCounterOverflowTextColorProperty, value);
+        }
+        public Color SupportingTextColor
+        {
+            get => (Color)GetValue(SupportingTextColorProperty);
+            set => SetValue(SupportingTextColorProperty, value);
+        }
+        public Color DisabledSupportingTextColor
+        {
+            get => (Color)GetValue(DisabledSupportingTextColorProperty);
+            set => SetValue(DisabledSupportingTextColorProperty, value);
+        }
+        public Color FocusedSupportingTextColor
+        {
+            get => (Color)GetValue(FocusedSupportingTextColorProperty);
+            set => SetValue(FocusedSupportingTextColorProperty, value);
+        }
+        public float DisabledSupportingTextColorOpacity
+        {
+            get => (float)GetValue(DisabledSupportingTextColorOpacityProperty);
+            set => SetValue(DisabledSupportingTextColorOpacityProperty, value);
+        }
+
+        public IStatefulColor SupportingTextColors => new StatefulColor
+        (
+            SupportingTextColor,
+            FocusedSupportingTextColor,
+            DisabledSupportingTextColor,
+            DisabledSupportingTextColorOpacity
+        );
     }
 }

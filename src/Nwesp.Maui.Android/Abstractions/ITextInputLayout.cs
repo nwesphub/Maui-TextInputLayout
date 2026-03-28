@@ -57,5 +57,18 @@ namespace Nwesp.Maui.Android.Abstractions
         Color DisabledPrefixTextColor { get; set; }
         float DisabledPrefixTextColorOpacity { get; set; }
         IMaterialEntry? MaterialEntry { get; }
+        bool IsErrorEnabled { get; set; }
+        Color CursorColor { get; set; }
+        Color ErrorCursorColor { get; set; }
+        Color ErrorOutlineColor { get; set; }
+        Color FocusedErrorOutlineColor { get; set; }
+        Color CounterTextColor { get; set; }
+        Color CounterOverflowTextColor { get; set; }
+        Color FocusedCounterOverflowTextColor { get; set; }
+        Color SupportingTextColor { get; set; }
+        Color DisabledSupportingTextColor { get; set; }
+        Color FocusedSupportingTextColor { get; set; }
+        float DisabledSupportingTextColorOpacity { get; set; }
+        IStatefulColor SupportingTextColors { get; }
     }
 }

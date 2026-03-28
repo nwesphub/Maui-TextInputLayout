@@ -95,39 +95,29 @@ namespace Nwesp.Maui.Android
             PlatformEntry.SetMinimumWidth(int.MaxValue);
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
-
-            // Trigger end icon visibility upon initial load
-            //if(!string.IsNullOrEmpty(PlatformEntry.Text))
-            //{
-            //    PlatformEntry_TextChanged(null, new ATextChangedEventArgs(PlatformEntry.Text, 0, 0, 0));
-            //}
-            if (PlatformView.ViewTreeObserver is not null)
-            {
-                PlatformView.ViewTreeObserver.GlobalLayout += ViewTreeObserver_GlobalLayout;
-            }
         }
 
         // Fix for Borders clipping when the control is rearranged on screen (toggling visibility. adding/removing views)
-        private void ViewTreeObserver_GlobalLayout(object? sender, EventArgs e)
-        {
-            if (PlatformView is null || VirtualView is null)
-            {
-                return;
-            }
+        //private void ViewTreeObserver_GlobalLayout(object? sender, EventArgs e)
+        //{
+        //    if (VirtualView is null || PlatformView is null)
+        //    {
+        //        return;
+        //    }
 
-            var x = PlatformView.GetX();
-            var y = PlatformView.GetY();
-            if (x != PlatformView.PreviousX || y != PlatformView.PreviousY)
-            {
-                PlatformView.PreviousX = x;
-                PlatformView.PreviousY = y;
+        //    var x = PlatformView.GetX();
+        //    var y = PlatformView.GetY();
+        //    if (x != PlatformView.PreviousX || y != PlatformView.PreviousY)
+        //    {
+        //        PlatformView.PreviousX = x;
+        //        PlatformView.PreviousY = y;
 
-                if (PlatformView.IsAttachedToWindow)
-                {
-                    PlatformView.InvalidateMeasure(VirtualView);
-                }
-            }
-        }
+        //        if (PlatformView.IsAttachedToWindow)
+        //        {
+        //            PlatformView.InvalidateMeasure(VirtualView);
+        //        }
+        //    }
+        //}
 
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
@@ -168,7 +158,7 @@ namespace Nwesp.Maui.Android
                 VirtualView?.ErrorIconClicked();
             }));
         }
-
+        
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
         {
             base.DisconnectHandler(platformView);
@@ -176,10 +166,6 @@ namespace Nwesp.Maui.Android
             {
                 PlatformEntry.TextChanged -= PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange -= PlatformEntry_FocusChange;
-            }
-            if (platformView.ViewTreeObserver is not null)
-            {
-                platformView.ViewTreeObserver.GlobalLayout -= ViewTreeObserver_GlobalLayout;
             }
             platformView.SetEndIconOnClickListener(null);
             platformView.SetStartIconOnClickListener(null);
@@ -349,6 +335,43 @@ namespace Nwesp.Maui.Android
         public static void MapPadding(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdatePadding(entry);
+        }
+
+        public static void MapIsErrorEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateIsErrorEnabled(entry);
+        }
+        public static void MapCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            
+            handler.PlatformView?.UpdateCursorColor(entry);
+        }
+        public static void MapErrorCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateErrorCursorColor(entry);
+        }
+        public static void MapErrorOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateErrorOutlineColor(entry);
+        }
+        public static void MapCounterTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateCounterTextColor(entry);
+        }
+
+        public static void MapCounterOverflowTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateCounterOverflowTextColor(entry);
+        }
+        public static void MapSupportingTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateSupportingTextColor(entry, handler.PlatformView.HasFocus);
+        }
+
+        public static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            ViewHandler.MapIsEnabled(handler, entry);
+            handler.PlatformView?.UpdateSupportingTextColor(entry, handler.PlatformView.HasFocus);
         }
     }
 
