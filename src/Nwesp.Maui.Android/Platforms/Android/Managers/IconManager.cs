@@ -1,29 +1,30 @@
 ﻿using Android.Content.Res;
-using Android.Graphics.Drawables;
 using Android.Graphics;
-using Nwesp.Maui.Android.Models.Enums;
+using Android.Graphics.Drawables;
+using Android.Text;
+using Android.Widget;
+using AndroidX.AppCompat.Widget;
+using AndroidX.Core.Graphics.Drawable;
+using Google.Android.Material.TextField;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Handlers;
+using Microsoft.Maui.Platform;
+using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Utilities;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using AView = Android.Views.View;
-using AResource = Android.Resource.Attribute;
-using Android.Widget;
-using Microsoft.Maui.Platform;
-using Google.Android.Material.TextField;
-using static Nwesp.Maui.Android.Platforms.Android.MauiTextInputLayout;
-using AndroidX.Core.Graphics.Drawable;
-using MColor = Microsoft.Maui.Graphics.Color;
-using Nwesp.Maui.Android.Abstractions;
 using static Google.Android.Material.TextField.TextInputLayout;
-using System.Collections.Concurrent;
-using Microsoft.Maui;
-using Android.Text;
-using System.Runtime.CompilerServices;
-using Nwesp.Maui.Android.Utilities;
+using static Nwesp.Maui.Android.Platforms.Android.MauiTextInputLayout;
+using AResource = Android.Resource.Attribute;
+using AView = Android.Views.View;
+using MColor = Microsoft.Maui.Graphics.Color;
 
 namespace Nwesp.Maui.Android.Platforms.Android.Managers
 {
@@ -121,6 +122,12 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
         public static async Task MapCustomStartIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext? mauiContext)
         {
             handler.StartIconDrawable = await MapCustomIcon(entry.StartIcon, mauiContext);
+            var startIcon = handler.FindViewById<AppCompatImageButton>(Resource.Id.text_input_start_icon);
+            if(startIcon is not null)
+            {
+                startIcon.Focusable = false;
+                startIcon.FocusableInTouchMode = false;
+            }
         }
 
         private static async Task<Drawable?> MapCustomIcon(ImageSource icon, IMauiContext? mauiContext)

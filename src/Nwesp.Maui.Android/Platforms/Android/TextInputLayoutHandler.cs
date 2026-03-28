@@ -336,6 +336,43 @@ namespace Nwesp.Maui.Android
         {
             handler.PlatformView?.UpdatePadding(entry);
         }
+
+        public static void MapIsErrorEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateIsErrorEnabled(entry);
+        }
+        public static void MapCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            
+            handler.PlatformView?.UpdateCursorColor(entry);
+        }
+        public static void MapErrorCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateErrorCursorColor(entry);
+        }
+        public static void MapErrorOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateErrorOutlineColor(entry);
+        }
+        public static void MapCounterTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateCounterTextColor(entry);
+        }
+
+        public static void MapCounterOverflowTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateCounterOverflowTextColor(entry);
+        }
+        public static void MapSupportingTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateSupportingTextColor(entry, handler.PlatformView.HasFocus);
+        }
+
+        public static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            ViewHandler.MapIsEnabled(handler, entry);
+            handler.PlatformView?.UpdateSupportingTextColor(entry, handler.PlatformView.HasFocus);
+        }
     }
 
     public class MaterialPickerHandler : PickerHandler

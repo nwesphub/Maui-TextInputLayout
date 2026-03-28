@@ -73,6 +73,19 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
             [nameof(IPadding.Padding)] = MapPadding, // Padding isn't mapped by default.
+            [nameof(ITextInputLayout.IsErrorEnabled)] = MapIsErrorEnabled,
+            [nameof(ITextInputLayout.CursorColor)] = MapCursorColor,
+            [nameof(ITextInputLayout.ErrorCursorColor)] = MapErrorCursorColor,
+            [nameof(ITextInputLayout.ErrorOutlineColor)] = MapErrorOutlineColor,
+            [nameof(ITextInputLayout.FocusedErrorOutlineColor)] = MapErrorOutlineColor,
+            [nameof(ITextInputLayout.CounterOverflowTextColor)] = MapCounterTextColor,
+            [nameof(ITextInputLayout.CounterOverflowTextColor)] = MapCounterOverflowTextColor,
+            [nameof(ITextInputLayout.FocusedCounterOverflowTextColor)] = MapCounterOverflowTextColor,
+            [nameof(ITextInputLayout.SupportingTextColor)] = MapSupportingTextColor,
+            [nameof(ITextInputLayout.DisabledSupportingTextColor)] = MapSupportingTextColor,
+            [nameof(ITextInputLayout.FocusedSupportingTextColor)] = MapSupportingTextColor,
+            [nameof(ITextInputLayout.DisabledSupportingTextColorOpacity)] = MapSupportingTextColor,
+            [nameof(IView.IsEnabled)] = MapIsEnabled,
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper);

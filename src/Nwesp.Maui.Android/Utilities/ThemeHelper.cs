@@ -145,13 +145,7 @@ namespace Nwesp.Maui.Android.Utilities
             };
 
         // ==================== Supporting text ====================
-        public static Color GetSupportingTextColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.SupportingTextColor,
-                BoxBackgroundMode.Outline => Outlined.SupportingTextColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetSupportingTextColor() => Filled.SupportingTextColor;
 
         public static string GetSupportingTextFont(BoxBackgroundMode mode) =>
             mode switch
@@ -254,21 +248,9 @@ namespace Nwesp.Maui.Android.Utilities
             };
 
         // ==================== Caret ====================
-        public static Color GetCaretColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.CaretColor,
-                BoxBackgroundMode.Outline => Outlined.CaretColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetCaretColor() => Filled.CaretColor;
 
-        public static Color GetErrorFocusCaretColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.ErrorFocusedCaretColor,
-                BoxBackgroundMode.Outline => Outlined.ErrorFocusCaretColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetErrorCaretColor() => Filled.ErrorFocusedCaretColor;
 
         // ==================== Outline (Outlined only) ====================
         public static int GetOutlineWidth() => Outlined.OutlineWidth;
@@ -311,14 +293,7 @@ namespace Nwesp.Maui.Android.Utilities
                 _ => Colors.Transparent
             };
 
-        public static Color GetErrorSupportingTextColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.ErrorSupportingTextColor,
-                BoxBackgroundMode.Outline => Outlined.ErrorSupportingTextColor,
-                _ => Colors.Transparent
-            };
-
+        public static Color GetErrorSupportingTextColor() => Filled.ErrorSupportingTextColor;
         public static Color GetErrorLeadingIconColor(BoxBackgroundMode mode) =>
             mode switch
             {
@@ -371,21 +346,10 @@ namespace Nwesp.Maui.Android.Utilities
         public static float GetDisabledTrailingIconOpacity() => (float)Filled.DisabledTrailingIconOpacity;
 
         // ==================== Disabled / Supporting text ====================
-        public static Color GetDisabledSupportingTextColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.DisabledSupportingTextColor,
-                BoxBackgroundMode.Outline => Outlined.DisabledSupportingTextColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetDisabledSupportingTextColor() => Filled.DisabledSupportingTextColor;
 
-        public static double GetDisabledSupportingTextOpacity(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.DisabledSupportingTextOpacity,
-                BoxBackgroundMode.Outline => Outlined.DisabledSupportingTextOpacity,
-                _ => 1.0
-            };
+        public static float GetDisabledSupportingTextOpacity() => (float)Filled.DisabledSupportingTextOpacity;
+
 
         // ==================== Disabled / Input text ====================
         public static Color GetDisabledInputTextColor() => Filled.DisabledInputTextColor;
@@ -455,13 +419,8 @@ namespace Nwesp.Maui.Android.Utilities
             };
 
         // ==================== Focused / Supporting text ====================
-        public static Color GetFocusedSupportingTextColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.FocusedSupportingTextColor,
-                BoxBackgroundMode.Outline => Outlined.FocusedSupportingTextColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetFocusedSupportingTextColor() => Filled.FocusedSupportingTextColor;
+
 
         // ==================== Focused / Active indicator ====================
         public static double GetFocusedActiveIndicatorHeight(BoxBackgroundMode mode) =>
@@ -493,13 +452,8 @@ namespace Nwesp.Maui.Android.Utilities
             };
 
         // ==================== Error / Focus ====================
-        public static Color GetErrorFocusedActiveIndicatorColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.ErrorFocusedActiveIndicatorColor,
-                BoxBackgroundMode.Outline => Outlined.ErrorFocusOutlineColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetErrorFocusedActiveIndicatorColor() => Filled.ErrorFocusedActiveIndicatorColor;
+
 
         public static Color GetErrorFocusedLabelTextColor(BoxBackgroundMode mode) =>
             mode switch
