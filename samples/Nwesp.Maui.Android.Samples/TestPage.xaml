@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseDemoPage
+    x:Class="Nwesp.Maui.Android.Samples.TestPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    Title="TestPage">
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="8"
+            Spacing="8">
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText" StartIcon="user1.svg" HorizontalOptions="Fill"
+                Hint="Test"
+                IsHintAlwaysExpanded="True">
+                <input:MaterialEntry HorizontalOptions="Fill" />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test" StartIcon="user2.svg"
+                IsHintAlwaysExpanded="False"
+                Prefix="$">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText" StartIcon="user3.svg"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText" StartIcon="lock.svg"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout StartIcon="lock1.svg"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText" StartIcon="phone1.svg"
+                Hint="Test" StartIconColor="Green"
+                IsHintAlwaysExpanded="False"
+                Prefix="$">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}" StartIcon="address1.svg"  StartIconColor="CornflowerBlue"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText" SupportingTextColor="Blue" SupportingText="Test" FocusedSupportingTextColor="Purple" CursorColor="Green" CounterMaxLength="5" CounterEnabled="True" IsErrorEnabled="False" CounterTextColor="Purple" CounterOverflowTextColor="Orange" ErrorOutlineColor="Yellow" ErrorCursorColor="Black"
+                 Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}" DisabledSupportingTextColor="Red" SupportingText="Test" IsEnabled="False" CounterMaxLength="5" CounterEnabled="True" IsErrorEnabled="False"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"  DisabledSupportingTextColor="Red" SupportingText="Test" IsEnabled="False" DisabledSupportingTextColorOpacity=".1"
+                EndIconMode="ClearText"
+                Hint="Test"
+                IsHintAlwaysExpanded="False"
+                Prefix="$">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test"
+                IsHintAlwaysExpanded="False"
+                Prefix="$">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Test">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <Button Command="{Binding ButtonCommand}" Text="Test" />
+        </VerticalStackLayout>
+    </ScrollView>
+</base:BaseDemoPage>

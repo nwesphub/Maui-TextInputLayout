@@ -1,0 +1,21 @@
+<!--?xml version="1.0" encoding="utf-8"?-->
+<svg xmlns="http://www.w3.org/2000/svg" width="24dp" height="24dp" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd">
+
+    <!-- Lock (body + shackle combined) with cutout keyhole -->
+    <path d="
+        M12 2
+        a4 4 0 0 0-4 4v2H6
+        a2 2 0 0 0-2 2v8
+        a2 2 0 0 0 2 2h12
+        a2 2 0 0 0 2-2v-8
+        a2 2 0 0 0-2-2h-2V6
+        a4 4 0 0 0-4-4zm-2 6V6
+        a2 2 0 1 1 4 0v2h-4z
+
+        &lt;!-- Keyhole cutout --&gt;
+        M12 13
+        a1.2 1.2 0 1 0 0 2.4
+        a1.2 1.2 0 0 0 0-2.4zm-0.5 2.2h1v2h-1z
+    "></path>
+
+</svg>

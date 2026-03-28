@@ -7,7 +7,7 @@
     xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
     Title="PrefixSuffixPage">
     <ScrollView Padding="8">
-        <VerticalStackLayout IsClippedToBounds="False" Spacing="4">
+        <VerticalStackLayout IsClippedToBounds="False" Spacing="16">
             <Grid
                 Padding="0,0,0,40"
                 RowDefinitions="Auto, Auto, Auto, Auto,Auto"
@@ -17,7 +17,7 @@
                     Grid.Row="1"
                     BoxBackgroundMode="{Binding BoxBackgroundMode}"
                     EndIconMode="ClearText"
-                    Hint="Enter Prefix">
+                    Hint="Prefix">
                     <input:MaterialEntry Text="{Binding Prefix}" />
                 </input:TextInputLayout>
 
@@ -25,7 +25,7 @@
                     Grid.Row="2"
                     BoxBackgroundMode="{Binding BoxBackgroundMode}"
                     EndIconMode="ClearText"
-                    Hint="Enter Suffix">
+                    Hint="Suffix">
                     <input:MaterialEntry Text="{Binding Suffix}" />
                 </input:TextInputLayout>
 
@@ -35,14 +35,14 @@
                 EndIconMode="ClearText"
                 Hint="Prefix only"
                 IsHintAlwaysExpanded="True"
-                Prefix="{Binding Prefix}">
+                Prefix="{Binding Prefix}"
+                SupportingText="Hint always expanded.">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
                 Hint="Prefix only"
- 
                 Prefix="{Binding Prefix}">
                 <input:MaterialEntry />
             </input:TextInputLayout>
@@ -52,7 +52,8 @@
                 EndIconMode="ClearText"
                 Hint="Suffix only"
                 IsHintAlwaysExpanded="True"
-                Suffix="{Binding Suffix}">
+                Suffix="{Binding Suffix}"
+                SupportingText="Hint always expanded.">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
@@ -66,9 +67,11 @@
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
-                Hint="Prefix and Suffix" IsHintAlwaysExpanded="True"
+                Hint="Prefix and Suffix"
+                IsHintAlwaysExpanded="True"
                 Prefix="{Binding Prefix}"
-                Suffix="{Binding Suffix}">
+                Suffix="{Binding Suffix}"
+                SupportingText="Hint always expanded.">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
@@ -79,7 +82,26 @@
                 Suffix="{Binding Suffix}">
                 <input:MaterialEntry />
             </input:TextInputLayout>
-           
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Prefix and Suffix"
+                IsEnabled="False"
+                IsHintAlwaysExpanded="True"
+                Prefix="{Binding Prefix}"
+                Suffix="{Binding Suffix}"
+                SupportingText="Hint always expanded. Disabled">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Prefix and Suffix"
+                IsEnabled="False"
+                Prefix="{Binding Prefix}"
+                Suffix="{Binding Suffix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
         </VerticalStackLayout>
     </ScrollView>
 </base:BaseDemoPage>
