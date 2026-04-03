@@ -88,6 +88,8 @@ namespace Nwesp.Maui.Android
             [nameof(IView.IsEnabled)] = MapIsEnabled,
             [nameof(ITextInputLayout.StartIconClickedCommand)] = MapStartIconClickedCommand,
             [nameof(ITextInputLayout.EndIconClickedCommand)] = MapEndIconClickedCommand,
+            [nameof(ITextInputLayout.ShowPasswordIcon)] = MapShowPasswordIcon,
+            [nameof(ITextInputLayout.HidePasswordIcon)] = MapHidePasswordIcon,
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper);

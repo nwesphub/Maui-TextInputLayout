@@ -103,6 +103,9 @@ namespace Nwesp.Maui.Android.Controls
 
             StartIconClickedCommandProperty = BindableProperty.Create(nameof(StartIconClickedCommand), typeof(ICommand), typeof(TextInputLayout));
             EndIconClickedCommandProperty = BindableProperty.Create(nameof(EndIconClickedCommand), typeof(ICommand), typeof(TextInputLayout), defaultValueCreator: EndIconClickedDefaultValueCreator);
+
+            ShowPasswordIconProperty = BindableProperty.Create(nameof(ShowPasswordIcon), typeof(ImageSource), typeof(TextInputLayout), defaultValue: ImageSource.FromFile("eye_on2.svg"));
+            HidePasswordIconProperty = BindableProperty.Create(nameof(HidePasswordIcon), typeof(ImageSource), typeof(TextInputLayout), defaultValue: ImageSource.FromFile("eye_off2.svg"));
         }
 
         private static object EndIconClickedDefaultValueCreator(BindableObject bindable)
@@ -210,7 +213,10 @@ namespace Nwesp.Maui.Android.Controls
         public static readonly BindableProperty DisabledSupportingTextColorOpacityProperty;
 
         public static readonly BindableProperty StartIconClickedCommandProperty;
-        
+
+        public static readonly BindableProperty ShowPasswordIconProperty;
+        public static readonly BindableProperty HidePasswordIconProperty;
+
         public void EndIconClicked()
         {
             if (EndIconClickedCommand is not null)
@@ -536,5 +542,16 @@ namespace Nwesp.Maui.Android.Controls
             DisabledSupportingTextColor,
             DisabledSupportingTextColorOpacity
         );
+
+        public ImageSource ShowPasswordIcon
+        {
+            get => (ImageSource)GetValue(ShowPasswordIconProperty);
+            set => SetValue(ShowPasswordIconProperty, value);
+        }
+        public ImageSource HidePasswordIcon
+        {
+            get => (ImageSource)GetValue(HidePasswordIconProperty);
+            set => SetValue(HidePasswordIconProperty, value);
+        }
     }
 }

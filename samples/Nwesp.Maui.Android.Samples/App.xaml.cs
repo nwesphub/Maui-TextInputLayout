@@ -4,13 +4,21 @@ namespace Nwesp.Maui.Android.Samples
 {
     public partial class App : Application
     {
+        private readonly AppShell _shell;
+
         public App(AppShell shell)
         {
             InitializeComponent();
 
-            MainPage = shell;
+            _shell = shell;
+
             RegisterPages();
             this.ConfigureTextInputLayoutThemes();
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            return new Window(_shell);
         }
 
         private static void RegisterPages()

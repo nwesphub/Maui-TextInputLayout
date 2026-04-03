@@ -71,5 +71,7 @@ namespace Nwesp.Maui.Android.Abstractions
         Color FocusedSupportingTextColor { get; set; }
         float DisabledSupportingTextColorOpacity { get; set; }
         IStatefulColor SupportingTextColors { get; }
+        ImageSource ShowPasswordIcon { get; set; }
+        ImageSource HidePasswordIcon { get; set; }
     }
 }

@@ -27,6 +27,8 @@ namespace Nwesp.Maui.Android.Platforms.Android
     {
         public EndIconMode CustomEndIconMode { get; set; }
         public bool IsPassword { get; set; }
+        public ImageSource? ShowPasswordIcon { get; set; }
+        public ImageSource? HidePasswordIcon { get; set; }
         public bool HasTextAndFocus(bool hasFocus)
         {
             return hasFocus && !string.IsNullOrWhiteSpace(EditText?.Text);
@@ -43,7 +45,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
             EditText?.SetMinimumWidth(this.Width);
         }
         public IMauiContext MauiContext { get; }
-        public MauiTextInputLayout(IMauiContext mauiContext) : base(mauiContext.Context!)
+        public MauiTextInputLayout(IMauiContext? mauiContext) : base(mauiContext!.Context!)
         {
             MauiContext = mauiContext;
             var density = DisplayHelper.GetDensity(Context);

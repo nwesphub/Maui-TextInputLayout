@@ -123,17 +123,28 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             }
         }
 
+        public static void UpdateShowPasswordIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.ShowPasswordIcon = virtualView.ShowPasswordIcon;
+            platformView.UpdateEndIconMode(virtualView);
+        }
+
+        public static void UpdateHidePasswordIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.HidePasswordIcon = virtualView.HidePasswordIcon;
+            platformView.UpdateEndIconMode(virtualView);
+        }
 
         public static async void SetToggleOffPasswordIcon(this MauiTextInputLayout platformView)
         {
             platformView.IsPassword = true;
-            platformView.EndIconDrawable = await MapCustomIcon(ImageSource.FromFile("eye_off2.svg"), platformView.MauiContext);
+            platformView.EndIconDrawable = await MapCustomIcon(platformView.ShowPasswordIcon, platformView.MauiContext);
         }
 
         public static async void SetToggleOnPasswordIcon(this MauiTextInputLayout platformView)
         {
             platformView.IsPassword = false;
-            platformView.EndIconDrawable = await MapCustomIcon(ImageSource.FromFile("eye_on2.svg"), platformView.MauiContext);
+            platformView.EndIconDrawable = await MapCustomIcon(platformView.HidePasswordIcon, platformView.MauiContext);
         }
 
         public static void ShowEndIcon(this MauiTextInputLayout platformView)
@@ -216,7 +227,7 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             }
         }
 
-        private static async Task<Drawable?> MapCustomIcon(ImageSource icon, IMauiContext? mauiContext)
+        private static async Task<Drawable?> MapCustomIcon(ImageSource? icon, IMauiContext? mauiContext)
         {
             if (icon is null || mauiContext is null)
             {

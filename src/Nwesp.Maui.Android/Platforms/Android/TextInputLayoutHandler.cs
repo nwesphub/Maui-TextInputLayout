@@ -349,6 +349,16 @@ namespace Nwesp.Maui.Android
         {
             handler.PlatformView?.UpdateEndIconClickedCommand(entry);
         }
+
+        public static void MapShowPasswordIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateShowPasswordIcon(entry);
+        }
+
+        public static void MapHidePasswordIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateHidePasswordIcon(entry);
+        }
     }
 
     public class MaterialPickerHandler : PickerHandler
