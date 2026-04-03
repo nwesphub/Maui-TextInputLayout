@@ -153,7 +153,6 @@ namespace Nwesp.Maui.Android
             {
                 VirtualView?.ErrorIconClicked();
             }));
-            
         }
         
         protected override void DisconnectHandler(MauiTextInputLayout platformView)

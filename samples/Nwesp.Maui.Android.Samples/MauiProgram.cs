@@ -43,6 +43,8 @@ namespace Nwesp.Maui.Android.Samples
             builder.Services.AddTransient<PrefixSuffixPage>();
             builder.Services.AddTransient<TestPage>();
             builder.Services.AddTransient<ErrorTextCounterPage>();
+            builder.Services.AddTransient<EndIconClearTextPage>();
+            builder.Services.AddTransient<StartIconPage>();
             return builder;
         }
     }

@@ -1,6 +1,7 @@
 using AndroidX.Lifecycle;
 using Nwesp.Maui.Android.Models.Enums;
 using Nwesp.Maui.Android.Samples.Services;
+using System.Collections.ObjectModel;
 
 namespace Nwesp.Maui.Android.Samples;
 
@@ -20,6 +21,19 @@ public partial class BaseDemoPage : ContentPage
         set
         {
             _boxBackgroundMode = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public Array IconVisibilityModes => Enum.GetValues(typeof(IconVisibilityMode));
+
+    private IconVisibilityMode _selectedIconVisibilityMode = IconVisibilityMode.Always;
+    public IconVisibilityMode SelectedIconVisibilityMode
+    {
+        get => _selectedIconVisibilityMode;
+        set
+        {
+            _selectedIconVisibilityMode = value;
             OnPropertyChanged();
         }
     }

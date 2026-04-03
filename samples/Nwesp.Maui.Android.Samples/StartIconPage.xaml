@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseDemoPage
+    x:Class="Nwesp.Maui.Android.Samples.StartIconPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    Title="StartIconPage">
+    <VerticalStackLayout Padding="8" Spacing="8">
+        <input:TextInputLayout
+            BoxBackgroundMode="{Binding BoxBackgroundMode}"
+            Hint="Select End Icon Visibility mode"
+            SupportingText="Select a mode to apply the visibility to the entries below">
+            <input:MaterialPicker ItemsSource="{Binding IconVisibilityModes}" SelectedItem="{Binding SelectedIconVisibilityMode}" />
+        </input:TextInputLayout>
+        <input:TextInputLayout
+            BoxBackgroundMode="{Binding BoxBackgroundMode}"
+
+            Hint="Demo">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
+        <input:TextInputLayout StartIcon="address1.svg"
+            BoxBackgroundMode="{Binding BoxBackgroundMode}"
+
+            Hint="Demo">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
+        <input:TextInputLayout StartIcon="address1.svg" StartIconClickedCommand="{Binding StartIconClickedCommand}"
+            BoxBackgroundMode="{Binding BoxBackgroundMode}"
+       
+            Hint="Demo">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
+    </VerticalStackLayout>
+</base:BaseDemoPage>

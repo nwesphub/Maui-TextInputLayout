@@ -20,6 +20,8 @@ namespace Nwesp.Maui.Android.Samples
             RegisterRoute<PrefixSuffixPage>();
             RegisterRoute<TestPage>();
             RegisterRoute<ErrorTextCounterPage>();
+            RegisterRoute<EndIconClearTextPage>();
+            RegisterRoute<StartIconPage>();
         }
         private static void RegisterRoute<T>()
         {

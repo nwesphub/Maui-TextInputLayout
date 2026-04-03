@@ -20,10 +20,9 @@
                 <input:TextInputLayout
                     BoxBackgroundMode="{Binding BoxBackgroundMode}"
                     EndIconMode="ClearText"
-                    Hint="Test"
+                    Hint="Test" 
                     HorizontalOptions="Fill"
-                    IsHintAlwaysExpanded="True"
-                    StartIcon="user1.svg">
+                    IsHintAlwaysExpanded="True">
                     <input:MaterialEntry HorizontalOptions="Fill" />
                 </input:TextInputLayout>
 
@@ -32,43 +31,36 @@
                     EndIconMode="ClearText"
                     Hint="Test"
                     HorizontalOptions="Fill"
-                    IsHintAlwaysExpanded="True"
-                    StartIcon="user1.svg">
+                    IsHintAlwaysExpanded="True">
                     <input:MaterialEntry HorizontalOptions="Fill" />
                 </input:TextInputLayout>
 
             </HorizontalStackLayout>
-            <Grid ColumnDefinitions="*, *, *">
+            <Grid ColumnDefinitions="*, *, *" ColumnSpacing="8">
                 <input:TextInputLayout
                     Grid.Column="0"
                     BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                    EndIconMode="ClearText"
                     Hint="Test"
                     HorizontalOptions="Fill"
-                    IsHintAlwaysExpanded="True"
-                    StartIcon="user1.svg">
+                    IsHintAlwaysExpanded="True">
                     <input:MaterialEntry HorizontalOptions="Fill" />
                 </input:TextInputLayout>
 
                 <input:TextInputLayout
                     Grid.Column="1"
                     BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                    EndIconMode="ClearText"
                     Hint="Test"
                     HorizontalOptions="Fill"
-                    IsHintAlwaysExpanded="True"
-                    StartIcon="user1.svg">
+                    IsHintAlwaysExpanded="True">
                     <input:MaterialEntry HorizontalOptions="Fill" />
                 </input:TextInputLayout>
 
                 <input:TextInputLayout
                     Grid.Column="2"
                     BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                    EndIconMode="ClearText"
                     Hint="Test"
                     HorizontalOptions="Fill"
-                    IsHintAlwaysExpanded="True"
-                    StartIcon="user1.svg">
+                    IsHintAlwaysExpanded="True">
                     <input:MaterialEntry HorizontalOptions="Fill" />
                 </input:TextInputLayout>
 
@@ -80,7 +72,7 @@
                 HorizontalOptions="Fill"
                 IsHintAlwaysExpanded="True"
                 StartIcon="user1.svg">
-                <input:MaterialEntry HorizontalOptions="Fill" />
+                <input:MaterialEntry HorizontalOptions="Fill" Placeholder="Placeholder test" />
             </input:TextInputLayout>
 
             <input:TextInputLayout
@@ -90,7 +82,7 @@
                 IsHintAlwaysExpanded="False"
                 Prefix="$"
                 StartIcon="user2.svg">
-                <input:MaterialEntry />
+                <input:MaterialEntry Placeholder="Placeholder test" />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
@@ -108,7 +100,7 @@
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
+                ErrorText="1" IsErrorEnabled="True"
                 Hint="Test"
                 StartIcon="lock1.svg">
                 <input:MaterialEntry />
@@ -118,7 +110,7 @@
                 EndIconMode="ClearText"
                 Hint="Test"
                 IsHintAlwaysExpanded="False"
-                Prefix="$"
+                Prefix="$"  IsEnabled="False" DisabledStartIconColor="Green"
                 StartIcon="phone1.svg"
                 StartIconColor="Green">
                 <input:MaterialEntry />
@@ -126,7 +118,7 @@
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
-                Hint="Test"
+                Hint="Test" 
                 StartIcon="address1.svg"
                 StartIconColor="CornflowerBlue">
                 <input:MaterialEntry />
@@ -174,19 +166,19 @@
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
+                EndIconMode="ClearText" IsHintAlwaysExpanded="True"
                 Hint="Test">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
+                EndIconMode="ClearText" IsHintAlwaysExpanded="True"
                 Hint="Test">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
+                EndIconMode="ClearText" IsHintAlwaysExpanded="True"
                 Hint="Test">
                 <input:MaterialEntry />
             </input:TextInputLayout>
@@ -194,25 +186,25 @@
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
                 Hint="Test"
-                IsHintAlwaysExpanded="False"
+                IsHintAlwaysExpanded="False" 
                 Prefix="$">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
+                EndIconMode="ClearText" IsHintAlwaysExpanded="True"
                 Hint="Test">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
+                EndIconMode="ClearText" IsHintAlwaysExpanded="True"
                 Hint="Test">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
+                EndIconMode="ClearText" IsHintAlwaysExpanded="True"
                 Hint="Test">
                 <input:MaterialEntry />
             </input:TextInputLayout>

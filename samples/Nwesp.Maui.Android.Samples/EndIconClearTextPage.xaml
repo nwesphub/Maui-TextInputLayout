@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseDemoPage
+    x:Class="Nwesp.Maui.Android.Samples.EndIconClearTextPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    Title="EndIconClearTextPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="8" Spacing="8">
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                Hint="Select End Icon Visibility mode"
+                SupportingText="Select a mode to apply the visibility to the two entries below">
+                <input:MaterialPicker ItemsSource="{Binding IconVisibilityModes}" SelectedItem="{Binding SelectedIconVisibilityMode}" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIcon="dotnet_bot.png"
+                EndIconClickedCommand="{Binding EndIconClickedCommand}"
+                EndIconColor="{x:Null}"
+                EndIconMode="{Binding SelectedEndIconMode}"
+                EndIconVisibilityMode="{Binding SelectedIconVisibilityMode}"
+                Hint="Label text"
+                SupportingText="Custom icon with colors preserved. Custom click command.">
+                <input:MaterialEntry Text="Input text" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIcon="search_black.svg"
+                EndIconClickedCommand="{Binding EndIconClickedCommand}"
+                EndIconMode="{Binding SelectedEndIconMode}"
+                EndIconVisibilityMode="{Binding SelectedIconVisibilityMode}"
+                Hint="Label text"
+                SupportingText="Custom icon. Custom click command.">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <Label Margin="0,20,0,0" Text="The following entries have specific visibiliy set" />
+            <Label Text="End Icon Visibility: Never" />
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconVisibilityMode="Never"
+                Hint="Label text">
+                <input:MaterialEntry Text="Input text" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconVisibilityMode="Never"
+                Hint="Label text">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <Label Margin="0,20,0,0" Text="End Icon Visibility: Always" />
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconVisibilityMode="Always"
+                Hint="Label text">
+                <input:MaterialEntry Text="Input text" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconVisibilityMode="Always"
+                Hint="Label text">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <Label Margin="0,20,0,0" Text="End Icon Visibility: Has Text" />
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconVisibilityMode="HasText"
+                Hint="Label text">
+                <input:MaterialEntry Text="Input text" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconVisibilityMode="HasText"
+                Hint="Label text">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <Label Margin="0,20,0,0" Text="End Icon Visibility: While Editing" />
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconVisibilityMode="WhileEditing"
+                Hint="Label text">
+                <input:MaterialEntry Text="Input text" />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconVisibilityMode="WhileEditing"
+                Hint="Label text">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <Label Margin="0,20,0,0" Text="End Icon Visibility: Has Text While Editing" />
+            <input:TextInputLayout BoxBackgroundMode="{Binding BoxBackgroundMode}" Hint="Label text">
+                <input:MaterialEntry Text="Input text" />
+            </input:TextInputLayout>
+            <input:TextInputLayout BoxBackgroundMode="{Binding BoxBackgroundMode}" Hint="Label text">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</base:BaseDemoPage>

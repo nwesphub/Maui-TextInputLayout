@@ -9,7 +9,7 @@
     <ScrollView Padding="8">
         <VerticalStackLayout IsClippedToBounds="False" Spacing="16">
             <Grid
-                Padding="0,0,0,40"
+                Padding="0,0,0,20"
                 RowDefinitions="Auto, Auto, Auto, Auto,Auto"
                 RowSpacing="10">
                 <Label Grid.Row="0" Text="Enter Prefix / Suffix in the two entries below" />
@@ -30,15 +30,34 @@
                 </input:TextInputLayout>
 
             </Grid>
+            <Label Text="Hint always expanded in the 3 entries below." />
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
                 Hint="Prefix only"
                 IsHintAlwaysExpanded="True"
-                Prefix="{Binding Prefix}"
-                SupportingText="Hint always expanded.">
+                Prefix="{Binding Prefix}">
                 <input:MaterialEntry />
             </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Suffix only"
+                IsHintAlwaysExpanded="True"
+                Suffix="{Binding Suffix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                Hint="Prefix and Suffix"
+                IsHintAlwaysExpanded="True"
+                Prefix="{Binding Prefix}"
+                Suffix="{Binding Suffix}">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <Label Margin="0,20,0,0" Text="Hint not always expanded in the 3 entries below." />
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
@@ -46,32 +65,11 @@
                 Prefix="{Binding Prefix}">
                 <input:MaterialEntry />
             </input:TextInputLayout>
-
-            <input:TextInputLayout
-                BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
-                Hint="Suffix only"
-                IsHintAlwaysExpanded="True"
-                Suffix="{Binding Suffix}"
-                SupportingText="Hint always expanded.">
-                <input:MaterialEntry />
-            </input:TextInputLayout>
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
                 Hint="Suffix only"
                 Suffix="{Binding Suffix}">
-                <input:MaterialEntry />
-            </input:TextInputLayout>
-
-            <input:TextInputLayout
-                BoxBackgroundMode="{Binding BoxBackgroundMode}"
-                EndIconMode="ClearText"
-                Hint="Prefix and Suffix"
-                IsHintAlwaysExpanded="True"
-                Prefix="{Binding Prefix}"
-                Suffix="{Binding Suffix}"
-                SupportingText="Hint always expanded.">
                 <input:MaterialEntry />
             </input:TextInputLayout>
             <input:TextInputLayout
@@ -82,6 +80,8 @@
                 Suffix="{Binding Suffix}">
                 <input:MaterialEntry />
             </input:TextInputLayout>
+
+            <Label Margin="0,20,0,0" Text="Disabled entries." />
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
@@ -100,7 +100,7 @@
                 IsEnabled="False"
                 Prefix="{Binding Prefix}"
                 Suffix="{Binding Suffix}">
-                <input:MaterialEntry />
+                <input:MaterialEntry Text="Input Text" />
             </input:TextInputLayout>
         </VerticalStackLayout>
     </ScrollView>

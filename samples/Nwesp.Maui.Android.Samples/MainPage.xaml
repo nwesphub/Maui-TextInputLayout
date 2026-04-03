@@ -14,5 +14,17 @@
             Margin="4"
             Command="{Binding OutlineCommand}"
             Text="Outlined Text Input Layout Demos" />
+        <input:TextInputLayout BoxBackgroundMode="Filled">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
+        <input:TextInputLayout BoxBackgroundMode="Filled">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
+        <input:TextInputLayout BoxBackgroundMode="Filled">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
+        <input:TextInputLayout BoxBackgroundMode="Filled">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
     </VerticalStackLayout>
 </ContentPage>
