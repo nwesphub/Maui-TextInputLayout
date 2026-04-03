@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Android.Views.View;
+using static System.Net.Mime.MediaTypeNames;
 using AColor = Android.Graphics.Color;
 using AComplexUnitType = Android.Util.ComplexUnitType;
 using AResource = Android.Resource.Attribute;
@@ -137,7 +138,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
 
         public static void TextInputLayoutFocusChanged(this MauiTextInputLayout platformView, ITextInputLayout virtualView, bool hasFocus)
         {
-            if(virtualView is null)
+            if (virtualView is null)
             {
                 return;
             }

@@ -90,10 +90,11 @@ namespace Nwesp.Maui.Android
                     VirtualEntry = materialEntry;
                 }
             }
-
+            
             PlatformEntry = contentView.Content.ToPlatform(MauiContext!) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
             base.SetVirtualView(view);
             PlatformView.AddView(PlatformEntry);
+            PlatformView.TextInputLayoutTextChanged(VirtualView, PlatformEntry?.Text);
         }
 
         // Fix for Borders clipping when the control is rearranged on screen (toggling visibility. adding/removing views)
@@ -117,7 +118,7 @@ namespace Nwesp.Maui.Android
         //        }
         //    }
         //}
-        
+
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
             base.ConnectHandler(platformView);
@@ -130,7 +131,7 @@ namespace Nwesp.Maui.Android
 
             PlatformView.SetEndIconOnClickListener(new OnClickListener(() =>
             {
-                if(PlatformView.CustomEndIconMode == EndIconMode.Password)
+                if (PlatformView.CustomEndIconMode == EndIconMode.Password)
                 {
                     if (PlatformView.IsPassword)
                     {
@@ -147,15 +148,12 @@ namespace Nwesp.Maui.Android
                 VirtualView?.EndIconClicked();
             }));
 
-            PlatformView.SetStartIconOnClickListener(new OnClickListener(() =>
-            {
-                VirtualView?.StartIconClicked();
-            }));
-
+            
             PlatformView.SetErrorIconOnClickListener(new OnClickListener(() =>
             {
                 VirtualView?.ErrorIconClicked();
             }));
+            
         }
         
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
@@ -175,16 +173,11 @@ namespace Nwesp.Maui.Android
         {
             PlatformView?.TextInputLayoutFocusChanged(VirtualView, e.HasFocus);
         }
-
         
-
         private void PlatformEntry_TextChanged(object? sender, ATextChangedEventArgs e)
         {
-            var text = e.Text?.ToString();
             PlatformView?.TextInputLayoutTextChanged(VirtualView, e.Text?.ToString());
         }
-
-
 
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
@@ -263,24 +256,14 @@ namespace Nwesp.Maui.Android
 
         public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView?.TextInputLayoutFocusChanged(handler.VirtualView, handler.PlatformView.HasFocus);
-            handler.PlatformView?.TextInputLayoutTextChanged(handler.VirtualView, handler.PlatformEntry.Text);
-
-            if (entry.EndIconVisibilityMode == IconVisibilityMode.Always)
-            {
-                handler.PlatformView?.ShowEndIcon();
-            }
-            else if (entry.EndIconVisibilityMode == IconVisibilityMode.Never)
-            {
-                handler.PlatformView?.HideEndIcon();
-            }
+            handler.PlatformView?.UpdateEndIconVisibilityMode(entry);
         }
 
         public static void MapEndIconMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateEndIconMode(entry, handler.MauiContext);
         }
-
+        
         public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.MapCustomStartIcon(entry, handler.MauiContext);
@@ -340,19 +323,22 @@ namespace Nwesp.Maui.Android
         {
             handler.PlatformView?.UpdateIsErrorEnabled(entry);
         }
+
         public static void MapCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            
             handler.PlatformView?.UpdateCursorColor(entry);
         }
+
         public static void MapErrorCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateErrorCursorColor(entry);
         }
+
         public static void MapErrorOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateErrorOutlineColor(entry);
         }
+
         public static void MapCounterTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateCounterTextColor(entry);
@@ -362,6 +348,7 @@ namespace Nwesp.Maui.Android
         {
             handler.PlatformView?.UpdateCounterOverflowTextColor(entry);
         }
+
         public static void MapSupportingTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateSupportingTextColor(entry, handler.PlatformView.HasFocus);
@@ -371,6 +358,21 @@ namespace Nwesp.Maui.Android
         {
             ViewHandler.MapIsEnabled(handler, entry);
             handler.PlatformView?.UpdateSupportingTextColor(entry, handler.PlatformView.HasFocus);
+        }
+
+        public static void MapStartIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            if(entry.StartIconClickedCommand is not null)
+            {
+                handler.PlatformView.SetStartIconOnClickListener(new OnClickListener(() =>
+                {
+                    entry.StartIconClickedCommand.Execute(null);
+                }));
+            }
+            else
+            {
+                handler.PlatformView.SetStartIconOnClickListener(null);
+            }
         }
     }
 

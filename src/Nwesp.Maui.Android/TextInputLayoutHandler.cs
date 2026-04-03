@@ -86,6 +86,7 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.FocusedSupportingTextColor)] = MapSupportingTextColor,
             [nameof(ITextInputLayout.DisabledSupportingTextColorOpacity)] = MapSupportingTextColor,
             [nameof(IView.IsEnabled)] = MapIsEnabled,
+            [nameof(ITextInputLayout.StartIconClickedCommand)] = MapStartIconClickedCommand,
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper);

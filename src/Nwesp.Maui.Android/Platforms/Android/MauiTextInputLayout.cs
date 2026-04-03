@@ -14,6 +14,8 @@ using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Nwesp.Maui.Android.Abstractions;
 using Nwesp.Maui.Android.Controls;
 using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Platforms.Android.Listeners;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
 using Nwesp.Maui.Android.Utilities;
 using AResource = Android.Resource.Attribute;
 using ASound = Android.Views.SoundEffects;
@@ -32,11 +34,15 @@ namespace Nwesp.Maui.Android.Platforms.Android
         protected override void OnLayout(bool changed, int l, int t, int r, int b)
         {
             base.OnLayout(changed, l, t, r, b);
-            if (changed && EditText is not null) 
+            if(!changed)
             {
-                EditText.SetMinimumWidth(this.Width);
+                return;
             }
+
+            // Set the EditText's width when the layout changes.
+            EditText?.SetMinimumWidth(this.Width);
         }
+
         public MauiTextInputLayout(Context context) : base(context)
         {
             var density = DisplayHelper.GetDensity(Context);
@@ -49,6 +55,12 @@ namespace Nwesp.Maui.Android.Platforms.Android
             {
                 return;
             }
+
+            EndIconMode = EndIconCustom;
+            EndIconVisible = true;
+            return;
+            // EndIconBug
+            // Leaving the following code as a reference. It seems the only issue now is that the End icon appears then disappears immediatley upon load of the main page only.
 
             // Hack. The following are workarounds for various issues with the end icon.
             // 1. Icon initially visible before focus state is applied

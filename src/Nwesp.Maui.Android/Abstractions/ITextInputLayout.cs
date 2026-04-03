@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Nwesp.Maui.Android.Abstractions
 {
@@ -29,13 +30,13 @@ namespace Nwesp.Maui.Android.Abstractions
         IconVisibilityMode EndIconVisibilityMode { get; set; }
         EndIconMode EndIconMode { get; set; }
         void EndIconClicked();
-        void StartIconClicked();
         void ErrorIconClicked();
         ImageSource EndIcon { get; set; }
         Color EndIconColor { get; set; }
         Color DisabledEndIconColor { get; set; }
         float DisabledEndIconOpacity { get; set; }
 
+        ICommand StartIconClickedCommand { get; set; }
         ImageSource StartIcon { get; set; }
         Color StartIconColor { get; set; }
         Color DisabledStartIconColor { get; set; }

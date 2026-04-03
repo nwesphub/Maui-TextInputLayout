@@ -2,6 +2,7 @@
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Text;
+using Android.Text.Style;
 using Android.Widget;
 using AndroidX.AppCompat.Widget;
 using AndroidX.Core.Graphics.Drawable;
@@ -12,6 +13,7 @@ using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using Nwesp.Maui.Android.Abstractions;
 using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Platforms.Android.Listeners;
 using Nwesp.Maui.Android.Utilities;
 using System;
 using System.Collections.Concurrent;
@@ -32,11 +34,11 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
     {
         private static ConcurrentDictionary<string, Drawable> DrawableDictionary = new ();
 
-        public static void UpdateEndIconMode(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
+        public static async void UpdateEndIconMode(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
         {
             platformView.CustomEndIconMode = virtualView.EndIconMode;
 
-            if(platformView.CustomEndIconMode == EndIconMode.Password && virtualView.Content is IEntry entry)
+            if (platformView.CustomEndIconMode == EndIconMode.Password && virtualView.Content is IEntry entry)
             {
                 if(entry.IsPassword)
                 {
@@ -46,6 +48,25 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
                 {
                     platformView.SetToggleOnPasswordIcon(mauiContext);
                 }
+            }
+            else if(platformView.CustomEndIconMode == EndIconMode.ClearText)
+            {
+                await platformView.MapCustomEndIcon(virtualView, mauiContext);
+            }
+        }
+
+        public static void UpdateEndIconVisibilityMode(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.TextInputLayoutFocusChanged(virtualView, platformView.HasFocus);
+            platformView.TextInputLayoutTextChanged(virtualView, platformView.EditText?.Text);
+
+            if (virtualView.EndIconVisibilityMode == IconVisibilityMode.Always)
+            {
+                platformView.ShowEndIcon();
+            }
+            else if (virtualView.EndIconVisibilityMode == IconVisibilityMode.Never)
+            {
+                platformView.HideEndIcon();
             }
         }
 
@@ -63,6 +84,11 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 
         public static void ShowEndIcon(this MauiTextInputLayout platformView)
         {
+            if(platformView.EndIconVisible)
+            {
+                return;
+            }
+            // Removing the Post causes the layout to increase in height, shifting elements on the screen when the icon becomes visible (i.e. When focused)
             platformView.Post(() =>
             {
                 platformView.EndIconVisible = true;
@@ -71,6 +97,11 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 
         public static void HideEndIcon(this MauiTextInputLayout platformView)
         {
+            if(!platformView.EndIconVisible)
+            {
+                return;
+            }
+
             platformView.Post(() =>
             {
                 platformView.EndIconVisible = false;
@@ -114,15 +145,16 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             platformView.SetStartIconTintList(GetIconColorStateList(virtualView.StartIconColor, virtualView.DisabledStartIconColor, virtualView.DisabledStartIconOpacity));
         }
 
-        public static async Task MapCustomEndIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext? mauiContext)
+        public static async Task MapCustomEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
         {
-            handler.EndIconDrawable = await MapCustomIcon(entry.EndIcon, mauiContext);
+            platformView.EndIconDrawable = await MapCustomIcon(virtualView.EndIcon, mauiContext);
         }
 
-        public static async Task MapCustomStartIcon(this MauiTextInputLayout handler, ITextInputLayout entry, IMauiContext? mauiContext)
+        public static async Task MapCustomStartIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
         {
-            handler.StartIconDrawable = await MapCustomIcon(entry.StartIcon, mauiContext);
-            var startIcon = handler.FindViewById<AppCompatImageButton>(Resource.Id.text_input_start_icon);
+            platformView.StartIconDrawable = await MapCustomIcon(virtualView.StartIcon, mauiContext);
+
+            var startIcon = platformView.FindViewById<AppCompatImageButton>(Resource.Id.text_input_start_icon);
             if(startIcon is not null)
             {
                 startIcon.Focusable = false;

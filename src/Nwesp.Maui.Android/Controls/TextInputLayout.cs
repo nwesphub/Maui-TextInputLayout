@@ -96,6 +96,8 @@ namespace Nwesp.Maui.Android.Controls
             DisabledSupportingTextColorProperty = BindableProperty.Create(nameof(DisabledSupportingTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledSupportingTextColor());
             FocusedSupportingTextColorProperty = BindableProperty.Create(nameof(FocusedSupportingTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetFocusedSupportingTextColor());
             DisabledSupportingTextColorOpacityProperty = BindableProperty.Create(nameof(DisabledSupportingTextColorOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledSupportingTextOpacity());
+
+            StartIconClickedCommandProperty = BindableProperty.Create(nameof(StartIconClickedCommand), typeof(ICommand), typeof(TextInputLayout));
         }
 
         private static void BoxBackgroundModePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -106,7 +108,7 @@ namespace Nwesp.Maui.Android.Controls
             }
 
             // Background Color / Container Color
-            control.TrySetDefaultProperty(BackgroundColorProperty, ThemeHelper.GetContainerColor(mode));
+            control.TrySetDefaultProperty(BackgroundColorProperty, ThemeHelper.GetContainerColor(mode)); 
             control.TrySetDefaultProperty(DisabledBackgroundColorProperty, ThemeHelper.GetDisabledContainerColor(mode));
             control.TrySetDefaultProperty(DisabledBackgroundColorOpacityProperty, ThemeHelper.GetDisabledContainerOpacity(mode));
 
@@ -190,6 +192,7 @@ namespace Nwesp.Maui.Android.Controls
         public static readonly BindableProperty FocusedSupportingTextColorProperty;
         public static readonly BindableProperty DisabledSupportingTextColorOpacityProperty;
 
+        public static readonly BindableProperty StartIconClickedCommandProperty;
         
         public void EndIconClicked()
         {
@@ -503,7 +506,12 @@ namespace Nwesp.Maui.Android.Controls
             get => (float)GetValue(DisabledSupportingTextColorOpacityProperty);
             set => SetValue(DisabledSupportingTextColorOpacityProperty, value);
         }
-
+        
+        public ICommand StartIconClickedCommand
+        {
+            get => (ICommand)GetValue(StartIconClickedCommandProperty);
+            set => SetValue(StartIconClickedCommandProperty, value);
+        }
         public IStatefulColor SupportingTextColors => new StatefulColor
         (
             SupportingTextColor,
