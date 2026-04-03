@@ -1,8 +1,8 @@
 namespace Nwesp.Maui.Android.Samples;
 
-public partial class ErrorTextCounterPage : BaseDemoPage
+public partial class CounterPage : BaseDemoPage
 {
-	public ErrorTextCounterPage()
+	public CounterPage()
 	{
 		InitializeComponent();
 		BindingContext = this;
