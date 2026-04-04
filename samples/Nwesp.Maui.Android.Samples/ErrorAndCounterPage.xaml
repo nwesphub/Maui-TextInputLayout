@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseDemoPage
+    x:Class="Nwesp.Maui.Android.Samples.ErrorAndCounterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
+    xmlns:converter="clr-namespace:Nwesp.Maui.Android.Samples.Converters"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    Title="Counter">
+    <ScrollView>
+        <VerticalStackLayout Padding="8" Spacing="8">
+            <Label FontSize="Small" Text="Counter/Error colors are subject to changes due to limited bindings/mappings and certain colors update multiple properties on the text input layout (Counter overflow color also changes hint color)." />
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                CounterEnabled="True"
+                EndIconMode="ClearText"
+                Hint="Counter only"
+                SupportingText="Counting...">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                CounterEnabled="True"
+                CounterMaxLength="5"
+                EndIconMode="ClearText"
+                Hint="Counter max length"
+                IsErrorEnabled="True">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                CounterEnabled="True"
+                CounterMaxLength="5"
+                CounterOverflowTextColor="{StaticResource NwespGreen}"
+                EndIconMode="ClearText"
+                ErrorCursorColor="{StaticResource NwespGreen}"
+                ErrorOutlineColor="{StaticResource md.comp.filled-text-field.label-text.color}"
+                FocusedCounterOverflowTextColor="{StaticResource NwespGreen}"
+                FocusedErrorOutlineColor="{StaticResource md.comp.filled-text-field.focus.label-text.color}"
+                Hint="Counter max length"
+                SupportingText="Set counter overflow to success color.">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                CounterEnabled="True"
+                CounterMaxLength="5"
+                CounterOverflowTextColor="{StaticResource md.comp.filled-text-field.label-text.color}"
+                EndIconMode="ClearText"
+                ErrorCursorColor="{StaticResource md.comp.filled-text-field.focus.active-indicator.color}"
+                ErrorOutlineColor="{StaticResource md.comp.filled-text-field.label-text.color}"
+                FocusedCounterOverflowTextColor="{StaticResource md.comp.filled-text-field.focus.label-text.color}"
+                FocusedErrorOutlineColor="{StaticResource md.comp.filled-text-field.focus.label-text.color}"
+                Hint="Counter max length"
+                SupportingText="Set counter overflow to success color - alternate">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                CounterEnabled="True"
+                CounterMaxLength="5"
+                ErrorIcon="material_error.svg"
+                ErrorText="Text must not exceed 5 characters"
+                Hint="Label text"
+                IsErrorEnabled="{Binding ExceededCounterLengthText, Converter={converter:StringLengthGreaterThanConverter}, ConverterParameter=5}"
+                SupportingText="Counter with full error state.">
+                <input:MaterialEntry Text="{Binding ExceededCounterLengthText}" />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIconMode="ClearText"
+                ErrorIcon="{x:Null}"
+                ErrorText="Error state without icon."
+                Hint="Label text"
+                IsErrorEnabled="True">
+                <input:MaterialEntry Text="Input text" />
+            </input:TextInputLayout>
+            <!--    -->
+        </VerticalStackLayout>
+    </ScrollView>
+</base:BaseDemoPage>

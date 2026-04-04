@@ -85,7 +85,7 @@
 	  <MauiXaml Update="PrefixSuffixPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CounterPage.xaml">
+	  <MauiXaml Update="ErrorAndCounterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="StartIconPage.xaml">
@@ -98,11 +98,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="CounterPage.xaml.cs">
+	  <Compile Update="ErrorAndCounterPage.xaml.cs">
 	    <DependentUpon>CounterPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="CounterPage.xaml.cs">
-	    <DependentUpon>CounterPage.xaml</DependentUpon>
+	  <Compile Update="ErrorAndCounterPage.xaml.cs">
+	    <DependentUpon>ErrorAndCounterPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

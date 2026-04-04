@@ -285,13 +285,8 @@ namespace Nwesp.Maui.Android.Utilities
                 _ => Colors.Transparent
             };
 
-        public static Color GetErrorInputTextColor(BoxBackgroundMode mode) =>
-            mode switch
-            {
-                BoxBackgroundMode.Filled => Filled.ErrorInputTextColor,
-                BoxBackgroundMode.Outline => Outlined.ErrorInputTextColor,
-                _ => Colors.Transparent
-            };
+        public static Color GetErrorInputTextColor() => Filled.ErrorInputTextColor;
+
 
         public static Color GetErrorSupportingTextColor() => Filled.ErrorSupportingTextColor;
         public static Color GetErrorLeadingIconColor(BoxBackgroundMode mode) =>

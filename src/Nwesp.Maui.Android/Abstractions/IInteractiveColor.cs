@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Nwesp.Maui.Android.Abstractions
 {
-    public interface IStatefulColor : IInteractiveColor, IDisabledColor
+    public interface IInteractiveColor
     {
-
+        Color DefaultColor { get; }
+        Color FocusedColor { get; }
     }
 }

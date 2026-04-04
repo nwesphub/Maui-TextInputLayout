@@ -6,39 +6,41 @@
     xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
     xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
     Title="StartIconPage">
-    <VerticalStackLayout Padding="8" Spacing="8">
+    <ScrollView>
+        <VerticalStackLayout Padding="8" Spacing="8">
 
-        <input:TextInputLayout BoxBackgroundMode="{Binding BoxBackgroundMode}" Hint="Demo">
-            <input:MaterialEntry />
-        </input:TextInputLayout>
-        <input:TextInputLayout
+            <input:TextInputLayout BoxBackgroundMode="{Binding BoxBackgroundMode}" Hint="Demo">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
             BoxBackgroundMode="{Binding BoxBackgroundMode}"
             Hint="Username"
             StartIcon="user3.svg">
-            <input:MaterialEntry />
-        </input:TextInputLayout>
-        <input:TextInputLayout
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
             BoxBackgroundMode="{Binding BoxBackgroundMode}"
             EndIconMode="Password"
             Hint="Password"
             StartIcon="lock.svg">
-            <input:MaterialEntry />
-        </input:TextInputLayout>
-        <input:TextInputLayout
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
             BoxBackgroundMode="{Binding BoxBackgroundMode}"
             Hint="Address"
             StartIcon="address1.svg"
             StartIconColor="CornflowerBlue">
-            <input:MaterialEntry />
-        </input:TextInputLayout>
-        <input:TextInputLayout
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <input:TextInputLayout
             BoxBackgroundMode="{Binding BoxBackgroundMode}"
             Hint="Phone"
             StartIcon="phone1.svg"
             StartIconClickedCommand="{Binding StartIconClickedCommand}"
             StartIconColor="Green"
             SupportingText="Custom start icon click command.">
-            <input:MaterialEntry />
-        </input:TextInputLayout>
-    </VerticalStackLayout>
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </base:BaseDemoPage>

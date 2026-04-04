@@ -5,16 +5,12 @@ using System.Text;
 
 namespace Nwesp.Maui.Android.Models
 {
-    public class StatefulColor
-    (
+    public class StatefulColor(
         Color defaultColor,
         Color focusedColor,
         Color disabledColor,
-        float disabledOpacity
-    ) : IStatefulColor
+        float disabledOpacity) : InteractiveColor(defaultColor, focusedColor), IStatefulColor
     {
-        public Color DefaultColor { get; } = defaultColor;
-        public Color FocusedColor { get; } = focusedColor;
         public Color DisabledColor { get; } = disabledColor;
         public float DisabledOpacity { get; } = disabledOpacity;
     }

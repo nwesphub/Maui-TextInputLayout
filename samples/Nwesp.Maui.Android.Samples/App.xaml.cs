@@ -27,7 +27,7 @@ namespace Nwesp.Maui.Android.Samples
             RegisterRoute<PasswordPage>();
             RegisterRoute<PrefixSuffixPage>();
             RegisterRoute<TestPage>();
-            RegisterRoute<CounterPage>();
+            RegisterRoute<ErrorAndCounterPage>();
             RegisterRoute<EndIconClearTextPage>();
             RegisterRoute<StartIconPage>();
         }

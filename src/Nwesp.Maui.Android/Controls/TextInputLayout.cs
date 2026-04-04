@@ -72,7 +72,7 @@ namespace Nwesp.Maui.Android.Controls
             DisabledSuffixTextColorOpacityProperty = BindableProperty.Create(nameof(DisabledSuffixTextColorOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledInputTextOpacity());
 
             SupportingTextProperty = BindableProperty.Create(nameof(SupportingText), typeof(string), typeof(TextInputLayout));
-            ErrorTextProperty = BindableProperty.Create(nameof(ErrorText), typeof(string), typeof(TextInputLayout));
+            
 
             BoxStrokeCornerRadiusProperty = BindableProperty.Create(nameof(BoxStrokeCornerRadius), typeof(CornerRadius), typeof(TextInputLayout));
             BoxStrokeWidthProperty = BindableProperty.Create(nameof(BoxStrokeWidth), typeof(int), typeof(TextInputLayout), defaultValue: ThemeHelper.GetOutlineWidth());
@@ -83,14 +83,16 @@ namespace Nwesp.Maui.Android.Controls
 
             DisabledBackgroundColorProperty = BindableProperty.Create(nameof(DisabledBackgroundColor), typeof(Color), typeof(TextInputLayout));
             DisabledBackgroundColorOpacityProperty = BindableProperty.Create(nameof(DisabledBackgroundColorOpacity), typeof(float), typeof(TextInputLayout));
+            CursorColorProperty = BindableProperty.Create(nameof(CursorColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetCaretColor());
 
             IsErrorEnabledProperty = BindableProperty.Create(nameof(IsErrorEnabled), typeof(bool), typeof(TextInputLayout), defaultValue: false); // Default true adds spacing where text would be
-
-            CursorColorProperty = BindableProperty.Create(nameof(CursorColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetCaretColor());
+            ErrorTextProperty = BindableProperty.Create(nameof(ErrorText), typeof(string), typeof(TextInputLayout));
+            ErrorTextColorProperty = BindableProperty.Create(nameof(ErrorTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorSupportingTextColor());
             ErrorCursorColorProperty = BindableProperty.Create(nameof(ErrorCursorColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorCaretColor());
-
             ErrorOutlineColorProperty = BindableProperty.Create(nameof(ErrorOutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorFocusedActiveIndicatorColor());
             FocusedErrorOutlineColorProperty = BindableProperty.Create(nameof(FocusedErrorOutlineColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorFocusedActiveIndicatorColor());
+            ErrorIconClickedCommandProperty = BindableProperty.Create(nameof(ErrorIconClickedCommand), typeof(ICommand), typeof(TextInputLayout));
+            ErrorIconProperty = BindableProperty.Create(nameof(ErrorIcon), typeof(ImageSource), typeof(TextInputLayout), defaultValue: ImageSource.FromFile("material_error.svg"));
 
             CounterTextColorProperty = BindableProperty.Create(nameof(CounterTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetInputTextColor());
             CounterOverflowTextColorProperty = BindableProperty.Create(nameof(CounterOverflowTextColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetErrorSupportingTextColor());
@@ -103,6 +105,7 @@ namespace Nwesp.Maui.Android.Controls
 
             StartIconClickedCommandProperty = BindableProperty.Create(nameof(StartIconClickedCommand), typeof(ICommand), typeof(TextInputLayout));
             EndIconClickedCommandProperty = BindableProperty.Create(nameof(EndIconClickedCommand), typeof(ICommand), typeof(TextInputLayout), defaultValueCreator: EndIconClickedDefaultValueCreator);
+            
 
             ShowPasswordIconProperty = BindableProperty.Create(nameof(ShowPasswordIcon), typeof(ImageSource), typeof(TextInputLayout), defaultValue: ImageSource.FromFile("eye_on2.svg"));
             HidePasswordIconProperty = BindableProperty.Create(nameof(HidePasswordIcon), typeof(ImageSource), typeof(TextInputLayout), defaultValue: ImageSource.FromFile("eye_off2.svg"));
@@ -188,20 +191,22 @@ namespace Nwesp.Maui.Android.Controls
         public static readonly BindableProperty BoxStrokeFocusedWidthProperty;
 
         public static readonly BindableProperty SupportingTextProperty;
-        public static readonly BindableProperty ErrorTextProperty;
         
         public static readonly BindableProperty CounterEnabledProperty;
         public static readonly BindableProperty CounterMaxLengthProperty;
 
-        public static readonly BindableProperty IsErrorEnabledProperty;
-
         public static readonly BindableProperty EndIconClickedCommandProperty;
 
         public static readonly BindableProperty CursorColorProperty;
-        public static readonly BindableProperty ErrorCursorColorProperty;
 
+        public static readonly BindableProperty ErrorTextColorProperty;
+        public static readonly BindableProperty ErrorTextProperty;
+        public static readonly BindableProperty IsErrorEnabledProperty;
+        public static readonly BindableProperty ErrorCursorColorProperty;
         public static readonly BindableProperty ErrorOutlineColorProperty;
         public static readonly BindableProperty FocusedErrorOutlineColorProperty;
+        public static readonly BindableProperty ErrorIconClickedCommandProperty;
+        public static readonly BindableProperty ErrorIconProperty;
 
         public static readonly BindableProperty CounterTextColorProperty;
         public static readonly BindableProperty CounterOverflowTextColorProperty;
@@ -452,17 +457,7 @@ namespace Nwesp.Maui.Android.Controls
             get => (int)GetValue(CounterMaxLengthProperty);
             set => SetValue(CounterMaxLengthProperty, value);
         }
-        public string? ErrorText
-        {
-            get => GetValue(ErrorTextProperty)?.ToString();
-            set => SetValue(ErrorTextProperty, value);
-        }
-
-        public bool IsErrorEnabled
-        {
-            get => (bool)GetValue(IsErrorEnabledProperty);
-            set => SetValue(IsErrorEnabledProperty, value);
-        }
+        
 
         public ICommand EndIconClickedCommand
         {
@@ -474,6 +469,17 @@ namespace Nwesp.Maui.Android.Controls
         {
             get => (Color)GetValue(CursorColorProperty);
             set => SetValue(CursorColorProperty, value);
+        }
+        public string? ErrorText
+        {
+            get => GetValue(ErrorTextProperty)?.ToString();
+            set => SetValue(ErrorTextProperty, value);
+        }
+
+        public bool IsErrorEnabled
+        {
+            get => (bool)GetValue(IsErrorEnabledProperty);
+            set => SetValue(IsErrorEnabledProperty, value);
         }
         public Color ErrorCursorColor
         {
@@ -491,7 +497,21 @@ namespace Nwesp.Maui.Android.Controls
             get => (Color)GetValue(FocusedErrorOutlineColorProperty);
             set => SetValue(FocusedErrorOutlineColorProperty, value);
         }
-
+        public ICommand ErrorIconClickedCommand
+        {
+            get => (ICommand)GetValue(ErrorIconClickedCommandProperty);
+            set => SetValue(ErrorIconClickedCommandProperty, value);
+        }
+        public ImageSource ErrorIcon
+        {
+            get => (ImageSource)GetValue(ErrorIconProperty);
+            set => SetValue(ErrorIconProperty, value);
+        }
+        public Color ErrorTextColor
+        {
+            get => (Color)GetValue(ErrorTextColorProperty);
+            set => SetValue(ErrorTextColorProperty, value);
+        }
         public Color CounterTextColor
         {
             get => (Color)GetValue(CounterTextColorProperty);
@@ -535,6 +555,9 @@ namespace Nwesp.Maui.Android.Controls
             get => (ICommand)GetValue(StartIconClickedCommandProperty);
             set => SetValue(StartIconClickedCommandProperty, value);
         }
+        
+
+
         public IStatefulColor SupportingTextColors => new StatefulColor
         (
             SupportingTextColor,
@@ -553,5 +576,11 @@ namespace Nwesp.Maui.Android.Controls
             get => (ImageSource)GetValue(HidePasswordIconProperty);
             set => SetValue(HidePasswordIconProperty, value);
         }
+
+        public IInteractiveColor CounterOverflowTextColors => new InteractiveColor
+        (
+            CounterOverflowTextColor,
+            FocusedCounterOverflowTextColor
+        );
     }
 }

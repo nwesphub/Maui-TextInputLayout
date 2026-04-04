@@ -128,12 +128,6 @@ namespace Nwesp.Maui.Android
                 PlatformEntry.TextChanged += PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange += PlatformEntry_FocusChange;
             }
-
-            
-            PlatformView.SetErrorIconOnClickListener(new OnClickListener(() =>
-            {
-                VirtualView?.ErrorIconClicked();
-            }));
         }
         
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
@@ -226,7 +220,17 @@ namespace Nwesp.Maui.Android
 
         public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView?.MapCustomEndIcon(entry, handler.MauiContext);
+            handler.PlatformView?.UpdateEndIcon(entry);
+        }
+
+        public static void MapErrorIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateErrorIcon(entry);
+        }
+
+        public static void MapErrorTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateErrorTextColor(entry);
         }
 
         public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -246,7 +250,7 @@ namespace Nwesp.Maui.Android
         
         public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView?.MapCustomStartIcon(entry, handler.MauiContext);
+            handler.PlatformView?.UpdateStartIcon(entry);
         }
 
         public static void MapStartIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -331,13 +335,13 @@ namespace Nwesp.Maui.Android
 
         public static void MapSupportingTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView?.UpdateSupportingTextColor(entry, handler.PlatformView.HasFocus);
+            handler.PlatformView?.UpdateSupportingTextColor(entry);
         }
 
         public static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             ViewHandler.MapIsEnabled(handler, entry);
-            handler.PlatformView?.UpdateSupportingTextColor(entry, handler.PlatformView.HasFocus);
+            handler.PlatformView?.UpdateStatefulColors(entry, handler.PlatformView.HasFocus);
         }
 
         public static void MapStartIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -349,7 +353,11 @@ namespace Nwesp.Maui.Android
         {
             handler.PlatformView?.UpdateEndIconClickedCommand(entry);
         }
-
+        public static void MapErrorIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateErrorIconClickedCommand(entry);
+        }
+        
         public static void MapShowPasswordIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
             handler.PlatformView?.UpdateShowPasswordIcon(entry);

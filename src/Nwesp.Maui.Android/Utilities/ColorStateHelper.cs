@@ -9,9 +9,9 @@ namespace Nwesp.Maui.Android.Utilities
 {
     public class ColorStateHelper
     {
-        public static ColorStateList GetColorStateList(IStatefulColor textColor, bool isEnabled, bool hasFocus)
+        public static ColorStateList GetColorStateList(IInteractiveColor textColor, bool isEnabled, bool hasFocus)
         {
-            Color color;
+            Color color = textColor.DefaultColor;
             if (isEnabled)
             {
                 if (hasFocus)
@@ -23,9 +23,9 @@ namespace Nwesp.Maui.Android.Utilities
                     color = textColor.DefaultColor;
                 }
             }
-            else
+            else if(textColor is IDisabledColor disabledColor)
             {
-                color = textColor.DisabledColor.WithAlpha(textColor.DisabledOpacity);
+                color = disabledColor.DisabledColor.WithAlpha(disabledColor.DisabledOpacity);
             }
 
             return color.ToDefaultColorStateList();
@@ -34,6 +34,11 @@ namespace Nwesp.Maui.Android.Utilities
         public static ColorStateList GetSupportingTextColorStateList(ITextInputLayout layout, bool hasFocus)
         {
             return GetColorStateList(layout.SupportingTextColors, layout.IsEnabled, hasFocus);
+        }
+
+        public static ColorStateList GetCounterOverflowTextColorStateList(ITextInputLayout layout, bool hasFocus)
+        {
+            return GetColorStateList(layout.CounterOverflowTextColors, layout.IsEnabled, hasFocus);
         }
     }
 }

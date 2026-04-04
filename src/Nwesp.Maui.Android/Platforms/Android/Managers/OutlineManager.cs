@@ -102,7 +102,19 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 
         public static void UpdateErrorOutlineColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            platformView.BoxStrokeErrorColor = virtualView.ErrorOutlineColor.ToDefaultColorStateList();
+            // Note: Opposite states?
+            int[][] states =
+            [
+                [AResource.StateFocused],
+                [AResource.StateEnabled],
+            ];
+            int[] colors =
+            [
+                
+                virtualView.ErrorOutlineColor.ToPlatform(),
+                virtualView.FocusedErrorOutlineColor.ToPlatform(),
+            ];
+            platformView.BoxStrokeErrorColor = new ColorStateList(states, colors);
         }
     }
 }

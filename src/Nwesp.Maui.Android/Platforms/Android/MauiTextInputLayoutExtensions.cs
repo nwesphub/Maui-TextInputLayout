@@ -112,10 +112,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
         {
             platformView.HelperText = virtualView.SupportingText;
         }
-        public static void UpdateErrorText(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
-        {
-            platformView.Error = virtualView.ErrorText;
-        }
+        
 
         public static void UpdateCounterEnabled(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
@@ -134,6 +131,26 @@ namespace Nwesp.Maui.Android.Platforms.Android
         public static void UpdateIsErrorEnabled(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             platformView.ErrorEnabled = virtualView.IsErrorEnabled;
+            if (virtualView.IsErrorEnabled)
+            {
+                platformView.Error = virtualView.ErrorText;
+            }
+            else
+            {
+                platformView.Error = null;
+            }
+        }
+        public static void UpdateErrorText(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.ErrorEnabled = virtualView.IsErrorEnabled;
+            if (virtualView.IsErrorEnabled)
+            {
+                platformView.Error = virtualView.ErrorText;
+            }
+            else
+            {
+                platformView.Error = null;
+            }
         }
 
         public static void TextInputLayoutFocusChanged(this MauiTextInputLayout platformView, ITextInputLayout virtualView, bool hasFocus)
@@ -143,7 +160,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
                 return;
             }
 
-            platformView.UpdateSupportingTextColor(virtualView, hasFocus);
+            platformView.UpdateStatefulColors(virtualView, hasFocus);
 
             if (virtualView.EndIconVisibilityMode != IconVisibilityMode.WhileEditing &&
                 virtualView.EndIconVisibilityMode != IconVisibilityMode.HasTextWhileEditing)
@@ -220,9 +237,15 @@ namespace Nwesp.Maui.Android.Platforms.Android
         {
             platformView.CursorErrorColor = virtualView.ErrorCursorColor.ToDefaultColorStateList();
         }
-        public static void UpdateSupportingTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView, bool hasFocus)
+        public static void UpdateSupportingTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.SetHelperTextColor(ColorStateHelper.GetSupportingTextColorStateList(virtualView, platformView.HasFocus));
+        }
+
+        public static void UpdateStatefulColors(this MauiTextInputLayout platformView, ITextInputLayout virtualView, bool hasFocus)
         {
             platformView.SetHelperTextColor(ColorStateHelper.GetSupportingTextColorStateList(virtualView, hasFocus));
+            platformView.CounterOverflowTextColor = ColorStateHelper.GetCounterOverflowTextColorStateList(virtualView, hasFocus);
         }
 
         public static void UpdateCounterTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
@@ -232,7 +255,12 @@ namespace Nwesp.Maui.Android.Platforms.Android
 
         public static void UpdateCounterOverflowTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            platformView.CounterOverflowTextColor = virtualView.CounterOverflowTextColor.ToDefaultColorStateList();
+            platformView.CounterOverflowTextColor = ColorStateHelper.GetCounterOverflowTextColorStateList(virtualView, platformView.HasFocus);
+        }
+
+        public static void UpdateErrorTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.SetErrorTextColor(virtualView.ErrorTextColor.ToDefaultColorStateList());
         }
     }
 }

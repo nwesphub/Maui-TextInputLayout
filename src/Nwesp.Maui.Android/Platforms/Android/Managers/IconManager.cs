@@ -52,7 +52,7 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             }
             else if(platformView.CustomEndIconMode == EndIconMode.ClearText)
             {
-                await platformView.MapCustomEndIcon(virtualView, platformView.MauiContext);
+                await platformView.UpdateEndIcon(virtualView);
             }
         }
 
@@ -98,6 +98,21 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             else
             {
                 platformView.SetEndIconOnClickListener(null);
+            }
+        }
+
+        public static void UpdateErrorIconClickedCommand(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            if (virtualView.ErrorIconClickedCommand is not null)
+            {
+                platformView.SetErrorIconOnClickListener(new OnClickListener(() =>
+                {
+                    virtualView.ErrorIconClickedCommand.Execute(null);
+                }));
+            }
+            else
+            {
+                platformView.SetErrorIconOnClickListener(null);
             }
         }
 
@@ -206,14 +221,14 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             platformView.SetStartIconTintList(GetIconColorStateList(virtualView.StartIconColor, virtualView.DisabledStartIconColor, virtualView.DisabledStartIconOpacity));
         }
 
-        public static async Task MapCustomEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
+        public static async Task UpdateEndIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            platformView.EndIconDrawable = await MapCustomIcon(virtualView.EndIcon, mauiContext);
+            platformView.EndIconDrawable = await MapCustomIcon(virtualView.EndIcon, platformView.MauiContext);
         }
 
-        public static async Task MapCustomStartIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
+        public static async Task UpdateStartIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            platformView.StartIconDrawable = await MapCustomIcon(virtualView.StartIcon, mauiContext);
+            platformView.StartIconDrawable = await MapCustomIcon(virtualView.StartIcon, platformView.MauiContext);
 
             var startIcon = platformView.FindViewById<AppCompatImageButton>(Resource.Id.text_input_start_icon);
             if(startIcon is not null)
@@ -221,6 +236,11 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
                 startIcon.Focusable = false;
                 startIcon.FocusableInTouchMode = false;
             }
+        }
+
+        public static async Task UpdateErrorIcon(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            platformView.ErrorIconDrawable = await MapCustomIcon(virtualView.ErrorIcon, platformView.MauiContext);
         }
 
         private static async Task<Drawable?> MapCustomIcon(ImageSource? icon, IMauiContext? mauiContext)

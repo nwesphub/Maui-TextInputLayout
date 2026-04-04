@@ -29,23 +29,19 @@ namespace Nwesp.Maui.Android.Abstractions
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
         EndIconMode EndIconMode { get; set; }
-        void ErrorIconClicked();
         ICommand EndIconClickedCommand { get; set; }
         ImageSource EndIcon { get; set; }
         Color EndIconColor { get; set; }
         Color DisabledEndIconColor { get; set; }
         float DisabledEndIconOpacity { get; set; }
-
         ICommand StartIconClickedCommand { get; set; }
         ImageSource StartIcon { get; set; }
         Color StartIconColor { get; set; }
         Color DisabledStartIconColor { get; set; }
         float DisabledStartIconOpacity { get; set; }
-
         string? Prefix { get; set; }
         string? Suffix { get; set; }
         string? SupportingText { get; set; }
-        string? ErrorText { get; set; }
         CornerRadius BoxStrokeCornerRadius { get; set; }
         int BoxStrokeWidth { get; set; }
         int BoxStrokeFocusedWidth { get; set; }
@@ -58,14 +54,19 @@ namespace Nwesp.Maui.Android.Abstractions
         Color DisabledPrefixTextColor { get; set; }
         float DisabledPrefixTextColorOpacity { get; set; }
         IMaterialEntry? MaterialEntry { get; }
-        bool IsErrorEnabled { get; set; }
         Color CursorColor { get; set; }
+        ImageSource ErrorIcon { get; set; }
+        ICommand ErrorIconClickedCommand { get; set; }
+        string? ErrorText { get; set; }
+        bool IsErrorEnabled { get; set; }
         Color ErrorCursorColor { get; set; }
         Color ErrorOutlineColor { get; set; }
         Color FocusedErrorOutlineColor { get; set; }
+        Color ErrorTextColor { get; set; }
         Color CounterTextColor { get; set; }
         Color CounterOverflowTextColor { get; set; }
         Color FocusedCounterOverflowTextColor { get; set; }
+        IInteractiveColor CounterOverflowTextColors { get; }
         Color SupportingTextColor { get; set; }
         Color DisabledSupportingTextColor { get; set; }
         Color FocusedSupportingTextColor { get; set; }

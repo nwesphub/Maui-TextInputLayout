@@ -61,10 +61,10 @@ public partial class DemoPage : ContentPage, IQueryAttributable
             return
             [
                 new PageRoute(nameof(PasswordPage), "Password Demo"),
-                new PageRoute(nameof(PrefixSuffixPage), "Prefix / Suffix"),
-                new PageRoute(nameof(CounterPage), "Counter"),
-                new PageRoute(nameof(EndIconClearTextPage), "End Icon/Clear Text"),
-                new PageRoute(nameof(StartIconPage), "Start Icon"),
+                new PageRoute(nameof(PrefixSuffixPage), "Prefix / Suffix Demo"),
+                new PageRoute(nameof(ErrorAndCounterPage), "Error / Counter Demo"),
+                new PageRoute(nameof(EndIconClearTextPage), "End Icon / Clear Text Demo"),
+                new PageRoute(nameof(StartIconPage), "Start Icon Demo"),
                 new PageRoute(nameof(TestPage), "Test")
             ];
         }

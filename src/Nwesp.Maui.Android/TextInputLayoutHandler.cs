@@ -65,7 +65,6 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.BoxStrokeFocusedWidth)] = MapBoxStrokeFocusedWidth,
             [nameof(ITextInputLayout.CounterEnabled)] = MapCounterEnabled,
             [nameof(ITextInputLayout.CounterMaxLength)] = MapCounterMaxLength,
-            [nameof(ITextInputLayout.ErrorText)] = MapErrorText,
             [nameof(ITextInputLayout.PrefixTextColor)] = MapPrefixTextColor,
             [nameof(ITextInputLayout.DisabledPrefixTextColor)] = MapPrefixTextColor,
             [nameof(ITextInputLayout.DisabledPrefixTextColorOpacity)] = MapPrefixTextColor,
@@ -73,11 +72,15 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
             [nameof(IPadding.Padding)] = MapPadding, // Padding isn't mapped by default.
-            [nameof(ITextInputLayout.IsErrorEnabled)] = MapIsErrorEnabled,
             [nameof(ITextInputLayout.CursorColor)] = MapCursorColor,
+            [nameof(ITextInputLayout.ErrorText)] = MapErrorText,
+            [nameof(ITextInputLayout.IsErrorEnabled)] = MapIsErrorEnabled,
             [nameof(ITextInputLayout.ErrorCursorColor)] = MapErrorCursorColor,
             [nameof(ITextInputLayout.ErrorOutlineColor)] = MapErrorOutlineColor,
             [nameof(ITextInputLayout.FocusedErrorOutlineColor)] = MapErrorOutlineColor,
+            [nameof(ITextInputLayout.ErrorIconClickedCommand)] = MapErrorIconClickedCommand,
+            [nameof(ITextInputLayout.ErrorIcon)] = MapErrorIcon,
+            [nameof(ITextInputLayout.ErrorTextColor)] = MapErrorTextColor,
             [nameof(ITextInputLayout.CounterOverflowTextColor)] = MapCounterTextColor,
             [nameof(ITextInputLayout.CounterOverflowTextColor)] = MapCounterOverflowTextColor,
             [nameof(ITextInputLayout.FocusedCounterOverflowTextColor)] = MapCounterOverflowTextColor,
@@ -88,6 +91,7 @@ namespace Nwesp.Maui.Android
             [nameof(IView.IsEnabled)] = MapIsEnabled,
             [nameof(ITextInputLayout.StartIconClickedCommand)] = MapStartIconClickedCommand,
             [nameof(ITextInputLayout.EndIconClickedCommand)] = MapEndIconClickedCommand,
+            
             [nameof(ITextInputLayout.ShowPasswordIcon)] = MapShowPasswordIcon,
             [nameof(ITextInputLayout.HidePasswordIcon)] = MapHidePasswordIcon,
         };

@@ -6,8 +6,11 @@ public partial class TestPage : BaseDemoPage
 {
 	public TestPage()
 	{
-        
-        
+
+        ErrorIconClickedCommand = new Command(async () =>
+        {
+            await DisplayAlertAsync("Error", "Error Message", "Ok");
+        });
         ButtonCommand = new Command(() => IsLayoutVisible = !IsLayoutVisible);
         InitializeComponent();
         BindingContext = this;
@@ -24,4 +27,5 @@ public partial class TestPage : BaseDemoPage
         }
     }
     public ICommand ButtonCommand { get; }
+    public ICommand ErrorIconClickedCommand { get; }
 }
