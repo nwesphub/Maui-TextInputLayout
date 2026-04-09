@@ -61,7 +61,7 @@ namespace Nwesp.Maui.Android
                 PlatformView.Post(() =>
                 {
                     var logger = MauiContext.Services.GetRequiredService<ILogger<TextInputLayoutHandler>>();
-                    logger.LogWarning("Hiding icon");
+                    logger.LogWarning("Toggling Password init");
                     PlatformView?.TogglePasswordOn();
                 });
             } 

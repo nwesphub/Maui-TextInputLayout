@@ -125,7 +125,13 @@ namespace Nwesp.Maui.Android.Platforms.Android
         public static void UpdatePadding(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             var padding = virtualView.Padding;
-            platformView.SetPadding((int)padding.Left, (int)padding.Top, (int)padding.Right, (int)padding.Bottom);
+            var density = DisplayHelper.GetDensity(platformView);
+
+            platformView.SetPadding(
+                (int)(padding.Left * density),
+                (int)(padding.Top * density),
+                (int)(padding.Right * density),
+                (int)(padding.Bottom * density));
         }
 
         public static void UpdateIsErrorEnabled(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
