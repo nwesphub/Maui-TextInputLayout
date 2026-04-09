@@ -45,6 +45,7 @@ namespace Nwesp.Maui.Android.Samples
             builder.Services.AddTransient<ErrorAndCounterPage>();
             builder.Services.AddTransient<EndIconClearTextPage>();
             builder.Services.AddTransient<StartIconPage>();
+            builder.Services.AddTransient<ColorsPage>();
             return builder;
         }
     }

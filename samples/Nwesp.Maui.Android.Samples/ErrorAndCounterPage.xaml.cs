@@ -25,7 +25,7 @@ public partial class ErrorAndCounterPage : BaseDemoPage
             OnPropertyChanged();
         }
     }
-    private string _exceededCounterLengthText;
+    private string _exceededCounterLengthText = string.Empty;
     public string ExceededCounterLengthText
     {
         get => _exceededCounterLengthText;

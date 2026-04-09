@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseDemoPage
+    x:Class="Nwesp.Maui.Android.Samples.ColorsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
+    xmlns:controls="clr-namespace:Nwesp.Maui.Android.Samples.Controls"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    Title="Colors">
+    <base:BaseDemoPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding ResetCurrentPropertyCommand}"
+            Order="Secondary"
+            Text="Reset current property" />
+        <ToolbarItem
+            Command="{Binding ResetAllPropertiesCommand}"
+            Order="Secondary"
+            Text="Reset all properties" />
+    </base:BaseDemoPage.ToolbarItems>
+    <Grid RowDefinitions="*, Auto">
+        <ScrollView Grid.Row="0" x:Name="ScrollView">
+            <VerticalStackLayout Padding="8" Spacing="8">
+
+                <input:TextInputLayout
+                    x:Name="TextInputLayout1"
+                    BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                    Hint="Label text"
+                    SupportingText="Supporting Text">
+                    <input:MaterialEntry x:Name="MaterialEntry1" />
+                </input:TextInputLayout>
+                <input:TextInputLayout
+                    x:Name="TextInputLayout2"
+                    BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                    Hint="Label text"
+                    SupportingText="Supporting Text">
+                    <input:MaterialEntry x:Name="MaterialEntry2" Text="Input text" />
+                </input:TextInputLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <VerticalStackLayout Grid.Row="1">
+            <input:TextInputLayout
+                Padding="8"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                Hint="Select a Property"
+                SupportingText="Select a property to change colors using the picker below.">
+                <input:MaterialPicker
+                    ItemDisplayBinding="{Binding DisplayName}"
+                    ItemsSource="{Binding Properties}"
+                    SelectedItem="{Binding SelectedProperty}" />
+            </input:TextInputLayout>
+            <controls:ColorPicker ColorChanged="ColorPicker_ColorChanged" SelectedColor="{Binding SelectedColor}" />
+        </VerticalStackLayout>
+    </Grid>
+</base:BaseDemoPage>

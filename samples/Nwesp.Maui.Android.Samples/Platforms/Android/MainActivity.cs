@@ -12,7 +12,7 @@ namespace Nwesp.Maui.Android.Samples
         {
             base.OnCreate(savedInstanceState);
 
-            WindowCompat.SetDecorFitsSystemWindows(Window, false);
+            //WindowCompat.SetDecorFitsSystemWindows(Window, false);
 
             var content = FindViewById(global::Android.Resource.Id.Content);
             
@@ -33,7 +33,7 @@ namespace Nwesp.Maui.Android.Samples
 
             v.SetPadding(
                 systemBars.Left,
-                systemBars.Top,
+                0,
                 systemBars.Right,
                 systemBars.Bottom);
 

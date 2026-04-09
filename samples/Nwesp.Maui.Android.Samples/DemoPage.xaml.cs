@@ -65,6 +65,7 @@ public partial class DemoPage : ContentPage, IQueryAttributable
                 new PageRoute(nameof(ErrorAndCounterPage), "Error / Counter Demo"),
                 new PageRoute(nameof(EndIconClearTextPage), "End Icon / Clear Text Demo"),
                 new PageRoute(nameof(StartIconPage), "Start Icon Demo"),
+                new PageRoute(nameof(ColorsPage), "Colors"),
                 new PageRoute(nameof(TestPage), "Test")
             ];
         }

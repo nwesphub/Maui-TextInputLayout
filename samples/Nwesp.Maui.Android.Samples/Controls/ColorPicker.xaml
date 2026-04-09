@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Nwesp.Maui.Android.Samples.Controls.ColorPicker"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    x:Name="root">
+    <Grid
+        Background="{AppThemeBinding Light=#FFFFFF,
+                                     Dark=#1F1F1F}"
+        ColumnDefinitions="*, 3*, *"
+        RowDefinitions="*, Auto, Auto">
+
+        <GraphicsView
+            x:Name="ColorBox"
+            Grid.ColumnSpan="3"
+            Margin="40,0,40,0"
+            Drawable="{Binding ColorBoxDrawable, Source={x:Reference root}}"
+            HeightRequest="200">
+            <GraphicsView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnColorBoxTapped" />
+                <PanGestureRecognizer PanUpdated="OnColorBoxPan" TouchPoints="1" />
+            </GraphicsView.GestureRecognizers>
+        </GraphicsView>
+
+        <input:TextInputLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,10,0,0"
+            BoxBackgroundMode="{Binding BoxBackgroundMode, Source={x:Reference root}}"
+            EndIcon="paste.svg"
+            EndIconClickedCommand="{Binding EndIconClickedCommand, Source={x:Reference root}}"
+            EndIconVisibilityMode="Always"
+            Hint="Hex"
+            IsHintAlwaysExpanded="True"
+            StartIcon="copy.svg"
+            StartIconClickedCommand="{Binding StartIconClickedCommand, Source={x:Reference root}}">
+            <input:MaterialEntry Text="{Binding ColorHex, Source={x:Reference root}}" TextChanged="MaterialEntry_TextChanged" />
+        </input:TextInputLayout>
+        
+        <GraphicsView
+            x:Name="HueBar"
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
+            Margin="40,10,40,10"
+            Drawable="{Binding HueDrawable, Source={x:Reference root}}"
+            HeightRequest="20">
+            <GraphicsView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnHueTapped" />
+                <PanGestureRecognizer PanUpdated="OnHuePan" />
+            </GraphicsView.GestureRecognizers>
+        </GraphicsView>
+    </Grid>
+</ContentView>

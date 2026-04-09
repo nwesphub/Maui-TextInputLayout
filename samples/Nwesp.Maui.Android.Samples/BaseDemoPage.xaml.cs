@@ -10,7 +10,7 @@ public partial class BaseDemoPage : ContentPage
 	public BaseDemoPage()
 	{
         var service = Application.Current?.Handler?.MauiContext?.Services.GetService<BoxBackgroundService>();
-        BoxBackgroundMode = service.GetBackground();
+        BoxBackgroundMode = service?.GetBackground() ?? BoxBackgroundMode.Outline;
         InitializeComponent();
 	}
 

@@ -73,6 +73,12 @@
 	  <MauiXaml Update="BaseDemoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ColorsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\ColorPicker.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="DemoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -98,6 +104,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="ColorsPage.xaml.cs">
+	    <DependentUpon>ColorsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="ErrorAndCounterPage.xaml.cs">
 	    <DependentUpon>CounterPage.xaml</DependentUpon>
 	  </Compile>
