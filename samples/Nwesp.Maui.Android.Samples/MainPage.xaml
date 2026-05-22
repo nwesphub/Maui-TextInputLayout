@@ -20,11 +20,11 @@
         <input:TextInputLayout BoxBackgroundMode="Filled" EndIconClickedCommand="{x:Null}">
             <input:MaterialEntry />
         </input:TextInputLayout>
-        <input:TextInputLayout BoxBackgroundMode="Filled">
-            <input:MaterialEntry />
+        <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Label Text">
+            <input:MaterialEntry Text="Input Text" />
         </input:TextInputLayout>
-        <input:TextInputLayout BoxBackgroundMode="Filled">
-            <input:MaterialEntry />
+        <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Label Text">
+            <input:MaterialEntry Text="Input Text" />
         </input:TextInputLayout>
         <input:TextInputLayout BoxBackgroundMode="Filled">
             <input:MaterialEntry />

@@ -11,10 +11,17 @@
 		<Nullable>enable</Nullable>
 		<PackageId>Nwesp.Maui.Android.TextInputLayout</PackageId>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<PackageProjectUrl>https://github.com/nwesphub/Maui-TextInputLayout</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/nwesphub/Maui-TextInputLayout</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Version>1.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
+		 <None Include="..\..\README.md" Pack="true" PackagePath="\" />
 	  <AndroidResource Remove="Platforms\Android\Resources\styles\styles.xml" />
 	</ItemGroup>
 
