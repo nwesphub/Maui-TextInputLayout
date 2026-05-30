@@ -38,6 +38,8 @@ public App(AppShell shell)
 ## Basic Demo
 
 ```xml
+xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+
 <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Label Text">
     <input:MaterialEntry Text="Input Text" />
 </input:TextInputLayout>
